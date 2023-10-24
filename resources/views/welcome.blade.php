@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <h1 class="font-2xl text-red-500">hello world</h1>
+    <h1 class="text-2xl text-red-500">hello world</h1>
 </body>
 
 </html>
