@@ -14,10 +14,11 @@
 -   Installer les depandances npm: `npm install`
 -   Installer les depandances composer : `composer install`
 -   lancer les migrations de la BDD : `php artisan migrate`
--   Remplir la base de donées a travers le seeder : `php artisan db:seed`
 -   Faire un link pour le storage : `php artisan storage:link`
 -   Lancer le projet dans les 2 terminals : `npm run dev` `php artisan`
 
 ## Structure du projet :
 
 (to implement)
+
+### A savoir si on va utuliser 2 different projets un pour le front-office et l'autre pour le back office
