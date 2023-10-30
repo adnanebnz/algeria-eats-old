@@ -20,7 +20,6 @@ class LoginController extends Controller
     public function showLoginForm(): View
     {
         return view('auth.login');
-        // TODO CREATE VIEW
     }
 
     public function login(Request $request): RedirectResponse
