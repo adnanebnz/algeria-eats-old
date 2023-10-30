@@ -19,8 +19,6 @@
 
 ## Structure du projet :
 
-(to implement)
+### TODO
 
-### A savoir si on va utuliser 2 different projets un pour le front-office et l'autre pour le back office
-
-MODIFIED
+-   Navigation mobile pour dashboards pour les liens Profile et Logout

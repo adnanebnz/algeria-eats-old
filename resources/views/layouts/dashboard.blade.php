@@ -14,9 +14,9 @@
     @livewireStyles
 </head>
 
-<body class="h-full overflow-x-hidden"> <!-- Add the overflow-x-hidden class here -->
+<body class="h-full overflow-x-hidden">
     <div>
-        <nav class="bg-white border-b border-gray-200 fixed z-30">
+        <nav class="bg-white border-b border-gray-200 fixed w-full z-30">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center justify-start">
@@ -47,6 +47,76 @@
                             <!-- Add any search button content here -->
                         </button>
                     </div>
+                    {{-- TODO USER NAV --}}
+                    <div x-data="{ open: false }">
+                        <nav :class="{ 'flex': open, 'hidden': !open }"
+                            class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
+
+
+                            <div @click.away="open = false" class="relative" x-data="{ open: false }">
+                                <button @click="open = !open"
+                                    class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
+                                    <span>
+                                        {{ auth()->user()->prenom }}
+                                    </span>
+                                    <svg fill="currentColor" viewBox="0 0 20 20"
+                                        :class="{ 'rotate-180': open, 'rotate-0': !open }"
+                                        class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
+                                        <path fill-rule="evenodd"
+                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                    x-transition:leave="transition ease-in duration-75"
+                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                    class="absolute right-0 w-full md:max-w-[280px] md:w-screen mt-2 origin-top-right">
+                                    <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
+                                        <div class="grid grid-cols-1 gap-4">
+                                            <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                href="#">
+                                                <div class="bg-blue-500 text-white rounded-lg p-3">
+                                                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                                        class="md:h-6 md:w-6 h-4 w-4">
+                                                        <path
+                                                            d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="font-semibold">Profile</p>
+                                                    <p class="text-sm">Voir et modifier votre profile</p>
+                                                </div>
+                                            </a>
+                                            <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                href="{{ route('auth.logout') }}">
+                                                <div class="bg-blue-500 text-white rounded-lg p-3">
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="md:h-6 md:w-6 h-4 w-4">
+
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                                    </svg>
+
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="font-semibold">Déconnexion</p>
+                                                    <p class="text-sm">Déconnecter vous de votre compte</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    {{-- TODO USER NAV END --}}
                 </div>
             </div>
         </nav>
@@ -58,14 +128,14 @@
                     <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                         <div class="flex-1 px-3 bg-white divide-y space-y-1">
                             <ul class="space-y-2 pb-2">
-
                                 <li>
                                     <a href="#"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
-                                        <svg class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                            <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                                        <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                            class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75">
+                                            <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                            <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                                         </svg>
                                         <span class="ml-3">Dashboard</span>
                                     </a>
@@ -74,58 +144,64 @@
                                 @if ($isAdmin)
                                     <li>
                                         <a href="#"
-                                            class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                            <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                                fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                    clip-rule="evenodd"></path>
+                                            class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                             </svg>
-                                            <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
+                                            <span class="ml-3">Users</span>
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#"
-                                            class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group ">
-                                            <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover:text-gray-900 transition duration-75"
-                                                fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/200
-                                                <path fill-rule="evenodd"
-                                                d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                                clip-rule="evenodd"></path>
+                                            class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                class="w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
                                             </svg>
-                                            <span class="ml-3 flex-1 whitespace-nowrap">Products</span>
+                                            <span class="ml-3">Products</span>
                                         </a>
                                     </li>
                                 @endif
+                                {{-- TODO ARTISAN SECTION --}}
                                 @if ($isArtisan)
                                     <li>
                                         <a href="#"
-                                            class="text-base text-gray-900 font-normal rounded-lg hover-bg-gray-100 flex items-center p-2 group ">
-                                            <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover-text-gray-900 transition duration-75"
-                                                fill="currentColor" viewBox="0 0 20 20"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd"
-                                                    d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
-                                                    clip-rule="evenodd"></path>
+                                            class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                class="w-6
+                                        h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                                             </svg>
-                                            <span class="ml-3 flex-1 whitespace-nowrap">Commandes</span>
+                                            <span class="ml-3">Produits</span>
                                         </a>
                                     </li>
                                 @endif
-                                <li>
-                                    <a href="#"
-                                        class="text-base text-gray-900 font-normal rounded-lg hover-bg-gray-100 flex items-center p-2 group ">
-                                        <svg class="w-6 h-6 text-gray-500 flex-shrink-0 group-hover-text-gray-900 transition duration-75"
-                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path fill-rule="evenodd"
-                                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                clip-rule="evenodd"></path>
-                                        </svg>
-                                        <span class="ml-3 flex-1 whitespace-nowrap">Profile</span>
-                                    </a>
-                                </li>
+                                @if ($isArtisan || $isUser)
+                                    <li>
+                                        <a href="#"
+                                            class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                class="w-6
+                                                h-6 text-gray-500 group-hover:text-gray-900 transition duration-75"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                                            </svg>
+                                            <span class="ml-3">Commandes</span>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -133,7 +209,6 @@
             </aside>
             <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
             <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64 p-4">
-                <!-- Add padding to the main content -->
                 {{-- TODO ADD CONTENT HERE --}}
                 {{ $slot }}
                 {{-- TODO END CONTENT --}}

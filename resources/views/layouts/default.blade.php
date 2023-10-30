@@ -191,5 +191,4 @@
     </footer>
     @livewireScripts
 </body>
-
 </html>

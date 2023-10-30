@@ -22,6 +22,7 @@ class DashboardLayout extends AbstractLayout
         parent::__construct($title);
         parent::__construct($isUser);
         parent::__construct($isAdmin);
+        parent::__construct($isArtisan);
         parent::__construct($isDeliver);
     }
 
