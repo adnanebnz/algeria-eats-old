@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,15 @@ Route::post('/auth/login', [LoginController::class, 'login']);
 Route::get("/auth/register", [RegisterController::class, 'showRegisterForm'])->name('auth.register');
 Route::post("/auth/register", [RegisterController::class, 'register']);
 Route::match(['get', 'post'], '/auth/logout', [LoginController::class, 'logout'])->name('auth.logout');
+Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile');
 /*AUTH SECTION END*/
+
+/*ARTISAN DASHBOARD*/
+
+// TODO CHECK WHY THIS ISNT WORKING
+Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("artisan.index");
+Route::get('artisan/dashboard/produits', [ArtisanController::class, 'products'])->name("artisan.products");
+/*ARTISAN DASHBOARD END*/
 
 Route::get("/artisan/dashboard", function () {
     return view("artisan.dashboard");

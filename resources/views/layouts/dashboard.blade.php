@@ -77,7 +77,7 @@
                                     <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
                                         <div class="grid grid-cols-1 gap-4">
                                             <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                href="#">
+                                                href="{{ route('profile') }}">
                                                 <div class="bg-blue-500 text-white rounded-lg p-3">
                                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -129,7 +129,7 @@
                         <div class="flex-1 px-3 bg-white divide-y space-y-1">
                             <ul class="space-y-2 pb-2">
                                 <li>
-                                    <a href="#"
+                                    <a href="http://127.0.0.1:8000/artisan/dashboard/" {{-- TODO FIX LINK --}}
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                         <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -172,7 +172,7 @@
                                 {{-- TODO ARTISAN SECTION --}}
                                 @if ($isArtisan)
                                     <li>
-                                        <a href="#"
+                                        <a href="{{ route('artisan.products') }}"
                                             class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 class="w-6
