@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* PRODUCTS SECTION*/
+
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::get("/products/{product}", [ProductController::class, 'show'])->name('product.show');
+/* PRODUCTS SECTION END*/
+
 /*AUTH SECTION*/
 
 Route::view('/', "index")->name("index");
@@ -32,6 +38,11 @@ Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile
 // TODO CHECK WHY THIS ISNT WORKING
 Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("artisan.index");
 Route::get('artisan/dashboard/produits', [ArtisanController::class, 'products'])->name("artisan.products");
+Route::post('artisan/dashboard/produits', [ArtisanController::class, 'store'])->name("artisan.store");
+Route::get('artisan/dashboard/produits/create', [ArtisanController::class, 'create'])->name("artisan.create");
+Route::get('artisan/dashboard/produits/{product}/edit', [ArtisanController::class, 'edit'])->name("artisan.edit");
+Route::put('artisan/dashboard/produits/{product}', [ArtisanController::class, 'update'])->name("artisan.update");
+Route::delete('artisan/dashboard/produits/{product}', [ArtisanController::class, 'destroy'])->name("artisan.destroy");
 /*ARTISAN DASHBOARD END*/
 
 Route::get("/artisan/dashboard", function () {
