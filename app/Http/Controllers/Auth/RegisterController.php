@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function showRegisterForm(): View
     {
         return view('auth.register');
@@ -41,6 +45,5 @@ class RegisterController extends Controller
         auth()->login($user);
 
         return redirect()->route('index');
-        // TODO CREATE INDEX PAGE
     }
 }

@@ -21,4 +21,9 @@
 
 ### TODO
 
--   Navigation mobile pour dashboards pour les liens Profile et Logout
+-   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout
+-   [ ] Create Middlewares for admin organizer consumer and deliveryman
+-   [ ] CHANGE THE NAVBAR ELEMENTS
+-   [ ] WRITE MORE MIGRATIONS AND MODELS LIKE ORDER MODEL AND MIGRATION ALSO EVALUATION
+-   [ ] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
+-   [ ] ADD STATUS ON THE ORDER

@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    public function index(Request $request)
+    public function index(User $user)
     {
-        // TODO CHECK WHY ROUTE MODEL BINDING ISNT WORKING
-        return view('auth.profile', ['user' => $request->user()]);
+        return view('auth.profile', ['user' => $user]);
     }
 }

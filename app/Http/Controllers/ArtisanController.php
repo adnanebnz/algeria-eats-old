@@ -10,6 +10,10 @@ use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ArtisanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     protected function save(array $data, Product $product = null): RedirectResponse
     {
         // TODO MODIFY HERE TO STORE ALL IMAGES

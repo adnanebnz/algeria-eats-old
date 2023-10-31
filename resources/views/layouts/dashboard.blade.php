@@ -47,7 +47,7 @@
                             <!-- Add any search button content here -->
                         </button>
                     </div>
-                    {{-- TODO USER NAV --}}
+                    {{-- USER NAV --}}
                     <div x-data="{ open: false }">
                         <nav :class="{ 'flex': open, 'hidden': !open }"
                             class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
@@ -77,7 +77,7 @@
                                     <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
                                         <div class="grid grid-cols-1 gap-4">
                                             <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                href="{{ route('profile') }}">
+                                                href="{{ route('profile', ['user' => auth()->user()]) }}">
                                                 <div class="bg-blue-500 text-white rounded-lg p-3">
                                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -93,7 +93,7 @@
                                                 </div>
                                             </a>
                                             <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                                href="{{ route('auth.logout') }}">
+                                                href="{{ route('logout') }}">
                                                 <div class="bg-blue-500 text-white rounded-lg p-3">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -116,7 +116,7 @@
                             </div>
                         </nav>
                     </div>
-                    {{-- TODO USER NAV END --}}
+                    {{-- USER NAV END --}}
                 </div>
             </div>
         </nav>
@@ -129,7 +129,7 @@
                         <div class="flex-1 px-3 bg-white divide-y space-y-1">
                             <ul class="space-y-2 pb-2">
                                 <li>
-                                    <a href="http://127.0.0.1:8000/artisan/dashboard/" {{-- TODO FIX LINK --}}
+                                    <a href="{{ route('artisan.index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                         <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -169,7 +169,7 @@
                                         </a>
                                     </li>
                                 @endif
-                                {{-- TODO ARTISAN SECTION --}}
+                                {{-- ARTISAN SECTION --}}
                                 @if ($isArtisan)
                                     <li>
                                         <a href="{{ route('artisan.products') }}"
@@ -209,9 +209,9 @@
             </aside>
             <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
             <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64 p-4">
-                {{-- TODO ADD CONTENT HERE --}}
+                {{-- ADD CONTENT HERE --}}
                 {{ $slot }}
-                {{-- TODO END CONTENT --}}
+                {{-- END CONTENT --}}
             </div>
         </div>
     </div>

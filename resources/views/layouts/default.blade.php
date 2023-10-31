@@ -48,7 +48,7 @@
                     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
                     border solid border-blue-500 dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white 
                     transition-all dark-mode:text-gray-200 md:mt-0 md:ml-4 focus:text-gray-900 hover:bg-blue-500 hover:text-white focus:bg-blue-100 focus:outline-none focus:shadow-outline"
-                        href="{{ route('auth.login') }}">Login</a>
+                        href="{{ route('login') }}">Login</a>
                     <a class="p-4 mt-2 text-sm font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4
                     bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-100 focus:outline-none focus:shadow-outline
                     "
@@ -112,7 +112,7 @@
                                     </a>
 
                                     <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                        href="{{ route('auth.logout') }}">
+                                        href="{{ route('logout') }}">
                                         <div class="bg-teal-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -191,4 +191,5 @@
     </footer>
     @livewireScripts
 </body>
+
 </html>
