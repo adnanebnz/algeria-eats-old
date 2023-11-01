@@ -4,19 +4,20 @@ namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
-class AuthLayout extends AbstractLayout
+class Textarea extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(
-        public string $title = '',
-        public string $action = '',
-        public string $submitMessage = 'Soumettre',
-        public string $page = 'login',
+        public string $name,
+        public string $label,
+        public ?string $id = null,
+        public string $help = '',
     ) {
-        parent::__construct($title);
+        $this->id ??= $this->name;
     }
 
     /**
@@ -24,6 +25,6 @@ class AuthLayout extends AbstractLayout
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.auth');
+        return view('components.textarea');
     }
 }

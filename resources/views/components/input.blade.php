@@ -5,6 +5,7 @@
         'relative rounded-md shadow-sm' => $errors->has($name) && $type !== 'file',
     ])>
         <input id="{{ $id }}" name="{{ $name }}" type="{{ $type }}"
+            wire:model="{{ $name }}"
             @if ($type !== 'file') value="{{ old($name) ?? $value }}"
             @class([
                 'form-input block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',

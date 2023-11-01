@@ -1,17 +1,20 @@
-<x-auth-layout title="Créer un compte" :action="route('register')" submitMessage="Créer votre compte">
-    <x-input name="role" label="Role" type="text" />
-    <div class="flex flex-row gap-8">
-        <div class="w-1/2">
-            <x-input name="nom" label="Nom" type="text" />
-            <x-input name="prenom" label="Prénom" type="text" />
-            <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
-            <x-input name="adresse" label="Adresse" type="text" />
-            {{-- TODO FIX LAYOUT AND ADD FIELDS FOR EACH ROLE --}}
+<x-auth-layout title="Créer un compte" submitMessage="Créer votre compte" page="register">
+    <div x-data="{ selectedAccountType: 'consumer' }">
+        <select x-model="selectedAccountType"
+            class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 mb-4">
+            <option value="consumer">Client</option>
+            <option value="artisan">Artisan</option>
+            <option value="delivery_man">Livreur</option>
+        </select>
+
+        <div x-show="selectedAccountType === 'consumer'" class="mb-9">
+            <livewire:consumer-form />
         </div>
-        <div class="w-1/2">
-            <x-input name="email" label="Email" type="email" />
-            <x-input name="password" label="Mot de passe" type="password" />
-            <x-input name="password_confirmation" label="Confirmer le Mot de passe" type="password" />
+        <div x-show="selectedAccountType === 'artisan'" class="mb-9">
+            <livewire:artisan-form />
+        </div>
+        <div x-show="selectedAccountType === 'delivery_man'" class="mb-9">
+            <livewire:delivery-man-form />
         </div>
     </div>
 </x-auth-layout>

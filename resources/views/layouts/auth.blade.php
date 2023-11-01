@@ -21,22 +21,29 @@
                 <img src="{{ asset('assets/AlgeriaEats.png') }}" alt="Logo" class="h-20 object-fill">
             </a>
         </div>
+        @if ($page === 'login')
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+                <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+                    <form action="{{ $action }}" method="POST" novalidate>
+                        @csrf
+                        <div class="space-y-6">
+                            {{ $slot }}
 
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
-            <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-                <form action="{{ $action }}" method="POST" novalidate>
-                    @csrf
-                    <div class="space-y-6">
-                        {{ $slot }}
-
-                        <div>
-                            <button type="submit"
-                                class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">{{ $submitMessage }}</button>
+                            <div>
+                                <button type="submit"
+                                    class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">{{ $submitMessage }}</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
+        @elseif($page === 'register')
+            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[800px] w-full">
+                <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
+                    {{ $slot }}
+                </div>
+            </div>
+        @endif
     </div>
     @livewireScripts
 </body>
