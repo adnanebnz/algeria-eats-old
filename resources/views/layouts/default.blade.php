@@ -21,10 +21,9 @@
         <div x-data="{ open: false }"
             class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
             <div class="flex flex-row items-center justify-between p-4">
-                <a href="#"
+                <a href="{{ route('index') }}"
                     class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
-                    {{-- <img src="{{ asset('images/LOGO-trendy.png') }}" class="h-14 w-14" /> --}}
-                    <h1 class="text-xl font-bold ">Logo</h1>
+                    <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-16" />
                 </a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -59,7 +58,7 @@
                         <button @click="open = !open"
                             class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
                             <span>
-                                {{ auth()->user()->name }}
+                                {{ auth()->user()->prenom }}
                             </span>
                             <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
                                 class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -74,12 +73,27 @@
                             x-transition:leave="transition ease-in duration-75"
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95"
-                            class="absolute right-0 w-full md:max-w-screen-sm md:w-screen mt-2 origin-top-right">
-                            <div class="px-2 pt-2 pb-4 bg-white rounded-md">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            class="absolute right-0 w-full md:max-w-[280px] md:w-screen mt-2 origin-top-right">
+                            <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
+                                <div class="grid grid-cols-1 gap-4">
                                     <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                        href="#">
-                                        <div class="bg-teal-500 text-white rounded-lg p-3">
+                                        href="{{ route('artisan.index', ['user' => auth()->user()]) }}">
+                                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                                class="md:h-6 md:w-6 h-4 w-4"">
+                                                <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                                <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="font-semibold">Dasboard</p>
+                                            <p class="text-sm">Voir et gerer vos données</p>
+                                        </div>
+                                    </a>
+                                    <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        href="{{ route('profile', ['user' => auth()->user()]) }}">
+                                        <div class="bg-blue-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                                 class="md:h-6 md:w-6 h-4 w-4">
@@ -89,40 +103,25 @@
                                             </svg>
                                         </div>
                                         <div class="ml-3">
-                                            <p class="font-semibold">Appearance</p>
-                                            <p class="text-sm">Easy customization</p>
+                                            <p class="font-semibold">Profile</p>
+                                            <p class="text-sm">Voir et modifier votre profile</p>
                                         </div>
                                     </a>
-                                    <a
-                                        class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline
-                                    href="#">
-                                        <div class="bg-teal-500 text-white rounded-lg p-3">
-                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                                class="md:h-6 md:w-6 h-4 w-4">
-                                                <path
-                                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="font-semibold">Comments</p>
-                                            <p class="text-sm">Check your latest comments</p>
-                                        </div>
-                                    </a>
-
                                     <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                         href="{{ route('logout') }}">
-                                        <div class="bg-teal-500 text-white rounded-lg p-3">
-                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                                class="md:h-6 md:w-6 h-4 w-4">
-                                                <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                                                <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                                        <div class="bg-blue-500 text-white rounded-lg p-3">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
+
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                             </svg>
+
                                         </div>
                                         <div class="ml-3">
-                                            <p class="font-semibold">Logout</p>
+                                            <p class="font-semibold">Déconnexion</p>
+                                            <p class="text-sm">Déconnecter vous de votre compte</p>
                                         </div>
                                     </a>
                                 </div>
@@ -158,8 +157,8 @@
         <div
             class="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
             <div class="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
-                <a class="flex items-center md:justify-end md:mr-10 justify-center text-gray-900">
-                    {{-- <img src="{{ asset('images/LOGO-trendy.png') }}" alt="Logo" class="h-14 w-14"> --}}
+                <a class="flex items-center md:justify-end md:mr-12 justify-center text-gray-900">
+                    <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-16">
 
                 </a>
                 <p class="mt-2 text-sm text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel qui
@@ -173,7 +172,7 @@
                     </h2>
                     <nav class="list-none mb-10 space-y-2">
                         <li>
-                            <a class="text-gray-600 hover:text-gray-800" href="#">
+                            <a class="text-gray-600 hover:text-gray-800" href="{{ route('index') }}">
                                 Acceuil
                             </a>
                         </li>

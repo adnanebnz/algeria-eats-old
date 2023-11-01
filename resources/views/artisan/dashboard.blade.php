@@ -388,7 +388,7 @@
                                             <span class="mr-2 text-xs font-medium">18%</span>
                                             <div class="relative w-full">
                                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-teal-400 h-2 rounded-sm" style="width: 18%"></div>
+                                                    <div class="bg-blue-400 h-2 rounded-sm" style="width: 18%"></div>
                                                 </div>
                                             </div>
                                         </div>
