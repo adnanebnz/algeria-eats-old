@@ -17,7 +17,75 @@
 -   Faire un link pour le storage : `php artisan storage:link`
 -   Lancer le projet dans les 2 terminals : `npm run dev` `php artisan`
 
-## Structure du projet :
+## Méthode de travail :
+
+1. **Cloner le référentiel** :
+
+    Chaque membre de l'équipe doit cloner le projet sur sa machine locale. Cela donne à chacun une copie du projet sur laquelle travailler.
+
+    ```bash
+    git clone https://github.com/adnanebnz/projet-web
+    ```
+
+2. **Gestion des branches** :
+
+Chacun doit travailler sur des branches de fonctionnalités. Cela permet de maintenir la branche principal ( `main`) propre et stable.
+
+```bash
+git checkout -b votre-branche
+```
+
+3. **Codage et validation** :
+
+Vous devez travailler sur vos tâches assignées de manière indépendante. et valider leurs modifications sur leurs branches locales à l'aide de `git commit`.
+
+```bash
+git add .
+git commit -m "Description des modifications"
+```
+
+4. **Récupération des modifications** :
+
+    Avant de commencer à travailler chaque jour ou lorsque vous êtes prêt à pousser des modifications, vous devez récupérer les dernières modifications du projet sur vos branche locale.
+
+    ```bash
+    git pull origin main
+    ```
+
+5. **Résolution des conflits** :
+
+    Si plusieurs membres de l'équipe apportent des modifications à la même partie du code, des conflits peuvent survenir lors de la récupération. Les conflits doivent être résolus en modifiant manuellement les fichiers en conflit, puis en validant les fichiers résolus.
+
+6. **Pousser les modifications** :
+
+    Une fois le code prêt et les modifications validées, poussez les changements vers le référentiel central.
+
+    ```bash
+    git push origin branche-de-fonctionnalité
+    ```
+
+7. **Revues de code** :
+
+    On va effectuer des revues de code pour garantir la qualité et la cohérence du code.
+
+8. **Fusion dans la branche principale** :
+
+    Lorsqu'une fonctionnalité ou une tâche est terminée et a été revue, fusionnez-la dans la branche principale.
+
+    ```bash
+    git checkout main
+    git merge branche-de-fonctionnalité
+    git push origin main
+    ```
+
+9. **Nettoyage des branches** :
+
+    Lorsqu'une branche de fonctionnalités n'est plus nécessaire, elle peut être supprimée localement et à distance.
+
+    ```bash
+    git branch -d branche-de-fonctionnalité  # localement
+    git push origin --delete branche-de-fonctionnalité  # à distance
+    ```
 
 ### TODO
 
