@@ -20,8 +20,7 @@ Route::get("/products/{product}", [ProductController::class, 'show'])->name('pro
 /*AUTH AND PROFILE SECTION*/
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/auth/login', [LoginController::class, 'login']);
-Route::get("/auth/register", [RegisterController::class, 'showRegisterForm'])->name('register');
-Route::post("/auth/register", [RegisterController::class, 'register']);
+Route::view("/auth/register", 'auth.register')->name('register');
 Route::match(['get', 'post'], '/auth/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile');
 /*AUTH AND PROFILE SECTION END*/
