@@ -9,8 +9,6 @@ use App\Models\Consumer;
 use App\Models\DeliveryMan;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-
 
 class RegisterController extends Controller
 {
@@ -21,7 +19,6 @@ class RegisterController extends Controller
     public function showRegisterForm(): View
     {
         return view('auth.register');
-        // TODO TO CREATE
     }
 
     public function register(RegistrationRequest $request)

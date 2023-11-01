@@ -19,7 +19,6 @@ class Input extends Component
         public ?string $id = null,
         public string $type = 'text',
         public string $help = '',
-        public string $pattern = '',
     ) {
         $this->id ??= $this->name;
     }

@@ -33,9 +33,9 @@ class RegistrationRequest extends FormRequest
             'prenom' => 'required|string|max:255',
             'adresse' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'required_if:role,artisan|numeric',
-            'password' => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required|string|min:8',
+            'num_telephone' => 'required|string|max:10',
+            'password' => 'required|string|min:3|confirmed',
+            'password_confirmation' => 'required|string|min:3',
         ];
     }
 }
