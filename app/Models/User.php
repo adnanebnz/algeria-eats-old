@@ -45,4 +45,81 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function consumer()
+    {
+        return $this->hasOne(Consumer::class);
+    }
+
+    public function deliveryMan()
+    {
+        return $this->hasOne(DeliveryMan::class);
+    }
+
+    public function artisan()
+    {
+        return $this->hasOne(Artisan::class);
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+        // TODO TO CREATE
+
+    }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+        // TODO TO CREATE
+
+    }
+
+    public function wishlists()
+    {
+        return $this->hasMany(Wishlist::class);
+        // TODO TO CREATE
+
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+        // TODO TO CREATE
+    }
+
+    public function getRatingAttribute($rating): string
+    {
+        return $rating . '%';
+    }
+
+    public function getFullNameAttribute(): string
+    {
+        return $this->nom . ' ' . $this->prenom;
+    }
+
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->admin()->exists();
+    }
+
+    public function getIsDeliveryManAttribute(): bool
+    {
+        return $this->deliveryMan()->exists();
+    }
+
+    public function getIsConsumerAttribute(): bool
+    {
+        return $this->consumer()->exists();
+    }
+
+    public function getIsArtisanAttribute(): bool
+    {
+        return $this->artisan()->exists();
+    }
 }

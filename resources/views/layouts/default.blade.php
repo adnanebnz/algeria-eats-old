@@ -52,7 +52,7 @@
                     <a class="p-4 mt-2 text-sm font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4
                     bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-100 focus:outline-none focus:shadow-outline
                     "
-                        href="#">Register</a>
+                        href="{{ route('register') }}">Register</a>
                 @endguest
                 @auth
                     <div @click.away="open = false" class="relative" x-data="{ open: false }">
