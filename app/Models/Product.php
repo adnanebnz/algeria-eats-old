@@ -16,6 +16,7 @@ class Product extends Model
         'user_id',
         'description',
         'categorie',
+        'sous_categorie',
         'prix',
         'rating',
         'images'
@@ -33,13 +34,6 @@ class Product extends Model
     public function getRouteKeyName(): string
     {
         return 'nom';
-    }
-
-    public function getImagesAttribute($images): array
-    {
-        return array_map(function ($image) {
-            return asset('storage/' . $image);
-        }, json_decode($images, true));
     }
 
     public function getFeaturedImageAttribute(): string

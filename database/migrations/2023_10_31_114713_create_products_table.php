@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nom');
             $table->text('description');
             $table->string('categorie');
+            $table->string('sous_categorie');
             $table->integer('prix');
             $table->json('images');
             $table->integer('rating')->nullable();

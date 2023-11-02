@@ -28,15 +28,19 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Image
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     titre
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Type
+                                    Categorie
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    sous-type
+                                    sous-Categorie
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -53,17 +57,19 @@
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->id }}
                                     </td>
+                                    <td>
+                                        <img src="{{ $product->images[0] }}" alt=""
+                                            class="w-20 h-20 object-cover">
+                                    </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->nom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $product->categorie }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $product->categorie }}</td>
-                                    {{-- TODO ADD COL TO DB --}}
+                                        {{ $product->sous_categorie }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->prix }}
                                         DA</td>
-                                    <td
-                                        class="px-5 py-5 border-b border-gray-200 bg-white text-sm flex items-center justify-center gap-3">
+                                    <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                                         <a href="#"
                                             class="bg-blue-700 text-white px-3 py-2 rounded-md hover:bg-blue-500">Voir</a>
                                         <a href="#"
