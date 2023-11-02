@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('categorie');
             $table->integer('prix');
             $table->json('images');
+            $table->integer('rating')->nullable();
             $table->timestamps();
         });
     }

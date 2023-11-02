@@ -424,7 +424,7 @@
                                             <span class="mr-2 text-xs font-medium">9%</span>
                                             <div class="relative w-full">
                                                 <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-indigo-600 h-2 rounded-sm" style="width: 9%"></div>
+                                                    <div class="bg-blue-600 h-2 rounded-sm" style="width: 9%"></div>
                                                 </div>
                                             </div>
                                         </div>
