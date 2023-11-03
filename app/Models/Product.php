@@ -36,6 +36,12 @@ class Product extends Model
         return 'nom';
     }
 
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+        // TODO TO CREATE
+    }
+
     public function getRelatedProductsAttribute(): Collection
     {
         return Product::where('categorie', $this->categorie)
