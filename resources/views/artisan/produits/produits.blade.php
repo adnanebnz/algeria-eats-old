@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $product)
+                            @forelse ($products as $product)
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->id }}
                                     </td>
@@ -76,14 +76,19 @@
                                             class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">Modifier</a>
                                         <button
                                             class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-400">Supprimer</button>
-                                        {{-- TODO ADD LINKS AND PAGINATE THIS  --}}
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <p class="text-slate-400 text-center">Aucun résultat.</p>
+                            @endforelse
 
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-3">
+                    {{ $products->links() }}
+                </div>
+
             </div>
         </div>
     </div>

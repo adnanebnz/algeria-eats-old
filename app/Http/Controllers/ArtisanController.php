@@ -45,8 +45,7 @@ class ArtisanController extends Controller
     }
     public function products()
     {
-        $products = Product::all();
-        // TODO PAGINATE and add UI of pagination
+        $products = Product::paginate(5);
         return view('artisan.produits.produits', [
             "products" => $products
         ]);
