@@ -14,7 +14,6 @@
 -   Installer les depandances npm: `npm install`
 -   Installer les depandances composer : `composer install`
 -   lancer les migrations de la BDD : `php artisan migrate`
--   Faire un link pour le storage : `php artisan storage:link`
 -   Lancer le projet dans les 2 terminals : `npm run dev` `php artisan`
 
 ## Méthode de travail :
@@ -92,6 +91,6 @@ git commit -m "Description des modifications"
 -   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout
 -   [ ] Create Middlewares for admin organizer consumer and deliveryman
 -   [ ] CHANGE THE NAVBAR ELEMENTS
--   [ ] WRITE MORE MIGRATIONS AND MODELS LIKE ORDER MODEL AND MIGRATION ALSO EVALUATION
+-   [ ] WRITE MORE MIGRATIONS AND MODELS LIKE: **ORDER,CART,WISHLIST,REVIEW,DELIVERY MODELS AND MIGRATIONS**
 -   [ ] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
 -   [ ] ADD STATUS ON THE ORDER

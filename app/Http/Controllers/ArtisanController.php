@@ -13,17 +13,18 @@ class ArtisanController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('artisan');
     }
     protected function save(array $data, Product $product = null): RedirectResponse
     {
-        // TODO MODIFY HERE TO STORE ALL IMAGES
-        if (isset($data['image'])) {
+        if (isset($data['images'])) {
 
-            //STORE IMAGE
-            $uploadedFileUrl = Cloudinary::upload($data['image']->getRealPath())->getSecurePath();
-            // IGNORE THIS ERROR
+            $uploadedFilesUrl = [];
+            foreach ($data['images'] as $image) {
+                array_push($uploadedFileUrl, Cloudinary::upload($image->getRealPath())->getSecurePath());
+            }
         }
-        $data['image'] = $uploadedFileUrl;
+        $data['images'] = $uploadedFilesUrl;
 
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
 

@@ -36,11 +36,6 @@ class Product extends Model
         return 'nom';
     }
 
-    public function getFeaturedImageAttribute(): string
-    {
-        return $this->images[0];
-    }
-
     public function getRelatedProductsAttribute(): Collection
     {
         return Product::where('categorie', $this->categorie)
