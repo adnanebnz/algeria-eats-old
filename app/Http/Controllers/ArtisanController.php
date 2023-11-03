@@ -47,7 +47,7 @@ class ArtisanController extends Controller
     {
         $products = Product::all();
         // TODO PAGINATE and add UI of pagination
-        return view('artisan.produits', [
+        return view('artisan.produits.produits', [
             "products" => $products
         ]);
     }
@@ -88,6 +88,6 @@ class ArtisanController extends Controller
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        return redirect()->route('artisan.products');
+        return redirect()->route('artisan.produits.products');
     }
 }

@@ -91,6 +91,5 @@ git commit -m "Description des modifications"
 -   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout
 -   [ ] Create Middlewares for admin organizer consumer and deliveryman
 -   [ ] CHANGE THE NAVBAR ELEMENTS
--   [ ] WRITE MORE MIGRATIONS AND MODELS LIKE: **ORDER,CART,WISHLIST,REVIEW,DELIVERY MODELS AND MIGRATIONS**
+-   [ ] MODIFY MCD ACCORDING TO THE NEW CHANGES
 -   [ ] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
--   [ ] ADD STATUS ON THE ORDER
