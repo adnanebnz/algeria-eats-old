@@ -11,4 +11,8 @@ class DeliveryManController extends Controller
         $this->middleware('auth');
         $this->middleware('deliveryMan');
     }
+    public function index()
+    {
+        return view("deliveryMan.dashboard");
+    }
 }

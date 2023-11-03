@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
-use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DeliveryManController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,3 +35,19 @@ Route::get('artisan/dashboard/produits/{product}/edit', [ArtisanController::clas
 Route::put('artisan/dashboard/produits/{product}', [ArtisanController::class, 'update'])->name("artisan.update");
 Route::delete('artisan/dashboard/produits/{product}', [ArtisanController::class, 'destroy'])->name("artisan.destroy");
 /*ARTISAN DASHBOARD END*/
+
+/*ADMIN DASHBOARD*/
+Route::get('admin/dashboard', [AdminController::class, 'index'])->name("admin.index");
+Route::get('admin/dashboard/users', [AdminController::class, 'users'])->name("admin.users");
+// TODO TO CREATE
+Route::get('admin/dashboard/users/{user}/edit', [AdminController::class, 'edit'])->name("admin.edit");
+// TODO TO CREATE
+Route::put('admin/dashboard/users/{user}', [AdminController::class, 'update'])->name("admin.update");
+// TODO TO CREATE
+Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'])->name("admin.destroy");
+// TODO TO CREATE
+/*ADMIN END*/
+
+/*DELIVERY MAN*/
+Route::get('deliveryMan/dashboard', [DeliveryManController::class, 'index'])->name("deliveryMan.index");
+/*DELIVERY MAN END*/
