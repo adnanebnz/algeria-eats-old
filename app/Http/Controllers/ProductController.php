@@ -10,17 +10,16 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::all();
+        $products = Product::paginate(12);
+        // TODO ADD LOGIC FOR FILTERS
         return view("products.index", [
             "products" => $products
         ]);
-        // TODO TO CREATE
     }
     public function show(Product $product): View
     {
         return view("products.show", [
             "product" => $product
         ]);
-        // TODO TO CREATE
     }
 }

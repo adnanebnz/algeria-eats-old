@@ -4,7 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DeliveryManController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -51,3 +53,13 @@ Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'
 /*DELIVERY MAN*/
 Route::get('deliveryMan/dashboard', [DeliveryManController::class, 'index'])->name("deliveryMan.index");
 /*DELIVERY MAN END*/
+
+/*PRODUCTS */
+Route::get("/products", [ProductController::class, 'index'])->name('product.index');
+Route::get("/products/{product}", [ProductController::class, 'show'])->name('product.show');
+/*PRODUCTS END*/
+
+/*CONTACT*/
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+/*CONTACT END*/

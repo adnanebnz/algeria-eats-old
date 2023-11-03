@@ -42,11 +42,11 @@
             <nav :class="{ 'flex': open, 'hidden': !open }"
                 class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
                 <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
-                    href="#">Contact</a>
+                    href="{{ route('contact.index') }}">Contact</a>
                 <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
                     href="#">À propos de nous</a>
                 <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
-                    href="#">Produits</a>
+                    href="{{ route('product.index') }}">Produits</a>
                 @guest
 
                     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
@@ -197,7 +197,7 @@
     {{ $slot }}
     </main>
     </div>
-    <footer class="relative bg-blueGray-200 pt-8 pb-6">
+    <footer class="relative bg-blueGray-200 pt-8 pb-6 z-0">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">
@@ -219,11 +219,11 @@
 
                                 <li>
                                     <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
-                                        href="#">Produits</a>
+                                        href="{{ route('product.index') }}">Produits</a>
                                 </li>
                                 <li>
                                     <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
-                                        href="#">Contactez nous</a>
+                                        href="{{ route('contact.index') }}">Contactez nous</a>
                                 </li>
                             </ul>
                         </div>
