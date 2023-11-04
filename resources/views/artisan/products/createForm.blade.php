@@ -5,7 +5,7 @@
         <div>
             <div class="border-gray-900/10 pb-12">
                 <h1 class="text-base font-semibold leading-7 text-gray-900">
-                    Créer un Produit
+                    Créer un produit
                 </h1>
 
                 <div class="mt-10 flex md:flex-row flex-col items-center justify-center gap-14">
@@ -19,8 +19,9 @@
                         <x-input name="sous_categorie" label="Sous Categorie" />
                         <x-input name="prix" label="Prix" />
                     </div>
-                    {{-- CATEGORY ET SOUS CATEGORY ET IMAGES --}}
-                    {{-- <x-input name="image" type="file" label="Images" :value="$product->image" /> --}}
+                    <div class="px-6 md:px-0">
+                        <x-input name="images[]" type="file" label="Insérer les Images" />
+                    </div>
                 </div>
             </div>
         </div>

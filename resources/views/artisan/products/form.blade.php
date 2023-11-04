@@ -1,5 +1,5 @@
 <x-default-layout title='Modifier le Produit'>
-    <form action="{{ route('artisan.products.update', ['product' => $product->id]) }}" method="POST"
+    <form action="{{ route('artisan.products.update', ['product' => $product]) }}" method="POST"
         enctype="multipart/form-data" class="md:px-20 px-3 shadow-sm p-1 pb-4 md:pb-10">
         @csrf
         @method('PUT')
@@ -21,8 +21,14 @@
                         <x-input name="prix" label="Prix" :value="$product->prix" />
                     </div>
                     <div class="px-6 md:px-0">
-                        <x-input name="image" type="file" label="Images" :value="$product->images[0]" />
-                        {{-- TODO FIX THIS TO DISPLAY ALL IMAGES WITH POSSIBILITY TO REPLACE THEM --}}
+                        <p class="text-gray-900 text-sm">Images actuelles</p>
+                        <div class="flex items-center gap-3 my-3">
+                            @foreach ($product->images as $image)
+                                <img src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
+                                    alt="" class="w-20 h-20 object-cover rounded-sm">
+                            @endforeach
+                        </div>
+                        <x-input name="images[]" type="file" label="Insérer les nouvelles images" />
                     </div>
                 </div>
             </div>
@@ -32,6 +38,7 @@
             <button type="submit"
                 class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                 {{ $product->exists() ? 'Mettre à jour' : 'Créer' }}
+                {{-- TODO SEE HOW TO REFACTOR --}}
             </button>
         </div>
     </form>

@@ -14,7 +14,6 @@
     </div>
     <div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
         <div class="flex items-center justify-between pb-6">
-            <!-- Add any header content here -->
         </div>
         <div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -58,8 +57,8 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->id }}
                                     </td>
                                     <td>
-                                        <img src="{{ $product->images[0] }}" alt=""
-                                            class="w-20 h-20 object-cover">
+                                        <img src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}"
+                                            alt="" class="w-20 h-20 object-cover">
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->nom }}
                                     </td>
@@ -95,7 +94,6 @@
                 <div class="mt-3">
                     {{ $products->links() }}
                 </div>
-
             </div>
         </div>
     </div>

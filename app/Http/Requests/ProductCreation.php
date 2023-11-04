@@ -28,9 +28,8 @@ class ProductCreation extends FormRequest
             'description' => ['required', 'string'],
             'categorie' => ['required', 'string'],
             'sous_categorie' => ['required', 'string'],
-            // 'images' => ['required', 'array'],
-            // 'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'],*
-            // TODO UNCOMMENT THIS AND SEE HOW TO DO TO FIX EM
+            'images' => ['required', 'array'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:4096'],
         ];
     }
 }

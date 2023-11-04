@@ -6,7 +6,7 @@ use App\Http\Requests\ProductCreation;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\Storage;
 
 class ArtisanController extends Controller
 {
@@ -18,20 +18,23 @@ class ArtisanController extends Controller
     protected function save(array $data, Product $product = null): RedirectResponse
     {
         if (isset($data['images'])) {
-
             $uploadedFilesUrl = [];
+
             foreach ($data['images'] as $image) {
-                array_push($uploadedFileUrl, Cloudinary::upload($image->getRealPath())->getSecurePath());
+                $filename = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
+                Storage::disk('public')->put($filename, file_get_contents($image->getRealPath()));
+                $uploadedFilesUrl[] = Storage::disk('public')->url($filename);
             }
             $data['images'] = $uploadedFilesUrl;
         }
 
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
 
-        return redirect()->route('product.show', ['product' => $product])->withStatus(
+        return redirect()->route('artisan.index')->withStatus(
             $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
         );
     }
+
     protected function showForm(Product $product = new Product()): View
     {
         return view('artisan.products.form', [
