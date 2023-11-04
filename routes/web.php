@@ -30,12 +30,12 @@ Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile
 
 /*ARTISAN DASHBOARD*/
 Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("artisan.index");
-Route::get('artisan/dashboard/produits', [ArtisanController::class, 'products'])->name("artisan.products");
-Route::post('artisan/dashboard/produits', [ArtisanController::class, 'store'])->name("artisan.store");
-Route::get('artisan/dashboard/produits/create', [ArtisanController::class, 'create'])->name("artisan.create");
-Route::get('artisan/dashboard/produits/{product}/edit', [ArtisanController::class, 'edit'])->name("artisan.edit");
-Route::put('artisan/dashboard/produits/{product}', [ArtisanController::class, 'update'])->name("artisan.update");
-Route::delete('artisan/dashboard/produits/{product}', [ArtisanController::class, 'destroy'])->name("artisan.destroy");
+Route::get('artisan/dashboard/products', [ArtisanController::class, 'products'])->name("artisan.products");
+Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'create'])->name("artisan.products.create");
+Route::post('artisan/dashboard/products', [ArtisanController::class, 'store'])->name("artisan.products.store");
+Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'edit'])->name("artisan.products.edit");
+Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'update'])->name("artisan.products.update");
+Route::delete('artisan/dashboard/products/{product}', [ArtisanController::class, 'destroy'])->name("artisan.products.destroy");
 /*ARTISAN DASHBOARD END*/
 
 /*ADMIN DASHBOARD*/

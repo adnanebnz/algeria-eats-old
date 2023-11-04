@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductCreation;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class ArtisanController extends Controller
@@ -23,8 +23,8 @@ class ArtisanController extends Controller
             foreach ($data['images'] as $image) {
                 array_push($uploadedFileUrl, Cloudinary::upload($image->getRealPath())->getSecurePath());
             }
+            $data['images'] = $uploadedFilesUrl;
         }
-        $data['images'] = $uploadedFilesUrl;
 
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
 
@@ -34,10 +34,9 @@ class ArtisanController extends Controller
     }
     protected function showForm(Product $product = new Product()): View
     {
-        return view('artisan.form', [
+        return view('artisan.products.form', [
             'product' => $product,
         ]);
-        // TODO TO CREATE
     }
     public function index(): View
     {
@@ -45,48 +44,34 @@ class ArtisanController extends Controller
     }
     public function products()
     {
-        $products = Product::paginate(5);
-        return view('artisan.produits.produits', [
+        $products = Product::where('user_id', auth()->user()->id)->paginate(10);
+        return view('artisan.products.products', [
             "products" => $products
         ]);
     }
     public function create(): View
     {
-        return view('artisan.createProduct');
-        // TODO TO CREATE FOR PRODUCTS
+        return view('artisan.products.createForm');
     }
 
-    public function store(Request $request)
+    public function store(ProductCreation $request)
     {
-        $data = $request->validate([
-            'nom' => 'required|string',
-            'description' => 'required|string',
-            'categorie' => 'required|in:SUCREE,SALEE',
-            'prix' => 'required|integer',
-            'images' => 'required',
-        ]);
-        $data['user_id'] = auth()->user()->id;
-        $data['images'] = json_encode($data['images']);
-        Product::create($data);
-        return redirect()->route('artisan.products');
-        // TODO ADD SAVE METHOD LATER
+        $this->save($request->validated());
     }
 
-    public function edit(): View
+    public function edit(Product $product): View
     {
-        return view('artisan.editProduct');
-        // TODO CREATE FOR PRODUCTS
+        return $this->showForm($product);
     }
 
-    public function update(Product $product, Request $request)
+    public function update(Product $product, ProductCreation $request)
     {
-        // update product
         return $this->save($request->validated(), $product);
     }
 
     public function destroy(Product $product): RedirectResponse
     {
         $product->delete();
-        return redirect()->route('artisan.produits.products');
+        return redirect()->route('artisan.products');
     }
 }

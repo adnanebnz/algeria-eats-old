@@ -59,7 +59,7 @@
                         href="{{ route('register') }}">Créer un compte</a>
                 @endguest
                 @auth
-                    <div @click.away="open = false" class="relative" x-data="{ open: false }" x-cloak>
+                    <div @click.away="open = false" class="relative z-20" x-data="{ open: false }" x-cloak>
                         <button @click="open = !open"
                             class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
                             <span>
@@ -120,7 +120,6 @@
                                     @if (auth()->user()->deliveryMan)
                                         <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ route('deliveryMan.index', ['user' => auth()->user()]) }}">
-                                            {{-- TODO CREATE VIEW --}}
                                             <div class="bg-blue-500 text-white rounded-lg p-3">
                                                 <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
@@ -197,7 +196,7 @@
     {{ $slot }}
     </main>
     </div>
-    <footer class="relative bg-blueGray-200 pt-8 pb-6 z-0">
+    <footer class="relative z-10 bg-blueGray-200 pt-8 pb-6">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">

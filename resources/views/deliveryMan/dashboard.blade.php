@@ -1,2 +1,2 @@
-<x-dashboard-layout :isDeliveryMan=true>
+<x-dashboard-layout :isDeliver=true>
 </x-dashboard-layout>

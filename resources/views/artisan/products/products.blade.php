@@ -6,9 +6,9 @@
             </div>
 
             <div class="lg:ml-40 ml-8 space-x-4">
-                <button
-                    class="bg-blue-600 mt-4 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Ajouter
-                    un Produit</button>
+                <a href="{{ route('artisan.products.create') }}"
+                    class="bg-blue-600 mt-4 px-4 py-2 rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
+                    un Produit</a>
             </div>
         </div>
     </div>
@@ -72,14 +72,21 @@
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                                         <a href="#"
                                             class="bg-blue-700 text-white px-3 py-2 rounded-md hover:bg-blue-500">Voir</a>
-                                        <a href="#"
+                                        <a href="{{ route('artisan.products.edit', ['product' => $product]) }}"
                                             class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">Modifier</a>
-                                        <button
-                                            class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-400">Supprimer</button>
+                                        <form action="{{ route('artisan.products.destroy', ['product' => $product]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-400">Supprimer</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
-                                <p class="text-slate-400 text-center">Aucun résultat.</p>
+                                <tr>
+                                    <td class="text-slate-400 text-center p-4" colspan="7">Aucun résultat.</td>
+                                </tr>
                             @endforelse
 
                         </tbody>
