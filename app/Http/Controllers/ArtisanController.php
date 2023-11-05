@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
+use App\Http\Requests\ProductUpdate;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -15,7 +16,7 @@ class ArtisanController extends Controller
         $this->middleware('auth');
         $this->middleware('artisan');
     }
-    protected function save(array $data, Product $product = null): RedirectResponse
+    protected function save(array $data, Product $product = null)
     {
         if (isset($data['images'])) {
             $uploadedFilesUrl = [];
@@ -24,15 +25,14 @@ class ArtisanController extends Controller
                 $filename = 'image_' . uniqid() . '.' . $image->getClientOriginalExtension();
                 Storage::disk('public')->put($filename, file_get_contents($image->getRealPath()));
                 $uploadedFilesUrl[] = Storage::disk('public')->url($filename);
+                // IGNORE THIS ERROR ITS STILL WORKING THO
             }
             $data['images'] = $uploadedFilesUrl;
         }
-
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
-
-        // return redirect()->route('artisan.index')->withStatus(
-        //     $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
-        // );
+        return redirect()->route('artisan.index')->withStatus(
+            $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
+        );
     }
 
     protected function showForm(Product $product = new Product()): View
@@ -59,7 +59,7 @@ class ArtisanController extends Controller
 
     public function store(ProductCreation $request)
     {
-        $this->save($request->validated());
+        return $this->save($request->validated());
     }
 
     public function edit(Product $product): View
@@ -67,7 +67,7 @@ class ArtisanController extends Controller
         return $this->showForm($product);
     }
 
-    public function update(Product $product, ProductCreation $request)
+    public function update(Product $product, ProductUpdate $request)
     {
         return $this->save($request->validated(), $product);
     }

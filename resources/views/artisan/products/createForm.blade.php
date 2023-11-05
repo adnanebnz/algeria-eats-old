@@ -21,6 +21,9 @@
                     </div>
                     <div class="px-6 md:px-0">
                         <x-input name="images[]" type="file" label="Insérer les Images" />
+                        @error('images')
+                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
             </div>
