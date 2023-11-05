@@ -22,7 +22,7 @@
                     </div>
                     <div class="px-6 md:px-0">
                         <p class="text-gray-900 text-sm">Images actuelles</p>
-                        <div class="flex items-center gap-3 my-3">
+                        <div class="grid grid-cols-3 gap-3 my-3">
                             @foreach ($product->images as $image)
                                 <img src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
                                     alt="" class="w-20 h-20 object-cover rounded-sm">

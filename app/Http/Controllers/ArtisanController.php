@@ -30,9 +30,9 @@ class ArtisanController extends Controller
 
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
 
-        return redirect()->route('artisan.index')->withStatus(
-            $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
-        );
+        // return redirect()->route('artisan.index')->withStatus(
+        //     $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
+        // );
     }
 
     protected function showForm(Product $product = new Product()): View

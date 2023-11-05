@@ -19,6 +19,7 @@ class ArtisanForm extends Component
     public $desc_entreprise;
     public $heure_ouverture;
     public $heure_fermeture;
+
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
