@@ -30,12 +30,23 @@ Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile
 
 /*ARTISAN DASHBOARD*/
 Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("artisan.index");
-Route::get('artisan/dashboard/products', [ArtisanController::class, 'products'])->name("artisan.products");
-Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'create'])->name("artisan.products.create");
-Route::post('artisan/dashboard/products', [ArtisanController::class, 'store'])->name("artisan.products.store");
-Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'edit'])->name("artisan.products.edit");
-Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'update'])->name("artisan.products.update");
-Route::delete('artisan/dashboard/products/{product}', [ArtisanController::class, 'destroy'])->name("artisan.products.destroy");
+
+// PRODUCTS SECTION
+Route::get('artisan/dashboard/products', [ArtisanController::class, 'productsIndex'])->name("artisan.products");
+Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'createProduct'])->name("artisan.products.create");
+Route::post('artisan/dashboard/products', [ArtisanController::class, 'storeProduct'])->name("artisan.products.store");
+Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'editProduct'])->name("artisan.products.edit");
+Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'updateProduct'])->name("artisan.products.update");
+Route::delete('artisan/dashboard/products/{product}', [ArtisanController::class, 'destroyProduct'])->name("artisan.products.destroy");
+// PRODUCTS SECTION END
+
+//ORDERS SECTION
+Route::get('artisan/dashboard/orders', [ArtisanController::class, 'ordersIndex'])->name("artisan.orders");
+Route::get('artisan/dashboard/orders/{order}', [ArtisanController::class, 'showOrder'])->name("artisan.orders.show");
+Route::put('artisan/dashboard/orders/{order}', [ArtisanController::class, 'updateOrder'])->name("artisan.orders.update");
+Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'destroyOrder'])->name("artisan.orders.destroy");
+//ORDERS SECTION END
+
 /*ARTISAN DASHBOARD END*/
 
 /*ADMIN DASHBOARD*/

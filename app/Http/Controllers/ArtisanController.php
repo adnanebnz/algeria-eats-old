@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
 use App\Http\Requests\ProductUpdate;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -16,7 +17,8 @@ class ArtisanController extends Controller
         $this->middleware('auth');
         $this->middleware('artisan');
     }
-    protected function save(array $data, Product $product = null)
+    // PRODUCT SECTION
+    protected function saveProduct(array $data, Product $product = null)
     {
         if (isset($data['images'])) {
             $uploadedFilesUrl = [];
@@ -35,7 +37,7 @@ class ArtisanController extends Controller
         );
     }
 
-    protected function showForm(Product $product = new Product()): View
+    protected function showFormProduct(Product $product = new Product()): View
     {
         return view('artisan.products.form', [
             'product' => $product,
@@ -45,36 +47,71 @@ class ArtisanController extends Controller
     {
         return view('artisan.dashboard');
     }
-    public function products()
+    public function productsIndex()
     {
         $products = Product::where('user_id', auth()->user()->id)->paginate(10);
         return view('artisan.products.products', [
             "products" => $products
         ]);
     }
-    public function create(): View
+    public function createProduct(): View
     {
         return view('artisan.products.createForm');
     }
 
-    public function store(ProductCreation $request)
+    public function storeProduct(ProductCreation $request)
     {
-        return $this->save($request->validated());
+        return $this->saveProduct($request->validated());
     }
 
-    public function edit(Product $product): View
+    public function editProduct(Product $product): View
     {
-        return $this->showForm($product);
+        return $this->showFormProduct($product);
     }
 
-    public function update(Product $product, ProductUpdate $request)
+    public function updateProduct(Product $product, ProductUpdate $request)
     {
-        return $this->save($request->validated(), $product);
+        return $this->saveProduct($request->validated(), $product);
     }
 
-    public function destroy(Product $product): RedirectResponse
+    public function destroyProduct(Product $product): RedirectResponse
     {
         $product->delete();
         return redirect()->route('artisan.products');
     }
+    // PRODUCT SECTION END
+
+    // ORDERS SECTION
+    public function ordersIndex()
+    {
+        $orders = Order::where('user_id', auth()->user()->id)->paginate(10);
+        return view('artisan.orders.orders', [
+            "orders" => $orders
+        ]);
+        // TODO CREATE
+    }
+
+    public function showOrder(Order $order)
+    {
+        return view('artisan.orders.show', [
+            "order" => $order
+        ]);
+        // TODO CREATE
+    }
+
+    public function updateOrder(Order $order)
+    {
+        $order->update([
+            'status' => request('status')
+        ]);
+        return redirect()->route('artisan.orders.show', $order);
+    }
+
+    public function destroyOrder(Order $order)
+    {
+        $order->delete();
+        return redirect()->route('artisan.orders');
+    }
+
+    // ORDERS SECTION END
 }

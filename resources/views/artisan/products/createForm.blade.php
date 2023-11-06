@@ -16,6 +16,17 @@
                     </div>
                     <div class="flex flex-col gap-5 md:w-1/2 w-full">
                         <x-input name="categorie" label="Categorie" />
+                        <div>
+                            <label class="block text-sm font-medium leading-6 text-gray-900">
+                                Catégorie
+                            </label>
+                            <select name="categorie"
+                                class="form-select block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6  mt-2">
+                                <option>Choisir une catégorie</option>
+                                <option value="sucree">Sucrée</option>
+                                <option value="salee">Salée</option>
+                            </select>
+                        </div>
                         <x-input name="sous_categorie" label="Sous Categorie" />
                         <x-input name="prix" label="Prix" />
                     </div>

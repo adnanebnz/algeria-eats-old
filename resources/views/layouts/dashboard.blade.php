@@ -125,7 +125,7 @@
                 <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
                     <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                         <div class="flex-1 px-3 bg-white divide-y space-y-1">
-                            <ul class="space-y-2 pb-2">
+                            <ul class="space-y-2 pt-5">
                                 <li>
                                     <a href="{{ route('artisan.index') }}"
                                         class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
@@ -201,7 +201,7 @@
                                 @endif
                                 @if ($isArtisan || $isUser)
                                     <li>
-                                        <a href="#"
+                                        <a href="{{ route('artisan.orders') }}"
                                             class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 class="w-6

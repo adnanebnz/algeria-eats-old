@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->integer('quantity');
+            $table->integer('prix_total');
             $table->string('adresse');
             $table->string('num_telephone');
             $table->string('status');

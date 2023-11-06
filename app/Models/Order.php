@@ -12,8 +12,9 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'product_id',
-        'status',
         'quantity',
+        'prix_total',
+        'status',
         'adresse',
         'num_telephone'
     ];
@@ -28,8 +29,8 @@ class Order extends Model
         return $this->belongsTo(Delivery::class);
     }
 
-    public function products()
+    public function product()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsTo(Product::class);
     }
 }
