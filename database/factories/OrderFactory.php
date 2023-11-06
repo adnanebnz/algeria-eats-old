@@ -18,10 +18,10 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => 1,
-            'product_id' => 3,
-            'status' => 'pending',
+            'product_id' => rand(1, 10),
+            'status' => $this->faker->randomElement(['pending', 'accepted', 'refused', 'processing', 'shipping', 'shipped']),
             'quantity' => $this->faker->numberBetween(1, 10),
-            'prix_total' => $this->faker->numberBetween(1000, 10000),
+            'prix_total' => $this->faker->numberBetween(1000, 5000),
             'adresse' => $this->faker->address,
             'num_telephone' => $this->faker->phoneNumber,
         ];

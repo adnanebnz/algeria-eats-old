@@ -88,7 +88,6 @@ class ArtisanController extends Controller
         return view('artisan.orders.orders', [
             "orders" => $orders
         ]);
-        // TODO CREATE
     }
 
     public function showOrder(Order $order)
