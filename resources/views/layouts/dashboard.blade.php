@@ -135,7 +135,7 @@
                                             <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
                                             <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                                         </svg>
-                                        <span class="ml-3">Dashboard</span>
+                                        <span class="ml-3">Tableau de bord</span>
                                     </a>
                                 </li>
 
@@ -243,8 +243,9 @@
             </div>
         </div>
     </div>
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script async src="https://buttons.github.io/buttons.js"></script>
     <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
+    @yield('scripts')
     @livewireScripts
 </body>
 

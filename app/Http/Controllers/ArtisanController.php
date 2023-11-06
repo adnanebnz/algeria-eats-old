@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Order;
 use App\Models\Product;
@@ -43,9 +44,30 @@ class ArtisanController extends Controller
             'product' => $product,
         ]);
     }
+
     public function index(): View
     {
-        return view('artisan.dashboard');
+        $chart_options = [
+            'chart_title' => 'Commandes par mois',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Order',
+            // TODO MAKE THESE CONDITIONS WORK LIKE THE ORDERS ARE NOT AFFECTING TO A SPECEFIC ARTISAN
+            'conditions' => [
+                ['name' => 'user_id', 'condition' => '=', 'value' => auth()->user()->id, 'color' => 'red', 'fill' => true],
+            ],
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'month',
+            'chart_type' => 'pie',
+        ];
+        // CALCULATE SALES PER MONTH
+        $salesPerMonth = Order::where('user_id', auth()->user()->id)->where('status', 'shipped')->whereBetween('created_at', [now()->subMonth(), now()])->sum('prix_total');
+
+        //LIST THE 7 LATEST ORDERS
+        $latestOrders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(7)->get();
+
+        $chart1 = new LaravelChart($chart_options);
+
+        return view('artisan.dashboard', compact('chart1', 'salesPerMonth', 'latestOrders'));
     }
     public function productsIndex()
     {

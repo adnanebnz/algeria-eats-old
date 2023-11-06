@@ -10,7 +10,7 @@
 
                 <div class="mt-6 lg:mt-0 lg:px-2 lg:w-4/5 ">
                     <div class="flex items-center justify-between text-sm tracking-widest uppercase ">
-                        <p class="text-gray-500 ">6 Produits</p>
+
                         <div class="flex items-center gap-2">
                             <p class="text-gray-500 ">TRIER</p>
                             <select class="font-medium text-gray-700 bg-transparent focus:outline-none">
