@@ -26,6 +26,8 @@ Route::post('/auth/login', [LoginController::class, 'login']);
 Route::view("/auth/register", 'auth.register')->name('register');
 Route::match(['get', 'post'], '/auth/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('profile/{user}', [ProfileController::class, 'index'])->name('profile');
+Route::put('profile/{user}', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('profile/{user}', [ProfileController::class, 'destroy'])->name('profile.destroy');
 /*AUTH AND PROFILE SECTION END*/
 
 /*ARTISAN DASHBOARD*/
