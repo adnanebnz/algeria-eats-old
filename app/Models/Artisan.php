@@ -29,9 +29,4 @@ class Artisan extends Authenticatable
     {
         return $this->hasMany(Product::class, 'user_id');
     }
-
-    public function getRatingAttribute($rating): string
-    {
-        return $rating . '%';
-    }
 }

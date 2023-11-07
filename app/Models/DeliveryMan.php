@@ -23,11 +23,6 @@ class DeliveryMan extends Authenticatable
         return $this->belongsTo(User::class);
     }
 
-    public function getRatingAttribute($rating): string
-    {
-        return $rating . '%';
-    }
-
     public function deliveries()
     {
         return $this->hasMany(Delivery::class);

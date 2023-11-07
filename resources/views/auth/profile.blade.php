@@ -5,7 +5,9 @@
                 alt="marach 3adna les donnés t3 les artisanes" />
 
             @if (auth()->user()->artisan)
-                <h1 class="text-center">Rating !</h1>
+                <div class="flex items-center justify-center">
+                    <x-star-rating :rating="$user->artisan->rating" />
+                </div>
             @endif
             @if (auth()->user()->deliveryMan)
                 <h1 class="center">Rating !</h1>
@@ -51,8 +53,13 @@
                                 {{ $user->artisan->desc_entreprise }}</p>
                         </div>
                         <div class="flex flex-row justify-between py-4">
-                            <h1 class="font-medium text-lg my-2 w-max bg-black text-white p-2 rounded-lg">type service
-                            </h1>
+                            <div class="flex items-center gap-2.5 bg-gray-900 text-white px-3 py-2 rounded-lg">
+                                <h1 class="font-medium text-lg my-2">Type
+                                    Service
+                                </h1>
+                                <span
+                                    class="bg-gray-100/25 rounded-full px-2 py-1">{{ $user->artisan->type_service }}</span>
+                            </div>
                             <button x-on:click="openform = true , opencompte= false"
                                 class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-lg mt-4 text-white">MODIFIER</button>
                         </div>

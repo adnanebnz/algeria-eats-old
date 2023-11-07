@@ -86,11 +86,6 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function getRatingAttribute($rating): string
-    {
-        return $rating . '%';
-    }
-
     public function getFullNameAttribute(): string
     {
         return $this->nom . ' ' . $this->prenom;
