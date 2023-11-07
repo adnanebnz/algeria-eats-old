@@ -35,12 +35,11 @@
                 </div>
             </div>
             {{-- SECTION ENTREPRISE ARTISAN --}}
-            <div class="border border-gray-300 rounded-md p-4">
-                <div>
-
-                </div>
-                <h1 class="text-2xl font-extrabold">Entreprise</h1>
-                @if (auth()->user()->artisan)
+            @if (auth()->user()->artisan)
+                <div class="border border-gray-300 rounded-md p-4">
+                    <div>
+                    </div>
+                    <h1 class="text-2xl font-extrabold">Entreprise</h1>
                     <div class="mt-4">
                         <h1 class="text-lg font-bold">Horraires de Travail</h1>
                         <div class="font-medium text-lg my-2 flex flex-col gap-3 items-center">
@@ -64,60 +63,56 @@
                                 class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-lg mt-4 text-white">MODIFIER</button>
                         </div>
                     </div>
-                @endif
-            </div>
-
-            @if (auth()->user()->deliveryMan)
-                <h1 class="font-medium text-lg mb-4">La disponibilité</h1>
             @endif
         </div>
-        <div x-show="openform" class="bg-gray-100 w-3/4 p-4 mx-auto my-auto rounded-lg">
-            <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
-                @csrf
-                @method('PUT')
-                <div class="flex flex-row gap-8">
-                    <div class="w-1/2 flex flex-col gap-4">
-                        <x-input name="nom" label="Nom" type="text" :value="auth()->user()->nom" />
-                        <x-input name="adresse" label="Adresse" type="text" :value="auth()->user()->adresse" />
-                        <x-input name="email" label="Email" type="email" :value="auth()->user()->email" />
-                        @if (auth()->user()->artisan)
-                            <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
-                                :value="auth()->user()->artisan->heure_ouverture" />
-                        @endif
-                        {{-- TODO FIX FORM FOR DELIVERYMAN AND ADD DELETE ACCOUNT BUTTON --}}
-                    </div>
-                    <div class="w-1/2 flex flex-col gap-4">
-                        <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />
-                        <x-input name="num_telephone" label="Numéro de teléphone" type="text" :value="auth()->user()->num_telephone" />
-                        <x-input name="password" label="Mot de passe" type="password" />
-                        @if (auth()->user()->artisan)
-                            <x-input name="heure_fermeture" label="Heure de fermeture" type="time"
-                                :value="auth()->user()->artisan->heure_fermeture" />
-                        @endif
-                        @if (auth()->user()->deliveryMan)
-                            <div>
-                                <label
-                                    class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
-                                <select
-                                    class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
-                                    name="est_disponible" label="Êtes-vous disponible ?">
-                                    <option>Choisir</option>
-                                    <option value="true" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>Disponible
-                                    </option>
-                                    <option value="false" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
-                                        disponible
-                                    </option>
-                                </select>
-                            </div>
-                        @endif
-                    </div>
+
+        @if (auth()->user()->deliveryMan)
+            <h1 class="font-medium text-lg mb-4">La disponibilité</h1>
+        @endif
+    </div>
+    <div x-show="openform" class="bg-gray-100 w-3/4 p-4 mx-auto my-auto rounded-lg">
+        <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
+            @csrf
+            @method('PUT')
+            <div class="flex flex-row gap-8">
+                <div class="w-1/2 flex flex-col gap-4">
+                    <x-input name="nom" label="Nom" type="text" :value="auth()->user()->nom" />
+                    <x-input name="adresse" label="Adresse" type="text" :value="auth()->user()->adresse" />
+                    <x-input name="email" label="Email" type="email" :value="auth()->user()->email" />
+                    @if (auth()->user()->artisan)
+                        <x-input name="heure_ouverture" label="Heure d'ouverture" type="time" :value="auth()->user()->artisan->heure_ouverture" />
+                    @endif
+                    {{-- TODO FIX FORM FOR DELIVERYMAN AND ADD DELETE ACCOUNT BUTTON --}}
                 </div>
-                <button type="submit"
-                    class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-4 text-white">MODIFIER
-                    VOS INFORMATIONS</button>
-            </form>
-            <button x-on:click="openform= false ,opencompte= true"
-                class="bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white">Annuler</button>
-        </div>
+                <div class="w-1/2 flex flex-col gap-4">
+                    <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />
+                    <x-input name="num_telephone" label="Numéro de teléphone" type="text" :value="auth()->user()->num_telephone" />
+                    <x-input name="password" label="Mot de passe" type="password" />
+                    @if (auth()->user()->artisan)
+                        <x-input name="heure_fermeture" label="Heure de fermeture" type="time" :value="auth()->user()->artisan->heure_fermeture" />
+                    @endif
+                    @if (auth()->user()->deliveryMan)
+                        <div>
+                            <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
+                            <select
+                                class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                                name="est_disponible" label="Êtes-vous disponible ?">
+                                <option>Choisir</option>
+                                <option value="true" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>Disponible
+                                </option>
+                                <option value="false" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
+                                    disponible
+                                </option>
+                            </select>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <button type="submit" class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-4 text-white">MODIFIER
+                VOS INFORMATIONS</button>
+        </form>
+        <button x-on:click="openform= false ,opencompte= true"
+            class="bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white">Annuler</button>
+    </div>
     </div>
 </x-default-layout>

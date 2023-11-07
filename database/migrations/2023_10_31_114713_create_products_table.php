@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('categorie');
             $table->string('sous_categorie');
+            // TODO CREATE INTERMEDIATE FILE FOR THIS
             $table->integer('prix');
             $table->json('images');
             $table->integer('rating')->nullable();
