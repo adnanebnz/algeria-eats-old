@@ -66,6 +66,8 @@
         </div>
         <div x-show="openform" class="bg-gray-100 w-3/4 p-4 mx-auto my-auto rounded-lg">
             <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
+                @csrf
+                @method('PUT')
                 <div class="flex flex-row gap-8">
                     <div class="w-1/2 flex flex-col gap-4">
                         <x-input name="nom" label="Nom" type="text" :value="auth()->user()->nom" />
@@ -84,6 +86,22 @@
                         @if (auth()->user()->artisan)
                             <x-input name="heure_fermeture" label="Heure de fermeture" type="time"
                                 :value="auth()->user()->artisan->heure_fermeture" />
+                        @endif
+                        @if (auth()->user()->deliveryMan)
+                            <div>
+                                <label
+                                    class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
+                                <select
+                                    class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                                    name="est_disponible" label="Êtes-vous disponible ?">
+                                    <option>Choisir</option>
+                                    <option value="true" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>Disponible
+                                    </option>
+                                    <option value="false" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
+                                        disponible
+                                    </option>
+                                </select>
+                            </div>
                         @endif
                     </div>
                 </div>
