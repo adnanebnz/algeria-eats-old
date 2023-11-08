@@ -51,19 +51,18 @@ class ArtisanController extends Controller
             'chart_title' => 'Commandes par mois',
             'report_type' => 'group_by_date',
             'model' => 'App\Models\Order',
-            // TODO MAKE THESE CONDITIONS WORK LIKE THE ORDERS ARE NOT AFFECTING TO A SPECEFIC ARTISAN
             'conditions' => [
-                ['name' => 'user_id', 'condition' => '=', 'value' => auth()->user()->id, 'color' => 'red', 'fill' => true],
+                ['name' => 'artisan_id', 'condition' => '=', 'value' => auth()->user()->id, 'color' => 'blue', 'fill' => true],
             ],
             'group_by_field' => 'created_at',
             'group_by_period' => 'month',
             'chart_type' => 'pie',
         ];
         // CALCULATE SALES PER MONTH
-        $salesPerMonth = Order::where('user_id', auth()->user()->id)->where('status', 'shipped')->whereBetween('created_at', [now()->subMonth(), now()])->sum('prix_total');
+        $salesPerMonth = Order::where('artisan_id', auth()->user()->id)->where('status', 'shipped')->whereBetween('created_at', [now()->subMonth(), now()])->sum('prix_total');
 
         //LIST THE 7 LATEST ORDERS
-        $latestOrders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(7)->get();
+        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(7)->get();
 
         $chart1 = new LaravelChart($chart_options);
 
@@ -106,7 +105,7 @@ class ArtisanController extends Controller
     // ORDERS SECTION
     public function ordersIndex()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->paginate(10);
+        $orders = Order::where('artisan_id', auth()->user()->id)->paginate(10);
         return view('artisan.orders.orders', [
             "orders" => $orders
         ]);

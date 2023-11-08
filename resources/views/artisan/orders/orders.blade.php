@@ -42,7 +42,7 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $order->id }}
                                     </td>
                                     <td>
-                                        {{ $order->user->nom }} {{ $order->user->prenom }}
+                                        {{ $order->consumer->nom }} {{ $order->consumer->prenom }}
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $order->product->nom }}
                                     </td>
@@ -60,28 +60,10 @@
                                                 En attente
                                             </span>
                                         @endif
-                                        @if ($order->status == 'accepted')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Accepté
-                                            </span>
-                                        @endif
-                                        @if ($order->status == 'refused')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                Refusé
-                                            </span>
-                                        @endif
                                         @if ($order->status == 'processing')
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 En cours
-                                            </span>
-                                        @endif
-                                        @if ($order->status == 'shipping')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                Expedition
                                             </span>
                                         @endif
                                         @if ($order->status == 'shipped')
@@ -90,7 +72,6 @@
                                                 Terminé
                                             </span>
                                         @endif
-                                        {{-- TODO MAYBE GENERATE PDF INVOICES --}}
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                                         <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
