@@ -16,7 +16,7 @@
 -   lancer les migrations de la BDD : `php artisan migrate`
 -   Lancer le projet dans les 2 terminals : `npm run dev` et `php artisan serve`
 -   Vous pouvez faire un seed aprés la migration pour remplire la BDD avec des données random en executant la commande: `php artisan db:seed --class="NomDeClasse"`
-    <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder ProductSeede.**
+    <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder ProductSeeder.**
 
 ## Méthode de travail :
 
