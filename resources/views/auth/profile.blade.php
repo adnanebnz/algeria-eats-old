@@ -1,8 +1,8 @@
 <x-default-layout title='Profile'>
     <div x-data="{ openform: false, opencompte: true }" x-cloak class="w-full flex justify-center items-center md:pb-16 pb-4">
         <div x-show="opencompte" class="bg-gray-100 w-3/4 p-4 mx-auto my-auto rounded-lg shadow-lg">
-            <img class="rounded-full w-40 h-40 mx-auto my-4" src="https://placehold.co/160"
-                alt="marach 3adna les donnés t3 les artisanes" />
+            <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover"
+                src="{{ str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image) }}" />
 
             @if (auth()->user()->artisan)
                 <div class="flex items-center justify-center">

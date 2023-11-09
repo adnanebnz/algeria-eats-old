@@ -5,10 +5,14 @@ namespace App\Livewire;
 use App\Models\DeliveryMan;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class DeliveryManForm extends Component
 {
+    use WithFileUploads;
+
     public $nom;
+    public $image;
     public $prenom;
     public $num_telephone;
     public $adresse;
@@ -23,6 +27,7 @@ class DeliveryManForm extends Component
         'num_telephone' => 'required|string',
         'adresse' => 'required|string',
         'email' => 'required|email|unique:users',
+        'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'required|same:password',
         'est_disponible' => 'required|string|in:true,false',
@@ -32,12 +37,17 @@ class DeliveryManForm extends Component
 
         $validatedData = $this->validate();
         $validatedData['password'] = bcrypt($validatedData['password']);
+        if ($this->image) {
+            $imagePath = $this->image->store('profile_images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
         $creation = User::create([
             'nom' => $validatedData['nom'],
             'prenom' => $validatedData['prenom'],
             'num_telephone' => $validatedData['num_telephone'],
             'adresse' => $validatedData['adresse'],
             'email' => $validatedData['email'],
+            'image' => $validatedData['image'],
             'password' => $validatedData['password'],
         ]);
         if ($validatedData['est_disponible'] === 'true') {

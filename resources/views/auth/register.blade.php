@@ -7,13 +7,13 @@
             <option value="delivery_man">Livreur</option>
         </select>
         {{-- TODO CHECK WITH REGISTER FORM AND LIMIT THE CHARACTERS OF PHONE NUMBER --}}
-        <div x-show="selectedAccountType === 'consumer'" class="mb-9">
+        <div x-show="selectedAccountType === 'consumer'">
             <livewire:consumer-form />
         </div>
-        <div x-show="selectedAccountType === 'artisan'" class="mb-9">
+        <div x-show="selectedAccountType === 'artisan'">
             <livewire:artisan-form />
         </div>
-        <div x-show="selectedAccountType === 'delivery_man'" class="mb-9">
+        <div x-show="selectedAccountType === 'delivery_man'">
             <livewire:delivery-man-form />
         </div>
     </div>

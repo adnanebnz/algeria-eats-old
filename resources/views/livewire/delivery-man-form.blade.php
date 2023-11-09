@@ -1,14 +1,15 @@
 <form wire:submit.prevent="submit" method="POST" novalidate>
     @csrf
-    <div class="space-y-4">
+    <div class="flex flex-col gap-8">
         <div class="flex flex-row gap-8">
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="image" label="Photo de profile" type="file" />
                 <x-input name="nom" label="Nom" type="text" />
                 <x-input name="prenom" label="Prénom" type="text" />
                 <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
-                <x-input name="adresse" label="Adresse" type="text" />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="adresse" label="Adresse" type="text" />
                 <div>
                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
                     <select name="est_disponible" wire:model='est_disponible'

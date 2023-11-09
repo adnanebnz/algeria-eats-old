@@ -1,14 +1,15 @@
 <form wire:submit.prevent="submit">
     @csrf
-    <div class="space-y-4">
-        <div class="flex flex-row gap-8">
+    <div class="flex flex-col gap-8">
+        <div class="flex flex-row items-center gap-8">
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="image" label="Photo de profile" type="file" />
                 <x-input name="nom" label="Nom" type="text" />
                 <x-input name="prenom" label="Prénom" type="text" />
                 <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
-                <x-input name="adresse" label="Adresse" type="text" />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="adresse" label="Adresse" type="text" />
                 <x-input name="email" label="Email" type="email" />
                 <x-input name="password" label="Mot de passe" type="password" />
                 <x-input name="password_confirmation" label="Confirmer le Mot de passe" type="password" />

@@ -1,23 +1,28 @@
-<div x-data="{ images: [] }">
+<div x-data="{ images: [], imageSrc: null }">
     <label for="{{ $id }}" class="block text-sm font-medium leading-6 text-gray-900">{{ $label }}</label>
     <div @class([
         'mt-2',
         'relative rounded-md shadow-sm' => $errors->has($name) && $type !== 'file',
     ])>
         <input id="{{ $id }}" name="{{ $name }}" type="{{ $type }}"
-            wire:model="{{ $name }}" @if ($type === 'file') multiple @endif
+            wire:model="{{ $name }}" @if ($type === 'file' && $name === 'images') multiple @endif
             @if ($type !== 'file') value="{{ old($name) ?? $value }}"
             @class([
                 'form-input block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
                 'pr-10 text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' => $errors->has($name),
                 'text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600' => ! $errors->has($name),
             ]) @endif
-            @change="images = $event.target.files">
-        @if ($type === 'file')
+            @if ($type === 'file' && $name === 'image') @change="imageSrc = URL.createObjectURL($event.target.files[0])"
+        @elseif ($type === 'file' && $name === 'images') @change="images = $event.target.files" @endif>
+        @if ($type === 'file' && $name === 'images')
             <div class="grid grid-cols-3 gap-3 my-3">
                 <template x-for="image in images" :key="image.name">
                     <img x-bind:src="URL.createObjectURL(image)" class="w-20 h-20 object-cover rounded-sm">
                 </template>
+            </div>
+        @elseif ($type === 'file' && $name === 'image')
+            <div class="my-3">
+                <img x-bind:src="imageSrc" class="w-20 h-20 object-cover rounded-sm" x-show="imageSrc">
             </div>
         @endif
         @error($name && $type !== 'file')
