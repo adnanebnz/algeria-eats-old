@@ -1,5 +1,5 @@
     <x-default-layout title='Profile'>
-        <div class="w-full flex justify-center items-center md:pb-16 pb-4">
+        <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
             <div class="bg-gray-100 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover"
                     src="{{ str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image) }}" />
@@ -10,7 +10,9 @@
                     </div>
                 @endif
                 @if (auth()->user()->deliveryMan)
-                    <h1 class="center">Rating !</h1>
+                    <div class="flex items-center justify-center">
+                        <x-star-rating :rating="$user->deliveryMan->rating" />
+                    </div>
                 @endif
                 {{-- SECTION D'INFORMATIONS PERSONELLES --}}
                 <div class="font-extrabold text-center my-10">
@@ -58,21 +60,23 @@
                                         Service
                                     </h1>
                                     <span
-                                        class="bg-gray-100/25 rounded-full px-2 py-1">{{ $user->artisan->type_service }}</span>
+                                        class="bg-gray-100/25 rounded-full px-2 py-1">{{ ($user->artisan->type_service === 'sucree' ? 'Sucrée' : $user->artisan->type_service === 'salee') ? 'Salée' : 'Sucrée et Salée' }}</span>
                                 </div>
-                                <button x-on:click="openform = true , opencompte= false"
-                                    class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-lg mt-4 text-white">MODIFIER</button>
+
                             </div>
                         </div>
                 @endif
+                @if (auth()->user()->deliveryMan)
+                    <h1 class="font-medium text-lg mb-4">Disponible? :
+                        <span
+                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ auth()->user()->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
+                    </h1>
+                @endif
             </div>
-
-            @if (auth()->user()->deliveryMan)
-                <h1 class="font-medium text-lg mb-4">La disponibilité</h1>
-            @endif
         </div>
         @if (auth()->id() === $user->id)
-            <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5">Modifier votre Profile</h1>
+            <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
+            </h1>
             <div class="bg-gray-100 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
                 <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
                     @csrf
@@ -83,10 +87,10 @@
                             <x-input name="adresse" label="Adresse" type="text" :value="auth()->user()->adresse" />
                             <x-input name="email" label="Email" type="email" :value="auth()->user()->email" />
                             @if (auth()->user()->artisan)
-                                <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
-                                    :value="auth()->user()->artisan->heure_ouverture" />
+                                <x-textarea name="desc_entreprise" label="Description d'entreprise"
+                                    type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
                             @endif
-                            {{-- TODO FIX FORM FOR DELIVERYMAN AND ADD DELETE ACCOUNT BUTTON --}}
+                            {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
                             <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />
@@ -94,6 +98,25 @@
                                 :value="auth()->user()->num_telephone" />
                             <x-input name="password" label="Mot de passe" type="password" />
                             @if (auth()->user()->artisan)
+                                <div>
+                                    <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Type
+                                        Service</label>
+                                    <select
+                                        class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+                                        name="type_service">
+                                        <option value="sucree" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree') selected @endif>
+                                            Sucrée
+                                        </option>
+                                        <option value="salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'salee') selected @endif>
+                                            Salée
+                                        </option>
+                                        <option value="sucree_salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree_salee') selected @endif>
+                                            Sucrée et Salée
+                                        </option>
+                                    </select>
+                                </div>
+                                <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
+                                    :value="auth()->user()->artisan->heure_ouverture" />
                                 <x-input name="heure_fermeture" label="Heure de fermeture" type="time"
                                     :value="auth()->user()->artisan->heure_fermeture" />
                             @endif
