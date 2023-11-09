@@ -19,15 +19,16 @@
     @livewireStyles
 </head>
 
-<body class="antialiased pt-5">
+<body class="antialiased pt-1">
     {{-- Conteneur global --}}
     <div>
         {{-- Header --}}
+        {{-- TODO CHECK IF I LET THIS GRADIENT OR NO --}}
         <div x-data="{ open: false }" x-cloak
-            class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+            class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
             <div class="flex flex-row items-center justify-between p-4">
                 <a href="{{ route('index') }}"
-                    class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline">
+                    class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
                     <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-16" />
                 </a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
@@ -43,27 +44,27 @@
             </div>
             <nav :class="{ 'flex': open, 'hidden': !open }"
                 class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">
-                <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
+                <a class="p-4 mt-2 text-sm font-semibold md:mt-0 md:ml-4 text-gray-900 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline"
                     href="{{ route('contact.index') }}">Contact</a>
-                <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
+                <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-4 text-gray-900 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline"
                     href="#">À propos de nous</a>
-                <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline"
+                <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-4 text-gray-900 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline"
                     href="{{ route('product.index') }}">Produits</a>
                 @guest
 
                     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
                     border solid border-blue-500
-                    transition-all md:mt-0 md:ml-4 focus:text-gray-900 hover:bg-blue-500 hover:text-white focus:bg-blue-100 focus:outline-none focus:shadow-outline"
-                        href="{{ route('login') }}">Se Connecter</a>
+                    transition-all md:mt-0 md:ml-4 text-gray-900 focus:text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
+                        href="{{ route('login') }}">Connexion</a>
                     <a class="p-4 mt-2 text-sm font-semibold rounded-lg md:mt-0 md:ml-4
-                    bg-blue-500 text-white hover:bg-blue-600 focus:bg-blue-100 focus:outline-none focus:shadow-outline
+                    bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline
                     "
                         href="{{ route('register') }}">Créer un compte</a>
                 @endguest
                 @auth
                     <div @click.away="open = false" class="relative z-20" x-data="{ open: false }" x-cloak>
                         <button @click="open = !open"
-                            class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
+                            class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:inline md:mt-0 md:ml-4 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline">
                             <span>
                                 {{ auth()->user()->prenom }}
                             </span>
@@ -85,7 +86,7 @@
                                 <div class="grid grid-cols-1 gap-4">
                                     {{-- TODO FIX NAVBAR LINKS FOR ALL ROLE CASES --}}
                                     @if (auth()->user()->artisan)
-                                        <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ route('artisan.index', ['user' => auth()->user()]) }}">
                                             <div class="bg-blue-500 text-white rounded-lg p-3">
                                                 <svg fill="none" stroke="currentColor" stroke-linecap="round"
@@ -102,7 +103,7 @@
                                         </a>
                                     @endif
                                     @if (auth()->user()->admin)
-                                        <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ route('admin.index', ['user' => auth()->user()]) }}">
                                             {{-- TODO CREATE VIEW --}}
                                             <div class="bg-blue-500 text-white rounded-lg p-3">
@@ -120,7 +121,7 @@
                                         </a>
                                     @endif
                                     @if (auth()->user()->deliveryMan)
-                                        <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                        <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ route('deliveryMan.index', ['user' => auth()->user()]) }}">
                                             <div class="bg-blue-500 text-white rounded-lg p-3">
                                                 <svg fill="none" stroke="currentColor" stroke-linecap="round"
@@ -136,7 +137,7 @@
                                             </div>
                                         </a>
                                     @endif
-                                    <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                         href="{{ route('profile', ['user' => auth()->user()]) }}">
                                         <div class="bg-blue-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
@@ -152,7 +153,7 @@
                                             <p class="text-sm">Voir et modifier votre profile</p>
                                         </div>
                                     </a>
-                                    <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                         href="{{ route('logout') }}">
                                         <div class="bg-blue-500 text-white rounded-lg p-3">
 
@@ -214,16 +215,16 @@
                                 Rapides</span>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="#">À propos de nous</a>
                                 </li>
 
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="{{ route('product.index') }}">Produits</a>
                                 </li>
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="{{ route('contact.index') }}">Contactez nous</a>
                                 </li>
                             </ul>
@@ -234,12 +235,12 @@
                             <ul class="list-unstyled">
 
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="#">Terms &amp;
                                         Conditions</a>
                                 </li>
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-700 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="#">Confidentialité</a>
                                 </li>
                             </ul>
