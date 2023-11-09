@@ -26,9 +26,9 @@
                                             <p class="font-medium">Quantité: <span
                                                     class="font-bold">{{ $order->quantity }}</span></p>
                                             <p class="font-medium">Nom du client: <span
-                                                    class="font-bold">{{ $order->nom }}</span></p>
+                                                    class="font-bold">{{ $order->consumer->nom }}</span></p>
                                             <p class="font-medium">Prénom du client: <span
-                                                    class="font-bold">{{ $order->prenom }}</span></p>
+                                                    class="font-bold">{{ $order->consumer->prenom }}</span></p>
                                             <p class="font-medium">Numéro de Téléphone du client: <span
                                                     class="font-bold">{{ $order->num_telephone }}</span>
                                             </p>
