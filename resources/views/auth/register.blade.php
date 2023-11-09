@@ -6,7 +6,7 @@
             <option value="artisan">Artisan</option>
             <option value="delivery_man">Livreur</option>
         </select>
-
+        {{-- TODO CHECK WITH REGISTER FORM AND LIMIT THE CHARACTERS OF PHONE NUMBER --}}
         <div x-show="selectedAccountType === 'consumer'" class="mb-9">
             <livewire:consumer-form />
         </div>

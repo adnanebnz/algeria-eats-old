@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ArtisanController extends Controller
@@ -47,6 +48,7 @@ class ArtisanController extends Controller
 
     public function index(): View
     {
+
         $chart_options = [
             'chart_title' => 'Commandes par mois',
             'report_type' => 'group_by_date',
@@ -117,7 +119,6 @@ class ArtisanController extends Controller
         return view('artisan.orders.show', [
             "order" => $order
         ]);
-        // TODO CREATE
     }
 
     public function updateOrder(Order $order)

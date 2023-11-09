@@ -88,8 +88,11 @@ git commit -m "Description des modifications"
 
 ### TODO
 
--   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout
--   [ ] Create Middlewares for admin organizer consumer and deliveryman
--   [ ] CHANGE THE NAVBAR ELEMENTS
+-   [x] Create Middlewares for admin organizer consumer and deliveryman
+-   [x] CHANGE THE NAVBAR ELEMENTS
+-   [x] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
+-   [ ] ADD PROFILE PIC TO USERS
+-   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout POUR MOBILE
 -   [ ] MODIFY MCD ACCORDING TO THE NEW CHANGES
--   [ ] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
+-   [ ] CREATE TABLE PRODUIT COMMANDE FIHA QUANTITE ET MODIFIER LA TABLE COMMANDE POUR AVOIR PLUSIERUS PRODUITS
+-   [ ] ARTISANS CAN SEE EVERY ORDERS OF EVERY ARTISAN FIX THIS

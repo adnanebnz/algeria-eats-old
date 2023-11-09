@@ -83,7 +83,6 @@
                             class="absolute right-0 w-full md:max-w-[280px] md:w-screen mt-2 origin-top-right">
                             <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
                                 <div class="grid grid-cols-1 gap-4">
-                                    {{-- TODO FIX NAVBAR LINKS FOR ALL ROLE CASES --}}
                                     @if (auth()->user()->artisan)
                                         <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                             href="{{ route('artisan.index', ['user' => auth()->user()]) }}">
