@@ -7,10 +7,10 @@
         <div class="mx-auto flex flex-col gap-48 md:flex-row md:px-11 px-5">
             <div>
                 <h1 class="text-gray-900 font-light text-3xl md:text-6xl">Explorez des <span
-                        class="font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-indigo-500">Délices</span>
+                        class="font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-400">Délices</span>
                 </h1>
                 <h1 class="text-gray-900 font-bold text-[27px] md:text-6xl">Sucrés et Salés <span
-                        class="font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-500 to-indigo-500">unique</span>
+                        class="font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-400">unique</span>
                 </h1>
                 <div class="mt-3">
                     <p class="text-gray-700">Apportez la Qualité Culinaire a votre Porte en Quelques Clics Faciles.</p>
