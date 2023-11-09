@@ -47,6 +47,7 @@ class ArtisanController extends Controller
 
     public function index(): View
     {
+
         $chart_options = [
             'chart_title' => 'Commandes par mois',
             'report_type' => 'group_by_date',

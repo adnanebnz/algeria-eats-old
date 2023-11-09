@@ -26,6 +26,5 @@ class DeliveryMan extends Authenticatable
     public function deliveries()
     {
         return $this->hasMany(Delivery::class);
-        // TODO TO CREATE
     }
 }
