@@ -25,7 +25,7 @@
         {{-- Header --}}
         {{-- TODO CHECK IF I LET THIS GRADIENT OR NO --}}
         <div x-data="{ open: false }" x-cloak
-            class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 shadow-sm border-b border-gray-100">
+            class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
             <div class="flex flex-row items-center justify-between px-4 py-3">
                 <a href="{{ route('index') }}"
                     class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
