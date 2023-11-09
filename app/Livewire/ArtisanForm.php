@@ -5,10 +5,14 @@ namespace App\Livewire;
 use App\Models\Artisan;
 use App\Models\User;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ArtisanForm extends Component
 {
+    use WithFileUploads;
+
     public $nom;
+    public $image;
     public $prenom;
     public $num_telephone;
     public $adresse;
@@ -30,6 +34,7 @@ class ArtisanForm extends Component
         'heure_fermeture' => 'required|string',
         'type_service' => 'required|in:sucree,salee,sucree_salee',
         'email' => 'required|email|unique:users',
+        'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'required|same:password',
     ];
@@ -37,12 +42,17 @@ class ArtisanForm extends Component
     {
         $validatedData = $this->validate();
         $validatedData['password'] = bcrypt($validatedData['password']);
+        if ($this->image) {
+            $imagePath = $this->image->store('profile_images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
         $creation = User::create([
             'nom' => $validatedData['nom'],
             'prenom' => $validatedData['prenom'],
             'num_telephone' => $validatedData['num_telephone'],
             'adresse' => $validatedData['adresse'],
             'email' => $validatedData['email'],
+            'image' => $validatedData['image'],
             'password' => $validatedData['password'],
         ]);
         Artisan::create([

@@ -14,11 +14,13 @@
 -   Installer les depandances npm: `npm install`
 -   Installer les depandances composer : `composer install`
 -   lancer les migrations de la BDD : `php artisan migrate`
--   Lancer le projet dans les 2 terminals : `npm run dev` `php artisan`
+-   Lancer le projet dans les 2 terminals : `npm run dev` et `php artisan serve`
+-   Vous pouvez faire un seed aprés la migration pour remplire la BDD avec des données random en executant la commande: `php artisan db:seed --class="NomDeClasse"`
+    <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder ProductSeeder.**
 
 ## Méthode de travail :
 
-1. **Cloner le référentiel** :
+1. **Cloner le projet** :
 
     Chaque membre de l'équipe doit cloner le projet sur sa machine locale. Cela donne à chacun une copie du projet sur laquelle travailler.
 
@@ -88,8 +90,23 @@ git commit -m "Description des modifications"
 
 ### TODO
 
--   [ ] Navigation mobile pour dashboards pour les liens Profile et Logout
--   [ ] Create Middlewares for admin organizer consumer and deliveryman
--   [ ] CHANGE THE NAVBAR ELEMENTS
--   [ ] MODIFY MCD ACCORDING TO THE NEW CHANGES
--   [ ] WORK ON PRODUCTS LOGIC AND VIEWS AND TRY TO CHANGE CATEGORY TYPE TO ENUM
+-   [x] Create Middlewares for admin organizer consumer and deliveryman
+-   [x] CHANGE THE NAVBAR ELEMENTS
+-   [x] WORK ON PRODUCTS LOGIC AND VIEWS
+-   [x] ARTISANS CAN SEE EVERY ORDERS OF EVERY ARTISAN FIX THIS
+-   [x] ADD PROFILE PIC TO USERS
+-   [x] FIX PROFILE RESPONSIVENESS
+-   [x] ADD MIDDLEWARE TO PREVENT USERS TO MODIFY OTHER USERS PROFILE
+-   [x] EDIT ARTISAN DASHBOARD INDEX PAGE TO DISPLAY REAL DATA AND STATISTICS AND IMPROVE UI
+-   [x] Navigation mobile pour dashboards pour les liens Profile et Logout POUR MOBILE
+-   [ ] EDIT NAVBAR TO DISPLAY USER PROFILE PIC AND HANDLE EXCEPRIONS IN THE NAVBAR AND PROFILE PAGE FOR NULLABLE IMAGES
+-   [ ] Add Sweet alerts
+-   [ ] CRAETE ERROR PAGES 500,404,401,403
+-   [ ] WORK ON DELIVERYMAN DASHBOARD
+-   [ ] WORK ON USER DASHBOARD
+-   [ ] WORK ON ADMIN DASHBOARD
+-   [ ] CREATE TABLE PRODUIT_COMMANDE QUI CONTIENT LA QUANTITE DU PRODUIT ET MODIFIER LA TABLE COMMANDE POUR AVOIR PLUSIERUS PRODUITS DANS UNE SEULE COMMANDE
+-   [ ] MODIFY PRODUCT PAGE AND CREATE SHOW PAGE FOR SINGLE PRODUCT
+-   [ ] WORK ON THE LOGIC OF ORDERS FOR CONSUMERS
+-   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices
+-   [ ] WORK ON THE HOMEPAGE STYLE AND ADD ELEMENTS TO IT AND SEARCH BAR WITH FILTERS ALOT OF FILTERS

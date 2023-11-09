@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkProfileOwnership')->only(['update']);
+    }
+
     public function index(User $user)
     {
         return view('auth.profile', ['user' => $user]);
@@ -16,7 +22,6 @@ class ProfileController extends Controller
 
     public function update(User $user, Request $request)
     {
-        // TODO FUNCTIONS NEEDS TO BE UPDATED AND TRANSFORM THIS TO A LIVEWIRE COMPONENT CHECK THE REGISTER MECHANISM AND DO THE SAME
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',

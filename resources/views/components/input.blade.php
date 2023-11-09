@@ -16,7 +16,7 @@
         @if ($type === 'file')
             <div class="grid grid-cols-3 gap-3 my-3">
                 <template x-for="image in images" :key="image.name">
-                    <img x-bind:src="URL.createObjectURL(image)" class="w-20 h-20 object-cover rounded-sm">
+                    <img x-bind:src="URL.createObjectURL(image)" class="w-20 h-20 object-cover rounded-md">
                 </template>
             </div>
         @endif
