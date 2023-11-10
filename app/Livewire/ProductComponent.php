@@ -2,8 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Cart;
 use App\Models\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -11,11 +11,14 @@ class ProductComponent extends Component
 {
     use WithPagination;
 
-
-    public function store(int $id, string $nom, int $prix)
+    public function store(int $id)
     {
-        Cart::add($id, $nom, 1, $prix)->associate('App\Models\Product');
-        return redirect()->route('product.index');
+        Cart::create([
+            'product_id' => $id,
+            'user_id' => auth()->user()->id,
+            'quantity' => 1
+        ]);
+        $this->dispatch('itemAdded');
     }
     public function render()
     {
