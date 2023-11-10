@@ -101,6 +101,8 @@ git commit -m "Description des modifications"
 -   [x] Navigation mobile pour dashboards pour les liens Profile et Logout POUR MOBILE
 -   [x] Add Sweet alerts
 -   [x] CRAETE ERROR PAGES 500,404,401,403
+-   [x] CRAETE CART AND DISPLAY IT ON THE LAYOUT READ MORE HERE https://jackiedo.github.io/Laravel-Cart
+-   [ ] MAKE THE CART WORK AND DISPLAY ITEMS
 -   [ ] CREATE TABLE PRODUIT_COMMANDE QUI CONTIENT LA QUANTITE DU PRODUIT ET MODIFIER LA TABLE COMMANDE POUR AVOIR PLUSIERUS PRODUITS DANS UNE SEULE COMMANDE
 -   [ ] WORK ON DELIVERYMAN DASHBOARD
 -   [ ] WORK ON USER DASHBOARD
