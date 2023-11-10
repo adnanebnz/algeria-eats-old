@@ -29,7 +29,7 @@
             <div class="flex flex-row items-center justify-between px-4 py-3">
                 <a href="{{ route('index') }}"
                     class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
-                    <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-16" />
+                    <img src="{{ asset('assets/LOGO.png') }}" class="h-16" />
                 </a>
                 <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                     <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -64,17 +64,19 @@
                 @auth
                     <div @click.away="open = false" class="relative z-20" x-data="{ open: false }" x-cloak>
                         <button @click="open = !open"
-                            class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:inline md:mt-0 md:ml-4 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline">
-                            <span>
-                                {{ auth()->user()->prenom }}
-                            </span>
-                            <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
+                        class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
+                            <span>{{ auth()->user()->prenom }}</span>
+                            {{-- <img class="rounded-full w-8 h-8 object-cover border border-solid border-gray-300"
+                                src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" /> --}}
+                            <svg fill="currentColor" viewBox="0 0 20 20"
+                                :class="{ 'rotate-180': open, 'rotate-0': !open }"
                                 class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
                                 <path fill-rule="evenodd"
                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                        </button>
+
+                    </button>
                         <div x-show="open" x-transition:enter="transition ease-out duration-100"
                             x-transition:enter-start="transform opacity-0 scale-95"
                             x-transition:enter-end="transform opacity-100 scale-100"
@@ -202,7 +204,7 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">
-                    <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-16" />
+                    <img src="{{ asset('assets/LOGO.png') }}" class="h-16" />
                     <div class="mt-6 lg:mb-0 mb-6">
                         {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
                     </div>
@@ -262,6 +264,7 @@
         </div>
     </footer>
     @livewireScripts
+    @include('sweetalert::alert')
     </body>
 
 </html>

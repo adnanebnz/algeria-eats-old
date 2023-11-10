@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
@@ -21,6 +22,7 @@ class ContactController extends Controller
             'message' => 'required'
         ]);
         $contact = Contact::create($data);
+        Alert::success('Succès', 'Votre message a bien été envoyé');
         return redirect()->route('index')->with('status', 'Votre message a bien été envoyé');
     }
 }
