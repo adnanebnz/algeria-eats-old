@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('consumer_id');
             $table->foreign('consumer_id')->references('user_id')->on('consumers');
             $table->unsignedBigInteger('artisan_id');
-            $table->foreign('artisan_id')->references('user_id')->on('artisans');
+            $table->foreign('artisan_id')->references('user_id')->on('artisans')->cascadeOnDelete();
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
             $table->integer('quantity');
             $table->integer('prix_total');
             $table->string('adresse');

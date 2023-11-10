@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('delivery_men', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->boolean('est_disponible')->default(true);
             $table->integer('rating')->default(0);
             $table->timestamps();
