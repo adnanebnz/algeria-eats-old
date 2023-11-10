@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Cart;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class CartComponent extends Component
@@ -13,8 +15,16 @@ class CartComponent extends Component
 
     public function remove($id)
     {
-        Cart::where('product_id', $id)->where('user_id', auth()->user()->id)->delete();
-        $this->dispatch('cartAddedUpdated');
+        if (Auth::check()) {
+            if (Product::where('id', $id)->exists()) {
+                Cart::where('product_id', $id)->where('user_id', auth()->user()->id)->delete();
+                $this->dispatch('cartAddedUpdated');
+            } else {
+                return redirect()->route('login');
+            }
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     public function render()
