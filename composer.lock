@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1dd5004caa831c8df5d49d4b943c535d",
+    "content-hash": "4f3a72fe6b7868adde93913fa161be05",
     "packages": [
         {
             "name": "brick/math",
@@ -1168,45 +1168,46 @@
             "time": "2023-08-27T10:19:19+00:00"
         },
         {
-            "name": "jackiedo/cart",
-            "version": "3.0.4",
+            "name": "hardevine/shoppingcart",
+            "version": "3.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/JackieDo/Laravel-Cart.git",
-                "reference": "438bbcf72851c49e6f472635f12a10fe2406b5bd"
+                "url": "https://github.com/hardevine/LaravelShoppingcart.git",
+                "reference": "df525606697abf68882a2221ad1f2286353b49eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JackieDo/Laravel-Cart/zipball/438bbcf72851c49e6f472635f12a10fe2406b5bd",
-                "reference": "438bbcf72851c49e6f472635f12a10fe2406b5bd",
+                "url": "https://api.github.com/repos/hardevine/LaravelShoppingcart/zipball/df525606697abf68882a2221ad1f2286353b49eb",
+                "reference": "df525606697abf68882a2221ad1f2286353b49eb",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^10.0|^9.0|^8.0|^7.0|^6.0|^5.0",
-                "php": ">=5.6.0"
+                "illuminate/events": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10",
+                "illuminate/session": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10",
+                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10"
             },
             "require-dev": {
-                "mockery/mockery": "^1.0|^0.9",
-                "orchestra/testbench": "^8.0|^7.0|^6.0|^5.0|^4.0|^3.0",
-                "phpunit/phpunit": "^9.0|^8.0|^7.0|^6.0|^5.0|^4.0"
+                "mockery/mockery": "~0.9.0",
+                "orchestra/testbench": "~3.1",
+                "phpunit/phpunit": "~5.0 || ~6.0 || ~7.0 || ~10.0"
+            },
+            "suggest": {
+                "gloudemans/notify": "Simple flash notifications for Laravel"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "Jackiedo\\Cart\\CartServiceProvider"
+                        "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider"
                     ],
                     "aliases": {
-                        "Cart": "Jackiedo\\Cart\\Facades\\Cart"
+                        "Cart": "Gloudemans\\Shoppingcart\\Facades\\Cart"
                     }
                 }
             },
             "autoload": {
-                "files": [
-                    "src/Helpers/helpers.php"
-                ],
                 "psr-4": {
-                    "Jackiedo\\Cart\\": "src"
+                    "Gloudemans\\Shoppingcart\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1215,22 +1216,20 @@
             ],
             "authors": [
                 {
-                    "name": "Jackie Do",
-                    "email": "anhvudo@gmail.com"
+                    "name": "Rob Gloudemans",
+                    "email": "info@robgloudemans.nl"
                 }
             ],
-            "description": "A package used to create and manage carts (such as shopping, recently viewed, compared items...) in Laravel application.",
+            "description": "Laravel Shoppingcart",
             "keywords": [
-                "cart",
                 "laravel",
-                "shopping",
                 "shoppingcart"
             ],
             "support": {
-                "issues": "https://github.com/JackieDo/Laravel-Cart/issues",
-                "source": "https://github.com/JackieDo/Laravel-Cart/tree/3.0.4"
+                "issues": "https://github.com/hardevine/LaravelShoppingcart/issues",
+                "source": "https://github.com/hardevine/LaravelShoppingcart/tree/3.2"
             },
-            "time": "2023-02-19T22:06:20+00:00"
+            "time": "2023-03-09T06:15:48+00:00"
         },
         {
             "name": "laravel/framework",

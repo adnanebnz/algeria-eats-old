@@ -10,11 +10,7 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::paginate(12);
-        // TODO ADD LOGIC FOR FILTERS
-        return view("products.index", [
-            "products" => $products
-        ]);
+        return view("products.index");
     }
     public function show(Product $product): View
     {
