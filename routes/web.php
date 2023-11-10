@@ -6,13 +6,14 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DeliveryManController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
 /* PAGES AND INDEX SECTION*/
 
-Route::view('/', "index")->name("index");
+Route::get('/', [HomeController::class, 'index'])->name("index");
 /* PAGES AND INDEX SECTION END*/
 
 /* PRODUCTS SECTION*/
