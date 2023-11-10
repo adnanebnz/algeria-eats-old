@@ -23,8 +23,8 @@
                             <select name="categorie"
                                 class="form-select block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 mt-2">
                                 <option>Choisir une catégorie</option>
-                                <option value="sucree" @if ($product->categorie === 'sucree') selected @endif>Sucrée</option>
-                                <option value="salee" @if ($product->categorie === 'salee') selected @endif>Salée</option>
+                                <option value="sucree" @if ($product->categorie === 'sucree') selected @endif>Sucré</option>
+                                <option value="salee" @if ($product->categorie === 'salee') selected @endif>Salé</option>
                             </select>
                         </div>
                         <x-input name="sous_categorie" label="Sous Categorie" :value="$product->sous_categorie" />

@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('artisan_id');
+            $table->foreign('artisan_id')->references('user_id')->on('artisans');
             $table->string('nom');
             $table->text('description');
             $table->string('categorie');
             $table->string('sous_categorie');
-            // TODO CREATE INTERMEDIATE FILE FOR THIS
+            // TODO CREATE INTERMEDIATE FILE FOR THIS CONTAINING ALL SUB CATEGORIES
             $table->integer('prix');
             $table->json('images');
             $table->integer('rating')->nullable();

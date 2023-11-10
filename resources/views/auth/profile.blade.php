@@ -60,7 +60,7 @@
                                         Service
                                     </h1>
                                     <span
-                                        class="bg-gray-100/25 rounded-full px-2 py-1">{{ ($user->artisan->type_service === 'sucree' ? 'Sucrée' : $user->artisan->type_service === 'salee') ? 'Salée' : 'Sucrée et Salée' }}</span>
+                                        class="bg-gray-100/25 rounded-full px-2 py-1">{{ ($user->artisan->type_service === 'sucree' ? 'Sucré' : $user->artisan->type_service === 'salee') ? 'Salé' : 'Sucré et Salé' }}</span>
                                 </div>
 
                             </div>
@@ -105,13 +105,13 @@
                                         class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                                         name="type_service">
                                         <option value="sucree" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree') selected @endif>
-                                            Sucrée
+                                            Sucré
                                         </option>
                                         <option value="salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'salee') selected @endif>
-                                            Salée
+                                            Salé
                                         </option>
                                         <option value="sucree_salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree_salee') selected @endif>
-                                            Sucrée et Salée
+                                            Sucré et Salé
                                         </option>
                                     </select>
                                 </div>

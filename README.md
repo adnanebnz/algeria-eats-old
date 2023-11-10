@@ -99,7 +99,7 @@ git commit -m "Description des modifications"
 -   [x] ADD MIDDLEWARE TO PREVENT USERS TO MODIFY OTHER USERS PROFILE
 -   [x] EDIT ARTISAN DASHBOARD INDEX PAGE TO DISPLAY REAL DATA AND STATISTICS AND IMPROVE UI
 -   [x] Navigation mobile pour dashboards pour les liens Profile et Logout POUR MOBILE
--   [ ] Add Sweet alerts
+-   [x] Add Sweet alerts
 -   [ ] CRAETE ERROR PAGES 500,404,401,403
 -   [ ] WORK ON DELIVERYMAN DASHBOARD
 -   [ ] WORK ON USER DASHBOARD

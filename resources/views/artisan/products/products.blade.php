@@ -63,7 +63,7 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->nom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}</td>
+                                        {{ $product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $product->sous_categorie }}</td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->prix }}
