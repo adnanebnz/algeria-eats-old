@@ -18,7 +18,7 @@ class ProductComponent extends Component
             'user_id' => auth()->user()->id,
             'quantity' => 1
         ]);
-        $this->dispatch('itemAdded');
+        $this->dispatch('cartAddedUpdated');
     }
     public function render()
     {
