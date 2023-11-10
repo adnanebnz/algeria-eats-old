@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ]);
-
+        toast('Vous êtes connecté à votre compte', 'success');
         if (Auth::attempt($credentials, (bool) $request->remember)) {
             $request->session()->regenerate();
 
@@ -42,6 +43,7 @@ class LoginController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
+        toast('Vous êtes déconnecté de votre compte', 'success');
         Auth::logout();
 
         $request->session()->invalidate();

@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArtisanController extends Controller
 {
@@ -33,6 +34,7 @@ class ArtisanController extends Controller
             $data['images'] = $uploadedFilesUrl;
         }
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
+        Alert::success('Succès', 'Produit publié !');
         return redirect()->route('artisan.index')->withStatus(
             $product->wasRecentlyCreated ? 'Produit publié !' : 'Produit mis à jour !'
         );
@@ -83,6 +85,7 @@ class ArtisanController extends Controller
 
     public function storeProduct(ProductCreation $request)
     {
+        Alert::success('Succès', 'Produit publié !');
         return $this->saveProduct($request->validated());
     }
 
@@ -93,11 +96,13 @@ class ArtisanController extends Controller
 
     public function updateProduct(Product $product, ProductUpdate $request)
     {
+        Alert::success('Succès', 'Produit mis à jour !');
         return $this->saveProduct($request->validated(), $product);
     }
 
     public function destroyProduct(Product $product): RedirectResponse
     {
+        Alert::success('Succès', 'Produit supprimé !');
         $product->delete();
         return redirect()->route('artisan.products');
     }
@@ -124,12 +129,14 @@ class ArtisanController extends Controller
         $order->update([
             'status' => request('status')
         ]);
+        Alert::success('Succès', 'Commande mise à jour !');
         return redirect()->route('artisan.orders.show', $order);
     }
 
     public function destroyOrder(Order $order)
     {
         $order->delete();
+        Alert::success('Succès', 'Commande supprimée !');
         return redirect()->route('artisan.orders');
     }
 

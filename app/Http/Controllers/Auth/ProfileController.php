@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
@@ -66,6 +67,8 @@ class ProfileController extends Controller
         if ($request->filled('password')) {
             $user->update(['password' => Hash::make($request->input('password'))]);
         }
+
+        Alert::success('Profil mis à jour !', 'Votre profil a été mis à jour avec succès !');
 
         return redirect()->route('profile', ['user' => $user])->withStatus('Profil mis à jour !');
     }

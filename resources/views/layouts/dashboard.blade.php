@@ -38,7 +38,7 @@
                             </svg>
                         </button>
                         <a href="{{ route('index') }}" class="lg:ml-2.5">
-                            <img src="{{ asset('assets/AlgeriaEats.png') }}" class="h-14" alt="Logo">
+                            <img src="{{ asset('assets/LOGO.png') }}" class="h-14" alt="Logo">
                         </a>
                     </div>
                     <div class="flex items-center">
@@ -56,9 +56,7 @@
                             <div @click.away="open = false" class="relative" x-data="{ open: false }" x-cloak>
                                 <button @click="open = !open"
                                     class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
-                                    <span>
-                                        {{ auth()->user()->prenom }}
-                                    </span>
+                                    <span>{{ auth()->user()->prenom }}</span>
                                     <svg fill="currentColor" viewBox="0 0 20 20"
                                         :class="{ 'rotate-180': open, 'rotate-0': !open }"
                                         class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
@@ -290,6 +288,7 @@
     <script src="https://demo.themesberg.com/windster/app.bundle.js"></script>
     @yield('scripts')
     @livewireScripts
+    @include('sweetalert::alert')
 </body>
 
 </html>
