@@ -7,9 +7,10 @@ use Livewire\Component;
 
 class CartComponent extends Component
 {
-    public function remove($id)
+
+    public function remove($rowId)
     {
-        Cart::remove($id);
+        Cart::remove($rowId);
         return redirect()->route('product.index');
     }
 
