@@ -11,6 +11,8 @@ class CartPage extends Component
 {
     public $cartItems;
     public $totalPrice;
+    public $quantity = 1;
+
 
     public function remove($productId)
     {
