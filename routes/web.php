@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DeliveryManController;
 use App\Http\Controllers\HomeController;
@@ -77,3 +78,7 @@ Route::get("/products/{product}", [ProductController::class, 'show'])->name('pro
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 /*CONTACT END*/
+
+// CART SECTION
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// CART SECTION END

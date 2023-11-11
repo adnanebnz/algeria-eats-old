@@ -5,13 +5,12 @@ namespace App\Livewire;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CartComponent extends Component
 {
     public $cartCount;
-
-    protected $listeners = ['cartAddedUpdated' => 'render'];
 
     public function remove($id)
     {
@@ -25,6 +24,14 @@ class CartComponent extends Component
         } else {
             return redirect()->route('login');
         }
+    }
+
+
+    #[On('cartAddedUpdated')]
+    public function updateCart()
+    {
+        $this->cartCount = Cart::where('user_id', auth()->user()->id)->count();
+        return $this->render();
     }
 
     public function render()

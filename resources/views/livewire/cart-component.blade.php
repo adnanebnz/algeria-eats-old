@@ -6,8 +6,7 @@
                 <div class="relative">
                     <div class="flex flex-row cursor-pointer truncate p-2 px-4 rounded">
                         <div class="flex flex-row-reverse ml-2 w-full">
-                            <div slot="icon" class="relative">
-                                {{-- TODO CREATE CART PAGE AND REDIRECT TO IT --}}
+                            <a href="{{ route('cart.index') }}" slot="icon" class="relative">
                                 <div
                                     class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-500 text-white">
                                     {{ $cartCount }}</div>
@@ -18,7 +17,7 @@
                                     <circle cx="20" cy="21" r="1"></circle>
                                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                                 </svg>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>
