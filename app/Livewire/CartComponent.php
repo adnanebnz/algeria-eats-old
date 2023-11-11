@@ -29,7 +29,11 @@ class CartComponent extends Component
 
     public function render()
     {
-        $this->cartCount = Cart::where('user_id', auth()->user()->id)->count();
+        if (Auth::check()) {
+            $this->cartCount = Cart::where('user_id', auth()->user()->id)->count();
+        } else {
+            $this->cartCount = 0;
+        }
         return view('livewire.cart-component', ['cartCount' => $this->cartCount]);
     }
 }
