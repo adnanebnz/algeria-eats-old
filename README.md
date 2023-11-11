@@ -103,7 +103,7 @@ git commit -m "Description des modifications"
 -   [x] CRAETE ERROR PAGES 500,404,401,403
 -   [x] CRAETE CART AND DISPLAY IT ON THE LAYOUT READ MORE HERE https://jackiedo.github.io/Laravel-Cart
 -   [x] MAKE THE CART COUNTER WORK
--   [x] CREATE CART PAGE
+-   [ ] CREATE CART PAGE
 -   [ ] WORK ON DELIVERYMAN DASHBOARD
 -   [ ] WORK ON USER DASHBOARD
 -   [ ] WORK ON ADMIN DASHBOARD
