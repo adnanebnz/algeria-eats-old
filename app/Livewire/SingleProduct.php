@@ -80,6 +80,14 @@ class SingleProduct extends Component
         }
     }
 
+    #[On('closeFeedbackMessage')]
+
+    public function closeFeedbackMessage()
+    {
+        $this->feedbackMessage = '';
+        $this->feedbackMessageType = '';
+    }
+
     #[On('wishlistAddedUpdated')]
     public function wishlistAddedUpdated()
     {
