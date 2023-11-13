@@ -1,3 +1,3 @@
 <x-default-layout>
-    {{-- TODO TO IMPLEMENT --}}
+    <livewire:single-product :product="$product" />
 </x-default-layout>
