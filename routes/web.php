@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name("index");
 /* PAGES AND INDEX SECTION END*/
 
-/* PRODUCTS SECTION*/
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::get("/products/{product}", [ProductController::class, 'show'])->name('product.show');
-/* PRODUCTS SECTION END*/
 
 /*AUTH AND PROFILE SECTION*/
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name('login');
