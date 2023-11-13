@@ -125,15 +125,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="py-6 mb-6 border-t border-b border-gray-200">
-                        <span class="text-base text-gray-600">In Stock</span>
-                        <p class="mt-2 text-sm text-blue-500">Ships from china.
-                            <span class="text-gray-600">
-                                Most customers receive within 3-31 days.
-                            </span>
-                        </p>
-                    </div>
-                    <div class="mb-6 "></div>
+                    <div class="mb-6 mt-10"></div>
                     <div class="flex flex-wrap items-center mb-6">
                         <div class="mb-4 mr-4 lg:mb-0">
                             <div class="w-28">
