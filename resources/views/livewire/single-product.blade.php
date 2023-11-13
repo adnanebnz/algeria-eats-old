@@ -12,7 +12,6 @@
                                     d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
                                 </path>
                             </svg>
-                            {{-- TODO IMPLEMENT FUNCTIONALITY TO GO BACK IMAGE --}}
                         </button>
                         @foreach ($product->images as $key => $image)
                             <img class="object-contain w-full lg:h-full"
@@ -28,7 +27,6 @@
                                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
                                 </path>
                             </svg>
-                            {{-- TODO IMPLEMENT FUNCTIONALITY TO GO TO THE NEXT IMAGE --}}
                         </button>
                     </div>
                     <div class="flex-wrap hidden -mx-2 md:flex">
@@ -41,7 +39,6 @@
                             </div>
                         @endforeach
                     </div>
-                    {{-- TODO FIX THIS --}}
                 </div>
             </div>
             <div class="w-full px-4 md:w-1/2">
