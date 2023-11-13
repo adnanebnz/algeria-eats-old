@@ -32,11 +32,6 @@ class Product extends Model
         return $this->belongsTo(Artisan::class);
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'nom';
-    }
-
     public function orders()
     {
         return $this->belongsToMany(Order::class);

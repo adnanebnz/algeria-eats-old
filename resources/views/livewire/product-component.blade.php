@@ -2,7 +2,9 @@
     <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         @forelse ($products as $product)
             <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
-                <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{ $product->images[0] }}">
+                <a href="{{ route('product.show', $product) }}">
+                    <img class="object-cover w-full rounded-md h-72 xl:h-80" src="{{ $product->images[0] }}">
+                </a>
                 <h4 class="mt-2 text-lg font-medium text-gray-700"> {{ $product->nom }}
                 </h4>
                 <p class="text-blue-500 font-medium">{{ $product->prix }} DA</p>

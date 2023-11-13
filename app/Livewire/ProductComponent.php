@@ -5,13 +5,17 @@ namespace App\Livewire;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use RealRashid\SweetAlert\Facades\Alert;
 
+use function Livewire\store;
+
 class ProductComponent extends Component
 {
     use WithPagination;
+
 
     public function store(int $id)
     {
