@@ -1,4 +1,6 @@
 <section class="pb-6" x-data="{ currentImageIndex: 0 }">
+    @livewire('feedback-message', ['message' => $feedbackMessage, 'type' => $feedbackMessageType])
+
     <div class="max-w-6xl px-4 mx-auto">
         <div class="flex flex-wrap mb-24 -mx-4">
             <div class="w-full px-4 mb-8 md:w-1/2 md:mb-0">
@@ -7,7 +9,8 @@
                         <button class="absolute left-0 transform lg:ml-2 top-1/2 translate-1/2"
                             x-on:click="currentImageIndex = (currentImageIndex - 1 + {{ count($product->images) }}) % {{ count($product->images) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="w-5 h-5 text-blue-500 bi bi-chevron-left" viewBox="0 0 16 16">
+                                class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-left"
+                                viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
                                 </path>
@@ -22,7 +25,8 @@
                         <button class="absolute right-0 transform lg:mr-2 top-1/2 translate-1/2"
                             x-on:click="currentImageIndex = (currentImageIndex + 1) % {{ count($product->images) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="w-5 h-5 text-blue-500 bi bi-chevron-right" viewBox="0 0 16 16">
+                                class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-right"
+                                viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
                                 </path>
@@ -142,25 +146,33 @@
                             </div>
                         </div>
                         <div class="mb-4 lg:mb-0">
-                            <button
-                                class="flex items-center justify-center w-full h-10 p-2 mr-4 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 hover:bg-blue-600 hover:border-blue-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class=" bi bi-heart" viewBox="0 0 16 16">
-                                    <path
-                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
-                                    </path>
-                                </svg>
+                            <button wire:click="addToWishlist()"
+                                class="flex items-center justify-center w-full h-10 p-2 mr-4 text-gray-700 border border-gray-300 lg:w-11 hover:text-gray-50 hover:bg-blue-500 hover:border-blue-500">
+                                @if ($isInWishlist)
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                        class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                        <path
+                                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z">
+                                        </path>
+                                    </svg>
+                                @endif
                             </button>
                         </div>
-                        <a href="#"
+                        <button wire:click="addToCart()"
                             class="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 lg:w-1/2 rounded-xl">
                             Ajouter au panier
-                        </a>
+                        </button>
                     </div>
                     <div class="flex gap-4 mb-6">
-                        <a href="#"
+                        <button
                             class="w-full px-4 py-3 text-center text-gray-100 bg-blue-600 border border-transparent hover:border-blue-500 hover:text-blue-700 hover:bg-blue-100 rounded-xl">
-                            Acheter maintenant</a>
+                            Acheter maintenant</button>
                     </div>
                 </div>
             </div>
