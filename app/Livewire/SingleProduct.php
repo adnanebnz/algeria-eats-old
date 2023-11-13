@@ -13,7 +13,6 @@ class SingleProduct extends Component
     public $quantity = 1;
     public $feedbackMessage;
     public $feedbackMessageType;
-    public $selectedImage = 0;
 
 
     public function mount(Product $product)
