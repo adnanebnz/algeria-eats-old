@@ -29,6 +29,26 @@ class SingleProduct extends Component
         $this->product = $product;
     }
 
+    public function updatedQuantity($value)
+    {
+        // Ensure the quantity is a positive integer
+        $this->quantity = max(1, intval($value));
+    }
+
+
+    public function incrementQuantity()
+    {
+        $this->quantity++;
+    }
+
+
+    public function decrementQuantity()
+    {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+        }
+    }
+
     public function addToCart()
     {
         if (Auth::check()) {
@@ -39,7 +59,7 @@ class SingleProduct extends Component
                 Cart::create([
                     'product_id' => $this->product->id,
                     'user_id' => auth()->user()->id,
-                    'quantity' => 1
+                    'quantity' => $this->quantity,
                 ]);
                 $this->dispatch('cartAddedUpdated');
                 $this->quantity = 1;
@@ -86,6 +106,7 @@ class SingleProduct extends Component
     {
         $this->feedbackMessage = '';
         $this->feedbackMessageType = '';
+        // TODO REPLACE THIS WITH A TOAST
     }
 
     #[On('wishlistAddedUpdated')]
