@@ -23,34 +23,15 @@
                         </a>
                     </div>
                     <div class="flex-wrap hidden -mx-2 md:flex">
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a class="block border border-gray-200 hover:border-blue-400" href="#">
-                                <img class="object-contain w-full lg:h-28"
-                                    src="https://i.postimg.cc/Z5KhRkD6/download-1-removebg-preview.png" alt="">
-                            </a>
-                        </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a class="block border border-gray-200 hover:border-blue-400" href="#">
-                                <img class="object-contain w-full lg:h-28"
-                                    src="https://i.postimg.cc/8kJBrw03/download-removebg-preview.png" alt="">
-                            </a>
-                        </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a class="block border border-gray-200 hover:border-blue-400" href="#">
-                                <img class="object-contain w-full lg:h-28"
-                                    src="https://i.postimg.cc/0jwyVgqz/Microprocessor1-removebg-preview.png"
-                                    alt="">
-                            </a>
-                        </div>
-                        <div class="w-1/2 p-2 sm:w-1/4">
-                            <a class="block border border-gray-200 hover:border-blue-400" href="#">
-                                <img class="object-contain w-full lg:h-28"
-                                    src="https://i.postimg.cc/0N4Kk1PN/black-microprocessors-removebg-preview.png"
-                                    alt="">
-                            </a>
-                        </div>
+                        @foreach ($product->images as $image)
+                            <div class="w-1/3 p-2 sm:w-1/5">
+                                <a class="block border border-gray-200 hover:border-blue-400" href="#">
+                                    <img class="object-contain w-full lg:h-28" src="{{ $image }}" alt="">
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-                    {{-- TODO FIX THIS DIV --}}
+                    {{-- TODO FIX THIS --}}
                 </div>
             </div>
             <div class="w-full px-4 md:w-1/2">
