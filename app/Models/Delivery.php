@@ -10,8 +10,36 @@ class Delivery extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'deliveryMan_id',
         'order_id',
         'is_accepted',
     ];
+
+
+    public function deliveryMan()
+    {
+        return $this->belongsTo(DeliveryMan::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function isAccepted()
+    {
+        return $this->is_accepted;
+    }
+
+    public function accept()
+    {
+        $this->is_accepted = true;
+        $this->save();
+    }
+
+    public function reject()
+    {
+        $this->is_accepted = false;
+        $this->save();
+    }
 }
