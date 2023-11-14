@@ -25,21 +25,4 @@ class Delivery extends Model
     {
         return $this->belongsTo(Order::class);
     }
-
-    public function isAccepted()
-    {
-        return $this->is_accepted;
-    }
-
-    public function accept()
-    {
-        $this->is_accepted = true;
-        $this->save();
-    }
-
-    public function reject()
-    {
-        $this->is_accepted = false;
-        $this->save();
-    }
 }
