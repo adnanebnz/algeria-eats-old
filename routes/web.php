@@ -84,4 +84,5 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 // CHECKOUT SECTION
 Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.index');
 Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+Route::post('/checkout/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
 // CHECKOUT SECTION END
