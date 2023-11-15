@@ -8,7 +8,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DeliveryManController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 
 
@@ -78,3 +80,8 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // CART SECTION
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 // CART SECTION END
+
+// CHECKOUT SECTION
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+// CHECKOUT SECTION END
