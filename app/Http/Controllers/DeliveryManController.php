@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Delivery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class DeliveryManController extends Controller
@@ -19,6 +20,7 @@ class DeliveryManController extends Controller
     }
     public function deliveriesIndex()
     {
+
         $userId = auth()->user()->id;
     
         $deliveries = Delivery::where('is_completed', false)
@@ -32,12 +34,6 @@ class DeliveryManController extends Controller
             ->latest('created_at')
             ->paginate(10);
     
-        return view('deliveryMan.deliveries', [
-            "deliveries" => $deliveries
-        ]);
-    }
-    
-
-
+  
 
 }
