@@ -1,6 +1,6 @@
     <x-default-layout title='Profile'>
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
-            <div class="bg-gray-100 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
+            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
                     src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" />
 
@@ -77,7 +77,7 @@
         @if (auth()->id() === $user->id)
             <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
             </h1>
-            <div class="bg-gray-100 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
+            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
                 <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
                     @csrf
                     @method('PUT')
