@@ -1,5 +1,5 @@
 <x-dashboard-layout :isdeliveryMan=true>
-<div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
+    <div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
         <div class="mt-4">
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -46,36 +46,37 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $delivery->id }}
                                     </td>
                                     <td>
-                                        {{ $delivery->$order->$artisan->nom }} {{ $delivery->$order->$artisan->prenom }}
+                                        {{ $delivery->order->artisan->nom }} {{ $delivery->order->artisan->prenom }}
+                                        {{-- MAKANCH $ f les attributs ta3 un objet // order attribut ta3 lobjet delivery --}}
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $delivery->$order->$artisan->Adresse }}
+                                        {{ $delivery->order->artisan->Adresse }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                         {{ $delivery->$order->$consumer->nom }} 
+                                        {{ $delivery->order->consumer->nom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $delivery->$order->$consumer->Adresse }} 
+                                        {{ $delivery->order->consumer->Adresse }}
 
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $delivery->$order->$consumer->num_telephone }} 
+                                        {{ $delivery->order->consumer->num_telephone }}
 
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 ">
                                         @if ($delivery->is_accepted == false)
-                                        <a href="{{ route('') }}"
-                                            class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">accept</a>
+                                            <a href="#"
+                                                class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">accept</a>
                                         @endif
                                         @if ($delivery->is_accepted == true)
-                                        <a href="{{ route('') }}"
-                                            class="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-green-300">false</a>
+                                            <a href="#"
+                                                class="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-green-300">false</a>
                                         @endif
-                    
+
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
-                                    @if ($delivery->is_accepted == true)
-                                        <a href="{{ route('') }}"
-                                            class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-green-300">delivered</a>
+                                        @if ($delivery->is_accepted == true)
+                                            <a href="#" {{-- JAMAIS TKHELLI ROUTE('') HAKDA KHAWYA DIR href="#" ida marakch 3aref cha dir fiha --}}
+                                                class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-green-300">delivered</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -84,7 +85,7 @@
                                     <td class="text-slate-400 text-center p-4" colspan="7">Aucun résultat.</td>
                                 </tr>
                             @endforelse
-
+                            {{-- TODO ZID FEL UI RAH NA9ESS --}}
                         </tbody>
                     </table>
                 </div>
@@ -94,8 +95,4 @@
             </div>
         </div>
     </div>
-
-
-
-
 </x-dashboard-layout>

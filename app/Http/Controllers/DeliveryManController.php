@@ -20,7 +20,6 @@ class DeliveryManController extends Controller
     public function deliveriesIndex()
     {
         $userId = Auth::id();
-        dd($userId);
         $deliveries = Delivery::where('is_completed', false)
             ->where('is_accepted', false)
             ->orWhere(function ($query) use ($userId) {
