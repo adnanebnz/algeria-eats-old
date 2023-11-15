@@ -187,7 +187,7 @@
                                     @endif
                                     @if ($isDeliver)
                                         <li>
-                                            <a href="#"
+                                        <a href="{{ route('deliveryMan.deliveries') }}"
                                                 class="text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
