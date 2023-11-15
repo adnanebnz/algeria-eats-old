@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Delivery;
 use Illuminate\Http\Request;
 
+
 class DeliveryManController extends Controller
 {
     public function __construct()
@@ -18,21 +19,24 @@ class DeliveryManController extends Controller
     }
     public function deliveriesIndex()
     {
-        $userId = Auth::id();
+        $userId = auth()->user()->id;
+    
         $deliveries = Delivery::where('is_completed', false)
-        ->where('is_accepted', false)
-        ->orWhere(function ($query) use ($userId) {
-            $query->where('is_accepted', true)
-                  ->where('deliveryMan_id', $userId);
-        })
-        ->latest('created_at') 
-        ->paginate(10);
+            ->where(function ($query) use ($userId) {
+                $query->where('is_accepted', false)
+                    ->orWhere(function ($subquery) use ($userId) {
+                        $subquery->where('is_accepted', true)
+                            ->where('deliveryMan_id', $userId);
+                    });
+            })
+            ->latest('created_at')
+            ->paginate(10);
+    
         return view('deliveryMan.deliveries', [
             "deliveries" => $deliveries
         ]);
     }
     
-
 
 
 
