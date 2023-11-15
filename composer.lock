@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f3a72fe6b7868adde93913fa161be05",
+    "content-hash": "c97ffcb5d99a488c72e6bcc4b855665b",
     "packages": [
+        {
+            "name": "anouar-touati/algerian-cities-laravel",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AnouarTouati/Algerian-Cities-Laravel-Package.git",
+                "reference": "2fa4fcd7e372823c0459d5d144a8c3d645a0d46e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AnouarTouati/Algerian-Cities-Laravel-Package/zipball/2fa4fcd7e372823c0459d5d144a8c3d645a0d46e",
+                "reference": "2fa4fcd7e372823c0459d5d144a8c3d645a0d46e",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AnouarTouati\\AlgerianCitiesLaravel\\AlgerianCitiesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AnouarTouati\\AlgerianCitiesLaravel\\": "src/",
+                    "AnouarTouati\\AlgerianCitiesLaravel\\Database\\Seeders\\": "database/seeders/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anouar Touati",
+                    "email": "anouar.touati.at@gmail.com"
+                }
+            ],
+            "description": "A package to facilitate working with algerian cities dataset in Laravel",
+            "support": {
+                "issues": "https://github.com/AnouarTouati/Algerian-Cities-Laravel-Package/issues",
+                "source": "https://github.com/AnouarTouati/Algerian-Cities-Laravel-Package/tree/v1.2.1"
+            },
+            "time": "2023-08-29T12:48:38+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.11.0",
@@ -1166,70 +1211,6 @@
                 }
             ],
             "time": "2023-08-27T10:19:19+00:00"
-        },
-        {
-            "name": "hardevine/shoppingcart",
-            "version": "3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hardevine/LaravelShoppingcart.git",
-                "reference": "df525606697abf68882a2221ad1f2286353b49eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hardevine/LaravelShoppingcart/zipball/df525606697abf68882a2221ad1f2286353b49eb",
-                "reference": "df525606697abf68882a2221ad1f2286353b49eb",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/events": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10",
-                "illuminate/session": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10",
-                "illuminate/support": "5.1.*|5.2.*|5.3.*|5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6|^7|^8|^9|^10"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9.0",
-                "orchestra/testbench": "~3.1",
-                "phpunit/phpunit": "~5.0 || ~6.0 || ~7.0 || ~10.0"
-            },
-            "suggest": {
-                "gloudemans/notify": "Simple flash notifications for Laravel"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Gloudemans\\Shoppingcart\\ShoppingcartServiceProvider"
-                    ],
-                    "aliases": {
-                        "Cart": "Gloudemans\\Shoppingcart\\Facades\\Cart"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Gloudemans\\Shoppingcart\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Gloudemans",
-                    "email": "info@robgloudemans.nl"
-                }
-            ],
-            "description": "Laravel Shoppingcart",
-            "keywords": [
-                "laravel",
-                "shoppingcart"
-            ],
-            "support": {
-                "issues": "https://github.com/hardevine/LaravelShoppingcart/issues",
-                "source": "https://github.com/hardevine/LaravelShoppingcart/tree/3.2"
-            },
-            "time": "2023-03-09T06:15:48+00:00"
         },
         {
             "name": "laravel/framework",
