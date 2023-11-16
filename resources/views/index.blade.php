@@ -3,7 +3,7 @@
         <x-hero />
     </div>
     <x-feature />
-    <x-call-to-action />
     <x-content-section />
+    <x-call-to-action />
     <x-promo-section />
 </x-default-layout>

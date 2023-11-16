@@ -1,4 +1,4 @@
-<div class="relative overflow-hidden bg-white">
+<div class="relative overflow-hidden bg-white mb-10 md:mb-20">
     <div class="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
         <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div class="sm:max-w-lg">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
 
-                    <a href="#"
+                    <a href="{{ route('product.index') }}"
                         class="inline-block rounded-md border border-transparent bg-blue-600 px-8 py-3 text-center font-medium text-white hover:bg-blue-700">Voir
                         les produits</a>
                 </div>
