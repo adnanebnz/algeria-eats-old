@@ -37,7 +37,7 @@ class ProductComponent extends Component
     }
     public function render()
     {
-        $products = Product::paginate(12);
+        $products = Product::paginate(15);
         return view('livewire.product-component', [
             "products" => $products
         ]);
