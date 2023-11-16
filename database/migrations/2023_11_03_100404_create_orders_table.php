@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('prix_total');
             $table->string('adresse');
+            $table->string('wilaya');
             $table->string('num_telephone');
             $table->string('status');
             $table->timestamps();
