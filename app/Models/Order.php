@@ -17,6 +17,7 @@ class Order extends Model
         'prix_total',
         'status',
         'adresse',
+        'wilaya',
         'num_telephone'
     ];
 
