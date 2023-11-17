@@ -47,7 +47,10 @@ class Product extends Model
         $query->when($filters['artisan'] ?? null, function (Builder $query, $artisan) {
             $query->whereHas('artisan', function (Builder $query) use ($artisan) {
                 $query->whereHas('user', function (Builder $query) use ($artisan) {
-                    $query->where('nom', 'LIKE', '%' . $artisan . '%');
+                    $query->where(function (Builder $query) use ($artisan) {
+                        $query->where('nom', 'LIKE', '%' . $artisan . '%')
+                            ->orWhere('prenom', 'LIKE', '%' . $artisan . '%');
+                    });
                 });
             });
         });
