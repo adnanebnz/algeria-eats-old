@@ -65,6 +65,14 @@ Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'
 
 /*DELIVERY MAN*/
 Route::get('deliveryMan/dashboard', [DeliveryManController::class, 'index'])->name("deliveryMan.index");
+//deliveries  SECTION
+Route::get('deliveryMan/dashboard/deliveries', [DeliveryManController::class, 'deliveriesIndex'])->name("deliveryMan.deliveries");
+Route::get('delivery/{delivery_id}/accept', [DeliveryController::class, 'accept'])->name('delivery.accept');
+Route::get('delivery/{delivery_id}/reject', [DeliveryController::class, 'reject'])->name('delivery.reject');
+Route::get('delivery/{delivery_id}/complete', [DeliveryController::class, 'complete'])->name('delivery.complete');
+
+
+//ORDERS SECTION END
 /*DELIVERY MAN END*/
 
 /*PRODUCTS */
