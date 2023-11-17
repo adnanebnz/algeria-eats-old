@@ -1,8 +1,11 @@
 <x-default-layout>
     <section class="bg-white">
-        <div class="container px-4 pb-5 md:pb-7 mx-auto">
+        <div class="container px-4 pb-5 md:pb-7 mx-auto mt-5">
             {{-- START SEARCH FILTER --}}
-            <div class="flex flex-col mx-auto mb-16 mt-5 max-w-5xl">
+            <div class="md:px-44">
+                <h1 class="font-bold md:text-3xl text-xl text-gray-700">Rechercher votre produit</h1>
+            </div>
+            <div class="flex flex-col mx-auto mb-16 mt-5 md:max-w-4xl w-full">
                 <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md">
                     <form class="" method="POST" action="{{ route('product.index') }}">
                         @csrf
@@ -68,7 +71,7 @@
 
                         <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
                             <a href="{{ route('product.index') }}"
-                                class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 outline-none hover:opacity-80 focus:ring">Réinitialiser</a>
+                                class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 text-center outline-none hover:opacity-80 focus:ring">Réinitialiser</a>
                             <button
                                 class="rounded-lg bg-blue-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Rechercher</button>
                         </div>
