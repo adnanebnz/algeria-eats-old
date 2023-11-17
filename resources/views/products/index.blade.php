@@ -14,39 +14,36 @@
                                 <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
                             </svg>
                             <input type="name" name="search" value="{{ request()->search }}"
-                                class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                                placeholder="Rechercher par nom du produit" />
+                                class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 md:pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                placeholder="Nom du produit" />
                         </div>
-
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             <div class="flex flex-col">
                                 <label for="name" class="text-sm font-medium text-stone-600">Nom de
                                     l'artisan</label>
-                                <input type="text" id="name" placeholder="John Doe" name="artisan"
-                                    value="{{ request()->search }}"
+                                <input type="text" id="name" placeholder="Nom ou prénom" name="artisan"
+                                    value="{{ request()->artisan }}"
                                     class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             </div>
                             <div class="flex flex-col">
-                                <label for="status" class="text-sm font-medium text-stone-600">Note d'artisan</label>
+                                <label for="status" class="text-sm font-medium text-stone-600">Note
+                                    d'artisan</label>
 
-                                <select id="status" name="artisanRating"
-                                    class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                    <option value="">Choisir</option>
-                                    <option value="0" @if (request()->artisanRating == 0) selected @endif>0
-                                    </option>
-                                    <option value="1" @if (request()->artisanRating == 1) selected @endif>1</option>
-                                    <option value="2" @if (request()->artisanRating == 2) selected @endif>2</option>
-                                    <option value="3" @if (request()->artisanRating == 3) selected @endif>3</option>
-                                    <option value="4" @if (request()->artisanRating == 4) selected @endif>4</option>
-                                    <option value="5" @if (request()->artisanRating == 5) selected @endif>5</option>
-                                </select>
+                                <div class="artisan-rating-stars mt-3" onclick="handleArtisanRating(event)">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i data-rating="{{ $i }}"
+                                            class="far fa-star cursor-pointer text-yellow-400 hover:text-yellow-500 text-2xl"></i>
+                                    @endfor
+                                </div>
+
+                                <input id="artisanRating" name="artisanRating" type="hidden">
                             </div>
                             <div class="flex flex-col">
                                 <label for="manufacturer" class="text-sm font-medium text-stone-600">Type de
                                     produit</label>
 
                                 <select id="manufacturer" name="productType"
-                                    class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                    class="mt-2 block md:w-4/5 w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option value="">Choisir</option>
                                     <option value="sucree" @if (request()->productType == 'sucree') selected @endif>Sucré
                                     </option>
@@ -54,32 +51,26 @@
                                     </option>
                                 </select>
                             </div>
-
                             <div class="flex flex-col">
-                                <label for="date" class="text-sm font-medium text-stone-600">Note du produit</label>
-                                <select id="manufacturer" name="productRating"
-                                    class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
-                                    <option value="">Choisir</option>
-                                    <option value="0" @if (request()->productRating == 0) selected @endif>0
-                                    </option>
-                                    <option value="1" @if (request()->productRating == 1) selected @endif>1</option>
-                                    <option value="2" @if (request()->productRating == 2) selected @endif>2
-                                    </option>
-                                    <option value="3" @if (request()->productRating == 3) selected @endif>3
-                                    </option>
-                                    <option value="4" @if (request()->productRating == 4) selected @endif>4
-                                    </option>
-                                    <option value="5" @if (request()->productRating == 5) selected @endif>5
-                                    </option>
-                                </select>
+                                <label for="status" class="text-sm font-medium text-stone-600">Note du
+                                    produit</label>
+
+                                <div class="product-rating-stars mt-3" onclick="handleProductRating(event)">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <i data-rating="{{ $i }}"
+                                            class="far fa-star cursor-pointer text-yellow-400 hover:text-yellow-500 text-2xl"></i>
+                                    @endfor
+                                </div>
+
+                                <input id="productRating" name="productRating" type="hidden">
                             </div>
                         </div>
 
                         <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
+                            <a href="{{ route('product.index') }}"
+                                class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 outline-none hover:opacity-80 focus:ring">Réinitialiser</a>
                             <button
-                                class="rounded-lg bg-gray-200 px-8 py-2 font-medium text-gray-700 outline-none hover:opacity-80 focus:ring">Réinitialiser</button>
-                            <button
-                                class="rounded-lg bg-blue-600 px-8 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Rechercher</button>
+                                class="rounded-lg bg-blue-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Rechercher</button>
                         </div>
                     </form>
                 </div>
@@ -88,12 +79,11 @@
             <div class="lg:flex lg:-mx-2 items-center justify-center">
                 <div class="mt-6 lg:mt-0 lg:px-2 ">
                     <div class="flex items-center justify-between text-sm tracking-widest uppercase ">
-
+                        <div> </div>
                         <div class="flex items-center gap-2">
                             <p class="text-gray-500 ">TRIER</p>
                             <select class="font-medium text-gray-700 bg-transparent focus:outline-none">
                                 <option value="#">Recommandé</option>
-                                <option value="#">Note</option>
                                 <option value="#">Prix</option>
                             </select>
                         </div>
@@ -149,3 +139,32 @@
         </div>
     </section>
 </x-default-layout>
+
+<script>
+    function handleArtisanRating(event) {
+        const stars = document.querySelectorAll('.artisan-rating-stars i');
+        const selectedRating = event.target.dataset.rating;
+
+        stars.forEach(star => {
+            const rating = star.dataset.rating;
+            star.className = rating <= selectedRating ?
+                'fas fa-star text-yellow-400 hover:text-yellow-500 text-2xl' :
+                'far fa-star text-yellow-400 hover:text-yellow-500 text-2xl';
+        });
+
+        document.getElementById('artisanRating').value = selectedRating;
+    }
+
+    function handleProductRating(event) {
+        const stars = document.querySelectorAll('.product-rating-stars i');
+        const selectedRating = event.target.dataset.rating;
+
+        stars.forEach(star => {
+            const rating = star.dataset.rating;
+            star.className = rating <= selectedRating ?
+                'fas fa-star text-yellow-400 hover:text-yellow-500 text-2xl' :
+                'far fa-star text-yellow-400 hover:text-yellow-500 text-2xl';
+        });
+        document.getElementById('productRating').value = selectedRating;
+    }
+</script>
