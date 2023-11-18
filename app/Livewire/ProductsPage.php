@@ -53,4 +53,9 @@ class ProductsPage extends Component
         $this->applyFilters();
         $this->resetPage();
     }
+
+    public function store($id)
+    {
+        $this->dispatch('cartAdded', $id);
+    }
 }
