@@ -54,16 +54,17 @@
                 <div class="w-full px-4 md:w-1/2">
                     <div class="lg:pl-20">
                         <div class="mb-6 ">
-                            <span class="px-2.5 py-0.5 text-xs text-blue-600 bg-blue-100 rounded-xl">Top 10</span>
                             <h2
                                 class="max-w-xl mt-6 mb-2 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl">
                                 {{ $product->nom }}
                             </h2>
                             <div class="flex flex-wrap items-center mb-6">
                                 <div class="mb-4 mr-2 lg:mb-0">
+                                    <p class="text-sm text-gray-600">Note du produit</p>
                                     <x-star-rating :rating="$product->rating" />
                                 </div>
                             </div>
+                            {{-- TODO ADD ARTISAN RATING AND LINK TO PROFILE --}}
                             <p class="inline-block text-2xl font-semibold text-gray-700">
                                 <span>{{ $product->prix }} DA</span>
                                 <span class="ml-3 text-base font-normal text-gray-500 line-through">10 DA</span>
