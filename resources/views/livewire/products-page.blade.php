@@ -111,7 +111,7 @@
                         <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                             @forelse ($products as $product)
                                 <a href="{{ route('product.show', $product) }}"
-                                    class="group relative block overflow-hidden">
+                                    class="group relative block overflow-hidden shadow-lg border">
                                     <img src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}"
                                         class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
 
