@@ -4,9 +4,12 @@ namespace App\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ProductsPage extends Component
 {
+    use WithPagination;
+
     public $search;
     public $artisan;
     public $artisanRating;
@@ -41,11 +44,13 @@ class ProductsPage extends Component
             'productRating' => $this->productRating,
             'productType' => $this->productType,
         ];
+        $this->resetPage();
     }
 
     public function resetFilters()
     {
         $this->reset(['search', 'artisan', 'artisanRating', 'productRating', 'productType']);
         $this->applyFilters();
+        $this->resetPage();
     }
 }
