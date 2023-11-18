@@ -141,7 +141,7 @@
             <form method="POST" action="{{ route('checkout.cancel') }}">
                 @csrf
                 <button type="submit"
-                    class="px-4 w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-md transition-all">Annuler</button>
+                    class="px-4 w-full py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-md transition-all">Annuler</button>
             </form>
         </div>
     </div>
