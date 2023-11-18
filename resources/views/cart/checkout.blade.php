@@ -1,20 +1,25 @@
 <x-default-layout>
-    <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pb-4 md:pb-10">
-        <div class="px-4 pt-8">
+    <div class="grid sm:px-10 lg:grid-cols-2 lg:px-20 xl:px-32 pb-4 md:pb-16">
+        <div class="md:px-4 px-3 md:pt-8">
             <p class="text-xl font-medium">Résumé de la commande</p>
-            <p class="text-gray-400">Vérifiez vos articles. Et sélectionnez une méthode d’expédition appropriée.</p>
+            <p class="text-gray-400">Vérifiez vos articles.</p>
             <div class="mt-8 space-y-3 rounded-lg border bg-white px-2 py-4 sm:px-6">
                 @foreach ($cartItems as $cartItem)
-                    <div class="flex flex-col rounded-lg bg-white sm:flex-row">
-                        <img class="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                            src="{{ str_starts_with($cartItem->product->images[0], 'http') ? $cartItem->product->images[0] : asset('storage/' . $cartItem->product->images[0]) }}"
-                            alt="" />
-                        <div class="flex w-full flex-col px-4 py-4">
-                            <span class="font-semibold">{{ $cartItem->product->nom }}</span>
-                            <span class="float-right text-gray-400">Catégorie :
-                                {{ $cartItem->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}</span>
-                            <p class="text-lg font-bold">{{ $cartItem->product->prix }} DA</p>
+                    <div class="flex flex-row items-center justify-between">
+                        <div class="flex flex-col rounded-lg bg-white sm:flex-row">
+                            <img class="m-2 h-24 w-28 rounded-md border object-cover object-center"
+                                src="{{ str_starts_with($cartItem->product->images[0], 'http') ? $cartItem->product->images[0] : asset('storage/' . $cartItem->product->images[0]) }}"
+                                alt="" />
+                            <div class="flex w-full flex-col px-4 py-4">
+                                <span class="font-semibold">{{ $cartItem->product->nom }}</span>
+                                <span class="float-right text-gray-400">Catégorie :
+                                    {{ $cartItem->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}</span>
+                                <p class="text-lg font-bold">{{ $cartItem->product->prix }} DA</p>
+                            </div>
                         </div>
+                        <p class="font-semibold text-xl mr-2.5 md:mr-0">
+                            &times; {{ $cartItem->quantity }}
+                        </p>
                     </div>
                 @endforeach
 
@@ -52,7 +57,7 @@
                 </div>
             </form> --}}
         </div>
-        <div class="mt-10 bg-gray-50 px-4 pt-8 lg:mt-0">
+        <div class="mt-10 bg-gray-50 px-4 py-8 lg:mt-0 rounded-md">
             <p class="text-xl font-medium">Détails du paiemet</p>
             <p class="text-gray-400">Finalisez votre commande en fournissant vos informations de paiement.</p>
             <form method="POST" action="{{ route('checkout.store') }}">
@@ -95,7 +100,7 @@
                     @enderror
                     <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Adresse de
                         livraison</label>
-                    <div class="flex flex-col sm:flex-row sm:gap-3">
+                    <div class="flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-shrink-0 sm:w-7/12">
                             <input type="text" id="billing-address" name="adresse"
                                 class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -128,8 +133,8 @@
                         <p class="font-semibold text-gray-900">$8.00</p>
                     </div>
                 </div> --}}
-                    <div class="mt-6 flex items-center justify-between">
-                        <p class="text-sm font-medium text-gray-900">Total</p>
+                    <div class="mt-6 flex items-center justify-between md:px-4 px-2">
+                        <p class="text-md font-medium text-gray-900">Total</p>
                         <p class="text-2xl font-semibold text-gray-900">{{ $total }} DA</p>
                     </div>
                 </div>
