@@ -20,7 +20,6 @@
                     </a>
                 </div>
             </div>
-            {{-- TODO INSERT IMAGE --}}
             <img src="{{ asset('assets/cooking.svg') }}" alt="hero"
                 class="hidden md:block scale-110 inset-0 m-auto w-80 h-80 -mt-16" />
         </div>

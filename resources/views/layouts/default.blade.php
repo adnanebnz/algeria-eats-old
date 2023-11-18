@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-{{-- todo install library --}}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -23,7 +22,6 @@
     {{-- Conteneur global --}}
     <div>
         {{-- Header --}}
-        {{-- TODO CHECK IF I LET THIS GRADIENT OR NO --}}
         <div x-data="{ open: false }" x-cloak
             class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
             <div class="flex flex-row items-center justify-between px-4 py-3">

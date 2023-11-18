@@ -1,5 +1,4 @@
 <div>
-    {{-- TODO CART START --}}
     @auth
         <div class="hidden md:block">
             <div class="flex justify-center">
