@@ -94,49 +94,47 @@
                 </div>
             </div>
             {{-- END SEARCH FILTER --}}
-            <div class="lg:flex lg:-mx-2 items-center justify-center">
-                <div class="mt-6 lg:mt-0 lg:px-2 ">
-                    <div class="flex items-center justify-between text-sm tracking-widest uppercase"
-                        id="products-section">
-                        <div> </div>
-                        <div class="flex items-center gap-2">
-                            <p class="text-gray-500 ">TRIER</p>
-                            <select class="font-medium text-gray-700 bg-transparent focus:outline-none">
-                                <option value="#">Recommandé</option>
-                                <option value="#">Prix</option>
-                            </select>
-                        </div>
+            <div class="mt-6 md:mt-0 md:px-2">
+                <div class="flex items-center justify-between text-sm tracking-widest uppercase" id="products-section">
+                    <div> </div>
+                    <div class="flex items-center gap-2">
+                        <p class="text-gray-500 ">TRIER</p>
+                        <select class="font-medium text-gray-700 bg-transparent focus:outline-none"
+                            wire:model='orderDirection' wire:change="applyFilters">
+                            <option value="asc">Prix: de faible à élevé</option>
+                            <option value="desc">Prix: de élevé à faible</option>
+                        </select>
                     </div>
-                    <div>
-                        <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                            @forelse ($products as $product)
-                                <a href="{{ route('product.show', $product) }}"
-                                    class="group relative block overflow-hidden shadow-lg border">
-                                    <img src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}"
-                                        class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
+                </div>
+                <div>
+                    <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                        @forelse ($products as $product)
+                            <a href="{{ route('product.show', $product) }}"
+                                class="relative block overflow-hidden shadow-lg border">
+                                <img src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}"
+                                    class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
 
-                                    <div class="relative border border-gray-100 bg-white p-4">
-                                        <span
-                                            class="whitespace-nowrap bg-blue-500 text-white px-2 py-1.5 text-xs font-medium">
-                                            {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
-                                        </span>
+                                <div class="relative border border-gray-100 bg-white p-4">
+                                    <span
+                                        class="whitespace-nowrap bg-blue-500 text-white px-2 py-1.5 text-xs font-medium">
+                                        {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
+                                    </span>
 
-                                        <h3 class="mt-4 font-medium text-gray-900">{{ $product->nom }}</h3>
+                                    <h3 class="mt-4 font-medium text-gray-900">{{ $product->nom }}</h3>
 
-                                        <p class="mt-1.5 text-sm text-gray-700">{{ $product->prix }} DA</p>
+                                    <p class="mt-1.5 text-sm text-gray-700">{{ $product->prix }} DA</p>
 
-                                        <form class="mt-4">
-                                            <button wire:click.prevent="store({{ $product->id }})"
-                                                class="block w-full rounded bg-blue-500 p-4 text-sm font-medium text-white transition hover:scale-105">
-                                                Ajouter au panier
-                                            </button>
-                                        </form>
-                                    </div>
-                                </a>
-                            @empty
-                                <p class="text-center text-gray-700">Aucun produit</p>
-                            @endforelse
-                        </div>
+                                    <form class="mt-4">
+                                        <button wire:click.prevent="store({{ $product->id }})"
+                                            class="block w-full rounded bg-blue-500 p-4 text-sm font-medium text-white transition hover:scale-105">
+                                            Ajouter au panier
+                                        </button>
+                                    </form>
+                                </div>
+                            </a>
+                        @empty
+                            <p class="text-center text-gray-700">Aucun produit</p>
+                        @endforelse
                     </div>
 
                 </div>
