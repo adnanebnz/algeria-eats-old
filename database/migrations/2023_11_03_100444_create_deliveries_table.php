@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("order_id");
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
             $table->boolean('is_accepted')->default(false);
+            $table->boolean('is_completed')->default(false);
             $table->timestamps();
         });
     }

@@ -13,6 +13,7 @@ class Delivery extends Model
         'deliveryMan_id',
         'order_id',
         'is_accepted',
+        'is_completed',
     ];
 
 
