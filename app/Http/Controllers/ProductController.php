@@ -9,24 +9,9 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
-        $filters = [
-            'search' => $request->input('search'),
-            'artisan' => $request->input('artisan'),
-            'artisanRating' => $request->input('artisanRating'),
-            'productRating' => $request->input('productRating'),
-            'productType' => $request->input('productType'),
-        ];
-
-        return $this->productsView($filters);
-    }
-
-    protected function productsView(array $filters)
-    {
-        return view('products.index', [
-            'products' => Product::filters($filters)->latest()->paginate(10),
-        ]);
+        return view('products.index');
     }
 
     public function show(Product $product): View
