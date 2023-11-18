@@ -7,8 +7,7 @@
             </div>
             <div class="flex flex-col mx-auto mb-16 mt-5 md:max-w-4xl w-full">
                 <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-md">
-                    <form class="" method="POST" wire:submit.prevent="applyFilters">
-                        @csrf
+                    <form wire:submit.prevent="applyFilters">
                         <div class="relative mb-10 w-full flex  items-center justify-between rounded-md">
                             <svg class="absolute left-2 block h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -97,7 +96,8 @@
             {{-- END SEARCH FILTER --}}
             <div class="lg:flex lg:-mx-2 items-center justify-center">
                 <div class="mt-6 lg:mt-0 lg:px-2 ">
-                    <div class="flex items-center justify-between text-sm tracking-widest uppercase ">
+                    <div class="flex items-center justify-between text-sm tracking-widest uppercase"
+                        id="products-section">
                         <div> </div>
                         <div class="flex items-center gap-2">
                             <p class="text-gray-500 ">TRIER</p>
@@ -154,7 +154,7 @@
             </div>
         </div>
         <div class="mb-5 md:px-11 px-4">
-            {{ $products->links() }}
+            {{ $products->links(data: ['scrollTo' => '#products-section']) }}
         </div>
     </section>
 </div>
