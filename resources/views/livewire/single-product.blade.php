@@ -187,6 +187,7 @@
 
                     </div>
                 </div>
+                <livewire:comment-component />
             </div>
         </div>
     </section>
