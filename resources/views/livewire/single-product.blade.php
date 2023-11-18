@@ -58,11 +58,18 @@
                                 class="max-w-xl mt-6 mb-2 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl">
                                 {{ $product->nom }}
                             </h2>
-                            <div class="flex flex-wrap items-center mb-6">
+                            <div class="flex flex-wrap items-center mb-2">
                                 <div class="mb-4 mr-2 lg:mb-0">
                                     <p class="text-sm text-gray-600">Note du produit</p>
                                     <x-star-rating :rating="$product->rating" />
                                 </div>
+                            </div>
+                            <div class="flex flex-col mb-6">
+                                <p class="text-sm text-gray-600">De: <a
+                                        class="font-medium text-gray-900 hover:text-blue-500 hover:underline underline-offset-2"
+                                        href="{{ route('profile', $product->artisan->user) }}">{{ $product->artisan->user->getFullName() }}</a>
+                                </p>
+                                <x-star-rating :rating="$product->artisan->rating" />
                             </div>
                             {{-- TODO ADD ARTISAN RATING AND LINK TO PROFILE --}}
                             <p class="inline-block text-2xl font-semibold text-gray-700">
@@ -135,7 +142,7 @@
                             </div>
                         </div>
                         <div class="mb-6 mt-10"></div>
-                        <div class="flex flex-wrap items-center mb-6">
+                        <div class="flex flex-wrap items-center justify-center">
                             <div class="mb-4 mr-4 lg:mb-0">
                                 <div class="w-28">
                                     <div class="relative flex flex-row w-full h-10 bg-transparent rounded-lg">
@@ -177,11 +184,7 @@
                                 Ajouter au panier
                             </button>
                         </div>
-                        <div class="flex gap-4 mb-6">
-                            <button
-                                class="w-full px-4 py-3 text-center text-gray-100 bg-blue-600 border border-transparent hover:border-blue-500 hover:text-blue-700 hover:bg-blue-100 rounded-xl">
-                                Acheter maintenant</button>
-                        </div>
+
                     </div>
                 </div>
             </div>

@@ -2,14 +2,15 @@
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
             <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
-                    src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" />
+                    src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
 
-                @if (auth()->user()->artisan)
+
+                @if ($user->isArtisan())
                     <div class="flex items-center justify-center">
                         <x-star-rating :rating="$user->artisan->rating" />
                     </div>
                 @endif
-                @if (auth()->user()->deliveryMan)
+                @if ($user->isDeliveryMan())
                     <div class="flex items-center justify-center">
                         <x-star-rating :rating="$user->deliveryMan->rating" />
                     </div>
@@ -38,7 +39,7 @@
                     </div>
                 </div>
                 {{-- SECTION ENTREPRISE ARTISAN --}}
-                @if (auth()->user()->artisan)
+                @if ($user->isArtisan())
                     <div class="border border-gray-300 rounded-md p-4">
                         <div>
                         </div>
@@ -66,10 +67,10 @@
                             </div>
                         </div>
                 @endif
-                @if (auth()->user()->deliveryMan)
+                @if ($user->isDeliveryMan())
                     <h1 class="font-medium text-lg mb-4">Disponible? :
                         <span
-                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ auth()->user()->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
+                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
                     </h1>
                 @endif
             </div>
@@ -86,7 +87,7 @@
                             <x-input name="nom" label="Nom" type="text" :value="auth()->user()->nom" />
                             <x-input name="adresse" label="Adresse" type="text" :value="auth()->user()->adresse" />
                             <x-input name="email" label="Email" type="email" :value="auth()->user()->email" />
-                            @if (auth()->user()->artisan)
+                            @if (auth()->user() && auth()->user()->artisan)
                                 <x-textarea name="desc_entreprise" label="Description d'entreprise"
                                     type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
                             @endif
@@ -97,7 +98,7 @@
                             <x-input name="num_telephone" label="Numéro de teléphone" type="text"
                                 :value="auth()->user()->num_telephone" />
                             <x-input name="password" label="Mot de passe" type="password" />
-                            @if (auth()->user()->artisan)
+                            @if (auth()->user() && auth()->user()->artisan)
                                 <div>
                                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Type
                                         Service</label>
@@ -120,7 +121,7 @@
                                 <x-input name="heure_fermeture" label="Heure de fermeture" type="time"
                                     :value="auth()->user()->artisan->heure_fermeture" />
                             @endif
-                            @if (auth()->user()->deliveryMan)
+                            @if (auth()->user() && auth()->user()->deliveryMan)
                                 <div>
                                     <label
                                         class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
