@@ -71,11 +71,11 @@
                                 </p>
                                 <x-star-rating :rating="$product->artisan->rating" />
                             </div>
-                            {{-- TODO ADD ARTISAN RATING AND LINK TO PROFILE --}}
                             <p class="inline-block text-2xl font-semibold text-gray-700">
                                 <span>{{ $product->prix }} DA</span>
                                 <span class="ml-3 text-base font-normal text-gray-500 line-through">10 DA</span>
                             </p>
+                            {{-- TODO SEE IF I ADD REDUCTIONS --}}
                         </div>
                         <div class="mb-6">
                             <h2 class="mb-2 text-lg font-bold text-gray-700">Description : </h2>
