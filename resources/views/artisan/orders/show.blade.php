@@ -12,7 +12,7 @@
                         <section>
                             <section class="text-slate-800">
                                 <div class="container mt-5">
-                                    <div
+                                    <div {{-- todo to adapt with new UI --}}
                                         class="p-5 bg-white flex items-center mx-auto mb-2 border-gray-200 rounded-lg sm:flex-row flex-col">
                                         <div class="sm:mr-10 inline-flex items-center justify-center flex-shrink-0">
                                             <img class="w-full h-72 object-cover rounded-md"

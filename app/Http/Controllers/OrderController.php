@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -37,26 +38,22 @@ class OrderController extends Controller
         ]);
 
         $cartItems = Cart::where('user_id', auth()->user()->id)->get();
+        $order = Order::create([
+            'consumer_id' => auth()->user()->id,
+            'artisan_id' => $cartItems[0]->product->artisan->user_id,
+            'adresse' => $data['adresse'],
+            'wilaya' => $data['wilaya_name_ascii'],
+            'num_telephone' => $data['num_telephone'],
+            'status' => 'pending',
+        ]);
 
         foreach ($cartItems as $cartItem) {
-            $data['artisan_id'] = $cartItem->product->artisan_id;
-            $data['product_id'] = $cartItem->product_id;
-            $data['quantity'] = $cartItem->quantity;
-            $data['total'] = $cartItem->product->prix * $cartItem->quantity;
-
-            Order::create([
-                'consumer_id' => auth()->user()->id,
-                'status' => 'pending',
-                'artisan_id' => $data['artisan_id'],
-                'product_id' => $data['product_id'],
-                'prix_total' => $data['total'],
-                'quantity' => $data['quantity'],
-                'wilaya' => $data['wilaya_name_ascii'],
-                'email' => $data['email'],
-                'num_telephone' => $data['num_telephone'],
-                'adresse' => $data['adresse'],
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'quantity' => $cartItem->quantity,
+                'prix_total' => $cartItem->product->prix * $cartItem->quantity,
             ]);
-            // DELETE CART ITEMS
             $cartItem->delete();
         }
         Alert::success('Succès', 'Votre commande a été enregistrée avec succès');

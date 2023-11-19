@@ -18,10 +18,7 @@
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Produit
                                 </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Quantité
-                                </th>
+
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                                     Prix Total
@@ -41,17 +38,15 @@
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $order->id }}
                                     </td>
-                                    <td class="text-ellipsis">
+                                    <td class="text-ellipsis text-sm">
                                         {{ $order->consumer->nom }}
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $order->product->nom }}
+                                        @foreach ($order->orderItems as $orderItem)
+                                            {{ $orderItem->product->nom }} (x{{ $orderItem->quantity }}) <br>
+                                        @endforeach
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $order->quantity }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $order->prix_total }} DA
-
+                                        {{ $order->getTotalPrice() }} DA
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 ">
                                         @if ($order->status == 'pending')
