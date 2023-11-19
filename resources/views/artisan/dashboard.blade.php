@@ -374,7 +374,7 @@
     </main>
     <script>
         var artisansChart = new Chart(document.getElementById('artisansChart'), {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 labels: @json($months),
                 datasets: [{
