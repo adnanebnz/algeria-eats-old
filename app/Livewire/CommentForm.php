@@ -27,18 +27,31 @@ class CommentForm extends Component
         ]);
 
         $product = $this->product;
-        Review::create([
-            'product_id' => $product->id,
-            'user_id' => auth()->id(),
-            'title' => $data['title'],
-            'comment' => $data['comment'],
-            'rating' => $data['rating']
-        ]);
 
-        $this->dispatch('reviewAdded');
+        $review = Review::where('product_id', $product->id)
+            ->where('user_id', auth()->id())
+            ->first()->exists();
+        if ($review) {
+            Alert::error('Erreur', 'Vous avez déja commenté ce produit');
+            return redirect()->route('product.show', $product);
+        } else {
+            Review::create([
+                'product_id' => $product->id,
+                'user_id' => auth()->id(),
+                'title' => $data['title'],
+                'comment' => $data['comment'],
+                'rating' => $data['rating']
+            ]);
 
-        Alert::success('Success', 'Votre commentaire a été ajouté avec succès');
-        $this->reset();
-        return redirect()->route('product.show', $product);
+            $product->update([
+                'rating' => $product->reviews->avg('rating')
+            ]);
+
+            $this->dispatch('reviewAdded');
+
+            Alert::success('Success', 'Votre commentaire a été ajouté avec succès');
+            $this->reset();
+            return redirect()->route('product.show', $product);
+        }
     }
 }
