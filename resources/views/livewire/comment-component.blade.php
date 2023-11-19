@@ -1,6 +1,7 @@
-<div>
+<div class="mt-10">
+    <h1 class="text-2xl font-bold text-gray-800 mb-1">Les évaluations</h1>
     @foreach ($comments as $comment)
-        <div class="w-full flex justify-center items-center mt-10">
+        <div class="w-full flex justify-center items-center">
             <div class="flex flex-col justify-start items-start w-full space-y-8">
                 <div class="w-full flex justify-start items-start flex-col bg-gray-50 p-8">
                     <div id="menu" class="md:block">
@@ -14,7 +15,8 @@
                                 <p class="text-base font-medium leading-none text-gray-800">
                                     {{ $comment->user->getFullName() }}
                                 </p>
-                                <p class="text-sm leading-none text-gray-600">{{ $comment->created_at }}</p>
+                                <p class="text-sm leading-none text-gray-600">
+                                    {{ strftime('%e %B %Y', strtotime($comment->created_at)) }}</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +31,7 @@
                             </div>
                         </div>
                         <div id="menu2" class="hidden md:block">
-                            <p class="mt-3 text-base leading-normal text-gray-600 w-full md:w-9/12 xl:w-5/6">
+                            <p class="mt-3 text-base leading-normal text-gray-600 w-full">
                                 {{ $comment->comment }}</p>
                         </div>
                     </div>
