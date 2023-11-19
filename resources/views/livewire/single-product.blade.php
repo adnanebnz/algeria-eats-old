@@ -184,10 +184,12 @@
                                 Ajouter au panier
                             </button>
                         </div>
-
                     </div>
                 </div>
-                <livewire:comment-component />
+                @auth
+                    <livewire:comment-form :product='$product' />
+                @endauth
+                <livewire:comment-component :product='$product' />
             </div>
         </div>
     </section>
