@@ -6,7 +6,7 @@ return [
         /*
          * Carbon date format
          */
-        'format' => 'Y-m-d',
+        'format' => 'd-m-Y',
 
         /*
          * Due date for payment since invoice's date.
@@ -32,7 +32,7 @@ return [
     ],
 
     'currency' => [
-        'code' => 'eur',
+        'code' => 'dzd',
 
         /*
          * Usually cents
@@ -41,12 +41,12 @@ return [
          * Example: Amount in words: Eight hundred fifty thousand sixty-eight EUR and fifteen ct.
          */
         'fraction' => 'ct.',
-        'symbol'   => '€',
+        'symbol'   => 'DA',
 
         /*
          * Example: 19.00
          */
-        'decimals' => 2,
+        'decimals' => 0,
 
         /*
          * Example: 1.99
@@ -72,7 +72,7 @@ return [
         'orientation' => 'portrait',
     ],
 
-    'disk' => 'local',
+    'disk' => 'public',
 
     'seller' => [
         /*
