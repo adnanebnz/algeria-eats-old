@@ -114,7 +114,7 @@
                                 <img src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}"
                                     class="h-64 w-full object-cover transition duration-500 group-hover:scale-105" />
 
-                                <div class="relative border border-gray-100 bg-white p-4">
+                                <div class="relative bg-white p-4">
                                     <span
                                         class="whitespace-nowrap bg-blue-500 text-white px-2 py-1.5 text-xs font-medium">
                                         {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}

@@ -36,6 +36,12 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function scopeFilters(Builder $query, array $filters): void
     {
         $query->when($filters['search'] ?? null, function (Builder $query, $search) {
