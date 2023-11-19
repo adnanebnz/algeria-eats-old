@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "laraveldaily/laravel-charts": "^0.2.3",
+        "laraveldaily/laravel-invoices": "^3.0",
         "livewire/livewire": "^3.0",
         "realrashid/sweet-alert": "^7.1"
     },
