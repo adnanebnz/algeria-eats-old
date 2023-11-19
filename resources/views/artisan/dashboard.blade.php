@@ -5,7 +5,7 @@
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Ventes ce mois-ci</h3>
                     <div>
-                        {!! $chart1->renderHtml() !!}
+                        <canvas id="artisansChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
@@ -372,8 +372,24 @@
             </div>
         </div>
     </main>
-    @section('scripts')
-        {!! $chart1->renderChartJsLibrary() !!}
-        {!! $chart1->renderJs() !!}
-    @endsection
+    <script>
+        var artisansChart = new Chart(document.getElementById('artisansChart'), {
+            type: 'doughnut',
+            data: {
+                labels: @json($months),
+                datasets: [{
+                    data: @json($orderCounts),
+                    backgroundColor: ['#60a5fa', '#8B8B8D'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+    </script>
+
 </x-dashboard-layout>

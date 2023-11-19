@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -49,24 +49,22 @@ class ArtisanController extends Controller
 
     public function index(): View
     {
-
-        $chart_options = [
-            'chart_title' => 'Commandes par mois',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\Order',
-            'conditions' => [
-                ['name' => 'artisan_id', 'condition' => '=', 'value' => auth()->user()->id, 'color' => 'blue', 'fill' => true],
-            ],
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'month',
-            'chart_type' => 'pie',
-        ];
-
         $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(5)->get();
 
-        $chart1 = new LaravelChart($chart_options);
+        $monthlyOrderCounts = Order::select(
+            DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'),
+            DB::raw('COUNT(*) as order_count')
+        )
+            ->where('artisan_id', auth()->user()->id)
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
 
-        return view('artisan.dashboard', compact('chart1', 'latestOrders'));
+        // Prepare data for the chart
+        $months = $monthlyOrderCounts->pluck('month')->toArray();
+        $orderCounts = $monthlyOrderCounts->pluck('order_count')->toArray();
+
+        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts'));
     }
     public function productsIndex()
     {
