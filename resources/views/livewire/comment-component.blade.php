@@ -1,5 +1,7 @@
 <div class="mt-10">
-    <h2 class="px-4 pt-3 pb-2 text-gray-800 text-xl">Les évaluations</h2>
+    @if ($comments->count() > 0)
+        <h2 class="px-4 pt-3 pb-2 text-gray-800 text-xl">Les évaluations</h2>
+    @endif
     <div class="flex flex-col gap-3.5">
         @foreach ($comments as $comment)
             <div class="w-full flex justify-center items-center shadow-sm">
