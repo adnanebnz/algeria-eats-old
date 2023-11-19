@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\ArtisanInvoicesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\CartController;
@@ -47,6 +48,9 @@ Route::get('artisan/dashboard/orders/{order}', [ArtisanController::class, 'showO
 Route::put('artisan/dashboard/orders/{order}', [ArtisanController::class, 'updateOrder'])->name("artisan.orders.update");
 Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'destroyOrder'])->name("artisan.orders.destroy");
 //ORDERS SECTION END
+// PDF INVOICES
+Route::post('artisan/dashboard/orders/{order}/invoice', [ArtisanInvoicesController::class, 'create'])->name("artisan.orders.invoice");
+// PDF INVOICES END
 
 /*ARTISAN DASHBOARD END*/
 

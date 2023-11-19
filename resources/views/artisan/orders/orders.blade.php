@@ -12,7 +12,7 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Nom & Prénom
+                                    Nom du client
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -41,8 +41,8 @@
                                 <tr>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $order->id }}
                                     </td>
-                                    <td>
-                                        {{ $order->consumer->nom }} {{ $order->consumer->prenom }}
+                                    <td class="text-ellipsis">
+                                        {{ $order->consumer->nom }}
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $order->product->nom }}
                                     </td>
@@ -82,6 +82,11 @@
                                             @method('DELETE')
                                             <button type="submit"
                                                 class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-400">Supprimer</button>
+                                        </form>
+                                        <form action="{{ route('artisan.orders.invoice', $order) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-400">Facture</button>
                                         </form>
                                     </td>
                                 </tr>
