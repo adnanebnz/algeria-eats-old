@@ -8,6 +8,7 @@ use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SingleProduct extends Component
 {
@@ -55,6 +56,9 @@ class SingleProduct extends Component
             if (Cart::where('product_id', $this->product->id)->where('user_id', auth()->user()->id)->exists()) {
                 $this->feedbackMessage = 'Produit déja dans le panier';
                 $this->feedbackMessageType = 'error';
+                $product = $this->product;
+                Alert::error('Erreur', 'Produit déja dans le panier');
+                return redirect()->route('product.show', $product);
             } else {
                 Cart::create([
                     'product_id' => $this->product->id,
@@ -65,6 +69,9 @@ class SingleProduct extends Component
                 $this->quantity = 1;
                 $this->feedbackMessage = 'Produit ajouté au panier';
                 $this->feedbackMessageType = 'success';
+                $product = $this->product;
+                Alert::success('Success', 'Produit ajouté au panier');
+                return redirect()->route('product.show', $product);
             }
         } else {
             return redirect()->route('login');
@@ -85,6 +92,9 @@ class SingleProduct extends Component
                 $this->feedbackMessage = 'Produit retiré de la liste de souhaits';
                 $this->feedbackMessageType = 'info';
                 $this->dispatch('wishlistAddedUpdated');
+                $product = $this->product;
+                Alert::info('Info', 'Produit retiré de la liste de souhaits');
+                return redirect()->route('product.show', $product);
             } else {
                 // Add the product to the user's wishlist
                 Wishlist::create([
@@ -94,6 +104,9 @@ class SingleProduct extends Component
                 $this->feedbackMessage = 'Produit ajouté à la liste de souhaits';
                 $this->feedbackMessageType = 'success';
                 $this->dispatch('wishlistAddedUpdated');
+                $product = $this->product;
+                Alert::success('Success', 'Produit ajouté à la liste de souhaits');
+                return redirect()->route('product.show', $product);
             }
         } else {
             return redirect()->route('login');
@@ -106,7 +119,6 @@ class SingleProduct extends Component
     {
         $this->feedbackMessage = '';
         $this->feedbackMessageType = '';
-        // TODO REPLACE THIS WITH A TOAST
     }
 
     #[On('wishlistAddedUpdated')]
