@@ -61,15 +61,12 @@ class ArtisanController extends Controller
             'group_by_period' => 'month',
             'chart_type' => 'pie',
         ];
-        // CALCULATE SALES PER MONTH
-        $salesPerMonth = Order::where('artisan_id', auth()->user()->id)->where('status', 'shipped')->whereBetween('created_at', [now()->subMonth(), now()])->sum('prix_total');
 
-        //LIST THE 7 LATEST ORDERS
-        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(7)->get();
+        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(5)->get();
 
         $chart1 = new LaravelChart($chart_options);
 
-        return view('artisan.dashboard', compact('chart1', 'salesPerMonth', 'latestOrders'));
+        return view('artisan.dashboard', compact('chart1', 'latestOrders'));
     }
     public function productsIndex()
     {

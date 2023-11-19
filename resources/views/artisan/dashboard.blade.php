@@ -3,13 +3,7 @@
         <div class="pt-6 px-4">
             <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">{{ $salesPerMonth }}
-                                DA</span>
-                            <h3 class="text-base font-normal text-gray-500">Ventes ce mois-ci</h3>
-                        </div>
-                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Ventes ce mois-ci</h3>
                     <div>
                         {!! $chart1->renderHtml() !!}
                     </div>
@@ -59,7 +53,7 @@
                                                     </td>
                                                     <td
                                                         class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                                        {{ $order->prix_total }} DA
+                                                        {{ $order->getTotalPrice() }} DA
                                                     </td>
                                                 </tr>
                                             @endforeach

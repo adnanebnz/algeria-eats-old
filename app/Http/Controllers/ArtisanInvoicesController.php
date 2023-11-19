@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Buyer;
@@ -33,17 +32,16 @@ class ArtisanInvoicesController extends Controller
             ],
         ]);
 
-        $product = Product::find($order->product_id);
-        // TODO PROBLEM THIS IS ONLY FOR ONE PRODUCT. WE NEED TO ADD ALL THE PRODUCTS IN THE ORDER WE MODIFY THE DATABASE SCHEMA TO BE JSON OF PRODUCT IDS AND QUANTITIES AND ADD CASTS IN THE MODEL
-
-        $item = InvoiceItem::make($product->nom)
-            ->pricePerUnit($order->prix_total / $order->quantity)
-            ->quantity($order->quantity);
+        $items = $order->orderItems->map(function ($orderItem) {
+            return InvoiceItem::make($orderItem->product->nom)
+                ->pricePerUnit($orderItem->prix_total / $orderItem->quantity)
+                ->quantity($orderItem->quantity);
+        });
 
         $invoice = Invoice::make()
             ->seller($artisan)
             ->buyer($customer)
-            ->addItem($item)
+            ->addItems($items)
             ->serialNumberFormat('FACTURE-{SEQUENCE}')
             ->sequence(1)
             ->dateFormat('d/m/Y')
