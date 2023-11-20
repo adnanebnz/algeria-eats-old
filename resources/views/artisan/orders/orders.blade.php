@@ -51,26 +51,33 @@
                                     <td class="px-5 py-5 border-b border-gray-200 ">
                                         @if ($order->status == 'pending')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 En attente
                                             </span>
                                         @endif
                                         @if ($order->status == 'processing')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                                 En cours
                                             </span>
                                         @endif
-                                        @if ($order->status == 'shipped')
+
+                                        @if ($order->status == 'cancelled')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                Terminé
+                                                class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                Annulée
+                                            </span>
+                                        @endif
+                                        @if ($order->status == 'completed')
+                                            <span
+                                                class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                Terminée
                                             </span>
                                         @endif
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                                         <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
-                                            class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">Modifier</a>
+                                            class="bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-400">Voir</a>
                                         <form action="{{ route('artisan.orders.destroy', ['order' => $order]) }}"
                                             method="POST">
                                             @csrf
