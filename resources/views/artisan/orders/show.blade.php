@@ -109,7 +109,7 @@
                 </div>
 
                 <div
-                    class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
+                    class="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                     <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
                         <h3 class="text-xl font-semibold leading-5 text-gray-800">Résumé</h3>
                         <div
@@ -141,10 +141,11 @@
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">En
                                     attente</span>
                             </p>
+                            {{-- TODO IF THE DELIVERY IS ACCEPTED DISPLAY A BUTTON THAT OPENS A MODAL AND THERE WILL BE DATA ABOUT DELIVERYMAN AND THE PRICE OF THE DELIVERY --}}
                         @else
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Non
-                                    soumis</span></p>
+                                    soumise</span></p>
                             <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
                                 @csrf
                                 <button type="submit"
