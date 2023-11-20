@@ -78,17 +78,17 @@
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                                         <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
                                             class="bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-400">Voir</a>
+                                        <form action="{{ route('artisan.orders.invoice', $order) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-400">Facturer</button>
+                                        </form>
                                         <form action="{{ route('artisan.orders.destroy', ['order' => $order]) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
                                                 class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-400">Supprimer</button>
-                                        </form>
-                                        <form action="{{ route('artisan.orders.invoice', $order) }}" method="POST">
-                                            @csrf
-                                            <button type="submit"
-                                                class="bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-400">Facture</button>
                                         </form>
                                     </td>
                                 </tr>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('deliveryMan_id')->references('user_id')->on('delivery_men')->cascadeOnDelete();
             $table->unsignedBigInteger("order_id");
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
-            $table->boolean('status')->default('not_started');
+            $table->string('status')->default('not_started');
             $table->timestamps();
         });
     }
