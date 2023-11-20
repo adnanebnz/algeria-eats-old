@@ -1,119 +1,211 @@
 <x-default-layout>
-    <form action="{{ route('artisan.orders.update', ['order' => $order]) }}" method="POST" class="md:px-20 md:pb-14 pb-4">
-        @csrf
-        @method('PUT')
-        <div class="space-y-12">
-            <div class="pb-1">
-                <h1 class="text-base font-semibold leading-7 text-gray-900">
-                    Voir / Modifier la commande
-                </h1>
-                <div>
-                    <div>
-                        <section>
-                            <section class="text-slate-800">
-                                <div class="container mt-5">
-                                    <div {{-- todo to adapt with new UI --}}
-                                        class="p-5 bg-white flex items-center mx-auto mb-2 border-gray-200 rounded-lg sm:flex-row flex-col">
-                                        <div class="sm:mr-10 inline-flex items-center justify-center flex-shrink-0">
-                                            <img class="w-full h-72 object-cover rounded-md"
-                                                src="{{ str_starts_with($order->product->images[0], 'http') ? $order->product->images[0] : asset('storage/' . $order->product->images[0]) }}">
-                                        </div>
-                                        <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
-                                            <h1 class="text-black text-xl title-font font-bold mb-2">Commande sur
-                                                <span
-                                                    class="underline underline-offset-4">{{ $order->product->nom }}</span>
-                                            </h1>
-                                            <p class="font-medium">Quantité: <span
-                                                    class="font-bold">{{ $order->quantity }}</span></p>
-                                            <p class="font-medium">Nom du client: <span
-                                                    class="font-bold">{{ $order->consumer->nom }}</span></p>
-                                            <p class="font-medium">Prénom du client: <span
-                                                    class="font-bold">{{ $order->consumer->prenom }}</span></p>
-                                            <p class="font-medium">Numéro de Téléphone du client: <span
-                                                    class="font-bold">{{ $order->num_telephone }}</span>
+    <div class="px-4 md:pb-12 pb-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+        <div class="flex justify-start item-start space-y-2 flex-col">
+            <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Commande
+                #{{ $order->id }}</h1>
+            <p class="text-base font-medium leading-6 text-gray-600">
+                {{ \Carbon\Carbon::parse($order->created_at)->locale('fr_FR')->isoFormat('Do MMMM YYYY \à H:mm') }}</p>
+        </div>
+        <div
+            class="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+            <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
+                <div class="flex md:flex-row flex-col md:gap-5 gap-2 w-full">
+                    <div
+                        class="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
+                        <p class="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">
+                            Panier du client</p>
+                        @foreach ($order->orderItems as $item)
+                            <div
+                                class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
+                                <div class="pb-4 md:pb-8 w-full md:w-40">
+                                    <img class="w-full hidden md:block"
+                                        src="{{ str_starts_with($item->product->images[0], 'http') ? $item->product->images[0] : asset('storage/' . $item->product->images[0]) }}" />
+                                </div>
+                                <div
+                                    class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
+                                    <div class="w-full flex flex-col justify-start items-start space-y-8">
+                                        <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">
+                                            {{ $item->product->nom }}</h3>
+                                        <div class="flex justify-start items-start flex-col space-y-2">
+                                            <p class="text-sm leading-none text-gray-800"><span
+                                                    class="text-gray-300">Type:
+                                                </span> {{ $item->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}
                                             </p>
-                                            <p class="font-medium">Adresse client: <span
-                                                    class="font-bold">{{ $order->adresse }}</span>
-                                            </p>
-                                            <h1 class="text-xl font-bold mt-4">Prix Totale: {{ $order->prix_total }}
-                                                DZD
-                                            </h1>
-                                            <h1 class="mt-4 font-bold text-xl">Modifier le Status de la commande</h1>
-                                            <div class="mt-2">
-                                                <label for="status">Status de la commande:
-                                                    @if ($order->status == 'pending')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                            En attente
-                                                        </span>
-                                                    @endif
-                                                    @if ($order->status == 'accepted')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            Accepté
-                                                        </span>
-                                                    @endif
-                                                    @if ($order->status == 'refused')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                            Refusé
-                                                        </span>
-                                                    @endif
-                                                    @if ($order->status == 'processing')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                            En cours
-                                                        </span>
-                                                    @endif
-                                                    @if ($order->status == 'shipping')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                            Expedition
-                                                        </span>
-                                                    @endif
-                                                    @if ($order->status == 'shipped')
-                                                        <span
-                                                            class="p-2 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            Terminé
-                                                        </span>
-                                                    @endif
-                                                </label>
-                                                <select name="status"
-                                                    class="mt-4  block appearance-non bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                                    <option value="pending"
-                                                        @if ($order->status == 'pending') selected @endif>En attente
-                                                    </option>
-                                                    <option value="processing"
-                                                        @if ($order->status == 'processing') selected @endif>En cours
-                                                    </option>
-                                                    <option value="shipped"
-                                                        @if ($order->status == 'shipped') selected @endif>Terminé
-                                                    </option>
-                                                    <option value="shipping"
-                                                        @if ($order->status == 'shipping') selected @endif>Expedition
-                                                    </option>
-                                                    <option value="accepted"
-                                                        @if ($order->status == 'accepted') selected @endif>Accpeté
-                                                    </option>
-                                                    <option value="refused"
-                                                        @if ($order->status == 'refused') selected @endif>Refusé
-                                                    </option>
-                                                </select>
-                                            </div>
                                         </div>
                                     </div>
+                                    <div class="flex justify-between space-x-8 items-start w-full">
+                                        <p class="text-base xl:text-lg leading-6">{{ $item->product->prix }} DA</p>
+                                        <p class="text-base xl:text-lg leading-6 text-gray-800">{{ $item->quantity }}
+                                        </p>
+                                        <p class="text-base xl:text-lg font-semibold leading-6 text-gray-800">
+                                            {{ $item->quantity * $item->product->prix }} DA</p>
+                                    </div>
                                 </div>
-                            </section>
-                        </section>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div
+                        class="bg-gray-50 w-full xl:w-9/12 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
+                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Client</h3>
+                        <div
+                            class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
+                            <div class="flex flex-col justify-start items-start flex-shrink-0">
+                                <div
+                                    class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
+                                    <img src="{{ $order->consumer->image ? (str_starts_with($order->consumer->image, 'http') ? $order->consumer->image : asset('storage/' . $order->consumer->image)) : asset('assets/user.png') }}"
+                                        class="h-10 w-10 rounded-full border" />
+                                    <p class="text-base font-semibold leading-4 text-left text-gray-800">
+                                        {{ $order->consumer->getFullName() }}</p>
+                                </div>
+
+                                <div
+                                    class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z"
+                                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->email }}</p>
+                                </div>
+                                <div
+                                    class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" width="24" height="24"
+                                        class="text-gray-600">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                                    </svg>
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->num_telephone }}</p>
+                                </div>
+                            </div>
+                            <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
+                                <div
+                                    class="flex justify-center md:justify-start xl:flex-col flex-col md:space-x-6 lg:space-x-8 xl:space-x-0 space-y-4 xl:space-y-12 md:space-y-0 md:flex-row items-center md:items-start">
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4 xl:mt-8">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Adresse de Livraison</p>
+                                        <p
+                                            class="w-48 lg:w-full text-center md:text-left text-sm leading-5 text-gray-600">
+                                            {{ $order->adresse }}</p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Wilaya de Livraision</p>
+                                        <p
+                                            class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
+                                            {{ $order->wilaya }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="flex justify-center flex-col md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
+                    <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
+                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Résumé</h3>
+                        <div
+                            class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                            @foreach ($order->orderItems as $item)
+                                <div class="flex justify-between w-full">
+                                    <p class="text-sm  text-gray-800">{{ $item->product->nom }}
+                                        x{{ $item->quantity }}</p>
+                                    <p class="text-sm text-gray-600">
+                                        {{ $item->product->prix * $item->quantity }} DA</p>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="flex justify-between items-center w-full">
+                            <p class="text-base font-semibold leading-4 text-gray-800">Total</p>
+                            <p class="text-base font-semibold leading-4 text-gray-600">
+                                {{ $order->getTotalPrice() }} DA
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
+                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Livraison</h3>
+                        <p class="text-sm text-gray-800">
+                            En attribuant une commande à un livreur, elle devient visible pour tous les livreurs. Ils
+                            peuvent accepter ou refuser en temps réel.
+                        </p>
+                        @if ($delivery)
+                            <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
+                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">En
+                                    attente</span>
+                            </p>
+                        @else
+                            <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
+                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Non
+                                    soumis</span></p>
+                            <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Affecter
+                                    à un livreur</button>
+                            </form>
+                        @endif
+                    </div>
+                    <div class="flex flex-col justify-between px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
+                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Changer le status de la commande</h3>
+                        <form action="{{ route('artisan.orders.update', $order) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <select name="status" class="form-select rounded-md w-full">
+                                <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>En attente
+                                </option>
+                                <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>En
+                                    cours
+                                </option>
+                                <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>
+                                    Terminée
+                                </option>
+                                <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>
+                                    Annulée
+                                </option>
+                            </select>
+
+                            <div class="my-4">
+                                <p>Status actuel: @if ($order->status == 'pending')
+                                        <span
+                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            En attente
+                                        </span>
+                                    @endif
+                                    @if ($order->status == 'processing')
+                                        <span
+                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            En cours
+                                        </span>
+                                    @endif
+
+                                    @if ($order->status == 'cancelled')
+                                        <span
+                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                            Annulée
+                                        </span>
+                                    @endif
+                                    @if ($order->status == 'completed')
+                                        <span
+                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Terminée
+                                        </span>
+                                    @endif
+                                </p>
+                            </div>
+                            <button type="submit"
+                                class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white mt-1">Changer</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex items-center justify-end">
-            <button type="submit"
-                class="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-                Mettre à jour
-            </button>
-        </div>
-    </form>
+    </div>
 </x-default-layout>

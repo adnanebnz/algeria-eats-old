@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->unsignedBigInteger("product_id");
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
-            // TODO TO SEE IF I CAN ADD MULTIPLE PRODUCTS
             $table->integer('quantity');
             $table->timestamps();
         });

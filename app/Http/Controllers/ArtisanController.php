@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
 use App\Http\Requests\ProductUpdate;
+use App\Models\Delivery;
+use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
@@ -114,15 +116,22 @@ class ArtisanController extends Controller
 
     public function showOrder(Order $order)
     {
+        // LETS GET THE DELIVERY OF THIS ORDER IF EXISTS
+        $delivery = Delivery::where('order_id', $order->id)->first();
+
         return view('artisan.orders.show', [
-            "order" => $order
+            "order" => $order,
+            "delivery" => $delivery
         ]);
     }
 
-    public function updateOrder(Order $order)
+    public function updateOrder(Order $order, Request $request)
     {
+        $data = $request->validate([
+            'status' => 'required|in:pending,processing,cancelled,completed'
+        ]);
         $order->update([
-            'status' => request('status')
+            'status' => $data['status']
         ]);
         Alert::success('Succès', 'Commande mise à jour !');
         return redirect()->route('artisan.orders.show', $order);
@@ -136,4 +145,21 @@ class ArtisanController extends Controller
     }
 
     // ORDERS SECTION END
+
+    // DELIVERIES SECTION
+    public function affectDelivery(Order $order)
+    {
+        $delivery = Delivery::where('order_id', $order->id)->first();
+        if ($delivery) {
+            Alert::error('Erreur', 'Cette commande a déjà une livraison affectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        } else
+            Delivery::create([
+                'order_id' => $order->id,
+                'status' => 'pending',
+            ]);
+        Alert::success('Succès', 'Livraison affectée !');
+        return redirect()->route('artisan.orders.show', $order);
+    }
+    // DELIVERIES SECTION END
 }

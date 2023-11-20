@@ -15,7 +15,8 @@ class Order extends Model
         'status',
         'adresse',
         'wilaya',
-        'num_telephone'
+        'num_telephone',
+        'email'
     ];
 
     public function consumer()
@@ -43,7 +44,7 @@ class Order extends Model
     {
         $total = 0;
         foreach ($this->orderItems as $orderItem) {
-            $total += $orderItem->prix_total;
+            $total += $orderItem->product->prix * $orderItem->quantity;
         }
         return $total;
     }

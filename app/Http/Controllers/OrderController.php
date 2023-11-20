@@ -44,6 +44,7 @@ class OrderController extends Controller
             'adresse' => $data['adresse'],
             'wilaya' => $data['wilaya_name_ascii'],
             'num_telephone' => $data['num_telephone'],
+            'email' => $data['email'],
             'status' => 'pending',
         ]);
 

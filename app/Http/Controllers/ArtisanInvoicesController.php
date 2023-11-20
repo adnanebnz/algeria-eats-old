@@ -19,7 +19,7 @@ class ArtisanInvoicesController extends Controller
                 'Adresse' => $order->adresse,
                 'Wilaya'  => $order->wilaya,
                 'Numéro de Telephone' => $order->num_telephone,
-                'Email' => $order->consumer->email,
+                'Email' => $order->email,
             ],
         ]);
 
