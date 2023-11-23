@@ -4,9 +4,10 @@
             <div>
             </div>
             <div class="md:ml-40 md:space-x-4">
-                <a href="{{ route('artisan.products.create') }}"
+                <a href="{{ route('artisan.products.new') }}"
                     class="bg-blue-600 px-4 py-2.5 rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
                     un Produit</a>
+
             </div>
         </div>
     </div>

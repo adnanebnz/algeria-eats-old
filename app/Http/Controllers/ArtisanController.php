@@ -71,7 +71,7 @@ class ArtisanController extends Controller
     public function productsIndex()
     {
         $products = Product::where('artisan_id', auth()->user()->id)->paginate(10);
-        return view('artisan.products.products', [
+        return view('artisan.products.index', [
             "products" => $products
         ]);
     }
@@ -123,7 +123,7 @@ class ArtisanController extends Controller
     public function ordersIndex()
     {
         $orders = Order::where('artisan_id', auth()->user()->id)->paginate(10);
-        return view('artisan.orders.orders', [
+        return view('artisan.orders.index', [
             "orders" => $orders
         ]);
     }
