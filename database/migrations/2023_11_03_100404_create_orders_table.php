@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreign('artisan_id')->references('user_id')->on('artisans')->cascadeOnDelete();
             $table->string('adresse');
             $table->string('wilaya');
-            $table->string('num_telephone');
-            $table->string('email');
             $table->string('status');
             $table->timestamps();
         });

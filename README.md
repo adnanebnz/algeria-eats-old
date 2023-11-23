@@ -113,12 +113,24 @@ git commit -m "Description des modifications"
 -   [x] FILTER BY PRICE IN PRODUCTS
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
 -   [ ] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
+-   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices OR LEAVE IT CONCURRENTLY
 -   [ ] SHOW WISHLISTS FOR USERS
 -   [ ] WORK ON DELIVERYMAN DASHBOARD
 -   [ ] WORK ON USER DASHBOARD
 -   [ ] WORK ON ADMIN DASHBOARD
 -   [ ] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
--   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
+
+## TODO
+
+1 - SET MORE FILTERS IN TABLE AND SORT
+
+3 - Add communes
+
+4 - add back arrow for navigations in dashboards and other pages
+
+5 - modify index page
+
+6 - add google analytics

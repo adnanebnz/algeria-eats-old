@@ -36,6 +36,10 @@
                             <h1 class="font-medium leading-6 text-gray-900 text-sm md:text-base">Adresse: </h1>
                             <p class="font-semibold md:text-lg">{{ $user->adresse }}</p>
                         </div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="font-medium leading-6 text-gray-900 text-sm md:text-base">Wilaya: </h1>
+                            <p class="font-semibold md:text-lg">{{ $user->wilaya }}</p>
+                        </div>
                     </div>
                 </div>
                 {{-- SECTION ENTREPRISE ARTISAN --}}

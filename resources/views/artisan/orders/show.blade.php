@@ -1,5 +1,5 @@
-<x-default-layout>
-    <div class="px-4 md:pb-12 pb-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+<x-dashboard-layout :isArtisan=true>
+    <div class="md:pb-12 pb-4 mt-5">
         <div class="flex justify-start item-start space-y-2 flex-col">
             <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Commande
                 #{{ $order->id }}</h1>
@@ -17,14 +17,14 @@
                         @foreach ($order->orderItems as $item)
                             <div
                                 class="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
-                                <div class="pb-4 md:pb-8 w-full md:w-40">
-                                    <img class="w-full hidden md:block"
+                                <div class="pb-4 md:pb-8 w-full md:w-32">
+                                    <img class="w-full hidden md:block rounded-sm"
                                         src="{{ str_starts_with($item->product->images[0], 'http') ? $item->product->images[0] : asset('storage/' . $item->product->images[0]) }}" />
                                 </div>
                                 <div
                                     class="border-b border-gray-200 md:flex-row flex-col flex justify-between items-start w-full pb-8 space-y-4 md:space-y-0">
                                     <div class="w-full flex flex-col justify-start items-start space-y-8">
-                                        <h3 class="text-xl xl:text-2xl font-semibold leading-6 text-gray-800">
+                                        <h3 class="text-md font-semibold leading-4 text-gray-800">
                                             {{ $item->product->nom }}</h3>
                                         <div class="flex justify-start items-start flex-col space-y-2">
                                             <p class="text-sm leading-none text-gray-800"><span
@@ -34,8 +34,8 @@
                                         </div>
                                     </div>
                                     <div class="flex justify-between space-x-8 items-start w-full">
-                                        <p class="text-base xl:text-lg leading-6">{{ $item->product->prix }} DA</p>
-                                        <p class="text-base xl:text-lg leading-6 text-gray-800">{{ $item->quantity }}
+                                        <p class="text-sm xl:text-md leading-6">{{ $item->product->prix }} DA</p>
+                                        <p class="text-sm xl:text-lg leading-6 text-gray-800">{{ $item->quantity }}
                                         </p>
                                         <p class="text-base xl:text-lg font-semibold leading-6 text-gray-800">
                                             {{ $item->quantity * $item->product->prix }} DA</p>
@@ -45,7 +45,7 @@
                         @endforeach
                     </div>
                     <div
-                        class="bg-gray-50 w-full xl:w-9/12 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
+                        class="bg-gray-50 w-full xl:w-7/12 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col">
                         <h3 class="text-xl font-semibold leading-5 text-gray-800">Client</h3>
                         <div
                             class="flex flex-col md:flex-row xl:flex-col justify-start items-stretch h-full w-full md:space-x-6 lg:space-x-8 xl:space-x-0">
@@ -68,7 +68,7 @@
                                         <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" />
                                     </svg>
-                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->email }}</p>
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->consumer->email }}</p>
                                 </div>
                                 <div
                                     class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
@@ -78,7 +78,8 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                                     </svg>
-                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->num_telephone }}</p>
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->consumer->num_telephone }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="flex justify-between xl:h-full items-stretch w-full flex-col mt-6 md:mt-0">
@@ -155,7 +156,10 @@
                         @endif
                     </div>
                     <div class="flex flex-col justify-between px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
-                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Changer le status de la commande</h3>
+                        <h3 class="text-xl font-semibold leading-5 text-gray-800">Status de la commande</h3>
+                        <p class="text-sm<">
+                            Vous pouvez changer le status de la commande ici.
+                        </p>
                         <form action="{{ route('artisan.orders.update', $order) }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -209,4 +213,4 @@
             </div>
         </div>
     </div>
-</x-default-layout>
+</x-dashboard-layout>

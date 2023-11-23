@@ -9,6 +9,8 @@
                 <x-input name="adresse" label="Adresse" type="text" />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="wilaya" label="Wilaya" type="text" />
+                {{-- TODO REPLACE WITH SELECT --}}
                 <x-input name="email" label="Email" type="email" />
                 <x-input name="password" label="Mot de passe" type="password" />
                 <x-input name="password_confirmation" label="Confirmer le Mot de passe" type="password" />

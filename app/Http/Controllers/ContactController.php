@@ -21,7 +21,7 @@ class ContactController extends Controller
             'email' => 'required|email',
             'message' => 'required'
         ]);
-        $contact = Contact::create($data);
+        Contact::create($data);
         Alert::success('Succès', 'Votre message a bien été envoyé');
         return redirect()->route('index')->with('status', 'Votre message a bien été envoyé');
     }
