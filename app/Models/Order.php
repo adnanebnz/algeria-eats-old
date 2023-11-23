@@ -15,8 +15,6 @@ class Order extends Model
         'status',
         'adresse',
         'wilaya',
-        'num_telephone',
-        'email'
     ];
 
     public function consumer()

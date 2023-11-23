@@ -18,8 +18,8 @@ class ArtisanInvoicesController extends Controller
             'custom_fields' => [
                 'Adresse' => $order->adresse,
                 'Wilaya'  => $order->wilaya,
-                'Numéro de Telephone' => $order->num_telephone,
-                'Email' => $order->email,
+                'Numéro de Telephone' => $order->consumer->num_telephone,
+                'Email' => $order->consumer->email,
             ],
         ]);
 
@@ -27,6 +27,7 @@ class ArtisanInvoicesController extends Controller
             'name'    => $order->artisan->getFullName(),
             'custom_fields' => [
                 'Adresse' => $order->artisan->adresse,
+                'Wilaya'  => $order->artisan->wilaya,
                 'Numéro de Telephone' => $order->artisan->num_telephone,
                 'Email' => $order->artisan->email,
             ],

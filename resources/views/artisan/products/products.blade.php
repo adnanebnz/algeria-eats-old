@@ -1,18 +1,16 @@
 <x-dashboard-layout :isArtisan=true>
-    <div class="bg-white p-8 rounded-md w-full">
-        <div class=" flex items-center justify-between pb-0">
+    <div class="bg-white pt-8 md:px-5 rounded-md w-full">
+        <div class=" flex items-center justify-between">
             <div>
-
             </div>
-
-            <div class="lg:ml-40 ml-8 space-x-4">
+            <div class="md:ml-40 md:space-x-4">
                 <a href="{{ route('artisan.products.create') }}"
-                    class="bg-blue-600 mt-4 px-4 py-2 rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
+                    class="bg-blue-600 px-4 py-2.5 rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
                     un Produit</a>
             </div>
         </div>
     </div>
-    <div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
+    <div class="bg-white md:px-4 px-1 rounded-md w-full">
         <div class="flex items-center justify-between pb-6">
         </div>
         <div>
@@ -69,8 +67,8 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $product->prix }}
                                         DA</td>
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
-                                        <a href="#"
-                                            class="bg-blue-700 text-white px-3 py-2 rounded-md hover:bg-blue-500">Voir</a>
+                                        <a href="{{ route('artisan.products.show', ['product' => $product]) }}"
+                                            class="bg-indigo-700 text-white px-3 py-2 rounded-md hover:bg-indigo-500">Voir</a>
                                         <a href="{{ route('artisan.products.edit', ['product' => $product]) }}"
                                             class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300">Modifier</a>
                                         <form action="{{ route('artisan.products.destroy', ['product' => $product]) }}"
@@ -87,7 +85,6 @@
                                     <td class="text-slate-400 text-center p-4" colspan="7">Aucun résultat.</td>
                                 </tr>
                             @endforelse
-
                         </tbody>
                     </table>
                 </div>

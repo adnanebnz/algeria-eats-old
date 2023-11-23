@@ -21,6 +21,7 @@ class User extends Authenticatable
         'nom',
         'prenom',
         'adresse',
+        'wilaya',
         'num_telephone',
         'email',
         'image',

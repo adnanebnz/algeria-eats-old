@@ -31,8 +31,6 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'email' => 'required|email',
-            'num_telephone' => 'required|numeric',
             'adresse' => 'required',
             'wilaya_name_ascii' => 'required',
         ]);
@@ -43,8 +41,8 @@ class OrderController extends Controller
             'artisan_id' => $cartItems[0]->product->artisan->user_id,
             'adresse' => $data['adresse'],
             'wilaya' => $data['wilaya_name_ascii'],
-            'num_telephone' => $data['num_telephone'],
-            'email' => $data['email'],
+            'num_telephone' => auth()->user()->num_telephone,
+            'email' => auth()->user()->email,
             'status' => 'pending',
         ]);
 

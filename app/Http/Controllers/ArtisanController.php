@@ -75,6 +75,20 @@ class ArtisanController extends Controller
             "products" => $products
         ]);
     }
+
+    public function showProduct(Product $product)
+    {
+        // GET ALL ORDERS OF THIS PRODUCT
+        $orders = Order::whereHas('orderItems', function ($query) use ($product) {
+            $query->where('product_id', $product->id);
+        })->paginate(10);
+
+        return view('artisan.products.show', [
+            "product" => $product,
+            "orders" => $orders
+        ]);
+    }
+
     public function createProduct(): View
     {
         return view('artisan.products.createForm');
