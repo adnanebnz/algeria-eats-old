@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\ArtisanInvoicesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\CartController;
@@ -34,7 +35,8 @@ Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("arti
 
 // PRODUCTS SECTION
 Route::get('artisan/dashboard/products', [ArtisanController::class, 'productsIndex'])->name("artisan.products");
-Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'createProduct'])->name("artisan.products.create");
+Route::get('artisan/dashboard/products/new', [ArtisanController::class, 'createProduct'])->name("artisan.products.new");
+Route::get('artisan/dashboard/products/{product}', [ArtisanController::class, 'showProduct'])->name("artisan.products.show");
 Route::post('artisan/dashboard/products', [ArtisanController::class, 'storeProduct'])->name("artisan.products.store");
 Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'editProduct'])->name("artisan.products.edit");
 Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'updateProduct'])->name("artisan.products.update");
@@ -47,6 +49,17 @@ Route::get('artisan/dashboard/orders/{order}', [ArtisanController::class, 'showO
 Route::put('artisan/dashboard/orders/{order}', [ArtisanController::class, 'updateOrder'])->name("artisan.orders.update");
 Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'destroyOrder'])->name("artisan.orders.destroy");
 //ORDERS SECTION END
+
+//DELIVERIES SECTION
+
+Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
+// TODO TO CREATE
+
+//DELIVERIES SECTION END
+
+// PDF INVOICES
+Route::post('artisan/dashboard/orders/{order}/invoice', [ArtisanInvoicesController::class, 'create'])->name("artisan.orders.invoice");
+// PDF INVOICES END
 
 /*ARTISAN DASHBOARD END*/
 
