@@ -127,10 +127,8 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 1 - SET MORE FILTERS IN TABLE AND SORT
 
-3 - Add communes
+2 - Add communes
 
-4 - add back arrow for navigations in dashboards and other pages
+3 - modify index page
 
-5 - modify index page
-
-6 - add google analytics
+4 - add google analytics
