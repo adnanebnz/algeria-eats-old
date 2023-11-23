@@ -29,6 +29,7 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,' . $user->id,
             'num_telephone' => 'required|string',
             'adresse' => 'required|string|max:255',
+            'wilaya' => 'required|string|max:255',
             'password' => 'nullable|string',
         ]);
 
@@ -38,6 +39,7 @@ class ProfileController extends Controller
             'email' => $data['email'],
             'num_telephone' => $data['num_telephone'],
             'adresse' => $data['adresse'],
+            'wilaya' => $data['wilaya'],
         ]);
 
         // Update artisan-specific fields

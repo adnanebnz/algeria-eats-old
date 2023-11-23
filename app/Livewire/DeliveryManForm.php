@@ -16,6 +16,7 @@ class DeliveryManForm extends Component
     public $prenom;
     public $num_telephone;
     public $adresse;
+    public $wilaya;
     public $email;
     public $est_disponible;
     public $password;
@@ -26,6 +27,7 @@ class DeliveryManForm extends Component
         'prenom' => 'required|string',
         'num_telephone' => 'required|string',
         'adresse' => 'required|string',
+        'wilaya' => 'required|string',
         'email' => 'required|email|unique:users',
         'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',
@@ -46,6 +48,7 @@ class DeliveryManForm extends Component
             'prenom' => $validatedData['prenom'],
             'num_telephone' => $validatedData['num_telephone'],
             'adresse' => $validatedData['adresse'],
+            'wilaya' => $validatedData['wilaya'],
             'email' => $validatedData['email'],
             'image' => $validatedData['image'],
             'password' => $validatedData['password'],

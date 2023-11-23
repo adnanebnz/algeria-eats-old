@@ -193,7 +193,7 @@
     {{ $slot }}
     </main>
     </div>
-    <footer class="relative z-10 bg-white pt-8 pb-6">
+    <footer class="pt-8 pb-6">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">
