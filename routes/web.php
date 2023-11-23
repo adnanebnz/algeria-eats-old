@@ -35,8 +35,8 @@ Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("arti
 
 // PRODUCTS SECTION
 Route::get('artisan/dashboard/products', [ArtisanController::class, 'productsIndex'])->name("artisan.products");
+Route::get('artisan/dashboard/products/new', [ArtisanController::class, 'createProduct'])->name("artisan.products.new");
 Route::get('artisan/dashboard/products/{product}', [ArtisanController::class, 'showProduct'])->name("artisan.products.show");
-Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'createProduct'])->name("artisan.products.create");
 Route::post('artisan/dashboard/products', [ArtisanController::class, 'storeProduct'])->name("artisan.products.store");
 Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'editProduct'])->name("artisan.products.edit");
 Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'updateProduct'])->name("artisan.products.update");

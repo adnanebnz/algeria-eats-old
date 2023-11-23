@@ -95,10 +95,14 @@
                                 <x-textarea name="desc_entreprise" label="Description d'entreprise"
                                     type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
                             @endif
+                            <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
+                                :value="auth()->user()->artisan->heure_ouverture" />
                             {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
                             <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />
+                            <x-input name="wilaya" label="Wilaya" type="text" :value="auth()->user()->wilaya" />
+
                             <x-input name="num_telephone" label="Numéro de teléphone" type="text"
                                 :value="auth()->user()->num_telephone" />
                             <x-input name="password" label="Mot de passe" type="password" />
@@ -120,8 +124,7 @@
                                         </option>
                                     </select>
                                 </div>
-                                <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
-                                    :value="auth()->user()->artisan->heure_ouverture" />
+
                                 <x-input name="heure_fermeture" label="Heure de fermeture" type="time"
                                     :value="auth()->user()->artisan->heure_fermeture" />
                             @endif
