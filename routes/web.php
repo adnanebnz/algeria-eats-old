@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\ArtisanInvoicesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DeliveryManController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name("index");
 /* PAGES AND INDEX SECTION END*/
 
-/* PRODUCTS SECTION*/
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::get("/products/{product}", [ProductController::class, 'show'])->name('product.show');
-/* PRODUCTS SECTION END*/
 
 /*AUTH AND PROFILE SECTION*/
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -37,7 +35,8 @@ Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name("arti
 
 // PRODUCTS SECTION
 Route::get('artisan/dashboard/products', [ArtisanController::class, 'productsIndex'])->name("artisan.products");
-Route::get('artisan/dashboard/products/create', [ArtisanController::class, 'createProduct'])->name("artisan.products.create");
+Route::get('artisan/dashboard/products/new', [ArtisanController::class, 'createProduct'])->name("artisan.products.new");
+Route::get('artisan/dashboard/products/{product}', [ArtisanController::class, 'showProduct'])->name("artisan.products.show");
 Route::post('artisan/dashboard/products', [ArtisanController::class, 'storeProduct'])->name("artisan.products.store");
 Route::get('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'editProduct'])->name("artisan.products.edit");
 Route::put('artisan/dashboard/products/{product}/edit', [ArtisanController::class, 'updateProduct'])->name("artisan.products.update");
@@ -50,6 +49,17 @@ Route::get('artisan/dashboard/orders/{order}', [ArtisanController::class, 'showO
 Route::put('artisan/dashboard/orders/{order}', [ArtisanController::class, 'updateOrder'])->name("artisan.orders.update");
 Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'destroyOrder'])->name("artisan.orders.destroy");
 //ORDERS SECTION END
+
+//DELIVERIES SECTION
+
+Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
+// TODO TO CREATE
+
+//DELIVERIES SECTION END
+
+// PDF INVOICES
+Route::post('artisan/dashboard/orders/{order}/invoice', [ArtisanInvoicesController::class, 'create'])->name("artisan.orders.invoice");
+// PDF INVOICES END
 
 /*ARTISAN DASHBOARD END*/
 
@@ -67,10 +77,18 @@ Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'
 
 /*DELIVERY MAN*/
 Route::get('deliveryMan/dashboard', [DeliveryManController::class, 'index'])->name("deliveryMan.index");
+//deliveries  SECTION
+Route::get('deliveryMan/dashboard/deliveries', [DeliveryManController::class, 'deliveriesIndex'])->name("deliveryMan.deliveries");
+Route::get('delivery/{delivery_id}/accept', [DeliveryController::class, 'accept'])->name('delivery.accept');
+Route::get('delivery/{delivery_id}/reject', [DeliveryController::class, 'reject'])->name('delivery.reject');
+Route::get('delivery/{delivery_id}/complete', [DeliveryController::class, 'complete'])->name('delivery.complete');
+
+
+//ORDERS SECTION END
 /*DELIVERY MAN END*/
 
 /*PRODUCTS */
-Route::get("/products", [ProductController::class, 'index'])->name('product.index');
+Route::match(['get', 'post'], "/products", [ProductController::class, 'index'])->name('product.index');
 Route::get("/products/{product}", [ProductController::class, 'show'])->name('product.show');
 /*PRODUCTS END*/
 
@@ -82,3 +100,9 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // CART SECTION
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 // CART SECTION END
+
+// CHECKOUT SECTION
+Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+Route::post('/checkout/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
+// CHECKOUT SECTION END

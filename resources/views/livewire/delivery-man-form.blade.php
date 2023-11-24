@@ -9,6 +9,8 @@
                 <x-input name="adresse" label="Adresse" type="text" />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
+                <x-input name="wilaya" label="Wilaya" type="text" />
+                {{--  TODO REPLACE WITH SELECT --}}
                 <div>
                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
                     <select name="est_disponible" wire:model='est_disponible'

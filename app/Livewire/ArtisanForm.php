@@ -16,6 +16,7 @@ class ArtisanForm extends Component
     public $prenom;
     public $num_telephone;
     public $adresse;
+    public $wilaya;
     public $email;
     public $password;
     public $password_confirmation;
@@ -29,6 +30,7 @@ class ArtisanForm extends Component
         'prenom' => 'required|string',
         'num_telephone' => 'required|string',
         'adresse' => 'required|string',
+        'wilaya' => 'required|string',
         'desc_entreprise' => 'required|string',
         'heure_ouverture' => 'required|string',
         'heure_fermeture' => 'required|string',
@@ -51,6 +53,7 @@ class ArtisanForm extends Component
             'prenom' => $validatedData['prenom'],
             'num_telephone' => $validatedData['num_telephone'],
             'adresse' => $validatedData['adresse'],
+            'wilaya' => $validatedData['wilaya'],
             'email' => $validatedData['email'],
             'image' => $validatedData['image'],
             'password' => $validatedData['password'],

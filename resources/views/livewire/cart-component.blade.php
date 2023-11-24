@@ -1,7 +1,6 @@
 <div>
-    {{-- TODO CART START --}}
     @auth
-        <div>
+        <div class="hidden md:block">
             <div class="flex justify-center">
                 <div class="relative">
                     <div class="flex flex-row cursor-pointer truncate p-2 px-4 rounded">
@@ -22,6 +21,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="block md:hidden">
+            <a href="{{ route('cart.index') }}" slot="icon">
+                <h1>Panier <span>({{ $cartCount }})</span></h1>
+            </a>
         </div>
     @endauth
 </div>

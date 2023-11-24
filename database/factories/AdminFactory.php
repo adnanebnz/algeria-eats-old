@@ -21,7 +21,8 @@ class AdminFactory extends Factory
         $user = User::factory()->create([
             'nom' => 'Benzerdjeb',
             'prenom' => 'Adnane',
-            'adresse' => 'Tlemcen',
+            'adresse' => 'Ain dheb makhokh mansourah',
+            'wilaya' => 'Oran',
             'num_telephone' => '0560690167',
             'email' => 'skillzdev@hotmail.com',
             'email_verified_at' => now(),

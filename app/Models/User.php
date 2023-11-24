@@ -21,6 +21,7 @@ class User extends Authenticatable
         'nom',
         'prenom',
         'adresse',
+        'wilaya',
         'num_telephone',
         'email',
         'image',
@@ -87,28 +88,25 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function getFullNameAttribute(): string
+    public function getFullName(): string
     {
         return $this->nom . ' ' . $this->prenom;
     }
 
-    public function getIsAdminAttribute(): bool
+    public function isArtisan(): bool
     {
-        return $this->admin()->exists();
+        return $this->artisan !== null;
     }
-
-    public function getIsDeliveryManAttribute(): bool
+    public function isDeliveryMan(): bool
     {
-        return $this->deliveryMan()->exists();
+        return $this->deliveryMan !== null;
     }
-
-    public function getIsConsumerAttribute(): bool
+    public function isAdmin(): bool
     {
-        return $this->consumer()->exists();
+        return $this->admin !== null;
     }
-
-    public function getIsArtisanAttribute(): bool
+    public function isConsumer(): bool
     {
-        return $this->artisan()->exists();
+        return $this->consumer !== null;
     }
 }
