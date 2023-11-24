@@ -50,14 +50,14 @@
                                         {{ $delivery->order->artisan->prenom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->artisan->adresse }}
+                                    {{ $delivery->order->artisan->adresse }}
                                         {{-- TODO: CHOUF MLIH SCHEMA TA3 ORDER RAH KAYEN ADRESSE W WILAYA DAKHEL ORDER MATJIBHACH MEN 3AND L USER --}}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $delivery->order->consumer->nom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->adresse }}
+                                    {{ $delivery->order->adresse }} -  {{ $delivery->order->wilaya }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $delivery->order->consumer->num_telephone }}

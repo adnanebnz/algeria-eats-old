@@ -16,7 +16,41 @@ class DeliveryManController extends Controller
     }
     public function index()
     {
-        return view("deliveryMan.dashboard");
+
+        $userId = auth()->user()->id;
+        $latestDeliveries = Delivery::where('is_completed', true)
+        ->where('deliveryMan_id', $userId)
+        ->latest('created_at')
+        ->take(5)
+        ->get();
+
+        $completedDeliveriesToday = Delivery::where('is_completed', true)
+        ->where('deliveryMan_id', $userId)
+        ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
+        ->count();
+        $uncompletedDeliveriesToday = Delivery::where('is_completed', false)
+        ->where('deliveryMan_id', $userId)
+        ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
+        ->count();
+
+        $completedDeliveriesThisWeek = Delivery::where('is_completed', true)
+        ->where('deliveryMan_id', $userId)
+        ->whereBetween('updated_at', [now()->startOfWeek(), now()->endOfWeek()])
+        ->count();
+
+        $completedDeliveriesThisMonth = Delivery::where('is_completed', true)
+        ->where('deliveryMan_id', $userId)
+        ->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
+        ->count();
+
+
+        return view("deliveryMan.dashboard", [
+            "deliveries" => $latestDeliveries,
+            "countday" => $completedDeliveriesToday,
+            "countweek" =>$completedDeliveriesThisWeek,
+            "countmonth" =>$completedDeliveriesThisMonth,
+            "uncompleted" =>$completedDeliveriesToday
+        ]);
     }
     public function deliveriesIndex()
     {
@@ -32,15 +66,7 @@ class DeliveryManController extends Controller
             ->latest('created_at')
             ->paginate(10);
 
-        $deliveries = Delivery::where('is_completed', false)
-            ->where('is_accepted', false)
-            ->orWhere(function ($query) use ($userId) {
-                $query->where('is_accepted', true)
-                    ->where('deliveryMan_id', $userId);
-            })
-            ->latest('created_at')
-            ->paginate(10);
-
+        
         return view('deliveryMan.deliveries', [
             "deliveries" => $deliveries
         ]);
@@ -57,7 +83,7 @@ class DeliveryManController extends Controller
 
         ]);
 
-
+        Alert::success('Succès', 'livraison accepter !');
         return redirect()->route('delivery.index')->with('success', 'Delivery accepted successfully');
     }
 
@@ -71,7 +97,7 @@ class DeliveryManController extends Controller
             'deliveryMan_id' => 0,
 
         ]);
-
+        Alert::success('Succès', 'livraison rejeter !');
 
         return redirect()->route('delivery.index')->with('success', 'Delivery rejected successfully');
     }
@@ -83,7 +109,7 @@ class DeliveryManController extends Controller
         $delivery->update([
             'is_completed' => true,
         ]);
-
+        Alert::success('Succès', 'livraison completer !');
 
         return redirect()->route('delivery.index')->with('success', 'Delivery completed successfully');
     }
