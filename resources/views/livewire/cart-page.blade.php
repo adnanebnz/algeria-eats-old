@@ -68,26 +68,30 @@
                 @if ($cartItems->count() > 0)
                     <!-- Sub total -->
                     <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-                        <div class="mb-2 flex justify-between">
-                            <p class="text-gray-700">Subtotal</p>
-                            <p class="text-gray-700">$129.99</p>
-                        </div>
-                        <div class="flex justify-between">
-                            <p class="text-gray-700">Shipping</p>
-                            <p class="text-gray-700">$4.99</p>
-                        </div>
+                        @foreach ($cartItems as $cartItem)
+                            <div class="mb-2 flex justify-between">
+                                <p class="text-gray-700">{{ $cartItem->product->nom }} &times;
+                                    {{ $cartItem->quantity }}</p>
+                                <p class="text-gray-700">{{ $cartItem->product->prix * $cartItem->quantity }} DA</p>
+                            </div>
+                        @endforeach
+
                         <hr class="my-4" />
-                        <div class="flex justify-between">
+                        <div class="flex justify-between mb-6">
                             <p class="text-lg font-bold">Total</p>
                             <div class="">
                                 <p class="mb-1 text-lg font-bold">{{ $totalPrice }} DA</p>
                             </div>
                         </div>
-                        <button
-                            class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Check
-                            out</button>
+                        <div class="flex items-center justif-center w-full">
+                            <a class="text-center w-full rounded-md bg-blue-500 py-1.5 px-4 font-medium text-blue-50
+                            hover:bg-blue-600"
+                                href="{{ route('checkout.index') }}">Confirmer</a>
+                        </div>
+
                     </div>
                 @endif
+
             </div>
         </div>
     </main>

@@ -1,5 +1,5 @@
 <div class="relative" id="home" class="flex items-center justify-center">
-    <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-25">
+    <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-5">
         <div class="blur-[106px] h-56 bg-gradient-to-br from-blue-600 to-sky-300"></div>
         <div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300"></div>
     </div>
@@ -20,7 +20,6 @@
                     </a>
                 </div>
             </div>
-            {{-- TODO INSERT IMAGE --}}
             <img src="{{ asset('assets/cooking.svg') }}" alt="hero"
                 class="hidden md:block scale-110 inset-0 m-auto w-80 h-80 -mt-16" />
         </div>

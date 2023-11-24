@@ -12,12 +12,9 @@ class Order extends Model
     protected $fillable = [
         'consumer_id',
         'artisan_id',
-        'product_id',
-        'quantity',
-        'prix_total',
         'status',
         'adresse',
-        'num_telephone'
+        'wilaya',
     ];
 
     public function consumer()
@@ -35,8 +32,18 @@ class Order extends Model
         return $this->belongsTo(Delivery::class);
     }
 
-    public function product()
+
+    public function orderItems()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function getTotalPrice()
+    {
+        $total = 0;
+        foreach ($this->orderItems as $orderItem) {
+            $total += $orderItem->product->prix * $orderItem->quantity;
+        }
+        return $total;
     }
 }

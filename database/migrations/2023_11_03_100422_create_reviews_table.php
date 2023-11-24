@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("product_id");
             $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
             $table->integer('rating');
+            $table->string('title');
             $table->string('comment');
             $table->timestamps();
         });

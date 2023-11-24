@@ -7,6 +7,8 @@
                 <x-input name="prenom" label="Prénom" type="text" />
                 <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
                 <x-input name="adresse" label="Adresse" type="text" />
+                <x-input name="wilaya" label="Wilaya" type="text" />
+                {{-- TODO REPLACE WITH SEELCT --}}
                 <x-textarea name="desc_entreprise" label="Description Entreprise" />
 
             </div>
