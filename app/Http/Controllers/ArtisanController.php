@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreation;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use App\Http\Requests\ProductUpdate;
+use App\Models\Delivery;
+use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -49,35 +51,44 @@ class ArtisanController extends Controller
 
     public function index(): View
     {
+        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(5)->get();
 
-        $chart_options = [
-            'chart_title' => 'Commandes par mois',
-            'report_type' => 'group_by_date',
-            'model' => 'App\Models\Order',
-            'conditions' => [
-                ['name' => 'artisan_id', 'condition' => '=', 'value' => auth()->user()->id, 'color' => 'blue', 'fill' => true],
-            ],
-            'group_by_field' => 'created_at',
-            'group_by_period' => 'month',
-            'chart_type' => 'pie',
-        ];
-        // CALCULATE SALES PER MONTH
-        $salesPerMonth = Order::where('artisan_id', auth()->user()->id)->where('status', 'shipped')->whereBetween('created_at', [now()->subMonth(), now()])->sum('prix_total');
+        $monthlyOrderCounts = Order::select(
+            DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'),
+            DB::raw('COUNT(*) as order_count')
+        )
+            ->where('artisan_id', auth()->user()->id)
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
+            ->get();
 
-        //LIST THE 7 LATEST ORDERS
-        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(7)->get();
+        // Prepare data for the chart
+        $months = $monthlyOrderCounts->pluck('month')->toArray();
+        $orderCounts = $monthlyOrderCounts->pluck('order_count')->toArray();
 
-        $chart1 = new LaravelChart($chart_options);
-
-        return view('artisan.dashboard', compact('chart1', 'salesPerMonth', 'latestOrders'));
+        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts'));
     }
     public function productsIndex()
     {
         $products = Product::where('artisan_id', auth()->user()->id)->paginate(10);
-        return view('artisan.products.products', [
+        return view('artisan.products.index', [
             "products" => $products
         ]);
     }
+
+    public function showProduct(Product $product)
+    {
+        // GET ALL ORDERS OF THIS PRODUCT
+        $orders = Order::whereHas('orderItems', function ($query) use ($product) {
+            $query->where('product_id', $product->id);
+        })->paginate(10);
+
+        return view('artisan.products.show', [
+            "product" => $product,
+            "orders" => $orders
+        ]);
+    }
+
     public function createProduct(): View
     {
         return view('artisan.products.createForm');
@@ -112,22 +123,29 @@ class ArtisanController extends Controller
     public function ordersIndex()
     {
         $orders = Order::where('artisan_id', auth()->user()->id)->paginate(10);
-        return view('artisan.orders.orders', [
+        return view('artisan.orders.index', [
             "orders" => $orders
         ]);
     }
 
     public function showOrder(Order $order)
     {
+        // LETS GET THE DELIVERY OF THIS ORDER IF EXISTS
+        $delivery = Delivery::where('order_id', $order->id)->first();
+
         return view('artisan.orders.show', [
-            "order" => $order
+            "order" => $order,
+            "delivery" => $delivery
         ]);
     }
 
-    public function updateOrder(Order $order)
+    public function updateOrder(Order $order, Request $request)
     {
+        $data = $request->validate([
+            'status' => 'required|in:pending,processing,cancelled,completed'
+        ]);
         $order->update([
-            'status' => request('status')
+            'status' => $data['status']
         ]);
         Alert::success('Succès', 'Commande mise à jour !');
         return redirect()->route('artisan.orders.show', $order);
@@ -141,4 +159,21 @@ class ArtisanController extends Controller
     }
 
     // ORDERS SECTION END
+
+    // DELIVERIES SECTION
+    public function affectDelivery(Order $order)
+    {
+        $delivery = Delivery::where('order_id', $order->id)->first();
+        if ($delivery) {
+            Alert::error('Erreur', 'Cette commande a déjà une livraison affectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        } else
+            Delivery::create([
+                'order_id' => $order->id,
+                'status' => 'pending',
+            ]);
+        Alert::success('Succès', 'Livraison affectée !');
+        return redirect()->route('artisan.orders.show', $order);
+    }
+    // DELIVERIES SECTION END
 }

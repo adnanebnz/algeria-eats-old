@@ -22,7 +22,6 @@ class Cart extends Model
 
     public function product()
     {
-        // TODO TO SEE IF I CAN ADD MULTIPLE PRODUCTS
         return $this->belongsTo(Product::class);
     }
 
