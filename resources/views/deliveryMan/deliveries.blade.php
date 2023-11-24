@@ -16,7 +16,7 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Adresse d'artisan
+                                    Adress de livraison
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -24,19 +24,11 @@
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Adress de livraison
+                                    Téléphone du client
                                 </th>
                                 <th
                                     class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    N de telephone de client
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Status
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Completion
+                                    Action
                                 </th>
                             </tr>
                         </thead>
@@ -46,37 +38,28 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $delivery->id }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->artisan->nom }}
-                                        {{ $delivery->order->artisan->prenom }}
+                                        {{ $delivery->order->artisan->getFullName() }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->artisan->adresse }}
-                                        {{-- TODO: CHOUF MLIH SCHEMA TA3 ORDER RAH KAYEN ADRESSE W WILAYA DAKHEL ORDER MATJIBHACH MEN 3AND L USER --}}
+                                        {{ $delivery->order->adresse }} -
+                                        <strong>{{ $delivery->order->wilaya }}</strong>
+
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->nom }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->adresse }}
+                                        {{ $delivery->order->consumer->getFullName() }}
+
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         {{ $delivery->order->consumer->num_telephone }}
                                     </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 ">
-                                        @if ($delivery->is_accepted == false)
-                                            <a href="{{ route('delivery.accept', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300 transition-all duration-300">accept</a>
-                                        @endif
-                                        @if ($delivery->is_accepted == true)
-                                            <a href="{{ route('delivery.reject', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-300 transition-all duration-300">reject</a>
-                                        @endif
-                                    </td>
-                                    <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
-                                        @if ($delivery->is_completed == false)
-                                            <a href="{{ route('delivery.complete', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-300 transition-all duration-300">completed</a>
-                                        @endif
+
+                                    <td class="px-3 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
+                                        <form action="{{ route('delivery.accept', $delivery) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit"
+                                                class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300 transition-all duration-300">Accepter</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @empty
