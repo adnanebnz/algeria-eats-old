@@ -16,6 +16,7 @@ class ConsumerForm extends Component
     public $image;
     public $num_telephone;
     public $adresse;
+    public $wilaya;
     public $email;
     public $password;
     public $password_confirmation;
@@ -25,6 +26,7 @@ class ConsumerForm extends Component
         'prenom' => 'required|string',
         'num_telephone' => 'required|string',
         'adresse' => 'required|string',
+        'wilaya' => 'required|string',
         'email' => 'required|email|unique:users',
         'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',

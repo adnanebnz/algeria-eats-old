@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -26,15 +26,9 @@ class Product extends Model
     protected $casts = [
         'images' => 'array'
     ];
-
     public function artisan(): BelongsTo
     {
-        return $this->belongsTo(Artisan::class);
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'nom';
+        return $this->belongsTo(Artisan::class, 'artisan_id', 'user_id');
     }
 
     public function orders()
@@ -42,28 +36,43 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }
 
-    public function getRelatedProductsAttribute(): Collection
+
+    public function reviews()
     {
-        return Product::where('categorie', $this->categorie)
-            ->where('id', '!=', $this->id)
-            ->take(4)
-            ->get();
+        return $this->hasMany(Review::class);
     }
 
-    public function getCategoriesAttribute(): Collection
+    public function scopeFilters(Builder $query, array $filters): void
     {
-        return Product::select('categorie')
-            ->distinct()
-            ->get()
-            ->map(function ($product) {
-                return $product->categorie;
+        $query->when($filters['search'] ?? null, function (Builder $query, $search) {
+            $query->where(function (Builder $query) use ($search) {
+                $query->where('nom', 'LIKE', '%' . $search . '%');
             });
-    }
+        });
 
-    public function getFeaturedProductsAttribute(): Collection
-    {
-        return Product::inRandomOrder()
-            ->take(4)
-            ->get();
+        $query->when($filters['artisan'] ?? null, function (Builder $query, $artisan) {
+            $query->whereHas('artisan', function (Builder $query) use ($artisan) {
+                $query->whereHas('user', function (Builder $query) use ($artisan) {
+                    $query->where(function (Builder $query) use ($artisan) {
+                        $query->where('nom', 'LIKE', '%' . $artisan . '%')
+                            ->orWhere('prenom', 'LIKE', '%' . $artisan . '%');
+                    });
+                });
+            });
+        });
+
+        $query->when($filters['artisanRating'] ?? null, function (Builder $query, $artisanRating) {
+            $query->whereHas('artisan', function (Builder $query) use ($artisanRating) {
+                $query->where('rating', 'LIKE', '%' . $artisanRating . '%');
+            });
+        });
+
+        $query->when($filters['productRating'] ?? null, function (Builder $query, $productRating) {
+            $query->where('rating', 'LIKE', '%' . $productRating . '%');
+        });
+
+        $query->when($filters['productType'] ?? null, function (Builder $query, $productType) {
+            $query->where('categorie', 'LIKE', '%' . $productType . '%');
+        });
     }
 }
