@@ -18,27 +18,27 @@ class DeliveryManController extends Controller
     {
 
         $userId = auth()->user()->id;
-        $latestDeliveries = Delivery::where('is_completed', true)
+        $latestDeliveries = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->latest('created_at')
         ->take(5)
         ->get();
 
-        $completedDeliveriesToday = Delivery::where('is_completed', true)
+        $completedDeliveriesToday = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
         ->count();
-        $uncompletedDeliveriesToday = Delivery::where('is_completed', false)
+        $uncompletedDeliveriesToday = Delivery::where('status', false)
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
         ->count();
 
-        $completedDeliveriesThisWeek = Delivery::where('is_completed', true)
+        $completedDeliveriesThisWeek = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfWeek(), now()->endOfWeek()])
         ->count();
 
-        $completedDeliveriesThisMonth = Delivery::where('is_completed', true)
+        $completedDeliveriesThisMonth = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
         ->count();
@@ -57,14 +57,17 @@ class DeliveryManController extends Controller
 
         $userId = auth()->user()->id;
 
-        $deliveries = Delivery::where('is_completed', false)
-            ->where('is_accepted', false)
-            ->orWhere(function ($query) use ($userId) {
-                $query->where('is_accepted', true)
-                    ->where('deliveryMan_id', $userId);
-            })
-            ->latest('created_at')
-            ->paginate(10);
+        $deliveries = Delivery::where('status', 'not_started')
+        ->whereHas('order', function ($query) {
+            $query->where('wilaya', auth()->user()->wilaya);
+        })
+        ->orWhere(function ($query) use ($userId) {
+            $query->where('status', 'delivering')
+                ->where('deliveryMan_id', $userId);
+        })
+        ->latest('created_at')
+        ->paginate(10);
+    
 
         
         return view('deliveryMan.deliveries', [
@@ -78,7 +81,7 @@ class DeliveryManController extends Controller
         $delivery = Delivery::findOrFail($delivery_id);
         $userId = auth()->user()->id;
         $delivery->update([
-            'is_accepted' => true,
+            'status' => 'delivering',
             'deliveryMan_id' => $userId,
 
         ]);
@@ -93,7 +96,7 @@ class DeliveryManController extends Controller
 
         $delivery = Delivery::findOrFail($delivery_id);
         $delivery->update([
-            'is_accepted' => false,
+            'status' => 'not_started',
             'deliveryMan_id' => 0,
 
         ]);
@@ -107,7 +110,7 @@ class DeliveryManController extends Controller
 
         $delivery = Delivery::findOrFail($delivery_id);
         $delivery->update([
-            'is_completed' => true,
+            'status' => 'delivered',
         ]);
         Alert::success('Succès', 'livraison completer !');
 
