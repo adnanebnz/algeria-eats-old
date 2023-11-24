@@ -3,7 +3,7 @@
         <div class="mt-8">
             <div class="flex flex-col md:flex-row px-4 md:px-0 gap-5 items-center justify-center">
                 <div class="flex-1 ml-6 bg-white p-4 shadow rounded-lg">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Usuarios</h2>
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">completion of deliveries</h2>
                     <div class="my-1"></div> <!-- Espacio de separación -->
                     <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div>
                     <!-- Línea con gradiente -->
@@ -13,22 +13,24 @@
                     </div>
                 </div>
 
-                <!-- Sección 2 - Gráfica de Comercios -->
+
                 <div class="flex-1 bg-white p-4 ml-2 shadow rounded-lg">
-                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Comercios</h2>
-                    <div class="my-1"></div> <!-- Espacio de separación -->
-                    <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div>
-                    <!-- Línea con gradiente -->
-                    <div class="chart-container" style="position: relative; height:150px; width:100%;">
-                        <!-- El canvas para la gráfica -->
-                        <canvas id="commercesChart"></canvas>
-                    </div>
-                </div>
+    <h2 class="text-gray-500 text-lg font-semibold pb-1">Stats</h2>
+    <div class="my-1"></div> <!-- Espacio de separación -->
+    <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div>
+
+    <div class="text-gray-700">
+        <p class="mb-2">Deliveries Completed Today: <span class="font-semibold text-blue-500">X</span></p>
+        <p class="mb-2">Deliveries Completed This Week: <span class="font-semibold text-blue-500">Y</span></p>
+        <p class="mb-2">Deliveries Completed This Month: <span class="font-semibold text-blue-500">Z</span></p>
+    </div>
+</div>
+
             </div>
         </div>
 
         <div class="mt-8 bg-white p-4 shadow rounded-lg">
-            <h2 class="text-gray-500 text-lg font-semibold pb-4">Autorizaciones Pendientes</h2>
+            <h2 class="text-gray-500 text-lg font-semibold pb-4">Dernier Livraisons complet</h2>
             <div class="my-1"></div> <!-- Espacio de separación -->
             <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div> <!-- Línea con gradiente -->
             <table class="w-full table-auto text-sm">
@@ -36,54 +38,47 @@
                     <tr class="text-sm leading-normal">
                         <th
                             class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                            Foto</th>
+                            Id</th>
                         <th
                             class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                            Nombre</th>
+                            Nom d'artisan</th>
                         <th
                             class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
-                            Rol</th>
+                            Adresse d'artisan</th>
+                        <th
+                            class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
+                            Nom de client</th>
+                        <th
+                            class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
+                            Adress de livraison</th>
+                        <th
+                            class="py-2 px-4 bg-grey-lightest font-bold uppercase text-sm text-grey-light border-b border-grey-light">
+                            N de telephone de client</th>
                     </tr>
                 </thead>
                 <tbody>
+                @forelse ($deliveries as $delivery)
                     <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                        <td class="py-2 px-4 border-b border-grey-light">Juan Pérez</td>
-                        <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
+                        <td class="py-2 px-4 border-b border-grey-light">
+                        {{ $delivery->id }}
+                        </td>
+                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->nom }}{{ $delivery->order->artisan->prenom }}</td>
+                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->adresse }}</td>
+                        <td class="py-2 px-4 border-b border-grey-light"> {{ $delivery->order->consumer->nom }}</td>
+                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->adresse }} -  {{ $delivery->order->wilaya }}</td>
+                        <td class="py-2 px-4 border-b border-grey-light">  {{ $delivery->order->consumer->num_telephone }}</td>
                     </tr>
-                    <!-- Añade más filas aquí como la anterior para cada autorización pendiente -->
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                        <td class="py-2 px-4 border-b border-grey-light">María Gómez</td>
-                        <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                    </tr>
-                    </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                        <td class="py-2 px-4 border-b border-grey-light">Carlos López</td>
-                        <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                    </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                        <td class="py-2 px-4 border-b border-grey-light">Laura Torres</td>
-                        <td class="py-2 px-4 border-b border-grey-light">Comercio</td>
-                    </tr>
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light"><img src="https://via.placeholder.com/40"
-                                alt="Foto Perfil" class="rounded-full h-10 w-10"></td>
-                        <td class="py-2 px-4 border-b border-grey-light">Ana Ramírez</td>
-                        <td class="py-2 px-4 border-b border-grey-light">Usuario</td>
-                    </tr>
+                    @empty
+                                <tr>
+                                    <td class="text-slate-400 text-center p-4" colspan="7">Aucun livraisons complete.</td>
+                                </tr>
+                            @endforelse  
                 </tbody>
             </table>
             <!-- Botón "Ver más" para la tabla de Autorizaciones Pendientes -->
             <div class="text-right mt-4">
                 <button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                    Ver más
+                    voir tout
                 </button>
             </div>
         </div>
