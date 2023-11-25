@@ -56,13 +56,12 @@ Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'de
 /*ADMIN DASHBOARD*/
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name("admin.index");
 Route::get('admin/dashboard/users', [AdminController::class, 'users'])->name("admin.users");
-// TODO TO CREATE
 Route::get('admin/dashboard/users/{user}/edit', [AdminController::class, 'edit'])->name("admin.edit");
-// TODO TO CREATE
 Route::put('admin/dashboard/users/{user}', [AdminController::class, 'update'])->name("admin.update");
-// TODO TO CREATE
 Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'])->name("admin.destroy");
-// TODO TO CREATE
+Route::get('admin/dashboard/users/{user}/products',[AdminController::class, 'products'])->name('admin.products');
+//afficher les statistiques
+
 /*ADMIN END*/
 
 /*DELIVERY MAN*/
