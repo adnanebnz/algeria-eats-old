@@ -10,11 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('auth');
-    $this->middleware('admin');
-  }
+  
 
   public function index()
   {
@@ -22,10 +18,14 @@ class AdminController extends Controller
   }
   public function users(){
     $users=User::all();
-    return view("users.show",['users'=>$users]);
+    return view("admin.users.show",['users'=>$users]);
+  }
+  public function indexOne(User $user){
+    return view("admin.users.indexOne",['user'=>$user]);
+
   }
   public function edit(User $user){
-    return view("users.edit",['user'=>$user]);
+    return view("admin.users.edit",['user'=>$user]);
   }
   public function update($request,User $user){
     $data=$request->validate([
@@ -53,7 +53,5 @@ class AdminController extends Controller
     $userProducts = Product::where('artisan_id',$user->id)->get();
     $orderPercentage = $userProductsOrders->count()/$userProducts->count(); 
     return [$userOrders->count(),$userProducts->count(),$orderPercentage,$userProductsOrders->count()];
-    
-
   }
 }

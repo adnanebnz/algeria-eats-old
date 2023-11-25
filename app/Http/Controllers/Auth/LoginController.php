@@ -29,10 +29,10 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
         ]);
-        toast('Vous êtes connecté à votre compte', 'success');
         if (Auth::attempt($credentials, (bool) $request->remember)) {
             $request->session()->regenerate();
 
+            toast('Vous êtes connecté à votre compte', 'success');
             return redirect()->intended(RouteServiceProvider::HOME);
         }
 

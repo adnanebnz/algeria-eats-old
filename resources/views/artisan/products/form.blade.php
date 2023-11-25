@@ -1,21 +1,21 @@
-<x-default-layout title='Modifier le Produit'>
+<x-dashboard-layout :isArtisan=true>
     <form action="{{ route('artisan.products.update', ['product' => $product]) }}" method="POST"
-        enctype="multipart/form-data" class="md:px-20 px-3 shadow-sm p-1 pb-4 md:pb-10">
+        enctype="multipart/form-data" class="md:px-20 px-3 shadow-sm p-1 pb-4 md:pb-10 mt-5">
         @csrf
         @method('PUT')
         <div>
             <div class="border-gray-900/10 pb-12">
-                <h1 class="text-base font-semibold leading-7 text-gray-900">
+                <h1 class="text-xl font-bold leading-7 text-gray-700">
                     Modifier un Produit
                 </h1>
 
-                <div class="mt-10 flex md:flex-row flex-col items-center justify-center gap-14">
-                    <div class="flex flex-col gap-5 md:w-1/2 w-full">
+                <div class="mt-10 flex flex-col items-center justify-center gap-14">
+                    <div class="flex flex-col gap-5 w-full">
                         <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" />
                         <x-input name="nom" label="Nom" :value="$product->nom" />
                         <x-textarea name="description" label="Description">{{ $product->description }}</x-textarea>
                     </div>
-                    <div class="flex flex-col gap-5 md:w-1/2 w-full">
+                    <div class="flex flex-col gap-5 w-full">
                         <div>
                             <label class="block text-sm font-medium leading-6 text-gray-900">
                                 Catégorie
@@ -32,10 +32,10 @@
                     </div>
                     <div class="px-6 md:px-0">
                         <p class="text-gray-900 text-sm">Images actuelles</p>
-                        <div class="grid grid-cols-3 gap-3 my-3">
+                        <div class="grid grid-cols-5 gap-3 my-3">
                             @foreach ($product->images as $image)
                                 <img src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
-                                    alt="" class="w-20 h-20 object-cover rounded-sm">
+                                    alt="" class="w-40 object-cover rounded-sm">
                             @endforeach
                         </div>
                         <x-input name="images[]" type="file" label="Insérer les nouvelles images" />
@@ -51,4 +51,4 @@
             </button>
         </div>
     </form>
-</x-default-layout>
+</x-dashboard-layout>
