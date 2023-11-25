@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'nom' => fake()->name(),
             'prenom' => fake()->name(),
             'adresse' => fake()->address(),
+            'wilaya' => fake()->city(),
             'num_telephone' => '06' . fake()->numberBetween(10000000, 99999999),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

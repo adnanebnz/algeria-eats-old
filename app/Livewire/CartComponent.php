@@ -25,7 +25,28 @@ class CartComponent extends Component
             return redirect()->route('login');
         }
     }
-
+    #[On('cartAdded')]
+    public function addToCart($id)
+    {
+        if (auth()->user()) {
+            if (Product::where('id', $id)->exists()) {
+                if (Cart::where('product_id', $id)->where('user_id', auth()->user()->id)->exists()) {
+                    $this->dispatch('cartAddedUpdated');
+                } else {
+                    Cart::create([
+                        'product_id' => $id,
+                        'user_id' => auth()->user()->id,
+                        'quantity' => 1
+                    ]);
+                    $this->dispatch('cartAddedUpdated');
+                }
+            } else {
+                return redirect()->route('login');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+    }
 
     #[On('cartAddedUpdated')]
     public function updateCart()

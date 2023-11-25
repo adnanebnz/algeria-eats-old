@@ -9,14 +9,16 @@
             @if ($type !== 'file') value="{{ old($name) ?? $value }}"
             @class([
                 'form-input block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
-                'pr-10 text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' => $errors->has($name),
-                'text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600' => ! $errors->has($name),
+                'pr-10 text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' => $errors->has(
+                    $name),
+                'text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600' => !$errors->has(
+                    $name),
             ]) @endif
             @change="images = $event.target.files">
         @if ($type === 'file')
-            <div class="grid grid-cols-3 gap-3 my-3">
+            <div class="grid grid-cols-5 gap-3 my-3">
                 <template x-for="image in images" :key="image.name">
-                    <img x-bind:src="URL.createObjectURL(image)" class="w-20 h-20 object-cover rounded-md">
+                    <img x-bind:src="URL.createObjectURL(image)" class="w-40 object-cover rounded-md">
                 </template>
             </div>
         @endif

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('adresse');
+            $table->string('wilaya');
             $table->string('num_telephone', 10);
             $table->string('email')->unique();
             $table->string('image')->nullable();

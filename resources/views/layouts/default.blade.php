@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
         href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-{{-- todo install library --}}
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
@@ -23,7 +22,6 @@
     {{-- Conteneur global --}}
     <div>
         {{-- Header --}}
-        {{-- TODO CHECK IF I LET THIS GRADIENT OR NO --}}
         <div x-data="{ open: false }" x-cloak
             class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
             <div class="flex flex-row items-center justify-between px-4 py-3">
@@ -50,7 +48,9 @@
                     href="#">À propos de nous</a>
                 <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-4 text-gray-900 hover:text-black focus:text-gray-900 hover:underline underline-offset-4 focus:outline-none focus:shadow-outline"
                     href="{{ route('product.index') }}">Produits</a>
-                    <livewire:cart-component />
+                    <div class="p-4 mt-2 md:p-0 text-sm font-semibold bg-transparent md:mt-0 md:ml-4 text-gray-900">
+                        <livewire:cart-component />
+                    </div>
 @guest
     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
                     border solid border-blue-500
@@ -193,7 +193,7 @@
     {{ $slot }}
     </main>
     </div>
-    <footer class="relative z-10 bg-blueGray-200 pt-8 pb-6">
+    <footer class="pt-8 pb-6">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap text-left lg:text-left">
                 <div class="w-full lg:w-6/12 px-4">
@@ -205,36 +205,36 @@
                 <div class="w-full lg:w-6/12 px-4">
                     <div class="flex flex-wrap items-top mb-6">
                         <div class="w-full lg:w-4/12 px-4 ml-auto">
-                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Liens
+                            <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Liens
                                 Rapides</span>
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="#">À propos de nous</a>
                                 </li>
 
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="{{ route('product.index') }}">Produits</a>
                                 </li>
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="{{ route('contact.index') }}">Contactez nous</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="w-full lg:w-4/12 px-4">
-                            <span class="block uppercase text-blueGray-500 text-sm font-semibold mb-2">Autre
+                            <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Autre
                                 liens</span>
                             <ul class="list-unstyled">
 
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-800  hover:text-gray-800 font-semibold block pb-2 text-sm"
                                         href="#">Terms &amp;
                                         Conditions</a>
                                 </li>
                                 <li>
-                                    <a class="text-gray-900  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                         href="#">Confidentialité</a>
                                 </li>
                             </ul>
@@ -242,10 +242,10 @@
                     </div>
                 </div>
             </div>
-            <hr class="my-6 border-blueGray-300">
+            <hr class="my-6 border-gray-300">
             <div class="flex flex-wrap items-center md:justify-between justify-center">
                 <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                    <div class="text-sm text-blueGray-500 font-semibold py-1 flex items-center gap-2 justify-center">
+                    <div class="text-sm text-gray-600 font-semibold py-1 flex items-center gap-2 justify-center">
                         <p>
                             Copyright © <span id="get-current-year">{{ date('Y') }}
                             </span>
