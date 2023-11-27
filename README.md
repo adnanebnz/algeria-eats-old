@@ -132,3 +132,7 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 3 - modify index page
 
 4 - add google analytics
+
+5 - implement script to see password
+
+6 - send invoices to users after purchase
