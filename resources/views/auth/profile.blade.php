@@ -94,9 +94,9 @@
                             @if (auth()->user() && auth()->user()->artisan)
                                 <x-textarea name="desc_entreprise" label="Description d'entreprise"
                                     type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
+                                <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
+                                    :value="auth()->user()->artisan?->heure_ouverture" />
                             @endif
-                            <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
-                                :value="auth()->user()->artisan->heure_ouverture" />
                             {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
