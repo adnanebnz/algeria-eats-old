@@ -1,0 +1,51 @@
+# fly.toml app configuration file generated for algeriaeats on 2023-11-27T22:04:08+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "algeriaeats"
+primary_region = "mad"
+console_command = "php /var/www/html/artisan tinker"
+
+[build]
+  [build.args]
+    NODE_VERSION = "18"
+    PHP_VERSION = "8.2"
+
+[env]
+  APP_ENV = "production"
+  LOG_CHANNEL = "stderr"
+  LOG_LEVEL = "info"
+  LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  SESSION_DRIVER = "cookie"
+  SESSION_SECURE_COOKIE = "true"
+  APP_TIMEZONE='Africa/Algiers'
+  DB_CONNECTION="pgsql"
+  DB_HOST="monorail.proxy.rlwy.net"
+  DB_PORT="13064"
+  DB_DATABASE="railway"
+  DB_USERNAME="postgres"
+  DB_PASSWORD="E3AHb1f-2c6-gFbgad4C6Fgf36e53Fd6"
+  QUEUE_CONNECTION="database"
+  MAIL_MAILER="smtp"
+  MAIL_HOST="smtp.gmail.com"
+  MAIL_PORT="465"
+  MAIL_USERNAME="benzerdjebadnane13@gmail.com"
+  MAIL_PASSWORD="enwp qhmk ljok dzys"
+  MAIL_ENCRYPTION="ssl"
+  MAIL_FROM_ADDRESS="benzerdjebadnane13@gmail.com"
+  MAIL_FROM_NAME="Algeria Eats"
+
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 8
+  memory_mb = 2048
