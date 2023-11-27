@@ -181,7 +181,7 @@
 
                                     @if ($isAdmin)
                                         <li>
-                                            <a href="#" @class([
+                                            <a href="{{ route('admin.users') }}" @class([
                                                 'text-base font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group',
                                                 true ? 'bg-blue-500 text-white' : 'text-gray-900',
                                             ])>
