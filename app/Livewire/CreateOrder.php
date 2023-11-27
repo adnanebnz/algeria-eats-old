@@ -4,15 +4,9 @@ namespace App\Livewire;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Jobs\GenerateInvoiceAndSendMail;
-use App\Mail\PurchaseMail;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Illuminate\Support\Facades\Mail;
-use LaravelDaily\Invoices\Classes\Buyer;
-use LaravelDaily\Invoices\Classes\InvoiceItem;
-use LaravelDaily\Invoices\Classes\Party;
-use LaravelDaily\Invoices\Invoice;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
