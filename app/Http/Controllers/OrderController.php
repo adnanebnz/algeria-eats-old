@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Mail\PurchaseMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -55,9 +57,11 @@ class OrderController extends Controller
             ]);
             $cartItem->delete();
         }
+        // TODO SEND SOME DATA AND THE INVOICE
+        Mail::to(auth()->user()->email)->send(new PurchaseMail($order));
+
         Alert::success('Succès', 'Votre commande a été enregistrée avec succès');
         return redirect()->route('index');
-        // TODO CREATE SUCCESS PAGE
     }
 
     public function cancel()
