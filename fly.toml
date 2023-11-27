@@ -14,13 +14,21 @@ console_command = "php /var/www/html/artisan tinker"
 
 [env]
   APP_NAME = "AlgeriaEats"
-  APP_ENV = "production"
+  APP_ENV = "local"
+  APP_DEBUG = "true"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
-  LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
+  LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter" 
+  DB_CONNECTION="pgsql"
+  DB_HOST="monorail.proxy.rlwy.net"
+  DB_PORT="53352"
+  DB_DATABASE="railway"
+  DB_USERNAME="postgres"
+  DB_PASSWORD="FdGF2G-f166egDE43C1AAGdE-4Ac334b"
   SESSION_DRIVER = "cookie"
   SESSION_SECURE_COOKIE = "true"
   APP_TIMEZONE='Africa/Algiers'
+  FILESYSTEM_DISK='public'
   QUEUE_CONNECTION="database"
   MAIL_MAILER="smtp"
   MAIL_HOST="smtp.gmail.com"

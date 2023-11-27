@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use App\Models\DeliveryMan;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DeliveryManForm extends Component
 {
@@ -36,35 +38,40 @@ class DeliveryManForm extends Component
     ];
     public function submit()
     {
-
         $validatedData = $this->validate();
         $validatedData['password'] = bcrypt($validatedData['password']);
-        if ($this->image) {
-            $imagePath = $this->image->store('profile_images', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-        $creation = User::create([
-            'nom' => $validatedData['nom'],
-            'prenom' => $validatedData['prenom'],
-            'num_telephone' => $validatedData['num_telephone'],
-            'adresse' => $validatedData['adresse'],
-            'wilaya' => $validatedData['wilaya'],
-            'email' => $validatedData['email'],
-            'image' => $validatedData['image'],
-            'password' => $validatedData['password'],
-        ]);
-        if ($validatedData['est_disponible'] === 'true') {
-            $validatedData['est_disponible'] = true;
-        } else {
-            $validatedData['est_disponible'] = false;
-        }
-        DeliveryMan::create([
-            'user_id' => $creation->id,
-            'est_disponible' => $validatedData['est_disponible'],
-        ]);
 
-        auth()->login($creation);
-        return redirect()->to('/');
+        return DB::transaction(function () use ($validatedData) {
+            $user = User::create([
+                'nom' => $validatedData['nom'],
+                'prenom' => $validatedData['prenom'],
+                'num_telephone' => $validatedData['num_telephone'],
+                'adresse' => $validatedData['adresse'],
+                'wilaya' => $validatedData['wilaya'],
+                'email' => $validatedData['email'],
+                'image' => $validatedData['image'],
+                'password' => $validatedData['password'],
+            ]);
+
+            if ($this->image) {
+                $imagePath = $this->image->store('profile_images', 'public');
+                $user->update(['image' => $imagePath]);
+            }
+
+            if ($validatedData['est_disponible'] === 'true') {
+                $validatedData['est_disponible'] = true;
+            } else {
+                $validatedData['est_disponible'] = false;
+            }
+
+            $user->deliveryMan()->create([
+                'est_disponible' => $validatedData['est_disponible'],
+            ]);
+
+            auth()->login($user);
+            Alert::success('Succès', 'Votre compte a été créé avec succès');
+            return redirect()->to('/');
+        });
     }
     public function render()
     {
