@@ -83,7 +83,8 @@
             <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
             </h1>
             <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
-                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
+                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="flex md:flex-row flex-col gap-8">
@@ -147,6 +148,45 @@
                             @endif
                         </div>
                     </div>
+
+                    <div x-data="{ image: null }">
+                        <label class="block text-sm font-medium text-white">
+                            Image
+                        </label>
+                        <div
+                            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-4 text-center">
+                                <template x-if="image">
+                                    <img x-bind:src="image" alt="Uploaded Image"
+                                        class="h-32 mx-auto mb-4 rounded-full border">
+                                </template>
+                                <div class="flex flex-col gap-1 items-center justify-center">
+                                    <template x-if="!image">
+                                        <svg class="h-16 w-16 text-gray-600" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <div class="flex text-sm text-gray-800">
+                                        <label for="file-upload"
+                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
+                                            <span class="">Upload a file</span>
+                                            <input id="file-upload" name="image" type="file" class="sr-only"
+                                                accept="image/*"
+                                                x-on:change="image = URL.createObjectURL($event.target.files[0])">
+                                        </label>
+                                        <p class="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p class="text-xs">
+                                        JPEG, JPG, GIF Maximum 4 méga.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="submit"
                         class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-8 text-white">MODIFIER
                         VOS INFORMATIONS</button>

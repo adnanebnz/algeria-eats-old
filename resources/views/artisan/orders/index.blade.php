@@ -39,7 +39,7 @@
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $order->id }}
                                     </td>
                                     <td class="text-ellipsis text-sm">
-                                        {{ $order->consumer->nom }}
+                                        {{ $order->buyer->nom }}
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                         @foreach ($order->orderItems as $orderItem)
                                             {{ $orderItem->product->nom }} (x{{ $orderItem->quantity }}) <br>
@@ -76,6 +76,11 @@
                                         @endif
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
+                                        {{-- <a href="{{ asset('storage/invoice_' . $order->id . '_' . $order->buyer->getFullName() . '.pdf') }}"
+                                            class="bg-green-500 text-white px-3 py-2 rounded-md hover:bg-green-400"
+                                            target="_blank">
+                                            Télécharger Facture
+                                        </a> --}}
                                         <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
                                             class="bg-indigo-500 text-white px-3 py-2 rounded-md hover:bg-indigo-400">Voir</a>
                                         <form action="{{ route('artisan.orders.invoice', $order) }}" method="POST">

@@ -12,7 +12,7 @@
     <div class="mx-auto max-w-2xl bg-white p-8 shadow-md">
         <h1 class="mb-4 text-2xl font-bold">Facture de votre commande</h1>
 
-        <p class="mb-6">Bonjour {{ $order->consumer->getFullName() }},</p>
+        <p class="mb-6">Bonjour {{ $order->buyer->getFullName() }},</p>
 
         <p class="mb-6">Nous vous remercions pour votre commande. Voici les détails de votre facture :</p>
 

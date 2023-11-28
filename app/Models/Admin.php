@@ -15,6 +15,8 @@ class Admin extends Authenticatable
         'user_id'
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function user()
     {
         return $this->belongsTo(User::class);

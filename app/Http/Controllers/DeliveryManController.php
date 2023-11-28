@@ -41,7 +41,6 @@ class DeliveryManController extends Controller
         return redirect()->route('deliveryMan.index');
     }
 
-    // TODO MODIFY THIS
     public function complete($delivery_id)
     {
 

@@ -46,11 +46,11 @@
 
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->getFullName() }}
+                                        {{ $delivery->order->buyer->getFullName() }}
 
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->num_telephone }}
+                                        {{ $delivery->order->buyer->num_telephone }}
                                     </td>
 
                                     <td class="px-3 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">

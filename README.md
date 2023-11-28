@@ -112,13 +112,13 @@ git commit -m "Description des modifications"
 -   [x] BUILD THE SEARCH ENGINE
 -   [x] FILTER BY PRICE IN PRODUCTS
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
+-   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [ ] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
 -   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices OR LEAVE IT CONCURRENTLY
 -   [ ] SHOW WISHLISTS FOR USERS
 -   [ ] WORK ON DELIVERYMAN DASHBOARD
 -   [ ] WORK ON USER DASHBOARD
 -   [ ] WORK ON ADMIN DASHBOARD
--   [ ] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
@@ -129,10 +129,10 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 2 - Add communes
 
-3 - modify index page
+3 - modify index page and auth pages
 
 4 - add google analytics
 
 5 - implement script to see password
 
-6 - send invoices to users after purchase
+6 - write unit tests

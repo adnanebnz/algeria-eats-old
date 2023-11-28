@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\DeliveryMan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -75,6 +76,7 @@ class DeliveryManForm extends Component
     }
     public function render()
     {
-        return view('livewire.delivery-man-form');
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('livewire.delivery-man-form', compact('wilayas'));
     }
 }
