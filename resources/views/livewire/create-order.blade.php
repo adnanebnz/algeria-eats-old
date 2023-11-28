@@ -1,9 +1,9 @@
 <div>
     <form method="POST" wire:submit.prevent='store()'>
         <div>
-            <label for="billing-address" class="mt-4 mb-2 block text-sm font-medium">Adresse de
+            <label for="billing-address" class="mt-4 mb-2 block text-sm text-gray-700 font-medium">Adresse de
                 livraison</label>
-            <div class="flex flex-col">
+            <div class="flex flex-col gap-4">
                 <div class="relative flex-shrink-0 w-full">
                     <input type="text" id="billing-address" name="adresse" wire:model='adresse'
                         class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -15,19 +15,9 @@
                 @error('adresse')
                     <p class="text-red-500 text-sm mt-1.5">{{ $message }}</p>
                 @enderror
-                <select type="text" name="wilaya_name_ascii" wire:model='wilaya_name_ascii'
-                    class="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500 mt-5">
-                    <option value="">Wilaya</option>
-                    @foreach ($wilayas as $wilaya)
-                        <option value="{{ $wilaya->wilaya_name_ascii }}">{{ $wilaya->wilaya_code }} -
-                            {{ $wilaya->wilaya_name_ascii }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-select name="wilaya_name_ascii" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
+                    :optionsTexts="'wilaya_name_ascii'" />
             </div>
-            @error('wilaya_name_ascii')
-                <p class="text-red-500 text-sm mt-1.5">{{ $message }}</p>
-            @enderror
             <div class="mt-6 flex items-center justify-between md:px-4 px-2">
                 <p class="text-md font-medium text-gray-900">Total</p>
                 <p class="text-2xl font-semibold text-gray-900">{{ $total }} DA</p>

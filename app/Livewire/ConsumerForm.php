@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use App\Models\Consumer;
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -53,5 +53,11 @@ class ConsumerForm extends Component
             Alert::success('Succès', 'Votre compte a été créé avec succès');
             return redirect()->to('/');
         });
+    }
+
+    public function render()
+    {
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('livewire.consumer-form', compact('wilayas'));
     }
 }

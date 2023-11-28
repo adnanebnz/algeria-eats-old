@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\Artisan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -79,6 +80,7 @@ class ArtisanForm extends Component
 
     public function render()
     {
-        return view('livewire.artisan-form');
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('livewire.artisan-form', compact('wilayas'));
     }
 }

@@ -14,12 +14,12 @@ class ArtisanInvoicesController extends Controller
     public function create(Order $order)
     {
         $customer = new Buyer([
-            'name'          => $order->consumer->getFullName(),
+            'name'          => $order->buyer->getFullName(),
             'custom_fields' => [
                 'Adresse' => $order->adresse,
                 'Wilaya'  => $order->wilaya,
-                'Numéro de Telephone' => $order->consumer->num_telephone,
-                'Email' => $order->consumer->email,
+                'Numéro de Telephone' => $order->buyer->num_telephone,
+                'Email' => $order->buyer->email,
             ],
         ]);
 
@@ -51,7 +51,7 @@ class ArtisanInvoicesController extends Controller
             ->currencyCode('DZD')
             ->currencyFormat('{VALUE} {SYMBOL}')
             ->logo(public_path('assets\LOGO.png'))
-            ->filename('invoice_' . $order->id . '_' . $order->consumer->getFullName())
+            ->filename('invoice_' . $order->id . '_' . $order->buyer->getFullName())
             ->save('public');
 
         return $invoice->stream();

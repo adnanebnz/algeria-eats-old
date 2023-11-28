@@ -41,12 +41,12 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
     {
         // Generate customer and artisan details
         $customer = new Buyer([
-            'name'          => $this->order->consumer->getFullName(),
+            'name'          => $this->order->buyer->getFullName(),
             'custom_fields' => [
                 'Adresse'            => $this->order->adresse,
                 'Wilaya'             => $this->order->wilaya,
-                'Numéro de Telephone' => $this->order->consumer->num_telephone,
-                'Email'              => $this->order->consumer->email,
+                'Numéro de Telephone' => $this->order->buyer->num_telephone,
+                'Email'              => $this->order->buyer->email,
             ],
         ]);
 
@@ -80,10 +80,10 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
             ->currencyCode('DZD')
             ->currencyFormat('{VALUE} {SYMBOL}')
             ->logo(public_path('assets\LOGO.png'))
-            ->filename('invoice_' . $this->order->id . '_' . $this->order->consumer->getFullName())
+            ->filename('invoice_' . $this->order->id . '_' . $this->order->buyer->getFullName())
             ->save('public');
 
         // Send the purchase mail
-        Mail::to($this->order->consumer->email)->send(new PurchaseMail($invoice, $this->order));
+        Mail::to($this->order->buyer->email)->send(new PurchaseMail($invoice, $this->order));
     }
 }

@@ -40,9 +40,9 @@ class CreateOrder extends Component
     {
         $data = $this->validate();
         $cartItems = Cart::where('user_id', auth()->user()->id)->get();
-        // TODO CHANGE THIS TO BUYER ID AND SAME TO THE DATABASE SCHEMA AND RELATIONSHIPS
+
         $order = Order::create([
-            'consumer_id' => auth()->user()->id,
+            'buyer_id' => auth()->user()->id,
             'artisan_id' => $cartItems[0]->product->artisan->user_id,
             'adresse' => $data['adresse'],
             'wilaya' => $data['wilaya_name_ascii'],

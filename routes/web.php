@@ -63,7 +63,6 @@ Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'de
 
 //DELIVERIES SECTION
 Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
-// TODO TO CREATE
 //DELIVERIES SECTION END
 
 // PDF INVOICES

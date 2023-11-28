@@ -10,16 +10,16 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'consumer_id',
+        'buyer_id',
         'artisan_id',
         'status',
         'adresse',
         'wilaya',
     ];
 
-    public function consumer()
+    public function buyer()
     {
-        return $this->belongsTo(User::class, 'consumer_id');
+        return $this->belongsTo(User::class, 'buyer_id');
     }
 
     public function artisan()

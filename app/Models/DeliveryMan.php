@@ -18,6 +18,8 @@ class DeliveryMan extends Authenticatable
         'rating',
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function user()
     {
         return $this->belongsTo(User::class);
