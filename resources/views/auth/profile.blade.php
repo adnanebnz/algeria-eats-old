@@ -72,10 +72,12 @@
                         </div>
                 @endif
                 @if ($user->isDeliveryMan())
-                    <h1 class="font-medium text-lg mb-4">Disponible? :
-                        <span
-                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
-                    </h1>
+                <h1 class="font-medium text-lg mb-4">Disponible? :
+    <span class="rounded-full {{ $user->deliveryMan->est_disponible ? 'bg-blue-500' : 'bg-red-500' }} text-white px-2 py-1">
+        {{ $user->deliveryMan->est_disponible ? 'Oui' : 'Non' }}
+    </span>
+</h1>
+
                 @endif
             </div>
         </div>
@@ -94,9 +96,10 @@
                             @if (auth()->user() && auth()->user()->artisan)
                                 <x-textarea name="desc_entreprise" label="Description d'entreprise"
                                     type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
-                            @endif
                             <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
                                 :value="auth()->user()->artisan->heure_ouverture" />
+                                    @endif
+                            
                             {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">

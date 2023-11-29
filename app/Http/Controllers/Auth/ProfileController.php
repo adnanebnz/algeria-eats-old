@@ -55,20 +55,20 @@ class ProfileController extends Controller
 
         // Update deliveryman-specific fields
         if ($user->deliveryMan) {
-            $speceficData = $request->validate([
-                'est_disponible' => 'required|string|in:true,false',
+            $specificData = $request->validate([
+                'est_disponible' => 'required|in:true,false',
             ]);
-            if ($speceficData['est_disponible'] === 'true') {
-                $speceficData['est_disponible'] = true;
-            } else {
-                $speceficData['est_disponible'] = false;
-            }
-            $user->deliveryMan->update($speceficData);
-        }
 
+            
+            $specificData['est_disponible'] = $specificData['est_disponible'] === 'true';
+
+            $user->deliveryMan->update($specificData);}
+        
+        
         if ($request->filled('password')) {
             $user->update(['password' => Hash::make($request->input('password'))]);
         }
+        
 
         Alert::success('Profil mis à jour !', 'Votre profil a été mis à jour avec succès !');
 

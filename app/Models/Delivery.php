@@ -9,20 +9,21 @@ class Delivery extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'delivery_id';
+
     protected $fillable = [
         'deliveryMan_id',
         'order_id',
         'status'
     ];
 
-
     public function deliveryMan()
     {
-        return $this->belongsTo(DeliveryMan::class);
+        return $this->belongsTo(DeliveryMan::class, 'deliveryMan_id');
     }
 
     public function order()
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }
