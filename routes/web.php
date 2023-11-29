@@ -70,7 +70,9 @@ Route::get('admin/dashboard/users/{user}',[AdminController::class,'indexOne'])->
 Route::get('admin/dashboard/users/{user}/edit', [AdminController::class, 'edit'])->name("admin.edit");
 Route::put('admin/dashboard/users/{user}', [AdminController::class, 'update'])->name("admin.update");
 Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'])->name("admin.destroy");
-Route::get('admin/dashboard/users/{user}/products',[AdminController::class, 'products'])->name('admin.products');
+Route::get('admin/dashboard/users/{user}/products',[AdminController::class, 'user_products'])->name('admin.user_products');
+Route::get('admin/dashboard/products',[AdminController::class, 'products'])->name('admin.products');
+
 //afficher les statistiques
 
 /*ADMIN END*/
