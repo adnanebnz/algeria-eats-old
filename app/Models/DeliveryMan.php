@@ -12,8 +12,11 @@ class DeliveryMan extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+
+    protected $primaryKey = 'user_id';
+
     protected $fillable = [
-        'user_id',
+        
         'est_disponible',
         'rating',
     ];

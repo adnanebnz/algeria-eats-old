@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Delivery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class DeliveryManController extends Controller
@@ -15,43 +16,43 @@ class DeliveryManController extends Controller
         $this->middleware('deliveryMan');
     }
     public function index()
-    {
+{
+    $userId = auth()->user()->id;
 
-        $userId = auth()->user()->id;
-        $latestDeliveries = Delivery::where('status', 'delivered')
+    $latestDeliveries = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->latest('created_at')
-        ->take(5)
-        ->get();
+        ->paginate(6);
 
-        $completedDeliveriesToday = Delivery::where('status', 'delivered')
-        ->where('deliveryMan_id', $userId)
-        ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
-        ->count();
-        $uncompletedDeliveriesToday = Delivery::where('status', false)
+    $completedDeliveriesToday = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
         ->count();
 
-        $completedDeliveriesThisWeek = Delivery::where('status', 'delivered')
+    $uncompletedDeliveriesToday = Delivery::where('status', 'delivering') 
+        ->where('deliveryMan_id', $userId)
+        ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
+        ->count();
+
+    $completedDeliveriesThisWeek = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfWeek(), now()->endOfWeek()])
         ->count();
 
-        $completedDeliveriesThisMonth = Delivery::where('status', 'delivered')
+    $completedDeliveriesThisMonth = Delivery::where('status', 'delivered')
         ->where('deliveryMan_id', $userId)
         ->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
         ->count();
 
+    return view("deliveryMan.dashboard", [
+        "deliveries" => $latestDeliveries,
+        "countday" => $completedDeliveriesToday,
+        "countweek" => $completedDeliveriesThisWeek,
+        "countmonth" => $completedDeliveriesThisMonth,
+        "uncompleted" => $uncompletedDeliveriesToday,
+    ])->with('i', ($latestDeliveries->currentPage() - 1) * $latestDeliveries->perPage());
+}
 
-        return view("deliveryMan.dashboard", [
-            "deliveries" => $latestDeliveries,
-            "countday" => $completedDeliveriesToday,
-            "countweek" =>$completedDeliveriesThisWeek,
-            "countmonth" =>$completedDeliveriesThisMonth,
-            "uncompleted" =>$completedDeliveriesToday
-        ]);
-    }
     public function deliveriesIndex()
     {
 
