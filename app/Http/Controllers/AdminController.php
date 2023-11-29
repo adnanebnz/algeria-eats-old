@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artisan;
+use App\Models\Consumer;
+use App\Models\DeliveryMan;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -14,7 +17,13 @@ class AdminController extends Controller
 
   public function index()
   {
-    return view("admin.dashboard");
+    $products = Product::all();
+    $orders = Order::all();
+    $users = User::all();
+    $artisans = Artisan::all();
+    $deliveryMans = DeliveryMan::all();
+    $consumer = Consumer::all();
+    return view("admin.dashboard",['products'=>$products,'orders'=>$orders,'users'=>$users,'deliveryMans'=>$deliveryMans,'artisans'=>$artisans,'consumer'=>$consumer]);
   }
   public function users(){
     $users=User::all();
@@ -47,11 +56,17 @@ class AdminController extends Controller
     Alert::success('succes',"user is deleted ! ");
     return redirect()-route("admin.index");
   }
-  public function products(User $user){
+  public function user_products(User $user){
     $userOrders=Order::where('user_id',$user->id)->get();
     $userProductsOrders = Product::where('id',$userOrders->product_id)->get();
     $userProducts = Product::where('artisan_id',$user->id)->get();
     $orderPercentage = $userProductsOrders->count()/$userProducts->count(); 
     return [$userOrders->count(),$userProducts->count(),$orderPercentage,$userProductsOrders->count()];
+  }
+  public function products(){
+    $Orders=Order::all();
+    $Products = Product::all();
+    $orderPercentage = $Orders->count()/$Products->count(); 
+    return [$orderPercentage];
   }
 }
