@@ -1,5 +1,52 @@
 <x-dashboard-layout :isAdmin=true>
-    <div class="w-full h-full bg-slate-100">
+    <div class="bg-slate-100">
+        <div class="py-4 ">
+            <input 
+            type="text" 
+            name="serch" 
+            placeholder="User id"
+            class="w-1/3 h-12 rounded-lg p-6 ">
+        </div>
+        <div class="w-full h-full bg-slate-200">
+            <table class=" w-full text-center text-xl">
+                <tr class="text-3xl bg-blue-400">
+                    <td>id</td>
+                    <td>image</td>
+                    <td>email</td>
+                    <td>Delet</td>
+                </tr>
+                @foreach ($users as $user)
+                    <tr 
+                    class="bg-blue-200 hover:bg-blue-500 hover:text-white h-6 " 
+                    >
+                        <td>{{$user->id}}</td>
+                        <td
+                        onclick="window.location='{{ route('admin.indexOne', ['user' => $user]) }}'">
+                            <img 
+                            class="rounded-full w-20 h-20 mx-auto my-4 object-cover border border-solid border-gray-300"
+                            src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
+
+                        </td>
+                        <td>{{$user->email}}</td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.destroy', ['user' => $user->id]) }}" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                                @csrf
+                                @method('DELETE')
+                            <button 
+                            type="submit" 
+                            class="bg-red-700 hover:bg-red-800 px-6 py-2 rounded-md  text-white">
+                                Supprimer
+                            </button>
+                        </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+    
+        </div>
+    </div>
+    
+    <!--<div class="w-full h-full bg-slate-100">
         <table class="gap-y-8">
             <tr>
                 <th>nom</th>
@@ -29,5 +76,5 @@
             </tr>
             @endforeach
         </table>
-    </div>
+    </div>-->
 </x-dashboard-layout>

@@ -17,7 +17,10 @@ class UserStatistic extends Component
         $deliveryMans = DeliveryMan::all();
         $consumer = Consumer::all();
         return view('livewire.user-statistic',[
-            'user'=>$users,
+            'users'=>$users->count(),
+            'artisans'=>$artisans->count(),
+            'deliveryMans'=>$deliveryMans->count(),
+            'consumer'=>$consumer->count(),
         ]);
     }
 }
