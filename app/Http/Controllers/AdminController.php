@@ -17,13 +17,7 @@ class AdminController extends Controller
 
   public function index()
   {
-    $products = Product::all();
-    $orders = Order::all();
-    $users = User::all();
-    $artisans = Artisan::all();
-    $deliveryMans = DeliveryMan::all();
-    $consumer = Consumer::all();
-    return view("admin.dashboard",['products'=>$products,'orders'=>$orders,'users'=>$users,'deliveryMans'=>$deliveryMans,'artisans'=>$artisans,'consumer'=>$consumer]);
+    return view("admin.dashboard",);
   }
   public function users(){
     $users=User::all();
@@ -54,7 +48,7 @@ class AdminController extends Controller
   public function destroy(User $user){
     $user->delete();
     Alert::success('succes',"user is deleted ! ");
-    return redirect()-route("admin.index");
+    return redirect()->route("admin.users");
   }
   public function user_products(User $user){
     $userOrders=Order::where('user_id',$user->id)->get();
@@ -63,10 +57,5 @@ class AdminController extends Controller
     $orderPercentage = $userProductsOrders->count()/$userProducts->count(); 
     return [$userOrders->count(),$userProducts->count(),$orderPercentage,$userProductsOrders->count()];
   }
-  public function products(){
-    $Orders=Order::all();
-    $Products = Product::all();
-    $orderPercentage = $Orders->count()/$Products->count(); 
-    return [$orderPercentage];
-  }
+  
 }
