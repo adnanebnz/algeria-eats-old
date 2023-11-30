@@ -1,14 +1,10 @@
 <x-dashboard-layout :isArtisan=true>
-    <div class="bg-white pt-8 md:px-5 rounded-md w-full">
-        <div class=" flex items-center justify-between">
-            <div>
-            </div>
-            <div class="md:ml-40 md:space-x-4">
-                <a href="{{ route('artisan.products.new') }}"
-                    class="bg-blue-600 px-4 py-2.5 rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
-                    un Produit</a>
-
-            </div>
+    <div class="bg-white mt-8 md:px-5 rounded-md w-full">
+        <div class="flex items-center justify-between pt-3 px-4">
+            <p class="text-lg md:text-xl text-gray-700 font-bold">Produits</p>
+            <a href="{{ route('artisan.products.new') }}"
+                class="bg-blue-600 md:px-4 px-2.5 md:py-2 py-1.5 text-md rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
+                un Produit</a>
         </div>
     </div>
     <div class="bg-white md:px-4 px-1 rounded-md w-full">

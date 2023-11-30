@@ -1,6 +1,9 @@
 <x-dashboard-layout :isArtisan=true>
-    <div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
+    <div class="bg-white mt-8 pb-8 pl-8 pr-8 rounded-md w-full">
         <div class="mt-4">
+            <div class="py-4">
+                <h3 class="md:text-xl font-bold leading-none text-gray-700">Commandes</h3>
+            </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
