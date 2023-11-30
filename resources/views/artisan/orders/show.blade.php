@@ -1,5 +1,5 @@
 <x-dashboard-layout :isArtisan=true>
-    <div class="md:pb-12 pb-4 mt-5">
+    <div class="py-4 px-4 mt-8 bg-white rounded-md shadow-md">
         <div class="flex justify-start item-start space-y-2 flex-col">
             <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Commande
                 #{{ $order->id }}</h1>

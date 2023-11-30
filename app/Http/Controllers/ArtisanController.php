@@ -62,9 +62,17 @@ class ArtisanController extends Controller
 
         // Prepare data for the chart
         $months = $monthlyOrderCounts->pluck('month')->toArray();
-        $orderCounts = $monthlyOrderCounts->pluck('order_count')->toArray();
 
-        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts'));
+        $orderCounts = $monthlyOrderCounts->pluck('order_count')->toArray();
+        $totalProducts = Product::where('artisan_id', auth()->user()->id)->count();
+        $totalOrders = Order::where('artisan_id', auth()->user()->id)->count();
+        $totalDeliveries = Delivery::whereHas('order', function ($query) {
+            $query->where('artisan_id', auth()->user()->id);
+        })->count();
+
+        $topSellingProducts = Product::where('artisan_id', auth()->user()->id)->orderBy('rating')->take(5)->get();
+
+        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts', 'totalOrders', 'totalProducts', 'totalDeliveries', 'topSellingProducts'));
     }
     public function productsIndex()
     {
@@ -76,14 +84,8 @@ class ArtisanController extends Controller
 
     public function showProduct(Product $product)
     {
-        // GET ALL ORDERS OF THIS PRODUCT
-        $orders = Order::whereHas('orderItems', function ($query) use ($product) {
-            $query->where('product_id', $product->id);
-        })->paginate(10);
-
         return view('artisan.products.show', [
-            "product" => $product,
-            "orders" => $orders
+            'product' => $product
         ]);
     }
 
@@ -128,7 +130,6 @@ class ArtisanController extends Controller
 
     public function showOrder(Order $order)
     {
-        // LETS GET THE DELIVERY OF THIS ORDER IF EXISTS
         $delivery = Delivery::where('order_id', $order->id)->first();
 
         return view('artisan.orders.show', [
