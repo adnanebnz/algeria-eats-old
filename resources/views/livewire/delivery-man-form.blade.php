@@ -44,17 +44,18 @@
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </template>
-                        <div class="flex text-sm text-gray-800">
+                        <div class="flex text-sm text-gray-800 my-2">
                             <label for="file-upload"
-                                class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                <span class="">Upload a file</span>
+                                class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                <span
+                                    class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                    une photo</span>
                                 <input id="file-upload" name="image" wire:model='image' type="file" class="sr-only"
                                     accept="image/*" x-on:change="image = URL.createObjectURL($event.target.files[0])">
                             </label>
-                            <p class="pl-1">or drag and drop</p>
                         </div>
                         <p class="text-xs">
-                            JPEG, JPG, GIF Maximum 4 méga.
+                            PNG, JPEG, JPG, GIF Maximum 4 méga.
                         </p>
                     </div>
                 </div>
