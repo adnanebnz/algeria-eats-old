@@ -162,25 +162,26 @@
                                 </template>
                                 <div class="flex flex-col gap-1 items-center justify-center">
                                     <template x-if="!image">
-                                        <svg class="h-16 w-16 text-gray-600" stroke="currentColor" fill="none"
+                                        <svg class="h-14 w-14 text-gray-600" stroke="currentColor" fill="none"
                                             viewBox="0 0 48 48" aria-hidden="true">
                                             <path
                                                 d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </template>
-                                    <div class="flex text-sm text-gray-800">
+                                    <div class="flex text-sm text-gray-800 my-2">
                                         <label for="file-upload"
-                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                                            <span class="">Upload a file</span>
+                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                            <span
+                                                class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                                une photo</span>
                                             <input id="file-upload" name="image" type="file" class="sr-only"
                                                 accept="image/*"
                                                 x-on:change="image = URL.createObjectURL($event.target.files[0])">
                                         </label>
-                                        <p class="pl-1">or drag and drop</p>
                                     </div>
                                     <p class="text-xs">
-                                        JPEG, JPG, GIF Maximum 4 méga.
+                                        PNG, JPEG, JPG, GIF Maximum 4 méga.
                                     </p>
                                 </div>
                             </div>
