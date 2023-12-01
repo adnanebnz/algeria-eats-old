@@ -157,40 +157,65 @@
                         <div class="flex-1 flex-col justify-between px-3 bg-white divide-y space-y-1">
                             <div class="flex flex-col justify-between gap-72">
                                 <ul class="space-y-2 pt-5">
-                                    <li>
-                                        <a href="{{ route('artisan.index') }}" @class([
-                                            'text-base font-normal rounded-lg flex items-center p-2 group',
-                                            request()->routeIs('artisan.index')
-                                                ? 'bg-blue-500 text-white'
-                                                : 'text-gray-900 hover:bg-gray-100',
-                                        ])>
-                                            <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
-                                                @class([
-                                                    'w-6 h-6 text-gray-500 transition duration-75',
-                                                    request()->routeIs('artisan.index')
-                                                        ? 'bg-blue-500 text-white'
-                                                        : 'text-gray-500 group-hover:text-gray-900',
-                                                ])>
-                                                <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                                                <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                                            </svg>
-                                            <span class="ml-3">Tableau de bord</span>
-                                        </a>
-                                    </li>
+                                    @if ($isArtisan)
+                                        <li>
+                                            <a href="{{ route('artisan.index') }}" @class([
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('artisan.index')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
+                                            ])>
+                                                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                                    @class([
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('artisan.index')
+                                                            ? 'bg-blue-500 text-white'
+                                                            : 'text-gray-500 group-hover:text-gray-900',
+                                                    ])>
+                                                    <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                                                </svg>
+                                                <span class="ml-3">Tableau de bord</span>
+                                            </a>
+                                        </li>
+                                    @endif
 
                                     @if ($isAdmin)
                                         <li>
+                                            <a href="{{ route('admin.index') }}" @class([
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('admin.index')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
+                                            ])>
+                                                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                                    @class([
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('admin.index')
+                                                            ? 'bg-blue-500 text-white'
+                                                            : 'text-gray-500 group-hover:text-gray-900',
+                                                    ])>
+                                                    <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                                                </svg>
+                                                <span class="ml-3">Tableau de bord</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{ route('admin.users') }}" @class([
-                                                'text-base font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group',
-                                                true ? 'bg-blue-500 text-white' : 'text-gray-900',
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('admin.users')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
                                             ])>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     @class([
-                                                        'w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75',
-                                                        request()->routeIs('artisan.index')
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('admin.users')
                                                             ? 'bg-blue-500 text-white'
-                                                            : 'text-gray-500',
+                                                            : 'text-gray-500 group-hover:text-gray-900',
                                                     ]) viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
