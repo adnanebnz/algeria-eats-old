@@ -80,7 +80,7 @@
                                         <td class="px-5 py-5  border-gray-200 bg-white text-sm">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-full h-full rounded-md border"
+                                                    <img class="w-full h-full rounded-full border"
                                                         src="{{ $order->buyer->image ? (str_starts_with($order->buyer->image, 'http') ? $order->buyer->image : asset('storage/' . $order->buyer->image)) : asset('assets/user.png') }}" />
                                                 </div>
                                                 <div class="ml-3">
@@ -135,7 +135,8 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
+                                        <td
+                                            class="flex items-center justify-center gap-3 px-5 py-5 birder-b border-gray-200 mt-1.5 bg-white text-sm">
                                             <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -165,9 +166,6 @@
                                                 </button>
                                             </form>
                                         </td>
-                                        @if ($orders->count() > 1 && !$loop->last)
-                                            <hr class="my-2" />
-                                        @endif
                                     </tr>
                                 @empty
                                     <tr>

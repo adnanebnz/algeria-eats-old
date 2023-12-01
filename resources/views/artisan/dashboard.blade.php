@@ -146,7 +146,7 @@
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center justify-between">
                                     <div class="flex flex-row gap-3 justify-center items-center">
-                                        <img class="h-32 w-32 rounded-md"
+                                        <img class="h-20 w-20 rounded-md"
                                             src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}">
                                         <div class="flex flex-col">
                                             <p

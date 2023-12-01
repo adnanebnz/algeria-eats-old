@@ -103,7 +103,8 @@
                                             {{ $product->created_at->format('d/m/Y') }}
                                         </td>
 
-                                        <td class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
+                                        <td
+                                            class="flex items-center justify-center gap-3 px-5 py-5 mt-2 border-b border-gray-200 bg-white text-sm">
                                             <a href="{{ route('artisan.products.show', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
