@@ -66,8 +66,8 @@
                 </div>
             </div>
         </div>
-        <div id="24h">
-            <h1 class="font-bold py-4 uppercase">Last 24h Statistics</h1>
+        <div class="mt-2">
+            <h1 class="font-bold text-lg text-gray-700 py-4">Aperçu des statistiques</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {{-- TODO TOTAL PRODUCTS --}}
                 <div class="bg-white p-6 rounded-lg shadow-md">
