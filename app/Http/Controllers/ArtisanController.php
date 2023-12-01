@@ -64,19 +64,65 @@ class ArtisanController extends Controller
         $months = $monthlyOrderCounts->pluck('month')->toArray();
 
         $orderCounts = $monthlyOrderCounts->pluck('order_count')->toArray();
+
         $totalProducts = Product::where('artisan_id', auth()->user()->id)->count();
-        $totalOrders = Order::where('artisan_id', auth()->user()->id)->count();
+
+        $orders = Order::where('artisan_id', auth()->user()->id);
+
         $totalDeliveries = Delivery::whereHas('order', function ($query) {
             $query->where('artisan_id', auth()->user()->id);
         })->count();
 
-        $topSellingProducts = Product::where('artisan_id', auth()->user()->id)->orderBy('rating')->take(5)->get();
+        $totalIncomes = 0;
+        foreach ($orders->get() as $order) {
+            $totalIncomes += $order->getTotalPrice();
+        }
 
-        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts', 'totalOrders', 'totalProducts', 'totalDeliveries', 'topSellingProducts'));
+        $totalOrders = $orders->count();
+
+        $topSellingProducts = Product::where('artisan_id', auth()->user()->id)->orderBy('rating', "desc")->take(5)->get();
+
+        $revenueBreakdown = Product::select(
+            'categorie',
+            DB::raw('SUM(prix) as total_revenue')
+        )
+            ->where('artisan_id', auth()->user()->id)
+            ->groupBy('categorie')
+            ->get();
+
+        // Prepare data for the revenue breakdown bar chart
+        $categories = $revenueBreakdown->pluck('categorie')->toArray();
+        $customLabels = array_map(function ($category) {
+            return ($category === 'sucree') ? 'Sucrée' : 'Salée';
+        }, $categories);
+        $totalRevenueByCategory = $revenueBreakdown->pluck('total_revenue')->toArray();
+
+
+        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts', 'totalOrders', 'totalProducts', 'totalDeliveries', 'topSellingProducts', 'totalIncomes', 'categories', 'totalRevenueByCategory', 'customLabels'));
     }
-    public function productsIndex()
+
+    public function productsIndex(Request $request)
     {
-        $products = Product::where('artisan_id', auth()->user()->id)->paginate(10);
+        $query = Product::select('id', 'images', 'nom', 'prix', 'categorie', 'created_at')
+            ->where('artisan_id', auth()->user()->id);
+
+        // Filtering by search term
+        if ($request->has('search')) {
+            $query->where('nom', 'like', '%' . request('search') . '%');
+        }
+
+        // Filtering by date
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            if ($date == 'nouveau') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($date == 'ancien') {
+                $query->orderBy('created_at', 'asc');
+            }
+        }
+
+        $products = $query->paginate(10);
+
         return view('artisan.products.index', [
             "products" => $products
         ]);
@@ -120,9 +166,37 @@ class ArtisanController extends Controller
     // PRODUCT SECTION END
 
     // ORDERS SECTION
-    public function ordersIndex()
+
+    public function ordersIndex(Request $request)
     {
-        $orders = Order::where('artisan_id', auth()->user()->id)->paginate(10);
+        $query = Order::select('id', 'status', 'created_at', 'buyer_id', 'artisan_id', 'adresse', 'wilaya')
+            ->where('artisan_id', auth()->user()->id);
+
+        // Filtering by search term of buyer name
+        if ($request->has('search')) {
+            $query->whereHas('buyer', function ($query) {
+                $query->where('nom', 'like', '%' . request('search') . '%')->orWhere('prenom', 'like', '%' . request('search') . '%');
+            });
+        }
+
+        // Filtering by status
+        if ($request->has('status')) {
+            $query->where('status', request('status'));
+        }
+
+        // Filtering by date
+
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            if ($date == 'nouveau') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($date == 'ancien') {
+                $query->orderBy('created_at', 'asc');
+            }
+        }
+
+        $orders = $query->paginate(10);
+
         return view('artisan.orders.index', [
             "orders" => $orders
         ]);
