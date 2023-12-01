@@ -12,11 +12,11 @@
                                 <div class="relative">
                                     <select name="role"
                                         class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                                        <option value="Tous">Tous</option>
-                                        <option value="Admins">Admins</option>
-                                        <option value="Artisans">Artisans</option>
-                                        <option value="Livreurs">Livreurs</option>
-                                        <option value="Clients">Clients</option>
+                                        <option value="Tous" @selected(request()->query('role') == 'Tous')>Tous</option>
+                                        <option value="Admins" @selected(request()->query('role') == 'Admins')>Admins</option>
+                                        <option value="Artisans" @selected(request()->query('role') == 'Artisans')>Artisans</option>
+                                        <option value="Livreurs" @selected(request()->query('role') == 'Livreurs')>Livreurs</option>
+                                        <option value="Clients" @selected(request()->query('role') == 'Clients')>Clients</option>
                                     </select>
                                     <div
                                         class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
