@@ -121,14 +121,12 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 ## TODO
 
-1 - SET MORE FILTERS IN TABLE AND SORT
+1 - implement script to see password
 
 2 - Add communes
 
-3 - modify index page and auth pages
+3 - write unit tests
 
-4 - add google analytics
+4 - image upload when creating a product and modifying it
 
-5 - implement script to see password
-
-6 - write unit tests
+5 - add google analytics
