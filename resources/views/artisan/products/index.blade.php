@@ -153,7 +153,7 @@
                                 @endforelse
                             </tbody>
                         </table>
-                        <div class="my-5">
+                        <div class="mx-5 my-5">
                             {{ $products->links() }}
                         </div>
                     </div>
