@@ -1,7 +1,7 @@
 <x-dashboard-layout :isArtisan=true>
-    <section class="mt-10" x-data="{ currentImageIndex: 0 }">
+    <section class="mt-10 bg-white rounded-md py-4 px-4 shadow-md" x-data="{ currentImageIndex: 0 }">
         <div class="w-full px-4">
-            <div class="lg:pl-20">
+            <div>
                 <p class="inline-block text-sm text-gray-700">
                     Nom du produit :
                     <span class="font-semibold text-lg">{{ $product->nom }}</span>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="px-4 mx-auto">
-            <div class=" mb-24 -mx-4">
+            <div class="-mx-4">
                 <div class="w-full px-4 mb-8 md:mb-0">
                     <div class="sticky top-0 overflow-hidden ">
                         <div class="relative mb-6 lg:mb-10 lg:h-96">
