@@ -2,10 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Consumer;
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ConsumerForm extends Component
 {
@@ -37,20 +39,25 @@ class ConsumerForm extends Component
     {
         $validatedData = $this->validate();
         $validatedData['password'] = bcrypt($validatedData['password']);
-        if ($this->image) {
-            $imagePath = $this->image->store('profile_images', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-        $creation = User::create($validatedData);
-        Consumer::create([
-            'user_id' => $creation->id,
-        ]);
 
-        auth()->login($creation);
-        return redirect()->to('/');
+        return DB::transaction(function () use ($validatedData) {
+            $user = User::create($validatedData);
+
+            if ($this->image) {
+                $imagePath = $this->image->store('profile_images', 'public');
+                $user->update(['image' => $imagePath]);
+            }
+
+            $user->consumer()->create([]);
+            auth()->login($user);
+            Alert::success('Succès', 'Votre compte a été créé avec succès');
+            return redirect()->to('/');
+        });
     }
+
     public function render()
     {
-        return view('livewire.consumer-form');
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('livewire.consumer-form', compact('wilayas'));
     }
 }

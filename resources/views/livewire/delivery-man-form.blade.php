@@ -9,8 +9,8 @@
                 <x-input name="adresse" label="Adresse" type="text" />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
-                <x-input name="wilaya" label="Wilaya" type="text" />
-                {{--  TODO REPLACE WITH SELECT --}}
+                <x-select name="wilaya" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
+                    :optionsTexts="'wilaya_name_ascii'" />
                 <div>
                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Disponible?</label>
                     <select name="est_disponible" wire:model='est_disponible'
@@ -25,19 +25,40 @@
                 <x-input name="password_confirmation" label="Confirmer le Mot de passe" type="password" />
             </div>
         </div>
-        <div class="flex items-center justify-center gap-4" x-data="{ imageSrc: null }">
-            <label
-                class="text-blue-500 border-blue-500 flex w-64 cursor-pointer flex-col items-center rounded-lg border transition-all hover:bg-white hover:text-black hover:border-black px-4 py-6 uppercase tracking-wide shadow-lg">
-                <svg class="h-8 w-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path
-                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                </svg>
-                <span class="mt-2 text-base leading-normal text-center">Selectionner votre photo</span>
-                <input type="file" class="hidden" wire:model='image' name="image"
-                    @change="imageSrc = URL.createObjectURL($event.target.files[0])" />
+        <div x-data="{ image: null }">
+            <label class="block text-sm font-medium text-white">
+                Image
             </label>
-            <div class="my-3">
-                <img x-bind:src="imageSrc" class="h-36 w-36 object-cover rounded-full" x-show="imageSrc">
+            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                <div class="space-y-4 text-center">
+                    <template x-if="image">
+                        <img x-bind:src="image" alt="Uploaded Image"
+                            class="h-32 mx-auto mb-4 rounded-full border">
+                    </template>
+                    <div class="flex flex-col gap-1 items-center justify-center">
+                        <template x-if="!image">
+                            <svg class="h-14 w-14 text-gray-600" stroke="currentColor" fill="none"
+                                viewBox="0 0 48 48" aria-hidden="true">
+                                <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </template>
+                        <div class="flex text-sm text-gray-800 my-2">
+                            <label for="file-upload"
+                                class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                <span
+                                    class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                    une photo</span>
+                                <input id="file-upload" name="image" wire:model='image' type="file" class="sr-only"
+                                    accept="image/*" x-on:change="image = URL.createObjectURL($event.target.files[0])">
+                            </label>
+                        </div>
+                        <p class="text-xs">
+                            PNG, JPEG, JPG, GIF Maximum 4 méga.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <div>

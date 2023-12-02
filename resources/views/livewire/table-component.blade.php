@@ -37,12 +37,12 @@
                     </td>
 
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $order->consumer->getFullName() }}
+                        {{ $order->buyer->getFullName() }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $order->consumer->email }}
+                        {{ $order->buyer->email }}
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        {{ $order->consumer->num_telephone }}
+                        {{ $order->buyer->num_telephone }}
                     </td>
                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         {{ $order->orderItems->where('product_id', $product->id)->first()->quantity }}

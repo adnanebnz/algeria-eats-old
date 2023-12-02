@@ -50,16 +50,17 @@
                                         {{ $delivery->order->artisan->prenom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $delivery->order->artisan->adresse }} - {{ $delivery->order->artisan->wilaya }}
+                                        {{ $delivery->order->artisan->adresse }} -
+                                        {{ $delivery->order->artisan->wilaya }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->nom }}
+                                        {{ $delivery->order->buyer->nom }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                    {{ $delivery->order->adresse }} -  {{ $delivery->order->wilaya }}
+                                        {{ $delivery->order->adresse }} - {{ $delivery->order->wilaya }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->consumer->num_telephone }}
+                                        {{ $delivery->order->buyer->num_telephone }}
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 ">
                                         @if ($delivery->status == 'not_started')
@@ -92,5 +93,4 @@
             </div>
         </div>
     </div>
-
 </x-dashboard-layout>
