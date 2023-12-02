@@ -127,3 +127,5 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 3 - image upload when creating a product and modifying it
 
 4 - add google analytics
+
+5 - deploy project
