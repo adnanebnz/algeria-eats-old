@@ -19,6 +19,8 @@ return new class extends Migration
             $table->foreign('artisan_id')->references('user_id')->on('artisans')->cascadeOnDelete();
             $table->string('adresse');
             $table->string('wilaya');
+            $table->string('daira');
+            $table->string('commune');
             $table->string('status');
             $table->timestamps();
         });
