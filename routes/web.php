@@ -87,9 +87,9 @@ Route::get('admin/dashboard/users/{user}/products', [AdminController::class, 'pr
 Route::get('deliveryMan/dashboard', [DeliveryManController::class, 'index'])->name("deliveryMan.index");
 //deliveries  SECTION
 Route::get('deliveryMan/dashboard/deliveries', [DeliveryManController::class, 'deliveriesIndex'])->name("deliveryMan.deliveries");
-Route::post('deliveryMan/{delivery_id}/accept', [DeliveryController::class, 'accept'])->name('delivery.accept');
-Route::post('deliveryMan/{delivery_id}/reject', [DeliveryController::class, 'reject'])->name('delivery.reject');
-Route::post('deliveryMan/{delivery_id}/complete', [DeliveryController::class, 'complete'])->name('delivery.complete');
+Route::post('deliveryMan/{delivery}/accept', [DeliveryManController::class, 'accept'])->name('delivery.accept');
+Route::post('deliveryMan/{delivery}/reject', [DeliveryManController::class, 'reject'])->name('delivery.reject');
+Route::post('deliveryMan/{delivery}/complete', [DeliveryManController::class, 'complete'])->name('delivery.complete');
 
 
 //ORDERS SECTION END
