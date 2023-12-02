@@ -114,25 +114,18 @@ git commit -m "Description des modifications"
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
 -   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [ ] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
--   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices OR LEAVE IT CONCURRENTLY
--   [ ] SHOW WISHLISTS FOR USERS
--   [ ] WORK ON DELIVERYMAN DASHBOARD
--   [ ] WORK ON USER DASHBOARD
--   [ ] WORK ON ADMIN DASHBOARD
 -   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
 
 ## TODO
 
-1 - SET MORE FILTERS IN TABLE AND SORT
+1 - implement script to see password
 
-2 - Add communes
+2 - write unit tests
 
-3 - modify index page and auth pages
+3 - image upload when creating a product and modifying it
 
 4 - add google analytics
 
-5 - implement script to see password
-
-6 - write unit tests
+5 - deploy project

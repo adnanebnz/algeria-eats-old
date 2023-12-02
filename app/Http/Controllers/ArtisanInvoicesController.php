@@ -18,6 +18,8 @@ class ArtisanInvoicesController extends Controller
             'custom_fields' => [
                 'Adresse' => $order->adresse,
                 'Wilaya'  => $order->wilaya,
+                'Daira'   => $order->daira,
+                'Commune' => $order->commune,
                 'Numéro de Telephone' => $order->buyer->num_telephone,
                 'Email' => $order->buyer->email,
             ],
