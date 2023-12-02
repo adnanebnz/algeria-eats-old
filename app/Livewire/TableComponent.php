@@ -9,18 +9,22 @@ use Livewire\WithPagination;
 class TableComponent extends Component
 {
     public $product;
+
     use WithPagination;
+
+    public function mount($product)
+    {
+        $this->product = $product;
+    }
 
     public function render()
     {
-        $product = $this->product;
-        $orders = Order::whereHas('orderItems', function ($query) use ($product) {
-            $query->where('product_id', $product->id);
-        })->paginate(5);
+        $orders = Order::whereHas('orderItems', function ($query) {
+            $query->where('product_id', $this->product->id);
+        })->paginate(10);
 
         return view('livewire.table-component', [
-            "orders" => $orders,
-            "product" => $product
+            'orders' => $orders
         ]);
     }
 }
