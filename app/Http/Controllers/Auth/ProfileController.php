@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
@@ -70,8 +71,18 @@ class ProfileController extends Controller
             $user->update(['password' => Hash::make($request->input('password'))]);
         }
 
+        if ($request->hasFile('image')) {
+            if ($user->image) {
+                // THE IMAGE IS IN public disk in profile_images folder
+                Storage::disk('public')->delete($user->image);
+            }
+            $image = $request->file('image');
+            $imagePath = $image->store('profile_images', 'public');
+            $user->update(['image' => $imagePath]);
+        }
+
         Alert::success('Profil mis à jour !', 'Votre profil a été mis à jour avec succès !');
 
-        return redirect()->route('profile', ['user' => $user])->withStatus('Profil mis à jour !');
+        return redirect()->route('profile', ['user' => $user]);
     }
 }
