@@ -15,8 +15,55 @@
                 @error('adresse')
                     <p class="text-red-500 text-sm mt-1.5">{{ $message }}</p>
                 @enderror
-                <x-select name="wilaya_name_ascii" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
-                    :optionsTexts="'wilaya_name_ascii'" />
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">
+                        Wilaya
+                    </label>
+                    <select wire:model.live='selectedWilaya' id="selectedWilaya" name="selectedWilaya"
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        <option value="">Choisir une wilaya</option>
+                        @foreach ($wilayas as $wilaya)
+                            <option value="{{ $wilaya->wilaya_name_ascii }}">{{ $wilaya->wilaya_code }} -
+                                {{ $wilaya->wilaya_name_ascii }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">
+                        Daira
+                    </label>
+                    <select wire:model.live='selectedDaira' id="selectedDaira" name="selectedDaira"
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        @if (!$selectedWilaya)
+                            <option value="">Choisir une Daira</option>
+                        @endif
+                        @if ($selectedWilaya)
+                            @foreach ($dairas as $daira)
+                                <option value="{{ $daira->daira_name_ascii }}">{{ $daira->daira_name_ascii }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">
+                        Commune
+                    </label>
+                    <select wire:model.live='selectedCommune' id="selectedCommune" name="selectedCommune"
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        @if (!$selectedDaira)
+                            <option value="">Choisir une Commune</option>
+                        @endif
+                        @if ($selectedDaira)
+                            @foreach ($communes as $commune)
+                                <option value="{{ $commune->commune_name_ascii }}">{{ $commune->commune_name_ascii }}
+                                </option>
+                            @endforeach
+                        @endif
+                    </select>
+                </div>
             </div>
             <div class="mt-6 flex items-center justify-between md:px-4 px-2">
                 <p class="text-md font-medium text-gray-900">Total</p>

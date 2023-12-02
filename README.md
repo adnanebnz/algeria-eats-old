@@ -122,10 +122,8 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 1 - implement script to see password
 
-2 - Add communes
+2 - write unit tests
 
-3 - write unit tests
+3 - image upload when creating a product and modifying it
 
-4 - image upload when creating a product and modifying it
-
-5 - add google analytics
+4 - add google analytics
