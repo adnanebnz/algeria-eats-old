@@ -1,5 +1,5 @@
 <x-dashboard-layout :isArtisan=true>
-    <div class="md:pb-12 pb-4 mt-5">
+    <div class="py-4 px-4 mt-8 bg-white rounded-md shadow-md">
         <div class="flex justify-start item-start space-y-2 flex-col">
             <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Commande
                 #{{ $order->id }}</h1>
@@ -52,10 +52,10 @@
                             <div class="flex flex-col justify-start items-start flex-shrink-0">
                                 <div
                                     class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                                    <img src="{{ $order->consumer->image ? (str_starts_with($order->consumer->image, 'http') ? $order->consumer->image : asset('storage/' . $order->consumer->image)) : asset('assets/user.png') }}"
+                                    <img src="{{ $order->buyer->image ? (str_starts_with($order->buyer->image, 'http') ? $order->buyer->image : asset('storage/' . $order->buyer->image)) : asset('assets/user.png') }}"
                                         class="h-10 w-10 rounded-full border" />
                                     <p class="text-base font-semibold leading-4 text-left text-gray-800">
-                                        {{ $order->consumer->getFullName() }}</p>
+                                        {{ $order->buyer->getFullName() }}</p>
                                 </div>
 
                                 <div
@@ -68,7 +68,7 @@
                                         <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-linecap="round"
                                             stroke-linejoin="round" />
                                     </svg>
-                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->consumer->email }}</p>
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->buyer->email }}</p>
                                 </div>
                                 <div
                                     class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
@@ -78,7 +78,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
                                     </svg>
-                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->consumer->num_telephone }}
+                                    <p class="cursor-pointer text-sm leading-5 ">{{ $order->buyer->num_telephone }}
                                     </p>
                                 </div>
                             </div>
@@ -95,13 +95,31 @@
                                             {{ $order->adresse }}</p>
                                     </div>
                                     <div
-                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
                                         <p
                                             class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
                                             Wilaya de Livraision</p>
                                         <p
                                             class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
                                             {{ $order->wilaya }}</p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Daira de Livraision</p>
+                                        <p
+                                            class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
+                                            {{ $order->daira }}</p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Commune de Livraision</p>
+                                        <p
+                                            class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
+                                            {{ $order->commune }}</p>
                                     </div>
                                 </div>
                             </div>
