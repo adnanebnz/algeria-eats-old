@@ -16,10 +16,11 @@ class DeliveryMan extends Authenticatable
     protected $primaryKey = 'user_id';
 
     protected $fillable = [
-        
+
         'est_disponible',
         'rating',
     ];
+
 
     public function user()
     {
