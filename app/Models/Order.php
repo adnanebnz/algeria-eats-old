@@ -15,6 +15,8 @@ class Order extends Model
         'status',
         'adresse',
         'wilaya',
+        'daira',
+        'commune',
     ];
 
     public function buyer()

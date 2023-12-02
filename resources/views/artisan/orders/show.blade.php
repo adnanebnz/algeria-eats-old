@@ -95,13 +95,31 @@
                                             {{ $order->adresse }}</p>
                                     </div>
                                     <div
-                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-4">
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
                                         <p
                                             class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
                                             Wilaya de Livraision</p>
                                         <p
                                             class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
                                             {{ $order->wilaya }}</p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Daira de Livraision</p>
+                                        <p
+                                            class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
+                                            {{ $order->daira }}</p>
+                                    </div>
+                                    <div
+                                        class="flex justify-center md:justify-start items-center md:items-start flex-col space-y-2">
+                                        <p
+                                            class="text-base font-semibold leading-4 text-center md:text-left text-gray-800">
+                                            Commune de Livraision</p>
+                                        <p
+                                            class="w-48 lg:w-full xl:w-48 text-center md:text-left text-lg leading-5 text-gray-600">
+                                            {{ $order->commune }}</p>
                                     </div>
                                 </div>
                             </div>

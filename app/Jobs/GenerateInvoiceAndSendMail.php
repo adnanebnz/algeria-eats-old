@@ -45,6 +45,8 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
             'custom_fields' => [
                 'Adresse'            => $this->order->adresse,
                 'Wilaya'             => $this->order->wilaya,
+                'Daira'              => $this->order->daira,
+                'Commune'            => $this->order->commune,
                 'Numéro de Telephone' => $this->order->buyer->num_telephone,
                 'Email'              => $this->order->buyer->email,
             ],

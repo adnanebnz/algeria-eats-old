@@ -169,7 +169,7 @@ class ArtisanController extends Controller
 
     public function ordersIndex(Request $request)
     {
-        $query = Order::select('id', 'status', 'created_at', 'buyer_id', 'artisan_id', 'adresse', 'wilaya')
+        $query = Order::select('id', 'status', 'created_at', 'buyer_id', 'artisan_id', 'adresse', 'wilaya', 'daira', 'commune')
             ->where('artisan_id', auth()->user()->id);
 
         // Filtering by search term of buyer name
