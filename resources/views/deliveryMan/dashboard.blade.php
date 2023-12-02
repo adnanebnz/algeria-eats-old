@@ -15,16 +15,19 @@
 
 
                 <div class="flex-1 bg-white p-4 ml-2 shadow rounded-lg">
-    <h2 class="text-gray-500 text-lg font-semibold pb-1">Stats</h2>
-    <div class="my-1"></div> <!-- Espacio de separación -->
-    <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div>
+                    <h2 class="text-gray-500 text-lg font-semibold pb-1">Stats</h2>
+                    <div class="my-1"></div> <!-- Espacio de separación -->
+                    <div class="bg-gradient-to-r from-blue-300 to-blue-500 h-px mb-6"></div>
 
-    <div class="text-gray-700">
-        <p class="mb-2">Deliveries Completed Today: <span class="font-semibold text-blue-500">{{$countday}}</span></p>
-        <p class="mb-2">Deliveries Completed This Week: <span class="font-semibold text-blue-500">{{$countweek}}</span></p>
-        <p class="mb-2">Deliveries Completed This Month: <span class="font-semibold text-blue-500">{{$countmonth}}</span></p>
-    </div>
-</div>
+                    <div class="text-gray-700">
+                        <p class="mb-2">Deliveries Completed Today: <span
+                                class="font-semibold text-blue-500">{{ $countday }}</span></p>
+                        <p class="mb-2">Deliveries Completed This Week: <span
+                                class="font-semibold text-blue-500">{{ $countweek }}</span></p>
+                        <p class="mb-2">Deliveries Completed This Month: <span
+                                class="font-semibold text-blue-500">{{ $countmonth }}</span></p>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -57,29 +60,33 @@
                     </tr>
                 </thead>
                 <tbody>
-                @forelse ($deliveries as $delivery)
-                    <tr class="hover:bg-grey-lighter">
-                        <td class="py-2 px-4 border-b border-grey-light">
-                        {{ $delivery->id }}
-                        </td>
-                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->nom }} {{ $delivery->order->artisan->prenom }}</td>
-                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->adresse }}</td>
-                        <td class="py-2 px-4 border-b border-grey-light"> {{ $delivery->order->consumer->nom }}</td>
-                        <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->adresse }} -  {{ $delivery->order->wilaya }}</td>
-                        <td class="py-2 px-4 border-b border-grey-light">  {{ $delivery->order->consumer->num_telephone }}</td>
-                    </tr>
+                    @forelse ($deliveries as $delivery)
+                        <tr class="hover:bg-grey-lighter">
+                            <td class="py-2 px-4 border-b border-grey-light">
+                                {{ $delivery->id }}
+                            </td>
+                            <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->nom }}
+                                {{ $delivery->order->artisan->prenom }}</td>
+                            <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->artisan->adresse }}
+                            </td>
+                            <td class="py-2 px-4 border-b border-grey-light"> {{ $delivery->order->buyer->nom }}</td>
+                            <td class="py-2 px-4 border-b border-grey-light">{{ $delivery->order->adresse }} -
+                                {{ $delivery->order->wilaya }}</td>
+                            <td class="py-2 px-4 border-b border-grey-light">
+                                {{ $delivery->order->buyer->num_telephone }}</td>
+                        </tr>
                     @empty
-                                <tr>
-                                    <td class="text-slate-400 text-center p-4" colspan="7">Aucun livraisons complete.</td>
-                                </tr>
-                            @endforelse  
+                        <tr>
+                            <td class="text-slate-400 text-center p-4" colspan="7">Aucun livraisons complete.</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
-        
+
         </div>
         <div class="mt-3">
-                    {{ $deliveries->links() }}
-                </div>
+            {{ $deliveries->links() }}
+        </div>
     </div>
     </div>
     <script>
@@ -88,7 +95,7 @@
             data: {
                 labels: ['completed', 'not completed'],
                 datasets: [{
-                    data: [{{$countday}}, {{$uncompleted}}],
+                    data: [{{ $countday }}, {{ $uncompleted }}],
                     backgroundColor: ['#00F0FF', '#8B8B8D'],
                 }]
             },
@@ -96,14 +103,10 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 legend: {
-                    position: 'bottom' 
+                    position: 'bottom'
                 }
             }
         });
-
-       
-
-       
     </script>
 
 </x-dashboard-layout>

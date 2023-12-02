@@ -1,96 +1,211 @@
 <x-dashboard-layout :isDeliver=true>
-    <div class="bg-white pb-8 pl-8 pr-8 rounded-md w-full">
-        <div class="mt-4">
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    <table class="min-w-full leading-normal">
-                        <thead>
-                            <tr>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Id
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Nom d'artisan
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Adresse d'artisan
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Nom de client
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Adress de livraison
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    N de telephone de client
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Status
-                                </th>
-                                <th
-                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                    Completion
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($deliveries as $delivery)
-                                <tr class="transition-all duration-300 hover:bg-gray-100">
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">{{ $delivery->id }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->artisan->nom }}
-                                        {{ $delivery->order->artisan->prenom }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->artisan->adresse }} -
-                                        {{ $delivery->order->artisan->wilaya }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->buyer->nom }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->adresse }} - {{ $delivery->order->wilaya }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        {{ $delivery->order->buyer->num_telephone }}
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 ">
-                                        @if ($delivery->status == 'not_started')
-                                            <a href="{{ route('delivery.accept', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-green-600 text-white px-3 py-2 rounded-md hover:bg-green-300 transition-all duration-300">accept</a>
-                                        @endif
-                                        @if ($delivery->status == 'delivering')
-                                            <a href="{{ route('delivery.reject', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-300 transition-all duration-300">reject</a>
-                                        @endif
-                                    </td>
-                                    <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
-                                        @if ($delivery->status == 'delivering')
-                                            <a href="{{ route('delivery.complete', ['delivery_id' => $delivery->id]) }}"
-                                                class="bg-blue-600 text-white px-3 py-2 rounded-md hover:bg-blue-300 transition-all duration-300">completed</a>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-slate-400 text-center p-4" colspan="7">Aucun résultat.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+    <div class="bg-white mt-8 md:px-5 rounded-md w-full">
+        <section class="antialiased font-sans">
+            <div class="py-8">
+                <h2 class="text-2xl font-semibold leading-tight">Livraisons</h2>
+                <div class="my-2 flex sm:flex-row flex-col">
+                    <div class="flex flex-row mb-1 sm:mb-0">
+                        <form action="{{ route('deliveryMan.deliveries') }}" method="GET">
+                            <div class="relative">
+                                <select name="date"
+                                    class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                                    <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouvelles Livraisons</option>
+                                    <option value="ancien" @selected(request()->query('date') == 'ancien')>Anciennes Livraisons</option>
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                    </svg>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="relative">
+                        <select name="wilaya"
+                            class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                            <option value="" @selected(request()->query('wilaya') == '')>Toutes les Wilayas</option>
+                            @foreach ($wilayas as $wilaya)
+                                <option value="{{ $wilaya->wilaya_name_ascii }}" @selected(request()->query('wilaya') == $wilaya->wilaya_name_ascii)>
+                                    {{ $wilaya->wilaya_code }} -
+                                    {{ $wilaya->wilaya_name_ascii }}</option>
+                            @endforeach
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <select name="status"
+                            class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                            <option value="not_started" @selected(request()->query('status') == 'not_started')>Non Affecté</option>
+                            <option value="delivering" @selected(request()->query('status') == 'delivering')>En Cours de Livraison</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="block relative">
+                        <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+                            <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
+                                <path
+                                    d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
+                                </path>
+                            </svg>
+                        </span>
+                        <div class="flex flex-row items-center gap-3">
+                            <input placeholder="Rechercher"
+                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                                name="search" value="{{ request()->query('search') }}" />
+                            <button type="submit"
+                                class="
+                                    rounded-sm border border-gray-400 px-4 py-2 w-full bg-white hover:bg-gray-300 text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                Rechercher
+                            </button>
+                        </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="mt-3">
-                    {{ $deliveries->links() }}
+                <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                    <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                        <table class="min-w-full leading-normal">
+                            <thead>
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Artisan
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Adresse de livraison
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Num tel client
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Date de création
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($deliveries as $delivery)
+                                    <tr>
+                                        <td class="px-5 py-5  border-gray-200 bg-white text-sm">
+
+                                            <a href="{{ route('profile', ['user' => $delivery->order->artisan]) }}"
+                                                class="flex items-center hover:underline">
+                                                <div class="flex-shrink-0 w-10 h-10">
+                                                    <img class="w-full h-full rounded-full border"
+                                                        src="{{ $delivery->order->artisan->image ? (str_starts_with($delivery->order->artisan->image, 'http') ? $delivery->order->artisan->image : asset('storage/' . $delivery->order->artisan->image)) : asset('assets/user.png') }}" />
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="text-gray-900 whitespace-no-wrap">
+                                                        {{ $delivery->order->artisan->getFullName() }}
+                                                    </p>
+                                                </div>
+                                            </a>
+
+                                        </td>
+                                        <td class="px-5 py-5 border-gray-200 bg-white text-sm">
+                                            <p class="text-gray-900 whitespace-no-wrap">
+                                                {{ $delivery->order->adresse }} {{ $delivery->order->wilaya }} -
+                                                {{ $delivery->order->daira }} -
+                                                {{ $delivery->order->commune }}
+                                            </p>
+                                        </td>
+                                        <td class="px-5 py-5 border-gray-200 bg-white text-sm">
+                                            {{ $delivery->order->buyer->num_telephone }}
+                                        </td>
+                                        <td class="px-5 py-5 border-gray-200 bg-white text-sm">
+                                            {{ $delivery->created_at->format('d/m/Y') }}
+                                        </td>
+                                        <td
+                                            class="flex items-center justify-center gap-3 px-5 py-5 birder-b border-gray-200 mt-1.5 bg-white text-sm">
+                                            @if ($delivery->status == 'not_started')
+                                                <form method="POST"
+                                                    action="{{ route('delivery.accept', ['delivery' => $delivery]) }}">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="border border-solid border-gray-400  p-1 rounded-md hover:bg-green-500 hover:text-white hover:border-transparent">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M4.5 12.75l6 6 9-13.5" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($delivery->status == 'delivering')
+                                                <form
+                                                    action="{{ route('delivery.complete', ['delivery' => $delivery]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="border border-solid
+border-gray-400 p-1 rounded-md hover:bg-blue-500 hover:text-white
+hover:border-transparent">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                            class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if ($delivery->status == 'delivering')
+                                                <form method="POST"
+                                                    action="{{ route('delivery.reject', ['delivery' => $delivery]) }}"
+                                                    onsubmit="return confirm('Are you sure you want to reject this delivery?')">
+                                                    @csrf
+                                                    <button type="submit"
+                                                        class="border border-solid border-gray-400  p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M6 18L18 6M6 6l12 12" />
+                                                        </svg>
+
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5"
+                                            class="px-5 py-5 border-gray-200 bg-white text-sm text-center">
+                                            Auccune Livraison Disponible!
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        <div class="mx-5 my-5">
+                            {{ $deliveries->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </x-dashboard-layout>
