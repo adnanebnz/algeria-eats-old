@@ -120,12 +120,10 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 ## TODO
 
-1 - implement script to see password
+1 - write more unit tests
 
-2 - write unit tests
+2 - image upload when creating a product and modifying it
 
-3 - image upload when creating a product and modifying it
+3 - add google analytics
 
-4 - add google analytics
-
-5 - deploy project
+4 - deploy project
