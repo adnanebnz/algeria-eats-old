@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
-/*
+
   public function __construct()
   {
     $this->middleware('auth');
@@ -18,7 +18,7 @@ class AdminController extends Controller
     $this->middleware('admin');
     
   }
-*/
+
 
   public function index()
   {
@@ -107,14 +107,5 @@ class AdminController extends Controller
     $user->delete();
     Alert::success('succes', "user is deleted ! ");
     return redirect()->route("admin.users");
-  }
-
-  public function user_products(User $user)
-  {
-    $userOrders = Order::where('user_id', $user->id)->get();
-    $userProductsOrders = Product::where('id', $userOrders->product_id)->get();
-    $userProducts = Product::where('artisan_id', $user->id)->get();
-    $orderPercentage = $userProductsOrders->count() / $userProducts->count();
-    return [$userOrders->count(), $userProducts->count(), $orderPercentage, $userProductsOrders->count()];
   }
 }
