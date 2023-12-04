@@ -122,8 +122,6 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 1 - write more unit tests
 
-2 - image upload when creating a product and modifying it
+2 - deploy project
 
 3 - add google analytics
-
-4 - deploy project
