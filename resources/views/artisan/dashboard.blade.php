@@ -202,7 +202,7 @@
             data: {
                 labels: @json($customLabels),
                 datasets: [{
-                    label: 'Revenu total par catégorie',
+                    label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
                     backgroundColor: '#60a5fa',
                 }]
