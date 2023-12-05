@@ -36,4 +36,9 @@ class Artisan extends Authenticatable
     {
         return $this->hasMany(Order::class, 'artisan_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(UserReview::class, 'user_id');
+    }
 }
