@@ -228,5 +228,8 @@
                 </form>
             </div>
         @endif
+        {{-- @if (auth()->user()->id !== $user->id)
+            <h1>Laisser un avis</h1>
+        @endif --}}
         </div>
     </x-default-layout>
