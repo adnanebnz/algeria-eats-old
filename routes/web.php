@@ -62,6 +62,8 @@ Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'de
 //ORDERS SECTION END
 
 //DELIVERIES SECTION
+Route::get('artisan/dashboard/deliveries', [ArtisanController::class, 'deliveriesIndex'])->name("artisan.deliveries");
+Route::get('artisan/dashboard/deliveries/{delivery}', [ArtisanController::class, 'showDelivery'])->name("artisan.deliveries.show");
 Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
 //DELIVERIES SECTION END
 

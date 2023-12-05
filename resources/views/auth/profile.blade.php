@@ -1,6 +1,6 @@
     <x-default-layout title='Profile'>
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
-            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
+            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
                     src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
 
@@ -60,7 +60,7 @@
                                     {{ $user->artisan->desc_entreprise }}</p>
                             </div>
                             <div class="flex flex-row justify-between py-4">
-                                <div class="flex items-center gap-2.5 bg-gray-900 text-white px-3 py-2 rounded-lg">
+                                <div class="flex items-center gap-2.5 bg-blue-600 text-white px-3 py-2 rounded-lg">
                                     <h1 class="font-medium text-lg my-2">Type
                                         Service
                                     </h1>
@@ -82,7 +82,7 @@
         @if (auth()->id() === $user->id)
             <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
             </h1>
-            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
+            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
                 <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12"
                     enctype="multipart/form-data">
                     @csrf
@@ -230,7 +230,9 @@
         @endif
         @if (auth()->user() && auth()->user()->id !== $user->id)
             <livewire:user-review-form :user='$user' />
-            <livewire:user-review-component :user='$user' />
         @endif
+        <div class="w-5/6 bg-gray-100/40 rounded-md shadow-md">
+            <livewire:user-review-component :user='$user' />
+        </div>
         </div>
     </x-default-layout>

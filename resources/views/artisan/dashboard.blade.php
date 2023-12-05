@@ -3,9 +3,9 @@
         <div class="pt-6 px-4">
             <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Ventes ce mois-ci</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Types de produits</h3>
                     <div>
-                        <canvas id="artisansChart"></canvas>
+                        <canvas id="productChart"></canvas>
                     </div>
                 </div>
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
@@ -131,7 +131,13 @@
             <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 mt-4">
                 <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des revenus par catégorie</h3>
                 <div>
-                    <canvas id="revenueBreakdownChart"></canvas>
+                    <canvas id="revenueBreakdownChart" height="400"></canvas>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Total des ventes par mois</h3>
+                <div>
+                    <canvas id="artisansChart" height="300"></canvas>
                 </div>
             </div>
         </div>
@@ -179,6 +185,29 @@
     </main>
 
     <script>
+        // Assuming you have the necessary data for the pie chart
+        var productsByCategoryLabels = @json($customCategoryLabels);
+        var productsCountByCategory = @json($productsCountByCategory);
+
+        // Number of products by product category (Pie Chart)
+        var productPieChart = new Chart(document.getElementById('productChart'), {
+            type: 'pie',
+            data: {
+                labels: productsByCategoryLabels,
+                datasets: [{
+                    data: productsCountByCategory,
+                    backgroundColor: ['#60a5fa', '#f97316'], // Add more colors as needed
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+
         var artisansChart = new Chart(document.getElementById('artisansChart'), {
             type: 'line',
             data: {
@@ -205,7 +234,7 @@
                 datasets: [{
                     label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
-                    backgroundColor: '#60a5fa',
+                    backgroundColor: ['#60a5fa', '#f97316'],
                 }]
             },
             options: {
