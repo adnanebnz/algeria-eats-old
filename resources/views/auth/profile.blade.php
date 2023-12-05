@@ -228,8 +228,9 @@
                 </form>
             </div>
         @endif
-        {{-- @if (auth()->user()->id !== $user->id)
-            <h1>Laisser un avis</h1>
-        @endif --}}
+        @if (auth()->user() && auth()->user()->id !== $user->id)
+            <livewire:user-review-form :user='$user' />
+            <livewire:user-review-component :user='$user' />
+        @endif
         </div>
     </x-default-layout>

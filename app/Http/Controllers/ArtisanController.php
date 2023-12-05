@@ -49,7 +49,7 @@ class ArtisanController extends Controller
 
     public function index(): View
     {
-        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(5)->get();
+        $latestOrders = Order::where('artisan_id', auth()->user()->id)->orderBy('created_at', 'desc')->take(3)->get();
 
         $monthlyOrderCounts = Order::select(
             DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'),
