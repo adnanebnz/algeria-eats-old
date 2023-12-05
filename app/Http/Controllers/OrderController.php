@@ -43,7 +43,7 @@ class OrderController extends Controller
             'wilaya' => $data['wilaya_name_ascii'],
             'num_telephone' => auth()->user()->num_telephone,
             'email' => auth()->user()->email,
-            'status' => 'pending',
+            'status' => 'pending', 
         ]);
 
         foreach ($cartItems as $cartItem) {
