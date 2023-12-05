@@ -2,10 +2,13 @@
 
 namespace App\Livewire;
 
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\Artisan;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArtisanForm extends Component
 {
@@ -44,35 +47,40 @@ class ArtisanForm extends Component
     {
         $validatedData = $this->validate();
         $validatedData['password'] = bcrypt($validatedData['password']);
-        if ($this->image) {
-            $imagePath = $this->image->store('profile_images', 'public');
-            $validatedData['image'] = $imagePath;
-        }
-        $creation = User::create([
-            'nom' => $validatedData['nom'],
-            'prenom' => $validatedData['prenom'],
-            'num_telephone' => $validatedData['num_telephone'],
-            'adresse' => $validatedData['adresse'],
-            'wilaya' => $validatedData['wilaya'],
-            'email' => $validatedData['email'],
-            'image' => $validatedData['image'],
-            'password' => $validatedData['password'],
-        ]);
-        Artisan::create([
-            'user_id' => $creation->id,
-            'type_service' => $validatedData['type_service'],
-            'desc_entreprise' => $validatedData['desc_entreprise'],
-            'heure_ouverture' => $validatedData['heure_ouverture'],
-            'heure_fermeture' => $validatedData['heure_fermeture'],
 
-        ]);
+        return DB::transaction(function () use ($validatedData) {
+            $user = User::create([
+                'nom' => $validatedData['nom'],
+                'prenom' => $validatedData['prenom'],
+                'num_telephone' => $validatedData['num_telephone'],
+                'adresse' => $validatedData['adresse'],
+                'wilaya' => $validatedData['wilaya'],
+                'email' => $validatedData['email'],
+                'image' => $validatedData['image'],
+                'password' => $validatedData['password'],
+            ]);
 
-        auth()->login($creation);
-        return redirect()->to('/');
+            if ($this->image) {
+                $imagePath = $this->image->store('profile_images', 'public');
+                $user->update(['image' => $imagePath]);
+            }
+
+            $user->artisan()->create([
+                'type_service' => $validatedData['type_service'],
+                'desc_entreprise' => $validatedData['desc_entreprise'],
+                'heure_ouverture' => $validatedData['heure_ouverture'],
+                'heure_fermeture' => $validatedData['heure_fermeture'],
+            ]);
+
+            auth()->login($user);
+            Alert::success('Succès', 'Votre compte a été créé avec succès');
+            return redirect()->to('/');
+        });
     }
 
     public function render()
     {
-        return view('livewire.artisan-form');
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('livewire.artisan-form', compact('wilayas'));
     }
 }

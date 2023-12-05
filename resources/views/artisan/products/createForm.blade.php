@@ -29,12 +29,52 @@
                         <x-input name="sous_categorie" label="Sous Categorie" />
                         <x-input name="prix" label="Prix" />
                     </div>
-                    <div class="px-6 md:px-0">
-                        <x-input name="images[]" type="file" label="Insérer les Images" />
-                        @error('images')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
+                    <div x-data="{ images: [] }" class="w-full">
+                        <label class="block text-sm font-medium text-white">
+                            Images
+                        </label>
+                        <div
+                            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-4 text-center">
+                                <template x-if="images.length > 0">
+                                    <!-- Use x-for to loop through images -->
+                                    <div
+                                        class="grid grid-cols-5 gap-4 items-center justify-center place-content-center">
+                                        <template x-for="image in images" :key="image.name">
+                                            <img x-bind:src="URL.createObjectURL(image)" alt="Uploaded Image"
+                                                class="h-32 mx-auto mb-4 border">
+                                        </template>
+                                    </div>
+                                </template>
+                                <div class="flex flex-col gap-1 items-center justify-center">
+                                    <template x-if="images.length === 0">
+                                        <svg class="h-14 w-14 text-gray-600" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <div class="flex text-sm text-gray-800 my-2">
+                                        <label for="file-upload"
+                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                            <span
+                                                class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                                les photos</span>
+                                            <input id="file-upload" name="images[]" type="file" class="sr-only"
+                                                accept="image/*" multiple @change="images = $event.target.files">
+                                        </label>
+                                    </div>
+                                    <p class="text-xs">
+                                        PNG, JPEG, JPG, WEBP Maximum 5 photos de 4 méga.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    @error('images')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>

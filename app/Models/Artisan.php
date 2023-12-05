@@ -20,6 +20,8 @@ class Artisan extends Authenticatable
         'type_service'
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -33,5 +35,10 @@ class Artisan extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class, 'artisan_id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(UserReview::class, 'user_id');
     }
 }

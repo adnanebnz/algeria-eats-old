@@ -19,7 +19,7 @@
 <body class="antialiased h-full">
     <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div class="flex justify-center">
-            <a href="#">
+            <a href="{{ route('index') }}">
                 <img src="{{ asset('assets/LOGO.png') }}" alt="Logo" class="h-20 object-fill">
             </a>
         </div>
