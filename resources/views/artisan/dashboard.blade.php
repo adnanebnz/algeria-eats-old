@@ -180,10 +180,11 @@
 
     <script>
         var artisansChart = new Chart(document.getElementById('artisansChart'), {
-            type: 'pie',
+            type: 'line',
             data: {
                 labels: @json($months),
                 datasets: [{
+                    label: 'Total des ventes par mois',
                     data: @json($orderCounts),
                     backgroundColor: ['#60a5fa', '#8B8B8D'],
                 }]
