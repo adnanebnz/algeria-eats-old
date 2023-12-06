@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit" method="POST" novalidate>
+<form wire:submit.prevent="submit" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col gap-8">
         <div class="flex flex-row gap-8">
