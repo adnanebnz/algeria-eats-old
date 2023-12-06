@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy PHP app to Azure Web App - algeriaeats
+name: Build and deploy TALL STACK app to Azure Web App - algeriaeats
 
 on:
   push:
@@ -22,9 +22,9 @@ jobs:
           php-version: "8.2"
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 18
 
       - name: Check if composer.json exists
         id: check_files
@@ -48,7 +48,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: php-app
+          name: laravel-app
           path: release.zip
 
   deploy:
@@ -62,7 +62,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: php-app
+          name: laravel-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
