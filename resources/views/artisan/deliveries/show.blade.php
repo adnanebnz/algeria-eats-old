@@ -95,13 +95,13 @@
                         @endif
                         @if ($delivery->status == 'delivering')
                             <span
-                                class="px-2 inline-flex leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                class="p-2 inline-flex leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                 En cours de livraison
                             </span>
                         @endif
                         @if ($delivery->status == 'delivered')
                             <span
-                                class="px-2 inline-flex leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                class="p-2 inline-flex leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                 Livrée
                             </span>
                         @endif

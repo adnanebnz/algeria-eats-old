@@ -107,7 +107,7 @@ class CreateOrder extends Component
     public function store()
     {
         $data = $this->validate();
-
+        // TODO FIX CREATE ORDER FOR EACH CART ITEM THAT HAS A DIFFERENT ARTISAN
         $order = Order::create([
             'buyer_id' => auth()->user()->id,
             'artisan_id' => $this->cartItems[0]->product->artisan->user_id,
@@ -115,9 +115,7 @@ class CreateOrder extends Component
             'wilaya' => $data['selectedWilaya'],
             'daira' => $data['selectedDaira'],
             'commune' => $data['selectedCommune'],
-            'num_telephone' => auth()->user()->num_telephone,
-            'email' => auth()->user()->email,
-            'status' => 'pending',
+            'status' => 'not_started',
         ]);
 
         foreach ($this->cartItems as $cartItem) {

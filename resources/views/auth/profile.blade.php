@@ -231,8 +231,7 @@
         @if (auth()->user() && auth()->user()->id !== $user->id)
             <livewire:user-review-form :user='$user' />
         @endif
-        <div class="w-5/6 bg-gray-100/40 rounded-md shadow-md">
-            <livewire:user-review-component :user='$user' />
-        </div>
+        <livewire:user-review-component :user='$user' />
+
         </div>
     </x-default-layout>
