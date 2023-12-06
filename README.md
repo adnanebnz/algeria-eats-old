@@ -114,18 +114,17 @@ git commit -m "Description des modifications"
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
 -   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [ ] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
+-   after validating and delivering the product display form with stars to review the delivery man
 -   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
 
 ## TODO
 
-1 - implement script to see password
+1 - write more unit tests
 
-2 - write unit tests
+2 - deploy project
 
-3 - image upload when creating a product and modifying it
+3 - add google analytics
 
-4 - add google analytics
-
-5 - deploy project
+4 - fix the mess in statuses esspecialy for orders and livraisons also change pending to not_started when we create a delivery submission and fix UI FIX IT FOR ORDERS WHEN THERE IS ALOT CENTER THE ACTION TD w zid unaffect delivery

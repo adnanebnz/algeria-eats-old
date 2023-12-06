@@ -54,7 +54,7 @@
 @guest
     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
                     border solid border-blue-500
-                    transition-all md:mt-0 md:ml-4 text-gray-900 focus:text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
+                    transition-all md:mt-0 md:ml-4 text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
         href="{{ route('login') }}">Connexion</a>
     <a class="p-4 mt-2 text-sm font-semibold rounded-lg md:mt-0 md:ml-4
                     bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline

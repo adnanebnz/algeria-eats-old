@@ -155,22 +155,35 @@
                             En attribuant une commande à un livreur, elle devient visible pour tous les livreurs. Ils
                             peuvent accepter ou refuser en temps réel.
                         </p>
-                        @if ($delivery)
-                            <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
-                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">En
-                                    attente</span>
+                        @if ($delivery->deliveryMan_id != null)
+                            <p class="text-base font-semibold leading-4 text-gray-800">Status :
+
+                                @if ($delivery->status === 'pending')
+                                    <span
+                                        class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">En
+                                        Attente</span>
                             </p>
-                            {{-- TODO IF THE DELIVERY IS ACCEPTED DISPLAY A BUTTON THAT OPENS A MODAL AND THERE WILL BE DATA ABOUT DELIVERYMAN AND THE PRICE OF THE DELIVERY --}}
-                        @else
-                            <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
-                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Non
-                                    soumise</span></p>
-                            <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Affecter
-                                    à un livreur</button>
-                            </form>
+                        @endif
+                        @if ($delivery->status === 'delivering')
+                            <span
+                                class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">En
+                                cours d'expédition</span>
+                            </p>
+                            <a href="{{ route('artisan.deliveries.show', $delivery) }}"
+                                class="
+                                hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-full bg-gray-800 text-base text-center font-medium leading-4 text-white">Voir
+                                la livraison</a>
+                        @endif
+                    @else
+                        <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
+                                class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Non
+                                soumise</span></p>
+                        <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Affecter
+                                à un livreur</button>
+                        </form>
                         @endif
                     </div>
                     <div class="flex flex-col justify-between px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
