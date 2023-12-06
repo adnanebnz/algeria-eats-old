@@ -223,7 +223,7 @@ class ArtisanController extends Controller
 
         return view('artisan.orders.show', [
             "order" => $order,
-            "delivery" => $delivery
+            "delivery" => $delivery,
         ]);
     }
 
@@ -251,10 +251,10 @@ class ArtisanController extends Controller
     // DELIVERIES SECTION
     public function deliveriesIndex(Request $request)
     {
-        $query = Delivery::select('id', 'status', 'created_at', 'order_id', 'deliveryMan_id')
+        $query = Delivery::select('id', 'order_id', 'deliveryMan_id', 'status', 'created_at', 'updated_at')
             ->whereHas('order', function ($query) {
-                $query->where('artisan_id', auth()->user()->id)->where('deliveryMan_id', '!=', null);
-            });
+                $query->where('artisan_id', auth()->user()->id);
+            })->where('deliveryMan_id', '!=', null);
 
         // Filtering by search term of buyer name
         if ($request->has('search')) {
@@ -305,6 +305,22 @@ class ArtisanController extends Controller
             ]);
         Alert::success('Succès', 'Livraison affectée !');
         return redirect()->route('artisan.orders.show', $order);
+    }
+
+    public function unaffectDelivery(Order $order)
+    {
+        $delivery = Delivery::where('order_id', $order->id)->first();
+        if ($delivery) {
+            $delivery->update([
+                'order_id' => null,
+                'status' => 'not_started',
+            ]);
+            Alert::success('Succès', 'Livraison désaffectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        } else {
+            Alert::error('Erreur', 'Cette commande n\'a pas de livraison affectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        }
     }
     // DELIVERIES SECTION END
 }
