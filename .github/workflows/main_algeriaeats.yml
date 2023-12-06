@@ -63,4 +63,4 @@ jobs:
           app-name: 'algeriaeats'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F0E18D747CB44F92AFB97B20B8C9141A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_74445A5884234C509487B264AF66C795 }}
