@@ -119,9 +119,23 @@
             </div>
         </div>
         <div>
-            <button type="submit"
+            <button type="submit" wire:loading.attr="disabled" wire:loading.class="cursor-not-allowed bg-blue-400"
                 class="flex justify-center w-full rounded-md bg-blue-500 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Créer
                 votre compte</button>
+            <div wire:loading
+                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/95 p-6 rounded-md">
+                <svg class="animate-spin h-16 w-16 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                        stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 6.627 5.373 12 12 12v-4a8.011 8.011 0 01-5.657-2.343z">
+                    </path>
+                </svg>
+            </div>
         </div>
+    </div>
+    <div>
+
     </div>
 </form>
