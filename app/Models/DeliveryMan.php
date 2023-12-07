@@ -18,6 +18,8 @@ class DeliveryMan extends Authenticatable
         'rating',
     ];
 
+    protected $primaryKey = 'user_id';
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -26,5 +28,10 @@ class DeliveryMan extends Authenticatable
     public function deliveries()
     {
         return $this->hasMany(Delivery::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(UserReview::class, 'user_id');
     }
 }

@@ -54,7 +54,7 @@
 @guest
     <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg 
                     border solid border-blue-500
-                    transition-all md:mt-0 md:ml-4 text-gray-900 focus:text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
+                    transition-all md:mt-0 md:ml-4 text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
         href="{{ route('login') }}">Connexion</a>
     <a class="p-4 mt-2 text-sm font-semibold rounded-lg md:mt-0 md:ml-4
                     bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline
@@ -103,7 +103,7 @@
                     @if (auth()->user()->admin)
                         <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                             href="{{ route('admin.index', ['user' => auth()->user()]) }}">
-                            {{-- TODO CREATE VIEW --}}
+                           
                             <div class="bg-blue-500 text-white rounded-lg p-3">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4"">
@@ -131,133 +131,118 @@
                                 <p class="font-semibold">Tableau de bord</p>
                                 <p class="text-sm">Voir et gerer vos données</p>
                             </div>
-                        </a>
-                    @endif
-                    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="{{ route('profile', ['user' => auth()->user()]) }}">
-                        <div class="bg-blue-500 text-white rounded-lg p-3">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
-                                <path
-                                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-                                </path>
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="font-semibold">Profile</p>
-                            <p class="text-sm">Voir et modifier votre profile</p>
-                        </div>
-                    </a>
-                    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                        href="{{ route('logout') }}">
-                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                        </a> @endif
+                    <a class="flex
+        row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
+        focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+        href="{{ route('profile', ['user' => auth()->user()]) }}">
+    <div class="bg-blue-500 text-white rounded-lg p-3">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
+            <path
+                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+            </path>
+        </svg>
+    </div>
+    <div class="ml-3">
+        <p class="font-semibold">Profile</p>
+        <p class="text-sm">Voir et modifier votre profile</p>
+    </div>
+    </a>
+    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+        href="{{ route('logout') }}">
+        <div class="bg-blue-500 text-white rounded-lg p-3">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
 
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                            </svg>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+            </svg>
 
-                        </div>
-                        <div class="ml-3">
-                            <p class="font-semibold">Déconnexion</p>
-                            <p class="text-sm">Déconnecter vous de votre compte</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
         </div>
+        <div class="ml-3">
+            <p class="font-semibold">Déconnexion</p>
+            <p class="text-sm">Déconnecter vous de votre compte</p>
+        </div>
+    </a>
+    </div>
+    </div>
+    </div>
     </div>
 @endauth
 </nav>
 </div>
-@if (session('status'))
-    <div class="mt-10 rounded-md bg-green-50 p-4">
-        <div class="flex">
-            <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                        clip-rule="evenodd" />
-                </svg>
-            </div>
-            <div class="ml-3">
-                <p class="text-sm font-medium text-green-800">{{ session('status') }}</p>
-            </div>
-        </div>
-    </div> @endif
-
 <main class="mt-10
         md:mt-12 lg:mt-16 border-b p-4 rounded-md">
     {{ $slot }}
-    </main>
-    </div>
-    <footer class="pt-8 pb-6">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap text-left lg:text-left">
-                <div class="w-full lg:w-6/12 px-4">
-                    <img src="{{ asset('assets/LOGO.png') }}" class="h-16" />
-                    <div class="mt-6 lg:mb-0 mb-6">
-                        {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
-                    </div>
-                </div>
-                <div class="w-full lg:w-6/12 px-4">
-                    <div class="flex flex-wrap items-top mb-6">
-                        <div class="w-full lg:w-4/12 px-4 ml-auto">
-                            <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Liens
-                                Rapides</span>
-                            <ul class="list-unstyled">
-                                <li>
-                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                        href="#">À propos de nous</a>
-                                </li>
-
-                                <li>
-                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                        href="{{ route('product.index') }}">Produits</a>
-                                </li>
-                                <li>
-                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                        href="{{ route('contact.index') }}">Contactez nous</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="w-full lg:w-4/12 px-4">
-                            <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Autre
-                                liens</span>
-                            <ul class="list-unstyled">
-
-                                <li>
-                                    <a class="text-gray-800  hover:text-gray-800 font-semibold block pb-2 text-sm"
-                                        href="#">Terms &amp;
-                                        Conditions</a>
-                                </li>
-                                <li>
-                                    <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                        href="#">Confidentialité</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+</main>
+</div>
+<footer class="pt-8 pb-6">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-wrap text-left lg:text-left">
+            <div class="w-full lg:w-6/12 px-4">
+                <img src="{{ asset('assets/LOGO.png') }}" class="h-16" />
+                <div class="mt-6 lg:mb-0 mb-6">
+                    {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
                 </div>
             </div>
-            <hr class="my-6 border-gray-300">
-            <div class="flex flex-wrap items-center md:justify-between justify-center">
-                <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-                    <div class="text-sm text-gray-600 font-semibold py-1 flex items-center gap-2 justify-center">
-                        <p>
-                            Copyright © <span id="get-current-year">{{ date('Y') }}
-                            </span>
-                        </p>
-                        <p>Algeria Eats</p>
+            <div class="w-full lg:w-6/12 px-4">
+                <div class="flex flex-wrap items-top mb-6">
+                    <div class="w-full lg:w-4/12 px-4 ml-auto">
+                        <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Liens
+                            Rapides</span>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    href="#">À propos de nous</a>
+                            </li>
+
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    href="{{ route('product.index') }}">Produits</a>
+                            </li>
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    href="{{ route('contact.index') }}">Contactez nous</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full lg:w-4/12 px-4">
+                        <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Autre
+                            liens</span>
+                        <ul class="list-unstyled">
+
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-800 font-semibold block pb-2 text-sm"
+                                    href="#">Terms &amp;
+                                    Conditions</a>
+                            </li>
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                    href="#">Confidentialité</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    @livewireScripts
-    @include('sweetalert::alert')
-    </body>
+        <hr class="my-6 border-gray-300">
+        <div class="flex flex-wrap items-center md:justify-between justify-center">
+            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+                <div class="text-sm text-gray-600 font-semibold py-1 flex items-center gap-2 justify-center">
+                    <p>
+                        Copyright © <span id="get-current-year">{{ date('Y') }}
+                        </span>
+                    </p>
+                    <p>Algeria Eats</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+@livewireScripts
+@include('sweetalert::alert')
+</body>
 
 </html>

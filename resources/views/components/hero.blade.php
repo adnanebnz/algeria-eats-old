@@ -3,8 +3,8 @@
         <div class="blur-[106px] h-56 bg-gradient-to-br from-blue-600 to-sky-300"></div>
         <div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300"></div>
     </div>
-    <div class="relative md:pt-10 ml-auto">
-        <div class="mx-auto flex flex-col gap-48 md:flex-row md:px-11 px-5">
+    <div class="relative md:pt-10 flex items-center justify-between">
+        <div class="mx-auto flex flex-col just gap-48 md:flex-row md:px-11 px-5">
             <div>
                 <h1 class="text-gray-900 font-light text-3xl md:text-6xl">Explorez des <span
                         class="font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-400">Délices</span>
