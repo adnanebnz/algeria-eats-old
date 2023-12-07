@@ -1,6 +1,6 @@
     <x-default-layout title='Profile'>
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
-            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
+            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
                     src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
 
@@ -60,7 +60,7 @@
                                     {{ $user->artisan->desc_entreprise }}</p>
                             </div>
                             <div class="flex flex-row justify-between py-4">
-                                <div class="flex items-center gap-2.5 bg-gray-900 text-white px-3 py-2 rounded-lg">
+                                <div class="flex items-center gap-2.5 bg-blue-600 text-white px-3 py-2 rounded-lg">
                                     <h1 class="font-medium text-lg my-2">Type
                                         Service
                                     </h1>
@@ -74,7 +74,7 @@
                 @if ($user->isDeliveryMan())
                     <h1 class="font-medium text-lg mb-4">Disponible? :
                         <span
-                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
+                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 1 ? 'Oui' : 'Non' }}</span>
                     </h1>
                 @endif
             </div>
@@ -82,8 +82,9 @@
         @if (auth()->id() === $user->id)
             <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
             </h1>
-            <div class="bg-gray-50 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
-                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12">
+            <div class="bg-gray-100/40 md:w-3/4 shadow-md w-full p-4 mx-auto my-auto rounded-lg">
+                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-2"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="flex md:flex-row flex-col gap-8">
@@ -94,9 +95,9 @@
                             @if (auth()->user() && auth()->user()->artisan)
                                 <x-textarea name="desc_entreprise" label="Description d'entreprise"
                                     type="text">{{ auth()->user()->artisan->desc_entreprise }}</x-textarea>
+                                <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
+                                    :value="auth()->user()->artisan?->heure_ouverture" />
                             @endif
-                            <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
-                                :value="auth()->user()->artisan->heure_ouverture" />
                             {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
@@ -105,7 +106,41 @@
 
                             <x-input name="num_telephone" label="Numéro de teléphone" type="text"
                                 :value="auth()->user()->num_telephone" />
-                            <x-input name="password" label="Mot de passe" type="password" />
+                            <div x-data="{ showPassword: false }" class="relative mt-1">
+                                <label for="password" class="block text-sm font-medium text-gray-700 select-none">
+                                    Mot de passe
+                                </label>
+
+                                <div class="flex items-center mt-2">
+                                    <input :type="showPassword ? 'text' : 'password'" wire:model="password"
+                                        name="password"
+                                        class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600"
+                                        type="password">
+                                    <button type="button"
+                                        class="absolute right-2 bg-transparent flex items-center justify-center hover:text-blue-600"
+                                        @click="showPassword = !showPassword">
+                                        <svg x-show="!showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21">
+                                            </path>
+                                        </svg>
+
+                                        <svg x-show="showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            style="display: none;">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                @error('password')
+                                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
                             @if (auth()->user() && auth()->user()->artisan)
                                 <div>
                                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Type
@@ -136,10 +171,10 @@
                                         class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                                         name="est_disponible" label="Êtes-vous disponible ?">
                                         <option>Choisir</option>
-                                        <option value="true" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>
+                                        <option value="1" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>
                                             Disponible
                                         </option>
-                                        <option value="false" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
+                                        <option value="0" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
                                             disponible
                                         </option>
                                     </select>
@@ -147,11 +182,56 @@
                             @endif
                         </div>
                     </div>
+
+                    <div x-data="{ image: null }">
+                        <label class="block text-sm font-medium text-white">
+                            Image
+                        </label>
+                        <div
+                            class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                            <div class="space-y-4 text-center">
+                                <template x-if="image">
+                                    <img x-bind:src="image" alt="Uploaded Image"
+                                        class="h-32 mx-auto mb-4 rounded-full border">
+                                </template>
+                                <div class="flex flex-col gap-1 items-center justify-center">
+                                    <template x-if="!image">
+                                        <svg class="h-14 w-14 text-gray-600" stroke="currentColor" fill="none"
+                                            viewBox="0 0 48 48" aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </template>
+                                    <div class="flex text-sm text-gray-800 my-2">
+                                        <label for="file-upload"
+                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                            <span
+                                                class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                                une photo</span>
+                                            <input id="file-upload" name="image" type="file" class="sr-only"
+                                                accept="image/*"
+                                                x-on:change="image = URL.createObjectURL($event.target.files[0])">
+                                        </label>
+                                    </div>
+                                    <p class="text-xs">
+                                        PNG, JPEG, JPG, GIF Maximum 4 méga.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="submit"
                         class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-8 text-white">MODIFIER
                         VOS INFORMATIONS</button>
                 </form>
             </div>
         @endif
+        @if (auth()->user() && auth()->user()->id !== $user->id)
+            <livewire:user-review-form :user='$user' />
+        @endif
+        <livewire:user-review-component :user='$user' />
+
         </div>
     </x-default-layout>

@@ -3,10 +3,14 @@
         <div class="pt-6 px-4">
             <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Ventes ce mois-ci</h3>
-                    <div>
-                        <canvas id="artisansChart"></canvas>
-                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Types de produits</h3>
+                    @if ($totalProducts == 0)
+                        <p class="text-sm text-gray-600">Aucun produit n'a été ajouté</p>
+                    @else
+                        <div>
+                            <canvas id="productChart"></canvas>
+                        </div>
+                    @endif
                 </div>
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                     <div class="mb-4 flex items-center justify-between">
@@ -42,7 +46,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            @foreach ($latestOrders as $order)
+                                            @forelse ($latestOrders as $order)
                                                 <tr>
                                                     <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
                                                         Commande id <span class="font-semibold">#{{ $order->id }}
@@ -56,7 +60,13 @@
                                                         {{ $order->getTotalPrice() }} DA
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3"
+                                                        class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
+                                                        Aucune commande n'a été passée
+                                                    </td>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -65,319 +75,157 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">2,340</span>
-                            <h3 class="text-base font-normal text-gray-500">New products this week</h3>
-                        </div>
-                        <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                            14.6%
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
+        </div>
+        <div class="mt-2">
+            <h1 class="font-bold text-lg text-gray-700 py-4">Aperçu des statistiques</h1>
+            <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {{-- TODO TOTAL PRODUCTS --}}
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-10 h-10 tex-gray-700">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                             </svg>
+
+                        </div>
+                        <div>
+                            <p class="text-indigo-500 text-sm font-medium uppercase leading-4">Produits</p>
+                            <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $totalProducts }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">5,355</span>
-                            <h3 class="text-base font-normal text-gray-500">Visitors this week</h3>
-                        </div>
-                        <div class="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                            32.9%
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
-                                    clip-rule="evenodd"></path>
+                {{-- TODO TOTAL PRODUCTS END --}}
+                {{-- TODO TOTAL ORDERS --}}
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-10 h-10 tex-gray-700">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                             </svg>
+                        </div>
+                        <div>
+                            <p class="text-indigo-500 text-sm font-medium uppercase leading-4">Commandes</p>
+                            <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $totalOrders }}</span>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">385</span>
-                            <h3 class="text-base font-normal text-gray-500">User signups this week</h3>
-                        </div>
-                        <div class="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
-                            -2.7%
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"
-                                    clip-rule="evenodd"></path>
+                {{-- TODO TOTAL ORDERS END --}}
+                {{-- TODO TOTAL INCOMES --}}
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex flex-row space-x-4 items-center">
+                        <div id="stats-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="w-10 h-10 text-gray-700">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
+
+                        </div>
+                        <div>
+                            <p class="text-teal-500 text-sm font-medium uppercase leading-4">Revenus</p>
+                            <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
+                                <span>{{ $totalIncomes }} DA</span>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
-                <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xl font-bold leading-none text-gray-900">Latest Customers</h3>
-                        <a href="#"
-                            class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
-                            View all
-                        </a>
-                    </div>
-                    <div class="flow-root">
-                        <ul role="list" class="divide-y divide-gray-200">
-                            <li class="py-3 sm:py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-8 w-8 rounded-full"
-                                            src="https://demo.themesberg.com/windster/images/users/neil-sims.png"
-                                            alt="Neil image">
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">
-                                            Neil Sims
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate">
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="17727a767e7b57607e7973646372653974787a">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                                        $320
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="py-3 sm:py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-8 w-8 rounded-full"
-                                            src="https://demo.themesberg.com/windster/images/users/bonnie-green.png"
-                                            alt="Neil image">
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">
-                                            Bonnie Green
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate">
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="d4b1b9b5bdb894a3bdbab0a7a0b1a6fab7bbb9">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                                        $3467
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="py-3 sm:py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-8 w-8 rounded-full"
-                                            src="https://demo.themesberg.com/windster/images/users/michael-gough.png"
-                                            alt="Neil image">
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">
-                                            Michael Gough
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate">
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="57323a363e3b17203e3933242332257934383a">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                                        $67
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="py-3 sm:py-4">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-8 w-8 rounded-full"
-                                            src="https://demo.themesberg.com/windster/images/users/thomas-lean.png"
-                                            alt="Neil image">
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">
-                                            Thomes Lean
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate">
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="284d45494144685f41464c5b5c4d5a064b4745">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                                        $2367
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="pt-3 sm:pt-4 pb-0">
-                                <div class="flex items-center space-x-4">
-                                    <div class="flex-shrink-0">
-                                        <img class="h-8 w-8 rounded-full"
-                                            src="https://demo.themesberg.com/windster/images/users/lana-byrd.png"
-                                            alt="Neil image">
-                                    </div>
-                                    <div class="flex-1 min-w-0">
-                                        <p class="text-sm font-medium text-gray-900 truncate">
-                                            Lana Byrd
-                                        </p>
-                                        <p class="text-sm text-gray-500 truncate">
-                                            <a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                data-cfemail="a2c7cfc3cbcee2d5cbccc6d1d6c7d08cc1cdcf">[email&#160;protected]</a>
-                                        </p>
-                                    </div>
-                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
-                                        $367
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 mt-4">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des revenus par catégorie</h3>
+                <div>
+                    <canvas id="revenueBreakdownChart" height="400"></canvas>
                 </div>
-                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                    <h3 class="text-xl leading-none font-bold text-gray-900 mb-10">Acquisition Overview
-                    </h3>
-                    <div class="block w-full overflow-x-auto">
-                        <table class="items-center w-full bg-transparent border-collapse">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                                        Top Channels</th>
-                                    <th
-                                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
-                                        Users</th>
-                                    <th
-                                        class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap min-w-140-px">
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-100">
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                        Organic Search</th>
-                                    <td
-                                        class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                        5,649</td>
-                                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">30%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-cyan-600 h-2 rounded-sm" style="width: 30%"></div>
-                                                </div>
-                                            </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Total des ventes par mois</h3>
+                <div>
+                    <canvas id="artisansChart" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
+            <div class="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-xl font-bold leading-none text-gray-900">Meilleurs Produits vendu</h3>
+                </div>
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200">
+                        @forelse ($topSellingProducts as $product)
+                            <li class="py-3 sm:py-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex flex-row gap-3 justify-center items-center">
+                                        <img class="h-20 w-20 rounded-md"
+                                            src="{{ str_starts_with($product->images[0], 'http') ? $product->images[0] : asset('storage/' . $product->images[0]) }}">
+                                        <div class="flex flex-col">
+                                            <p
+                                                class="text-md font-medium
+                                                text-gray-900 truncate">
+                                                {{ $product->nom }}
+                                            </p>
+                                            <p class="text-md text-gray-500 truncate">
+                                                {{ $product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}
+                                            </p>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                        Referral</th>
-                                    <td
-                                        class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                        4,025</td>
-                                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">24%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-orange-300 h-2 rounded-sm" style="width: 24%">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                        Direct</th>
-                                    <td
-                                        class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                        3,105</td>
-                                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">18%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-blue-400 h-2 rounded-sm" style="width: 18%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                        Social</th>
-                                    <td
-                                        class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                        1251</td>
-                                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">12%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-pink-600 h-2 rounded-sm" style="width: 12%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 px-4 align-middle text-sm font-normal whitespace-nowrap p-4 text-left">
-                                        Other</th>
-                                    <td
-                                        class="border-t-0 px-4 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4">
-                                        734</td>
-                                    <td class="border-t-0 px-4 align-middle text-xs whitespace-nowrap p-4">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">9%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-blue-600 h-2 rounded-sm" style="width: 9%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr class="text-gray-500">
-                                    <th
-                                        class="border-t-0 align-middle text-sm font-normal whitespace-nowrap p-4 pb-0 text-left">
-                                        Email</th>
-                                    <td
-                                        class="border-t-0 align-middle text-xs font-medium text-gray-900 whitespace-nowrap p-4 pb-0">
-                                        456</td>
-                                    <td class="border-t-0 align-middle text-xs whitespace-nowrap p-4 pb-0">
-                                        <div class="flex items-center">
-                                            <span class="mr-2 text-xs font-medium">7%</span>
-                                            <div class="relative w-full">
-                                                <div class="w-full bg-gray-200 rounded-sm h-2">
-                                                    <div class="bg-purple-500 h-2 rounded-sm" style="width: 7%"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <p class="text-sm font-medium">Note : </p>
+                                        <x-star-rating :rating="$product->rating" />
+                                    </div>
+                                    <div class="inline-flex items-center">
+                                        <p class="text-sm font-medium">Prix :
+                                            <span
+                                                class="text-lg font-semibold text-gray-900">{{ $product->prix }}DA</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        @empty
+                            <p class="text-sm text-gray-600">Aucun produit n'a été vendu</p>
+                        @endforelse
+                    </ul>
                 </div>
             </div>
         </div>
     </main>
+
     <script>
-        var artisansChart = new Chart(document.getElementById('artisansChart'), {
+        // Assuming you have the necessary data for the pie chart
+        var productsByCategoryLabels = @json($customCategoryLabels);
+        var productsCountByCategory = @json($productsCountByCategory);
+
+        // Number of products by product category (Pie Chart)
+        var productPieChart = new Chart(document.getElementById('productChart'), {
             type: 'pie',
+            data: {
+                labels: productsByCategoryLabels,
+                datasets: [{
+                    data: productsCountByCategory,
+                    backgroundColor: ['#60a5fa', '#f97316'], // Add more colors as needed
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+
+        var artisansChart = new Chart(document.getElementById('artisansChart'), {
+            type: 'line',
             data: {
                 labels: @json($months),
                 datasets: [{
+                    label: 'Total des ventes par mois',
                     data: @json($orderCounts),
                     backgroundColor: ['#60a5fa', '#8B8B8D'],
                 }]
@@ -388,6 +236,38 @@
                 legend: {
                     position: 'bottom'
                 }
+            }
+        });
+
+        var revenueBreakdownChart = new Chart(document.getElementById('revenueBreakdownChart'), {
+            type: 'bar',
+            data: {
+                labels: @json($customLabels),
+                datasets: [{
+                    label: 'Revenu total par catégorie et par prix d\'une piéce',
+                    data: @json($totalRevenueByCategory),
+                    backgroundColor: ['#60a5fa', '#f97316'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: @json($customLabels),
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Revenu total (DA)',
+                        },
+                    },
+                },
+                legend: {
+                    display: false,
+                },
             }
         });
     </script>

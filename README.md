@@ -112,35 +112,19 @@ git commit -m "Description des modifications"
 -   [x] BUILD THE SEARCH ENGINE
 -   [x] FILTER BY PRICE IN PRODUCTS
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
--   [ ] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
--   [ ] WORK ON THE AFFECTATION OF THE ORDER TO A DELIVERYMAN WHO IS AVAILABLE AND WITH HIGH RATING with accept and decline choices OR LEAVE IT CONCURRENTLY
--   [ ] SHOW WISHLISTS FOR USERS
--   [ ] WORK ON DELIVERYMAN DASHBOARD
--   [ ] WORK ON USER DASHBOARD
--   [ ] WORK ON ADMIN DASHBOARD
--   [ ] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
+-   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
+-   [x] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
+-   after validating and delivering the product display form with stars to review the delivery man
 -   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
 
 ## TODO
 
-1 - SET MORE FILTERS IN TABLE AND SORT
+1 - write more unit tests
 
-2 - Add communes
+2 - add google analytics
 
-3 - modify index page
+3 - fix the mess in statuses esspecialy for orders and livraisons also change pending to not_started when we create a delivery submission and fix UI FIX IT FOR ORDERS WHEN THERE IS ALOT CENTER THE ACTION TD w zid unaffect delivery images cant be uploaded from register of artisan and deliveryman
 
-4 - add google analytics
-
-
-
-## OU TRAVAILLER 
-
-Dossiers :
-- VUE : ressource/views/user
-- CONTROLLERS: app/Http/Controllers
-NB : TU PEUT CREER DES CONTROLLERS EN EXECUTANT LA COMMANDE ```php artisan make:controller nomDuController``` ET ESSAYE TEBA3 3LA LARTISAN
-
-
-- TU PEUT UTULISER LES LAYOUTS DEJA CREEE DE LA DASHBOARD (CHOUF LARTISAN FICHICER DASHBOARD.BLADE.PHP)
+4 - Fix dashboards
