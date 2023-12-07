@@ -4,9 +4,13 @@
             <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                     <h3 class="text-xl font-bold text-gray-800 mb-4">Types de produits</h3>
-                    <div>
-                        <canvas id="productChart"></canvas>
-                    </div>
+                    @if ($totalProducts == 0)
+                        <p class="text-sm text-gray-600">Aucun produit n'a été ajouté</p>
+                    @else
+                        <div>
+                            <canvas id="productChart"></canvas>
+                        </div>
+                    @endif
                 </div>
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                     <div class="mb-4 flex items-center justify-between">
@@ -42,7 +46,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            @foreach ($latestOrders as $order)
+                                            @forelse ($latestOrders as $order)
                                                 <tr>
                                                     <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
                                                         Commande id <span class="font-semibold">#{{ $order->id }}
@@ -56,7 +60,13 @@
                                                         {{ $order->getTotalPrice() }} DA
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3"
+                                                        class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
+                                                        Aucune commande n'a été passée
+                                                    </td>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -148,7 +158,7 @@
                 </div>
                 <div class="flow-root">
                     <ul role="list" class="divide-y divide-gray-200">
-                        @foreach ($topSellingProducts as $product)
+                        @forelse ($topSellingProducts as $product)
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center justify-between">
                                     <div class="flex flex-row gap-3 justify-center items-center">
@@ -177,7 +187,9 @@
                                     </div>
                                 </div>
                             </li>
-                        @endforeach
+                        @empty
+                            <p class="text-sm text-gray-600">Aucun produit n'a été vendu</p>
+                        @endforelse
                     </ul>
                 </div>
             </div>

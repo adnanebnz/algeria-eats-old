@@ -16,8 +16,8 @@
                     <select name="est_disponible" wire:model='est_disponible'
                         class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
                         <option>Choisir</option>
-                        <option value="true">Oui</option>
-                        <option value="false">Non</option>
+                        <option value="1">Oui</option>
+                        <option value="0">Non</option>
                     </select>
                 </div>
                 <x-input name="email" label="Email" type="email" />

@@ -74,7 +74,7 @@
                 @if ($user->isDeliveryMan())
                     <h1 class="font-medium text-lg mb-4">Disponible? :
                         <span
-                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
+                            class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 1 ? 'Oui' : 'Non' }}</span>
                     </h1>
                 @endif
             </div>
@@ -82,8 +82,8 @@
         @if (auth()->id() === $user->id)
             <h1 class="md:text-3xl text-xl font-black md:px-40 px-4 mb-5 mt-5 self-start">Modifier votre Profile
             </h1>
-            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg">
-                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-12"
+            <div class="bg-gray-100/40 md:w-3/4 shadow-md w-full p-4 mx-auto my-auto rounded-lg">
+                <form action="{{ route('profile.update', ['user' => auth()->user()]) }}" method="POST" class="mb-2"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -171,10 +171,10 @@
                                         class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                                         name="est_disponible" label="Êtes-vous disponible ?">
                                         <option>Choisir</option>
-                                        <option value="true" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>
+                                        <option value="1" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == true) selected @endif>
                                             Disponible
                                         </option>
-                                        <option value="false" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
+                                        <option value="0" @if (old('est_disponible', auth()->user()->deliveryMan->est_disponible) == false) selected @endif>Non
                                             disponible
                                         </option>
                                     </select>
