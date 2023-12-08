@@ -1,14 +1,14 @@
 <form wire:submit.prevent="submit" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col gap-8">
-        <div class="flex flex-row gap-8">
-            <div class="w-1/2 flex flex-col gap-4">
+        <div class="flex md:flex-row flex-col md:gap-8 gap-2">
+            <div class="md:w-1/2 w-full flex flex-col gap-4">
                 <x-input name="nom" label="Nom" type="text" />
                 <x-input name="prenom" label="Prénom" type="text" />
                 <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
                 <x-input name="adresse" label="Adresse" type="text" />
             </div>
-            <div class="w-1/2 flex flex-col gap-4">
+            <div class="md:w-1/2 w-full flex flex-col gap-4">
                 <x-select name="wilaya" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
                     :optionsTexts="'wilaya_name_ascii'" />
                 <div>
