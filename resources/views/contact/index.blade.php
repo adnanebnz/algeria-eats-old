@@ -1,5 +1,5 @@
 <x-default-layout>
-    <section class="bg-white pb-20 overflow-hidden relative z-10 px-14">
+    <section class="bg-white md:pb-20 overflow-hidden relative z-10 md:px-14">
         <div class="container">
             <div class="flex flex-wrap lg:justify-between -mx-4">
                 <div class="w-full lg:w-1/2 xl:w-6/12 px-4">
