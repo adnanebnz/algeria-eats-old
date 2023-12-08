@@ -18,6 +18,16 @@
     @livewireStyles
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6S5QH2BKMB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6S5QH2BKMB');
+</script>
+
 <body class="antialiased pt-1">
     {{-- Conteneur global --}}
     <div>
