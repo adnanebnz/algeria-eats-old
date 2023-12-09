@@ -97,8 +97,23 @@ class ArtisanController extends Controller
         }, $categories);
         $totalRevenueByCategory = $revenueBreakdown->pluck('total_revenue')->toArray();
 
+        // prepare data for pie chart of the number of products by category
+        $productsByCategory = Product::select(
+            'categorie',
+            DB::raw('COUNT(*) as product_count')
+        )
+            ->where('artisan_id', auth()->user()->id)
+            ->groupBy('categorie')
+            ->get();
 
-        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts', 'totalOrders', 'totalProducts', 'totalDeliveries', 'topSellingProducts', 'totalIncomes', 'categories', 'totalRevenueByCategory', 'customLabels'));
+        $productsCountByCategory = $productsByCategory->pluck('product_count')->toArray();
+
+        $customCategoryLabels = array_map(function ($category) {
+            return ($category === 'sucree') ? 'Sucrée' : 'Salée';
+        }, $categories);
+
+
+        return view('artisan.dashboard', compact('latestOrders', 'months', 'orderCounts', 'totalOrders', 'totalProducts', 'totalDeliveries', 'topSellingProducts', 'totalIncomes', 'categories', 'totalRevenueByCategory', 'customLabels', 'productsCountByCategory', 'customCategoryLabels'));
     }
 
     public function productsIndex(Request $request)
@@ -208,7 +223,7 @@ class ArtisanController extends Controller
 
         return view('artisan.orders.show', [
             "order" => $order,
-            "delivery" => $delivery
+            "delivery" => $delivery,
         ]);
     }
 
@@ -234,6 +249,49 @@ class ArtisanController extends Controller
     // ORDERS SECTION END
 
     // DELIVERIES SECTION
+    public function deliveriesIndex(Request $request)
+    {
+        $query = Delivery::select('id', 'order_id', 'deliveryMan_id', 'status', 'created_at', 'updated_at')
+            ->whereHas('order', function ($query) {
+                $query->where('artisan_id', auth()->user()->id);
+            })->where('deliveryMan_id', '!=', null);
+
+        // Filtering by search term of buyer name
+        if ($request->has('search')) {
+            $query->whereHas('order.buyer', function ($query) {
+                $query->where('nom', 'like', '%' . request('search') . '%')->orWhere('prenom', 'like', '%' . request('search') . '%');
+            });
+        }
+
+        // Filtering by status
+        if ($request->has('status')) {
+            $query->where('status', request('status'));
+        }
+
+        // Filtering by date
+
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            if ($date == 'nouveau') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($date == 'ancien') {
+                $query->orderBy('created_at', 'asc');
+            }
+        }
+
+        $deliveries = $query->paginate(10);
+
+        return view('artisan.deliveries.index', [
+            "deliveries" => $deliveries
+        ]);
+    }
+
+    public function showDelivery(Delivery $delivery)
+    {
+        return view('artisan.deliveries.show', [
+            "delivery" => $delivery
+        ]);
+    }
     public function affectDelivery(Order $order)
     {
         $delivery = Delivery::where('order_id', $order->id)->first();
@@ -247,6 +305,22 @@ class ArtisanController extends Controller
             ]);
         Alert::success('Succès', 'Livraison affectée !');
         return redirect()->route('artisan.orders.show', $order);
+    }
+
+    public function unaffectDelivery(Order $order)
+    {
+        $delivery = Delivery::where('order_id', $order->id)->first();
+        if ($delivery) {
+            $delivery->update([
+                'order_id' => null,
+                'status' => 'not_started',
+            ]);
+            Alert::success('Succès', 'Livraison désaffectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        } else {
+            Alert::error('Erreur', 'Cette commande n\'a pas de livraison affectée !');
+            return redirect()->route('artisan.orders.show', $order);
+        }
     }
     // DELIVERIES SECTION END
 }

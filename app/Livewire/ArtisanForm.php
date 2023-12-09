@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
-use App\Models\Artisan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -31,7 +30,7 @@ class ArtisanForm extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'num_telephone' => 'required|string',
+        'num_telephone' => 'required|string|unique:users',
         'adresse' => 'required|string',
         'wilaya' => 'required|string',
         'desc_entreprise' => 'required|string',
