@@ -107,28 +107,34 @@ class CreateOrder extends Component
     public function store()
     {
         $data = $this->validate();
-        // TODO FIX CREATE ORDER FOR EACH CART ITEM THAT HAS A DIFFERENT ARTISAN
-        $order = Order::create([
-            'buyer_id' => auth()->user()->id,
-            'artisan_id' => $this->cartItems[0]->product->artisan->user_id,
-            'adresse' => $data['adresse'],
-            'wilaya' => $data['selectedWilaya'],
-            'daira' => $data['selectedDaira'],
-            'commune' => $data['selectedCommune'],
-            'status' => 'not_started',
-        ]);
+        $cartItemsByArtisan = $this->cartItems->groupBy('product.artisan.user_id');
 
-        foreach ($this->cartItems as $cartItem) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_id' => $cartItem->product_id,
-                'quantity' => $cartItem->quantity,
-                'prix_total' => $cartItem->product->prix * $cartItem->quantity,
+        foreach ($cartItemsByArtisan as $artisanId => $cartItems) {
+            // Create an order for each artisan
+            $order = Order::create([
+                'buyer_id' => auth()->user()->id,
+                'artisan_id' => $artisanId,
+                'adresse' => $data['adresse'],
+                'wilaya' => $data['selectedWilaya'],
+                'daira' => $data['selectedDaira'],
+                'commune' => $data['selectedCommune'],
+                'status' => 'not_started',
             ]);
-            $cartItem->delete();
+
+            // TODO CHECK WHY ITS FAILING SEE IF I DO THIS A LA MAIN
+            // GenerateInvoiceAndSendMail::dispatch($order);
+
+            foreach ($cartItems as $cartItem) {
+                // Create order items for each product
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cartItem->product_id,
+                    'quantity' => $cartItem->quantity,
+                    'prix_total' => $cartItem->product->prix * $cartItem->quantity,
+                ]);
+                $cartItem->delete();
+            }
         }
-        // generating PDF for invoice and sending it via mail
-        GenerateInvoiceAndSendMail::dispatch($order);
 
         Alert::success('Succès', 'Votre commande a été enregistrée avec succès');
         return redirect()->route('index');

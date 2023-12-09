@@ -123,3 +123,6 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 Fix dashboards
 Build the last pages
+Only users who bought a product can comment it and fix orders so that each artisan can see orders that contains his product
+generate invoices and orders and make the job work
+display all products of artisan in his page
