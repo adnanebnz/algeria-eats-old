@@ -67,10 +67,10 @@
                                         Sucré
                                     </option>
                                     <option value="salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'salee') selected @endif>
-                                        Salé
+                                        Salée
                                     </option>
                                     <option value="sucree_salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree_salee') selected @endif>
-                                        Sucré et Salé
+                                        Sucrée et Salée
                                     </option>
                                 </select>
                             </div>

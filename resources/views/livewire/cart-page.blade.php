@@ -13,7 +13,8 @@
                                 <div class="mt-5 sm:mt-0">
                                     <h2 class="text-lg font-bold text-gray-900">{{ $cartItem->product->nom }}</h2>
                                     <p class="mt-1 text-xs text-gray-700">
-                                        Catégorie : {{ $cartItem->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}
+                                        Catégorie :
+                                        {{ $cartItem->product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
                                     </p>
                                 </div>
                                 <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">

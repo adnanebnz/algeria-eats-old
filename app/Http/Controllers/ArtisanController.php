@@ -301,25 +301,24 @@ class ArtisanController extends Controller
         } else
             Delivery::create([
                 'order_id' => $order->id,
-                'status' => 'pending',
+                'status' => 'not_started',
             ]);
         Alert::success('Succès', 'Livraison affectée !');
         return redirect()->route('artisan.orders.show', $order);
     }
 
-    public function unaffectDelivery(Order $order)
+    public function unaffectDelivery(Delivery $delivery)
     {
-        $delivery = Delivery::where('order_id', $order->id)->first();
         if ($delivery) {
             $delivery->update([
-                'order_id' => null,
+                'deliveryMan_id' => null,
                 'status' => 'not_started',
             ]);
             Alert::success('Succès', 'Livraison désaffectée !');
-            return redirect()->route('artisan.orders.show', $order);
+            return redirect()->route('artisan.index');
         } else {
             Alert::error('Erreur', 'Cette commande n\'a pas de livraison affectée !');
-            return redirect()->route('artisan.orders.show', $order);
+            return redirect()->route('artisan.index');
         }
     }
     // DELIVERIES SECTION END

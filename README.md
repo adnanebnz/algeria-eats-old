@@ -121,10 +121,5 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 ## TODO
 
-1 - write more unit tests
-
-2 - add google analytics
-
-3 - fix the mess in statuses esspecialy for orders and livraisons also change pending to not_started when we create a delivery submission and fix UI FIX IT FOR ORDERS WHEN THERE IS ALOT CENTER THE ACTION TD w zid unaffect delivery images cant be uploaded from register of artisan and deliveryman
-
-4 - Fix dashboards
+Fix dashboards
+Build the last pages

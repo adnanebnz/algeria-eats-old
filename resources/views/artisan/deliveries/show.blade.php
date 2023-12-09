@@ -106,7 +106,20 @@
                             </span>
                         @endif
                     </div>
+                    {{-- ANNULER LA LIVRAISON --}}
+                    @if ($delivery->status !== 'delivered')
+                        <form action="{{ route('artisan.deliveries.unaffect', ['delivery' => $delivery]) }}"
+                            class="flex items-center justify-center" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="
+                            inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Annuler la livraison
+                            </button>
+                        </form>
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>

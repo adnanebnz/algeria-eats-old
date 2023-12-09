@@ -65,6 +65,7 @@ Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'de
 Route::get('artisan/dashboard/deliveries', [ArtisanController::class, 'deliveriesIndex'])->name("artisan.deliveries");
 Route::get('artisan/dashboard/deliveries/{delivery}', [ArtisanController::class, 'showDelivery'])->name("artisan.deliveries.show");
 Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
+Route::post('artisan/dashboard/deliveries/{delivery}/unaffect', [ArtisanController::class, 'unaffectDelivery'])->name("artisan.deliveries.unaffect");
 //DELIVERIES SECTION END
 
 // PDF INVOICES

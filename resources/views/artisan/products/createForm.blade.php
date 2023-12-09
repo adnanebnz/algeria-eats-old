@@ -22,8 +22,8 @@
                             <select name="categorie"
                                 class="form-select block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6  mt-2">
                                 <option>Choisir une catégorie</option>
-                                <option value="sucree">Sucré</option>
-                                <option value="salee">Salé</option>
+                                <option value="sucree">Sucrée</option>
+                                <option value="salee">Salée</option>
                             </select>
                         </div>
                         <x-input name="sous_categorie" label="Sous Categorie" />

@@ -108,7 +108,7 @@
                                                             Catégorie
                                                         </p>
                                                         <h2 class="text-base font-semibold text-gray-700">
-                                                            {{ $product->category === 'sucree' ? 'Sucré' : 'Salé' }}
+                                                            {{ $product->category === 'sucree' ? 'Sucrée' : 'Salée' }}
                                                         </h2>
                                                     </div>
                                                 </div>
