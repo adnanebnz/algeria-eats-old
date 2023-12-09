@@ -26,7 +26,7 @@ class ConsumerForm extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'num_telephone' => 'required|string',
+        'num_telephone' => 'required|string|unique:users',
         'adresse' => 'required|string',
         'wilaya' => 'required|string',
         'email' => 'required|email|unique:users',
