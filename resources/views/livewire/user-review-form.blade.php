@@ -1,7 +1,7 @@
 <div x-data="{ rating: @entangle('rating') }">
-    <div class="flex items-center justify-center shadow-lg mt-16 mb-4">
+    <div class="flex items-center justify-center shadow-lg mt-16 mb-4 w-full">
         <form class="w-full bg-white rounded-lg px-4 pt-2" wire:submit='store()'>
-            <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="flex flex-col -mx-3 mb-6">
                 <h2 class="px-4 pt-3 pb-2 text-gray-800 text-lg">Ajouter une nouvelle évaluation</h2>
                 <div class="w-full px-3 mb-2 mt-2">
                     <input wire:model="title"

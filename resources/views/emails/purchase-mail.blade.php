@@ -49,7 +49,7 @@
         <p class="mb-6">Merci encore pour votre achat.</p>
 
         <p>Cordialement,</p>
-        <p>{{ $order->artisan->getFullName() }}</p>
+        <p>Algeria Eats</p>
     </div>
 </body>
 

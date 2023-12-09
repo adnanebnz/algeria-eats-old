@@ -121,9 +121,6 @@ class CreateOrder extends Component
                 'status' => 'not_started',
             ]);
 
-            // TODO CHECK WHY ITS FAILING SEE IF I DO THIS A LA MAIN
-            // GenerateInvoiceAndSendMail::dispatch($order);
-
             foreach ($cartItems as $cartItem) {
                 // Create order items for each product
                 OrderItem::create([

@@ -123,6 +123,9 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 Fix dashboards
 Build the last pages
-Only users who bought a product can comment it and fix orders so that each artisan can see orders that contains his product
-generate invoices and orders and make the job work
+~~Only users who bought a product can comment it and fix orders so that each artisan can see orders that contains his product~~
+Only users who bought products from an artisan can comment his profile and same for deliveryman
+ajouter un recu de livraison pour le livreur and think about how to make a price for the livraison
+think of a way to use the job
 display all products of artisan in his page
+add tooltips in dashboards

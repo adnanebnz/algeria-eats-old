@@ -1,6 +1,6 @@
     <x-default-layout title='Profile'>
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
-            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
+            <div class="bg-gray-100/40 md:w-3/4 w-full md:p-4 p-0 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
                     src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
 
@@ -296,10 +296,12 @@
                 </form>
             </div>
         @endif
-        @if (auth()->user() && auth()->user()->id !== $user->id)
-            <livewire:user-review-form :user='$user' />
-        @endif
-        <livewire:user-review-component :user='$user' />
+        <div class="md:w-3/4 w-full">
+            @if (auth()->user() && auth()->user()->id !== $user->id && ($user->isArtisan() || $user->isDeliveryMan()))
+                <livewire:user-review-form :user='$user' />
+            @endif
+            <livewire:user-review-component :user='$user' />
+        </div>
 
         </div>
     </x-default-layout>
