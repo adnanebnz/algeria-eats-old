@@ -16,6 +16,19 @@
     @livewireStyles
 </head>
 
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6S5QH2BKMB"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6S5QH2BKMB');
+</script>
+
 <body class="h-full overflow-x-hidden">
     <div>
         {{-- MOBILE NAV --}}
@@ -183,22 +196,45 @@
 
                                     @if ($isAdmin)
                                         <li>
+                                            <a href="{{ route('admin.index') }}" @class([
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('admin.index')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
+                                            ])>
+                                                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                                    @class([
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('admin.index')
+                                                            ? 'bg-blue-500 text-white'
+                                                            : 'text-gray-500 group-hover:text-gray-900',
+                                                    ])>
+                                                    <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                                                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                                                </svg>
+                                                <span class="ml-3">Tableau de bord</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{ route('admin.users') }}" @class([
-                                                'text-base font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group',
-                                                true ? 'bg-blue-500 text-white' : 'text-gray-900',
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('admin.users')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
                                             ])>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     @class([
-                                                        'w-6 h-6 text-gray-500 group-hover:text-gray-900 transition duration-75',
-                                                        request()->routeIs('artisan.index')
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('admin.users')
                                                             ? 'bg-blue-500 text-white'
-                                                            : 'text-gray-500',
+                                                            : 'text-gray-500 group-hover:text-gray-900',
                                                     ]) viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                                 </svg>
-                                                <span class="ml-3">Users</span>
+                                                <span class="ml-3">Utilisateurs</span>
                                             </a>
                                         </li>
                                         <li>
@@ -211,7 +247,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
                                                 </svg>
-                                                <span class="ml-3">Products</span>
+                                                <span class="ml-3">Produits</span>
                                             </a>
                                         </li>
                                     @endif
@@ -305,6 +341,29 @@
                                                         d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
                                                 </svg>
                                                 <span class="ml-3">Commandes</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a href="{{ route('artisan.deliveries') }}" @class([
+                                                'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                request()->routeIs('artisan.deliveries')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-900 hover:bg-gray-100',
+                                            ])>
+
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    @class([
+                                                        'w-6 h-6 text-gray-500 transition duration-75',
+                                                        request()->routeIs('artisan.deliveries')
+                                                            ? 'bg-blue-500 text-white'
+                                                            : 'text-gray-500',
+                                                    ])>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                                                </svg>
+                                                <span class="ml-3">Livraisons</span>
                                             </a>
                                         </li>
                                     @endif

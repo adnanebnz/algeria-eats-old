@@ -3,10 +3,14 @@
         <div class="pt-6 px-4">
             <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4">Ventes ce mois-ci</h3>
-                    <div>
-                        <canvas id="artisansChart"></canvas>
-                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Types de produits</h3>
+                    @if ($totalProducts == 0)
+                        <p class="text-sm text-gray-600">Aucun produit n'a été ajouté</p>
+                    @else
+                        <div>
+                            <canvas id="productChart"></canvas>
+                        </div>
+                    @endif
                 </div>
                 <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                     <div class="mb-4 flex items-center justify-between">
@@ -42,7 +46,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="bg-white">
-                                            @foreach ($latestOrders as $order)
+                                            @forelse ($latestOrders as $order)
                                                 <tr>
                                                     <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
                                                         Commande id <span class="font-semibold">#{{ $order->id }}
@@ -56,7 +60,13 @@
                                                         {{ $order->getTotalPrice() }} DA
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            @empty
+                                                <tr>
+                                                    <td colspan="3"
+                                                        class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
+                                                        Aucune commande n'a été passée
+                                                    </td>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
@@ -131,7 +141,13 @@
             <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 mt-4">
                 <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des revenus par catégorie</h3>
                 <div>
-                    <canvas id="revenueBreakdownChart"></canvas>
+                    <canvas id="revenueBreakdownChart" height="400"></canvas>
+                </div>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Total des ventes par mois</h3>
+                <div>
+                    <canvas id="artisansChart" height="300"></canvas>
                 </div>
             </div>
         </div>
@@ -142,7 +158,7 @@
                 </div>
                 <div class="flow-root">
                     <ul role="list" class="divide-y divide-gray-200">
-                        @foreach ($topSellingProducts as $product)
+                        @forelse ($topSellingProducts as $product)
                             <li class="py-3 sm:py-4">
                                 <div class="flex items-center justify-between">
                                     <div class="flex flex-row gap-3 justify-center items-center">
@@ -171,7 +187,9 @@
                                     </div>
                                 </div>
                             </li>
-                        @endforeach
+                        @empty
+                            <p class="text-sm text-gray-600">Aucun produit n'a été vendu</p>
+                        @endforelse
                     </ul>
                 </div>
             </div>
@@ -179,11 +197,35 @@
     </main>
 
     <script>
-        var artisansChart = new Chart(document.getElementById('artisansChart'), {
+        // Assuming you have the necessary data for the pie chart
+        var productsByCategoryLabels = @json($customCategoryLabels);
+        var productsCountByCategory = @json($productsCountByCategory);
+
+        // Number of products by product category (Pie Chart)
+        var productPieChart = new Chart(document.getElementById('productChart'), {
             type: 'pie',
+            data: {
+                labels: productsByCategoryLabels,
+                datasets: [{
+                    data: productsCountByCategory,
+                    backgroundColor: ['#60a5fa', '#f97316'], // Add more colors as needed
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+
+        var artisansChart = new Chart(document.getElementById('artisansChart'), {
+            type: 'line',
             data: {
                 labels: @json($months),
                 datasets: [{
+                    label: 'Total des ventes par mois',
                     data: @json($orderCounts),
                     backgroundColor: ['#60a5fa', '#8B8B8D'],
                 }]
@@ -202,9 +244,9 @@
             data: {
                 labels: @json($customLabels),
                 datasets: [{
-                    label: 'Revenu total par catégorie',
+                    label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
-                    backgroundColor: '#60a5fa',
+                    backgroundColor: ['#60a5fa', '#f97316'],
                 }]
             },
             options: {

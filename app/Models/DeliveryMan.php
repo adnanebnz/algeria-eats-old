@@ -31,4 +31,9 @@ class DeliveryMan extends Authenticatable
     {
         return $this->hasMany(Delivery::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(UserReview::class, 'user_id');
+    }
 }

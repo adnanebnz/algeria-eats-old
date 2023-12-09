@@ -62,6 +62,8 @@ Route::delete('artisan/dashboard/orders/{order}', [ArtisanController::class, 'de
 //ORDERS SECTION END
 
 //DELIVERIES SECTION
+Route::get('artisan/dashboard/deliveries', [ArtisanController::class, 'deliveriesIndex'])->name("artisan.deliveries");
+Route::get('artisan/dashboard/deliveries/{delivery}', [ArtisanController::class, 'showDelivery'])->name("artisan.deliveries.show");
 Route::post('artisan/dashboard/{order}/delivery', [ArtisanController::class, 'affectDelivery'])->name("artisan.deliveries.affect");
 //DELIVERIES SECTION END
 
@@ -74,11 +76,13 @@ Route::post('artisan/dashboard/orders/{order}/invoice', [ArtisanInvoicesControll
 /*-----------ADMIN DASHBOARD-----------*/
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name("admin.index");
 Route::get('admin/dashboard/users', [AdminController::class, 'users'])->name("admin.users");
-Route::get('admin/dashboard/users/{user}', [AdminController::class, 'indexOne'])->name("admin.indexOne");
+Route::get('admin/dashboard/users/{user}', [AdminController::class, 'showUser'])->name("admin.indexOne");
 Route::get('admin/dashboard/users/{user}/edit', [AdminController::class, 'edit'])->name("admin.edit");
 Route::put('admin/dashboard/users/{user}', [AdminController::class, 'update'])->name("admin.update");
 Route::delete('admin/dashboard/users/{user}', [AdminController::class, 'destroy'])->name("admin.destroy");
-Route::get('admin/dashboard/users/{user}/products', [AdminController::class, 'products'])->name('admin.products');
+Route::get('admin/dashboard/users/{user}/products', [AdminController::class, 'user_products'])->name('admin.user_products');
+Route::get('admin/dashboard/products', [AdminController::class, 'products'])->name('admin.products');
+
 //afficher les statistiques
 
 /*-----------ADMIN END-----------*/
