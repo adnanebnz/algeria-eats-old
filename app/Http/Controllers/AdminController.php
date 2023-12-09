@@ -99,6 +99,7 @@ class AdminController extends Controller
       'prenom' => 'required|string',
       'num_telephone' => 'required|string',
       'adresse' => 'required|string',
+      // TODO ADD WILAYA
       'email' => 'required|email|unique:users',
       'image' => 'nullable|image|max:4096',
       'password' => 'required|min:3|confirmed',

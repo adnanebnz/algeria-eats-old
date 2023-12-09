@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,12 +15,13 @@ class ProfileController extends Controller
     function __construct()
     {
         $this->middleware('auth')->except(['index']);
-        $this->middleware('checkProfileOwnership')->only(['update']);
+        $this->middleware('checkProfileOwnership')->only(['update', 'destroy']);
     }
 
     public function index(User $user)
     {
-        return view('auth.profile', ['user' => $user]);
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        return view('auth.profile', ['user' => $user, 'wilayas' => $wilayas]);
     }
 
     public function update(User $user, Request $request)
@@ -49,6 +51,7 @@ class ProfileController extends Controller
                 'heure_ouverture' => 'required|string',
                 'heure_fermeture' => 'required|string',
                 'desc_entreprise' => 'required|string',
+                'type_service' => 'required|string',
             ]);
 
             $user->artisan->update($speceficData);
@@ -82,5 +85,12 @@ class ProfileController extends Controller
         Alert::success('Profil mis à jour !', 'Votre profil a été mis à jour avec succès !');
 
         return redirect()->route('profile', ['user' => $user]);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        Alert::success('Compte supprimé !', 'Votre compte a été supprimé avec succès !');
+        return redirect()->route('index');
     }
 }

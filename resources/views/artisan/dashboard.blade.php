@@ -171,7 +171,7 @@
                                                 {{ $product->nom }}
                                             </p>
                                             <p class="text-md text-gray-500 truncate">
-                                                {{ $product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}
+                                                {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
                                             </p>
                                         </div>
                                     </div>

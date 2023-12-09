@@ -63,8 +63,15 @@
                                 <h1 class="font-medium md:text-lg text-sm my-2">Type
                                     Service
                                 </h1>
-                                <span
-                                    class="bg-gray-100/25 rounded-full px-2 py-1">{{ ($user->artisan->type_service === 'sucree' ? 'Sucré' : $user->artisan->type_service === 'salee') ? 'Salé' : 'Sucré et Salé' }}</span>
+                                <span class="bg-gray-100/25 rounded-full px-2 py-1">
+                                    @if ($user->artisan->type_service === 'sucree')
+                                        Sucrée
+                                    @elseif($user->artisan->type_service === 'salee')
+                                        Salée
+                                    @else
+                                        Sucrée et Salée
+                                    @endif
+                                </span></span>
                             </div>
                         </div>
                     </div>

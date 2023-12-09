@@ -4,17 +4,19 @@
             <label for="billing-address" class="mt-4 mb-2 block text-sm text-gray-700 font-medium">Adresse de
                 livraison</label>
             <div class="flex flex-col gap-4">
-                <div class="relative flex-shrink-0 w-full">
-                    <input type="text" id="billing-address" name="adresse" wire:model='adresse'
-                        class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Adresse" />
-                    <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
-                        <img class="h-4 w-6 border" src="{{ asset('assets/algeria.png') }}" />
+                <div class="relative flex flex-col gap-1.5 w-full">
+                    <div class="relative flex items-center w-full">
+                        <input type="text" id="billing-address" name="adresse" wire:model='adresse'
+                            class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Adresse" />
+                        <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                            <img class="h-4 w-6 border" src="{{ asset('assets/algeria.png') }}" />
+                        </div>
                     </div>
+                    @error('adresse')
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
                 </div>
-                @error('adresse')
-                    <p class="text-red-500 text-sm mt-1.5">{{ $message }}</p>
-                @enderror
                 <div>
                     <label class="block text-sm font-medium leading-6 text-gray-900">
                         Wilaya
