@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Product;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Analytics\Facades\Analytics;
+use Spatie\Analytics\Period;
 
 class AdminController extends Controller
 {
@@ -14,14 +16,22 @@ class AdminController extends Controller
   public function __construct()
   {
     $this->middleware('auth');
-    
+
     $this->middleware('admin');
-    
   }
 
 
   public function index()
   {
+    // TODO PLACE THESE STATS IN UI
+    $analyticsData = Analytics::fetchMostVisitedPages(Period::days(7));
+    $analyticsData1 = Analytics::fetchVisitorsAndPageViews(Period::days(7));
+    $analyticsData2 = Analytics::fetchTotalVisitorsAndPageViews(Period::days(7));
+    $analyticsData3 = Analytics::fetchTopReferrers(Period::days(7));
+    $analyticsData4 = Analytics::fetchUserTypes(Period::days(7));
+    $analyticsData5 = Analytics::fetchTopBrowsers(Period::days(7));
+    $analyticsData6 = Analytics::fetchTopOperatingSystems(Period::days(7));
+    dd($analyticsData, $analyticsData1, $analyticsData2, $analyticsData3, $analyticsData4, $analyticsData5, $analyticsData6);
     return view("admin.dashboard",);
   }
 
