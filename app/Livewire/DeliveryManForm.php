@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
-use App\Models\DeliveryMan;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -28,14 +27,14 @@ class DeliveryManForm extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'num_telephone' => 'required|string',
+        'num_telephone' => 'required|string|unique:users',
         'adresse' => 'required|string',
         'wilaya' => 'required|string',
         'email' => 'required|email|unique:users',
         'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'required|same:password',
-        'est_disponible' => 'required|string|in:true,false',
+        'est_disponible' => 'required|integer|in:1,0',
     ];
     public function submit()
     {
@@ -57,12 +56,6 @@ class DeliveryManForm extends Component
             if ($this->image) {
                 $imagePath = $this->image->store('profile_images', 'public');
                 $user->update(['image' => $imagePath]);
-            }
-
-            if ($validatedData['est_disponible'] === 'true') {
-                $validatedData['est_disponible'] = true;
-            } else {
-                $validatedData['est_disponible'] = false;
             }
 
             $user->deliveryMan()->create([

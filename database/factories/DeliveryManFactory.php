@@ -21,7 +21,7 @@ class DeliveryManFactory extends Factory
 
         return [
             'user_id' =>  $user->id,
-            'est_disponible' => true,
+            'est_disponible' => 1,
             'rating' => 0
         ];
     }

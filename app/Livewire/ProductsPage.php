@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Product;
-use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -33,7 +32,8 @@ class ProductsPage extends Component
     public function render()
     {
         return view('livewire.products-page', [
-            'products' => Product::filters($this->filters)
+            'products' => Product::select('id', 'nom', 'prix', 'categorie', 'images')
+                ->filters($this->filters)
                 ->orderBy('prix', $this->orderDirection)
                 ->paginate(10),
         ]);
