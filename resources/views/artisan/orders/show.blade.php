@@ -159,7 +159,7 @@
                         {{-- TODO FIX CONDITIONS --}}
                         @if ($order->status == 'completed' && $delivery === null)
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
-                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En
+                                    class="mt-2 px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En
                                     attente d'affectation</span></p>
                             <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
                                 @csrf
@@ -172,7 +172,7 @@
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">En
                                     attente d'un livreur</span></p>
-                        @elseif ($delivery->deliveryMan_id !== null)
+                        @elseif ($delivery?->deliveryMan_id !== null)
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">Affecté</span>
                             </p>

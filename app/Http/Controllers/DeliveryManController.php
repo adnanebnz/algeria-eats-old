@@ -75,12 +75,6 @@ class DeliveryManController extends Controller
             $query->whereHas('order', function ($query) {
                 $query->where('wilaya', request('wilaya'));
             });
-        } else {
-            // Set a default value for 'wilaya' if it is not present in the request
-            $defaultWilaya = auth()->user()->wilaya;
-            $query->whereHas('order', function ($query) use ($defaultWilaya) {
-                $query->where('wilaya', $defaultWilaya);
-            });
         }
 
         // FILTERING BY DATE
