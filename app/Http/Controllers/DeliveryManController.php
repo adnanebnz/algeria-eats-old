@@ -7,41 +7,52 @@ use App\Models\Delivery;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
-
 class DeliveryManController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('deliveryMan');
+        $this->middleware("auth");
+        $this->middleware("deliveryMan");
     }
     public function index()
     {
         $userId = auth()->user()->id;
 
-        $latestDeliveries = Delivery::where('status', 'delivered')
-            ->where('deliveryMan_id', $userId)
-            ->latest('created_at')
+        $latestDeliveries = Delivery::where("status", "delivered")
+            ->where("deliveryMan_id", $userId)
+            ->latest("created_at")
             ->paginate(6);
 
-        $completedDeliveriesToday = Delivery::where('status', 'delivered')
-            ->where('deliveryMan_id', $userId)
-            ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
+        $completedDeliveriesToday = Delivery::where("status", "delivered")
+            ->where("deliveryMan_id", $userId)
+            ->whereBetween("updated_at", [
+                now()->startOfDay(),
+                now()->endOfDay(),
+            ])
             ->count();
 
-        $uncompletedDeliveriesToday = Delivery::where('status', 'delivering')
-            ->where('deliveryMan_id', $userId)
-            ->whereBetween('updated_at', [now()->startOfDay(), now()->endOfDay()])
+        $uncompletedDeliveriesToday = Delivery::where("status", "delivering")
+            ->where("deliveryMan_id", $userId)
+            ->whereBetween("updated_at", [
+                now()->startOfDay(),
+                now()->endOfDay(),
+            ])
             ->count();
 
-        $completedDeliveriesThisWeek = Delivery::where('status', 'delivered')
-            ->where('deliveryMan_id', $userId)
-            ->whereBetween('updated_at', [now()->startOfWeek(), now()->endOfWeek()])
+        $completedDeliveriesThisWeek = Delivery::where("status", "delivered")
+            ->where("deliveryMan_id", $userId)
+            ->whereBetween("updated_at", [
+                now()->startOfWeek(),
+                now()->endOfWeek(),
+            ])
             ->count();
 
-        $completedDeliveriesThisMonth = Delivery::where('status', 'delivered')
-            ->where('deliveryMan_id', $userId)
-            ->whereBetween('updated_at', [now()->startOfMonth(), now()->endOfMonth()])
+        $completedDeliveriesThisMonth = Delivery::where("status", "delivered")
+            ->where("deliveryMan_id", $userId)
+            ->whereBetween("updated_at", [
+                now()->startOfMonth(),
+                now()->endOfMonth(),
+            ])
             ->count();
 
         return view("deliveryMan.dashboard", [
@@ -50,40 +61,62 @@ class DeliveryManController extends Controller
             "countweek" => $completedDeliveriesThisWeek,
             "countmonth" => $completedDeliveriesThisMonth,
             "uncompleted" => $uncompletedDeliveriesToday,
-        ])->with('i', ($latestDeliveries->currentPage() - 1) * $latestDeliveries->perPage());
+        ])->with(
+            "i",
+            ($latestDeliveries->currentPage() - 1) *
+                $latestDeliveries->perPage()
+        );
     }
 
     public function deliveriesIndex(Request $request)
     {
-
-        $query = Delivery::select('id', 'status', 'created_at', 'updated_at', 'order_id', 'deliveryMan_id');
+        $query = Delivery::select(
+            "id",
+            "status",
+            "created_at",
+            "updated_at",
+            "order_id",
+            "deliveryMan_id"
+        );
 
         // FILTERING BY ARTISAN NAME
-        if ($request->has('search')) {
-            $query->whereHas('order.artisan', function ($query) {
-                $query->where('nom', 'like', '%' . request('search') . '%')->orWhere('prenom', 'like', '%' . request('search') . '%');
+        if ($request->has("search")) {
+            $query->whereHas("order.artisan", function ($query) {
+                $query
+                    ->where("nom", "like", "%" . request("search") . "%")
+                    ->orWhere("prenom", "like", "%" . request("search") . "%")
+                    ->orWhere(
+                        "num_telephone",
+                        "like",
+                        "%" . request("search") . "%"
+                    )
+                    ->orWhere("email", "like", "%" . request("search") . "%")
+                    ->orWhereRaw(
+                        "CONCAT(nom, ' ', prenom) LIKE ?",
+                        "%" . request("search") . "%"
+                    );
             });
         }
 
         // FILTER BY STATUS
-        if ($request->has('status')) {
-            $query->where('status', request('status'));
+        if ($request->has("status")) {
+            $query->where("status", request("status"));
         }
 
         // FILTER BY WILAYA
-        if ($request->filled('wilaya')) {
-            $query->whereHas('order', function ($query) {
-                $query->where('wilaya', request('wilaya'));
+        if ($request->filled("wilaya")) {
+            $query->whereHas("order", function ($query) {
+                $query->where("wilaya", request("wilaya"));
             });
         }
 
         // FILTERING BY DATE
-        if ($request->has('date')) {
-            $date = $request->input('date');
-            if ($date == 'nouveau') {
-                $query->orderBy('created_at', 'desc');
-            } elseif ($date == 'ancien') {
-                $query->orderBy('created_at', 'asc');
+        if ($request->has("date")) {
+            $date = $request->input("date");
+            if ($date == "nouveau") {
+                $query->orderBy("created_at", "desc");
+            } elseif ($date == "ancien") {
+                $query->orderBy("created_at", "asc");
             }
         }
 
@@ -91,9 +124,9 @@ class DeliveryManController extends Controller
         // GETTING ALL WILAYAS
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
 
-        return view('deliveryMan.deliveries', [
+        return view("deliveryMan.deliveries", [
             "deliveries" => $deliveries,
-            "wilayas" => $wilayas
+            "wilayas" => $wilayas,
         ]);
     }
 
@@ -101,36 +134,35 @@ class DeliveryManController extends Controller
     {
         // Route model binding is used to get the delivery object
         $delivery->update([
-            'status' => 'delivering',
-            'deliveryMan_id' => auth()->user()->id,
+            "status" => "delivering",
+            "deliveryMan_id" => auth()->user()->id,
         ]);
 
-        Alert::success('Succès', 'livraison accepter !');
-        return redirect()->route('deliveryMan.index');
+        Alert::success("Succès", "Livraison accepté !");
+        return redirect()->route("deliveryMan.index");
     }
-
 
     public function reject(Delivery $delivery)
     {
         // Route model binding is used to get the delivery object
         $delivery->update([
-            'status' => 'not_started',
-            'deliveryMan_id' => null,
+            "status" => "not_started",
+            "deliveryMan_id" => null,
         ]);
 
-        Alert::success('Succès', 'livraison rejeter !');
+        Alert::success("Succès", "Livraison rejeté !");
 
-        return redirect()->route('deliveryMan.index');
+        return redirect()->route("deliveryMan.index");
     }
 
     public function complete(Delivery $delivery)
     {
         // Route model binding is used to get the delivery object
         $delivery->update([
-            'status' => 'delivered',
+            "status" => "delivered",
         ]);
-        Alert::success('Succès', 'livraison completer !');
+        Alert::success("Succès", "Livraison completé !");
 
-        return redirect()->route('deliveryMan.index');
+        return redirect()->route("deliveryMan.index");
     }
 }

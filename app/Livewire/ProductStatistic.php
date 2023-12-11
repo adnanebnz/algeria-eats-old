@@ -12,9 +12,9 @@ class ProductStatistic extends Component
     {
         $products = Product::all();
         $orders = Order::all();
-        return view('livewire.product-statistic',[
-            'products' => $products->count(),
-            'orders' => $orders->count(),
+        return view("livewire.product-statistic", [
+            "products" => $products->count(),
+            "orders" => $orders->count(),
         ]);
     }
 }

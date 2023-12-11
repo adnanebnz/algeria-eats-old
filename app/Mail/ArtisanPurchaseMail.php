@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -28,9 +27,7 @@ class ArtisanPurchaseMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: 'Nouvelle commande',
-        );
+        return new Envelope(subject: "Nouvelle commande");
     }
 
     /**
@@ -38,9 +35,7 @@ class ArtisanPurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            view: 'emails.artisan-purchase-mail',
-        );
+        return new Content(view: "emails.artisan-purchase-mail");
     }
 
     /**

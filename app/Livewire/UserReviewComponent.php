@@ -13,14 +13,18 @@ class UserReviewComponent extends Component
 
     public function render()
     {
-        $this->comments = UserReview::where('user_id', $this->user->id)
-            ->latest()->get();
-        return view('livewire.user-review-component');
+        $this->comments = UserReview::where("user_id", $this->user->id)
+            ->latest()
+            ->get();
+        return view("livewire.user-review-component");
     }
 
-    #[On('userReviewAdded')]
+    #[On("userReviewAdded")]
     public function userReviewAdded()
     {
-        $this->comments = $this->product->reviews()->latest()->get();
+        $this->comments = $this->product
+            ->reviews()
+            ->latest()
+            ->get();
     }
 }
