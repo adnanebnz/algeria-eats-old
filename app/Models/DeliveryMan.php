@@ -7,20 +7,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-
 class DeliveryMan extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+    protected $primaryKey = "user_id";
 
-    protected $primaryKey = 'user_id';
-
-    protected $fillable = [
-
-        'est_disponible',
-        'rating',
-    ];
-
+    protected $fillable = ["est_disponible", "rating"];
 
     public function user()
     {
@@ -34,6 +27,6 @@ class DeliveryMan extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany(UserReview::class, 'user_id');
+        return $this->hasMany(UserReview::class, "user_id");
     }
 }

@@ -15,7 +15,7 @@ class DashboardLayout extends Component
         public bool $isUser = true,
         public bool $isAdmin = false,
         public bool $isArtisan = false,
-        public bool $isDeliver = false,
+        public bool $isDeliver = false
     ) {
     }
 
@@ -24,6 +24,6 @@ class DashboardLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.dashboard');
+        return view("layouts.dashboard");
     }
 }

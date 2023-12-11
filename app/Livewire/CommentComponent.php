@@ -12,15 +12,21 @@ class CommentComponent extends Component
 
     public function render()
     {
-        $this->comments = $this->product->reviews()->latest()->get();
-        return view('livewire.comment-component', [
-            'comments' => $this->comments
+        $this->comments = $this->product
+            ->reviews()
+            ->latest()
+            ->get();
+        return view("livewire.comment-component", [
+            "comments" => $this->comments,
         ]);
     }
 
-    #[On('reviewAdded')]
+    #[On("reviewAdded")]
     public function reviewAdded()
     {
-        $this->comments = $this->product->reviews()->latest()->get();
+        $this->comments = $this->product
+            ->reviews()
+            ->latest()
+            ->get();
     }
 }

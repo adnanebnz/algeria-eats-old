@@ -129,3 +129,4 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 -   Send the artisan an email when a deliveryman accepts his comissions
 -   ~~Send an email to the consumer after purchase and another one to the artisan~~ problem : we are doing it in a loop means if a user has 2 products from 2 artisans he will get 2 mails
 -   ~~impove the checkout cart to avoid bugs of the dependent dropdown~~
+-   SEARCH ENGINE DOESENT WORK WHEN I SEARCH FOR THE FULL NAME

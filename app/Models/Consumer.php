@@ -11,12 +11,9 @@ class Consumer extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $fillable = [
-        'user_id'
-    ];
+    protected $fillable = ["user_id"];
 
-    protected $primaryKey = 'user_id';
-
+    protected $primaryKey = "user_id";
 
     public function user()
     {

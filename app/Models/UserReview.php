@@ -10,11 +10,11 @@ class UserReview extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'reviewer_id',
-        'review',
-        'rating',
-        'status'
+        "user_id",
+        "reviewer_id",
+        "review",
+        "rating",
+        "status",
     ];
 
     public function user()
@@ -29,16 +29,16 @@ class UserReview extends Model
 
     public function scopePending($query)
     {
-        return $query->where('status', 'pending');
+        return $query->where("status", "pending");
     }
 
     public function scopeAccepted($query)
     {
-        return $query->where('status', 'accepted');
+        return $query->where("status", "accepted");
     }
 
     public function scopeByUser($query, $user)
     {
-        return $query->where('user_id', $user->id);
+        return $query->where("user_id", $user->id);
     }
 }

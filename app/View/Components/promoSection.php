@@ -21,6 +21,6 @@ class promoSection extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.promo-section');
+        return view("components.promo-section");
     }
 }
