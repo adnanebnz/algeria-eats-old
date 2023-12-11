@@ -4,9 +4,11 @@ namespace App\Livewire;
 
 use AnouarTouati\AlgerianCitiesLaravel\PostOffice;
 use App\Jobs\GenerateInvoiceAndSendMail;
+use App\Jobs\PurchaseJob;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -131,6 +133,8 @@ class CreateOrder extends Component
                 ]);
                 $cartItem->delete();
             }
+            // TODO ADD BUISNESS LOGIC INSIDE THE JOB FOR SENDING EMAILS TO BUYERS
+            PurchaseJob::dispatch($order);
         }
 
         Alert::success('Succès', 'Votre commande a été enregistrée avec succès');

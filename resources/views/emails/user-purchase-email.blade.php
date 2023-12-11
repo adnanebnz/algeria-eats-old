@@ -27,19 +27,20 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($invoice->items->all() as $item)
+                @foreach ($order->orderItems as $item)
                     <tr>
                         <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->title }}</td>
                         <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->quantity }}</td>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->price_per_unit }} DA</td>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->sub_total_price }} DA</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->product->prix }} DA</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">
+                            {{ $item->quantity * $item->product->prix }} DA</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <p style="margin-bottom: 1rem; font-size: 1.125rem; font-sweight: bold;">Montant total:
-            {{ $invoice->total_amount }} DA</p>
+        <p style="margin-bottom: 1rem; font-size: 1.125rem; font-weight: bold;">Montant total:
+            {{ $order->getTotalPrice() }} DA</p>
 
         <p style="margin-bottom: 1.5rem;">Vous pouvez régler cette facture dans les 7 jours suivant la date d'émission.
         </p>
