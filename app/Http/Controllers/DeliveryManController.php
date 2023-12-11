@@ -199,4 +199,70 @@ class DeliveryManController extends Controller
 
         return redirect()->route("deliveryMan.index");
     }
+
+    public function finishedDeliveries(Request $request)
+    {
+        $query = Delivery::select(
+            "id",
+            "status",
+            "created_at",
+            "updated_at",
+            "order_id",
+            "deliveryMan_id"
+        )
+            ->where("status", "delivered")
+            ->where("deliveryMan_id", auth()->user()->id);
+
+        // FILTERING BY ARTISAN NAME
+
+        if ($request->has("search")) {
+            $query->whereHas("order.artisan", function ($query) {
+                $query
+                    ->where("nom", "like", "%" . request("search") . "%")
+                    ->orWhere("prenom", "like", "%" . request("search") . "%")
+                    ->orWhere(
+                        "num_telephone",
+                        "like",
+                        "%" . request("search") . "%"
+                    )
+                    ->orWhere("email", "like", "%" . request("search") . "%")
+                    ->orWhereRaw(
+                        "CONCAT(nom, ' ', prenom) LIKE ?",
+                        "%" . request("search") . "%"
+                    );
+            });
+        }
+
+        // FILTER BY WILAYA
+
+        if ($request->filled("wilaya")) {
+            $query->whereHas("order", function ($query) {
+                $query->where("wilaya", request("wilaya"));
+            });
+        }
+
+        // FILTERING BY DATE
+
+        if ($request->has("date")) {
+            $date = $request->input("date");
+            if ($date == "desc") {
+                $query->orderBy("created_at", "desc");
+            } elseif ($date == "asc") {
+                $query->orderBy("created_at", "asc");
+            }
+        }
+
+        $latestDeliveries = $query->paginate(10);
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+
+        return view("deliveryMan.finished-deliveries", [
+            "deliveries" => $latestDeliveries,
+            "wilayas" => $wilayas,
+        ]);
+    }
+
+    public function show(Delivery $delivery)
+    {
+        return view("deliveryMan.show", ["delivery" => $delivery]);
+    }
 }
