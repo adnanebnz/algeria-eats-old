@@ -1,5 +1,5 @@
 <x-dashboard-layout :isDeliver=true>
-    <div class="h-screen bg-gray-50">
+    <div class="bg-gray-50">
         <div class="mt-8">
             <div class="flex flex-col md:flex-row px-4 md:px-0 gap-5 items-center justify-center">
                 <div class="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
@@ -88,10 +88,10 @@
             <h1 class="font-bold text-lg text-gray-700 py-4">Livraisons terminées</h1>
             <div class="bg-white shadow-md rounded-md">
                 <div class="flex flex-col">
-                    <div class="overflow-x-auto rounded-lg">
+                    <div class="rounded-lg">
                         <div class="align-middle inline-block min-w-full">
-                            <div class="shadow overflow-hidden sm:rounded-lg">
-                                <table class="min-w-full divide-y divide-gray-200">
+                            <div class="shadow sm:rounded-lg">
+                                <table class="min-w-full">
                                     <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col"

@@ -17,6 +17,7 @@
         "spatie/laravel-analytics": "^5.1"
     },
     "require-dev": {
+        "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/common": "^5.3",
         "laravel/pint": "^1.0",

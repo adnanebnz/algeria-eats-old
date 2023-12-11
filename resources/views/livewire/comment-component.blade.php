@@ -10,7 +10,7 @@
                         <div id="menu" class="md:block">
                             <div class="mt-6 flex justify-start items-center flex-row space-x-2.5">
                                 <div>
-                                    <img class="h-10 w-10 rounded-full border"
+                                    <img class="h-10 w-10 object-cover rounded-full border"
                                         src="{{ $comment->user->image ? (str_starts_with($comment->user->image, 'http') ? $comment->user->image : asset('storage/' . $comment->user->image)) : asset('assets/user.png') }}"
                                         alt="avatar" />
                                 </div>

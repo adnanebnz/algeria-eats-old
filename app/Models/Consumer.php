@@ -30,11 +30,6 @@ class Consumer extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
-    public function wishlists()
-    {
-        return $this->hasMany(Wishlist::class);
-    }
-
     public function reviews()
     {
         return $this->hasMany(Review::class);

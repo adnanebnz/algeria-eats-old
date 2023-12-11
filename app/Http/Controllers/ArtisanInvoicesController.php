@@ -36,7 +36,7 @@ class ArtisanInvoicesController extends Controller
 
         $items = $order->orderItems->map(function ($orderItem) {
             return InvoiceItem::make($orderItem->product->nom)
-                ->pricePerUnit($orderItem->prix_total / $orderItem->quantity)
+                ->pricePerUnit($orderItem->product->prix)
                 ->quantity($orderItem->quantity);
         });
 
@@ -44,10 +44,7 @@ class ArtisanInvoicesController extends Controller
             ->seller($artisan)
             ->buyer($customer)
             ->addItems($items)
-            ->serialNumberFormat("FACTURE-{SEQUENCE}")
-            ->sequence(1)
             ->dateFormat("d/m/Y")
-            ->payUntilDays(7)
             ->currencySymbol("DA")
             ->currencyCode("DZD")
             ->currencyFormat("{VALUE} {SYMBOL}")

@@ -24,7 +24,7 @@
                                 <div
                                     class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
                                     <img src="{{ $delivery->deliveryMan->user->image ? (str_starts_with($delivery->deliveryMan->user->image, 'http') ? $delivery->deliveryMan->user->image : asset('storage/' . $delivery->deliveryMan->user->image)) : asset('assets/user.png') }}"
-                                        class="h-10 w-10 rounded-full border" />
+                                        class="h-10 w-10 object-cover rounded-full border" />
                                     <p class="text-base font-semibold leading-4 text-left text-gray-800">
                                         {{ $delivery->deliveryMan->user->getFullName() }}</p>
                                 </div>
