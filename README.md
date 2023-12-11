@@ -115,17 +115,17 @@ git commit -m "Description des modifications"
 -   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [x] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
 -   after validating and delivering the product display form with stars to review the delivery man
--   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
 
 ## TODO
 
-Fix dashboards
-Build the last pages
-~~Only users who bought a product can comment it and fix orders so that each artisan can see orders that contains his product~~
-Only users who bought products from an artisan can comment his profile and same for deliveryman
-ajouter un recu de livraison pour le livreur and think about how to make a price for the livraison
-think of a way to use the job
-display all products of artisan in his page
-add tooltips in dashboards
+-   Fix dashboards(add tooltips, styling,charts)
+-   Build User Dashboard
+-   Build the last pages (A propos de nous, terms et conditions, confidentionalité)
+-   ajouter un recu de livraison pour le livreur and think about how to make a price for the livraison
+-   think of a way to use the GenerateInvoiceAndSendEmail job
+-   display all products of artisan in his profile page
+-   Send the artisan an email when a deliveryman accepts his comissions
+-   ~~Send an email to the consumer after purchase and another one to the artisan~~ problem : we are doing it in a loop means if a user has 2 products from 2 artisans he will get 2 mails
+-   ~~impove the checkout cart to avoid bugs of the dependent dropdown~~
