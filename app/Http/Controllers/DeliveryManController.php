@@ -14,6 +14,7 @@ class DeliveryManController extends Controller
         $this->middleware("auth");
         $this->middleware("deliveryMan");
     }
+
     public function index()
     {
         $userId = auth()->user()->id;
@@ -164,42 +165,6 @@ class DeliveryManController extends Controller
         ]);
     }
 
-    public function accept(Delivery $delivery)
-    {
-        // Route model binding is used to get the delivery object
-        $delivery->update([
-            "status" => "delivering",
-            "deliveryMan_id" => auth()->user()->id,
-        ]);
-
-        Alert::success("Succès", "Livraison accepté !");
-        return redirect()->route("deliveryMan.index");
-    }
-
-    public function reject(Delivery $delivery)
-    {
-        // Route model binding is used to get the delivery object
-        $delivery->update([
-            "status" => "not_started",
-            "deliveryMan_id" => null,
-        ]);
-
-        Alert::success("Succès", "Livraison rejeté !");
-
-        return redirect()->route("deliveryMan.index");
-    }
-
-    public function complete(Delivery $delivery)
-    {
-        // Route model binding is used to get the delivery object
-        $delivery->update([
-            "status" => "delivered",
-        ]);
-        Alert::success("Succès", "Livraison completé !");
-
-        return redirect()->route("deliveryMan.index");
-    }
-
     public function finishedDeliveries(Request $request)
     {
         $query = Delivery::select(
@@ -261,8 +226,38 @@ class DeliveryManController extends Controller
         ]);
     }
 
-    public function show(Delivery $delivery)
+    public function showDelivery(Delivery $delivery)
     {
         return view("deliveryMan.show", ["delivery" => $delivery]);
+    }
+
+    public function updateDelivery(Request $request, Delivery $delivery)
+    {
+        $data = $request->validate([
+            "status" => "required|in:delivering,delivered",
+        ]);
+
+        $delivery->update([
+            "status" => $data["status"],
+        ]);
+
+        Alert::success("Succès", "Livraison modifié !");
+
+        return redirect()->route(
+            "deliveryMan.deliveries.showFinishedDeliveries"
+        );
+    }
+    // TODO MAYBE ADD DELETE DELIVERY
+
+    public function accept(Delivery $delivery)
+    {
+        // Route model binding is used to get the delivery object
+        $delivery->update([
+            "status" => "delivering",
+            "deliveryMan_id" => auth()->user()->id,
+        ]);
+
+        Alert::success("Succès", "Livraison accepté !");
+        return redirect()->route("deliveryMan.index");
     }
 }

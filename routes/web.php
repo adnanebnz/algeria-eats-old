@@ -229,15 +229,10 @@ Route::post("deliveryMan/{delivery}/accept", [
     "accept",
 ])->name("delivery.accept");
 
-Route::post("deliveryMan/{delivery}/reject", [
+Route::put("deliveryMan/{delivery}/update", [
     DeliveryManController::class,
-    "reject",
-])->name("delivery.reject");
-
-Route::post("deliveryMan/{delivery}/complete", [
-    DeliveryManController::class,
-    "complete",
-])->name("delivery.complete");
+    "updateDelivery",
+])->name("delivery.updateDelivery");
 
 //ORDERS SECTION END
 /*-----------DELIVERY MAN END-----------*/

@@ -295,7 +295,7 @@
                 </form>
             </div>
         @endif
-        <div class="md:w-3/4 w-full">
+        <div class="md:w-3/4 mx-auto w-full">
             @if (auth()->user() && auth()->user()->id !== $user->id && ($user->isArtisan() || $user->isDeliveryMan()))
                 <livewire:user-review-form :user='$user' />
             @endif

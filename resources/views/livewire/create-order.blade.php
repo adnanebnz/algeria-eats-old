@@ -91,8 +91,6 @@
                 </div>
             </div>
         </div>
-        {{-- TODO PLACE THIS IN AUTH --}}
-
     </form>
     <form method="POST" wire:submit='cancel()'>
         @csrf
