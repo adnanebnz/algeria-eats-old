@@ -5,7 +5,6 @@
             <livewire:user-statistic />
         </div>
         <livewire:contact-table />
-        {{-- TODO ZID PAGE TA3 CONTACT FIHA TABLEAU TA3 GA3 LES CONTACT W POSSIBILITE BACH TCHOUF WAHDA --}}
         <div class="grid gap-6 my-8 md:grid-cols-2 xl:grid-cols-4">
             <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
                 <div class="p-4 flex items-center">

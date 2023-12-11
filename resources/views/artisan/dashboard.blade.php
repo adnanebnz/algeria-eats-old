@@ -79,7 +79,6 @@
         <div class="mt-2">
             <h1 class="font-bold text-lg text-gray-700 py-4">Aperçu des statistiques</h1>
             <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {{-- TODO TOTAL PRODUCTS --}}
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex flex-row space-x-4 items-center">
                         <div id="stats-1">
@@ -98,8 +97,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- TODO TOTAL PRODUCTS END --}}
-                {{-- TODO TOTAL ORDERS --}}
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex flex-row space-x-4 items-center">
                         <div id="stats-1">
@@ -117,8 +114,6 @@
                         </div>
                     </div>
                 </div>
-                {{-- TODO TOTAL ORDERS END --}}
-                {{-- TODO TOTAL INCOMES --}}
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <div class="flex flex-row space-x-4 items-center">
                         <div id="stats-1">
@@ -197,18 +192,16 @@
     </main>
 
     <script>
-        // Assuming you have the necessary data for the pie chart
         var productsByCategoryLabels = @json($customCategoryLabels);
         var productsCountByCategory = @json($productsCountByCategory);
 
-        // Number of products by product category (Pie Chart)
         var productPieChart = new Chart(document.getElementById('productChart'), {
             type: 'pie',
             data: {
                 labels: productsByCategoryLabels,
                 datasets: [{
                     data: productsCountByCategory,
-                    backgroundColor: ['#60a5fa', '#f97316'], // Add more colors as needed
+                    backgroundColor: ['#60a5fa', '#8B8B8D'],
                 }]
             },
             options: {
@@ -246,7 +239,7 @@
                 datasets: [{
                     label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
-                    backgroundColor: ['#60a5fa', '#f97316'],
+                    backgroundColor: ['#60a5fa', '#8B8B8D'],
                 }]
             },
             options: {
