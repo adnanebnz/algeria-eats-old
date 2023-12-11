@@ -8,7 +8,7 @@
                         <form action="{{ route('deliveryMan.deliveries') }}" method="GET">
                             <div class="relative">
                                 <select name="date"
-                                    class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                                    class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                                     <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouvelles Livraisons</option>
                                     <option value="ancien" @selected(request()->query('date') == 'ancien')>Anciennes Livraisons</option>
                                 </select>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="relative">
                         <select name="wilaya"
-                            class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                            class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                             <option value="" @selected(request()->query('wilaya') == '')>Toutes les Wilayas</option>
                             @foreach ($wilayas as $wilaya)
                                 <option value="{{ $wilaya->wilaya_name_ascii }}" @selected(request()->query('wilaya') == $wilaya->wilaya_name_ascii)>
@@ -43,7 +43,7 @@
 
                     <div class="relative">
                         <select name="status"
-                            class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                            class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                             <option value="not_started" @selected(request()->query('status') == 'not_started')>Non Affecté</option>
                             <option value="delivering" @selected(request()->query('status') == 'delivering')>En Cours de Livraison</option>
                         </select>

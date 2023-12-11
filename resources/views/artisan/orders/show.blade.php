@@ -156,7 +156,6 @@
                             En attribuant une commande à un livreur, elle devient visible pour tous les livreurs. Ils
                             peuvent accepter ou refuser en temps réel.
                         </p>
-                        {{-- TODO FIX CONDITIONS --}}
                         @if ($order->status == 'completed' && $delivery === null)
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="mt-2 px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En

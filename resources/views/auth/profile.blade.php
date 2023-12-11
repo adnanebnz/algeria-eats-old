@@ -105,7 +105,6 @@
                                 <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
                                     :value="auth()->user()->artisan?->heure_ouverture" />
                             @endif
-                            {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
                             <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />

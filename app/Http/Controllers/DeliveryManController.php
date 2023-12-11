@@ -54,6 +54,38 @@ class DeliveryManController extends Controller
                 now()->endOfMonth(),
             ])
             ->count();
+        // prepare data for chart
+        $chartData = Delivery::where("status", "delivered")
+            ->where("deliveryMan_id", $userId)
+            ->whereBetween("updated_at", [
+                now()->startOfMonth(),
+                now()->endOfMonth(),
+            ])
+            ->get()
+            ->groupBy(function ($val) {
+                return \Carbon\Carbon::parse($val->updated_at)->format("m");
+            });
+        $chartData = $chartData->map(function ($item, $key) {
+            return $item->count();
+        });
+        $chartData = $chartData->toArray();
+        $chartData = array_values($chartData);
+        $chartData = implode(",", $chartData);
+        $chartData = "[" . $chartData . "]";
+        $months = [
+            "Janvier",
+            "Février",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Aout",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Decembre",
+        ];
 
         return view("deliveryMan.dashboard", [
             "deliveries" => $latestDeliveries,
@@ -61,6 +93,8 @@ class DeliveryManController extends Controller
             "countweek" => $completedDeliveriesThisWeek,
             "countmonth" => $completedDeliveriesThisMonth,
             "uncompleted" => $uncompletedDeliveriesToday,
+            "chartData" => $chartData,
+            "months" => $months,
         ])->with(
             "i",
             ($latestDeliveries->currentPage() - 1) *
