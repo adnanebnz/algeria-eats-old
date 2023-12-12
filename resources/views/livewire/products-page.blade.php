@@ -55,9 +55,9 @@
                                 <select id="manufacturer" name="productType" wire:model="productType"
                                     class="mt-2 block md:w-4/5 w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option value="">Choisir</option>
-                                    <option value="sucree" @if (request()->productType == 'sucree') selected @endif>Sucré
+                                    <option value="sucree" @if (request()->productType == 'sucree') selected @endif>Sucrée
                                     </option>
-                                    <option value="salee" @if (request()->productType == 'salee') selected @endif>Salé
+                                    <option value="salee" @if (request()->productType == 'salee') selected @endif>Salée
                                     </option>
                                 </select>
                             </div>

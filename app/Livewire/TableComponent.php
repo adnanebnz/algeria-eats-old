@@ -19,12 +19,12 @@ class TableComponent extends Component
 
     public function render()
     {
-        $orders = Order::whereHas('orderItems', function ($query) {
-            $query->where('product_id', $this->product->id);
+        $orders = Order::whereHas("orderItems", function ($query) {
+            $query->where("product_id", $this->product->id);
         })->paginate(10);
 
-        return view('livewire.table-component', [
-            'orders' => $orders
+        return view("livewire.table-component", [
+            "orders" => $orders,
         ]);
     }
 }

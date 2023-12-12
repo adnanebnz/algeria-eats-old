@@ -29,7 +29,8 @@
                                         <div class="flex justify-start items-start flex-col space-y-2">
                                             <p class="text-sm leading-none text-gray-800"><span
                                                     class="text-gray-300">Type:
-                                                </span> {{ $item->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}
+                                                </span>
+                                                {{ $item->product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
                                             </p>
                                         </div>
                                     </div>
@@ -155,10 +156,9 @@
                             En attribuant une commande à un livreur, elle devient visible pour tous les livreurs. Ils
                             peuvent accepter ou refuser en temps réel.
                         </p>
-                        {{-- TODO FIX CONDITIONS --}}
-                        @if ($order->status == 'not_started')
+                        @if ($order->status == 'completed' && $delivery === null)
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
-                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En
+                                    class="mt-2 px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En
                                     attente d'affectation</span></p>
                             <form action="{{ route('artisan.deliveries.affect', $order) }}", method="POST">
                                 @csrf
@@ -166,17 +166,20 @@
                                     class="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Affecter
                                     à un livreur</button>
                             </form>
-                        @elseif($order->status == 'pending')
+                        @endif
+                        @if ($delivery && $delivery?->status == 'not_started')
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">En
                                     attente d'un livreur</span></p>
-                        @else
+                        @elseif ($delivery?->deliveryMan_id !== null)
                             <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">Affecté</span>
                             </p>
-                            <a href="{{ route('artisan.deliveries.show', $delivery) }}"
-                                class="text-center hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Voir
-                                les details</a>
+                            @if ($delivery)
+                                <a href="{{ route('artisan.deliveries.show', $delivery) }}"
+                                    class="text-center hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Voir
+                                    les details</a>
+                            @endif
                         @endif
                     </div>
                     <div class="flex flex-col justify-between px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">

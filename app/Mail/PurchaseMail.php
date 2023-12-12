@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Attachment;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -31,9 +30,7 @@ class PurchaseMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: 'Facture de votre commande',
-        );
+        return new Envelope(subject: "Facture de votre commande");
     }
 
     /**
@@ -41,9 +38,7 @@ class PurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(
-            view: 'emails.purchase-mail',
-        );
+        return new Content(view: "emails.purchase-mail");
     }
 
     /**
@@ -54,7 +49,11 @@ class PurchaseMail extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromStorageDisk('public', $this->invoice->filename, $this->invoice->filename . '.pdf')
+            Attachment::fromStorageDisk(
+                "public",
+                $this->invoice->filename,
+                $this->invoice->filename . ".pdf"
+            ),
         ];
     }
 }

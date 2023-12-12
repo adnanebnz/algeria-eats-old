@@ -11,12 +11,9 @@ class Consumer extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-    protected $fillable = [
-        'user_id'
-    ];
+    protected $fillable = ["user_id"];
 
-    protected $primaryKey = 'user_id';
-
+    protected $primaryKey = "user_id";
 
     public function user()
     {
@@ -31,11 +28,6 @@ class Consumer extends Authenticatable
     public function cart()
     {
         return $this->hasOne(Cart::class);
-    }
-
-    public function wishlists()
-    {
-        return $this->hasMany(Wishlist::class);
     }
 
     public function reviews()

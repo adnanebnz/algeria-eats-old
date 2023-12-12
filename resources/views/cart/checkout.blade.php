@@ -13,7 +13,7 @@
                             <div class="flex w-full flex-col px-4 py-4">
                                 <span class="font-semibold">{{ $cartItem->product->nom }}</span>
                                 <span class="float-right text-gray-400">Catégorie :
-                                    {{ $cartItem->product->categorie === 'sucree' ? 'Sucré' : 'Salé' }}</span>
+                                    {{ $cartItem->product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}</span>
                                 <p class="text-lg font-bold">{{ $cartItem->product->prix }} DA</p>
                             </div>
                         </div>

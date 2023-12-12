@@ -10,30 +10,29 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'buyer_id',
-        'artisan_id',
-        'status',
-        'adresse',
-        'wilaya',
-        'daira',
-        'commune',
+        "buyer_id",
+        "artisan_id",
+        "status",
+        "adresse",
+        "wilaya",
+        "daira",
+        "commune",
     ];
 
     public function buyer()
     {
-        return $this->belongsTo(User::class, 'buyer_id');
+        return $this->belongsTo(User::class, "buyer_id");
     }
 
     public function artisan()
     {
-        return $this->belongsTo(User::class, 'artisan_id');
+        return $this->belongsTo(User::class, "artisan_id");
     }
 
     public function delivery()
     {
         return $this->belongsTo(Delivery::class);
     }
-
 
     public function orderItems()
     {
