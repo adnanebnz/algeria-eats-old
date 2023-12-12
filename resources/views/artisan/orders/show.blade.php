@@ -191,7 +191,8 @@
                             @csrf
                             @method('PUT')
                             <select name="status" class="form-select rounded-md w-full">
-                                <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>En attente
+                                <option value="pending" {{ $order->status == 'not_started' ? 'selected' : '' }}>En
+                                    attente
                                 </option>
                                 <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>En
                                     cours
