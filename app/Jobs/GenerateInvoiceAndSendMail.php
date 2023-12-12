@@ -80,7 +80,6 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
             ->currencySymbol("DA")
             ->currencyCode("DZD")
             ->currencyFormat("{VALUE} {SYMBOL}")
-            ->logo(public_path("assets\LOGO.png"))
             ->filename(
                 "invoice_" .
                     $this->order->id .

@@ -137,8 +137,13 @@
                                         </td>
                                         <td class="px-5 py-5 birder-b border-gray-200 bg-white text-sm">
                                             <div class="flex items-center justify-center gap-3">
-                                                <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
+                                                <a data-tooltip-target="tooltip-see"
+                                                    href="{{ route('artisan.orders.show', ['order' => $order]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                    <div id="tooltip-see" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Voir la commande
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">
@@ -152,8 +157,12 @@
                                                     action="{{ route('artisan.orders.invoice', ['order' => $order]) }}"
                                                     method="POST" target="_blank">
                                                     @csrf
-                                                    <button type="submit"
+                                                    <button data-tooltip-target="tooltip-generate" type="submit"
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                        <div id="tooltip-generate" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            Générer la facture
+                                                        </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                             class="w-6 h-6">
@@ -169,12 +178,16 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <!-- Modal toggle -->
-                                                    <button type="button"
+                                                    <button data-tooltip-target="tooltip-delete" type="button"
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                         @click="showModal = true">
+                                                        <div id="tooltip-delete" role="tooltip"
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            Supprimer la commande
+                                                        </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                            class="w-6 h-6">
+                                                            viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor" class="w-6 h-6">
                                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                                 d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0">
                                                             </path>

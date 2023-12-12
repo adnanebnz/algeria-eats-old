@@ -84,6 +84,11 @@ Route::post("user/dashobard/orders/{order}/cancel", [
     UserController::class,
     "cancelOrder",
 ])->name("user.orders.cancel");
+
+Route::get("user/dashboard/delivery/{delivery}", [
+    UserController::class,
+    "showDelivery",
+])->name("user.delivery.show");
 /*-----------USER DASHBOARD END-----------*/
 
 /*-----------ARTISAN DASHBOARD-----------*/

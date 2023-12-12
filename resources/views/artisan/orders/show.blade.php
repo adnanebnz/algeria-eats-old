@@ -191,7 +191,7 @@
                             @csrf
                             @method('PUT')
                             <select name="status" class="form-select rounded-md w-full">
-                                <option value="pending" {{ $order->status == 'not_started' ? 'selected' : '' }}>En
+                                <option value="not_started" {{ $order->status == 'not_started' ? 'selected' : '' }}>En
                                     attente
                                 </option>
                                 <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>En
@@ -206,7 +206,7 @@
                             </select>
 
                             <div class="my-4">
-                                <p>Status actuel: @if ($order->status == 'pending')
+                                <p>Status actuel: @if ($order->status == 'not_started')
                                         <span
                                             class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             En attente
