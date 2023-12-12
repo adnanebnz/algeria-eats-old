@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $totalPendingOrders = Order::where("buyer_id", auth()->user()->id)
-            ->orWhere("status", "!=", "completed")
+            ->where("status", "not_started")
+            ->orWhere("status", "processing")
             ->count();
 
         $orders = Order::where("buyer_id", auth()->user()->id);
@@ -66,6 +67,21 @@ class UserController extends Controller
             }
         }
 
+        // Filtering by status
+
+        if ($request->filled("status")) {
+            $status = $request->input("status");
+            if ($status == "not_started") {
+                $query->where("status", "not_started");
+            } elseif ($status == "processing") {
+                $query->where("status", "processing");
+            } elseif ($status == "cancelled") {
+                $query->where("status", "cancelled");
+            } elseif ($status == "completed") {
+                $query->where("status", "completed");
+            }
+        }
+
         $orders = $query->paginate(10);
         return view("user.orders.order", [
             "orders" => $orders,
@@ -82,9 +98,8 @@ class UserController extends Controller
     }
     public function cancelOrder(Order $order)
     {
-        $order->status = "not_started";
+        $order->status = "cancelled";
         $order->save();
         return redirect()->back();
     }
-    // TODO FIX HAD LKHALOTA
 }

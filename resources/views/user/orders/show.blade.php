@@ -210,19 +210,21 @@
                         </div>
                     @endif
                 </div>
-                <div class="flex flex-col mx-auto px-4 py-6 md:p-6 xl:p-8 w-1/2 bg-gray-50 space-y-6">
-                    <h1 class="text-lg font-semibold text-gray-700">Annuler la commande</h1>
-                    <p class="text-base leading-4 text-gray-600">Vous pouvez annuler votre commande
-                        avant qu'elle ne soit acceptée par l'artisan.</p>
+                @if ($order->status !== 'cancelled' && $order->status !== 'completed' && $order->status !== 'pending')
+                    <div class="flex flex-col mx-auto px-4 py-6 md:p-6 xl:p-8 w-1/2 bg-gray-50 space-y-6">
+                        <h1 class="text-lg font-semibold text-gray-700">Annuler la commande</h1>
+                        <p class="text-base leading-4 text-gray-600">Vous pouvez annuler votre commande
+                            avant qu'elle ne soit acceptée par l'artisan.</p>
 
-                    <form action="{{ route('user.orders.cancel', $order) }}" method="POST">
-                        @csrf
-                        @method('POST')
-                        <button type="submit"
-                            class="text-center hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Annuler
-                            la commande</button>
-                    </form>
-                </div>
+                        <form action="{{ route('user.orders.cancel', $order) }}" method="POST">
+                            @csrf
+                            @method('POST')
+                            <button type="submit"
+                                class="text-center hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Annuler
+                                la commande</button>
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
