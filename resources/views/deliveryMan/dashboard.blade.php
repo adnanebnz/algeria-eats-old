@@ -9,19 +9,75 @@
                             <p class="text-sm text-gray-600">Aucune livraison accepté.</p>
                         @else
                             <div>
-                                <canvas id="deliveriestoday"></canvas>
+                                <canvas id="deliveriestoday" height="400"></canvas>
                             </div>
                         @endif
                     </div>
-                    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4">Évoluitions des livraisons par mois</h3>
-                        @if ($countmonth == 0)
-                            <p class="text-sm text-gray-600">Pas de données disponibles.</p>
-                        @else
+                    <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                        <div class="mb-4 flex items-center justify-between">
                             <div>
-                                <div id="deliveriesByMonthChart"></div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Dernières Livraisons disponibles</h3>
+                                <span class="text-base font-normal text-gray-500">Ceci est une liste des dernières
+                                    livraisons disponibles</span>
                             </div>
-                        @endif
+                            <div class="flex-shrink-0">
+                                <a href="{{ route('deliveryMan.deliveries') }}"
+                                    class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">Voir
+                                    tout</a>
+                            </div>
+                        </div>
+                        <div class="flex flex-col mt-8">
+                            <div class="overflow-x-auto rounded-lg">
+                                <div class="align-middle inline-block min-w-full">
+                                    <div class="shadow overflow-hidden sm:rounded-lg">
+                                        <table class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-50">
+                                                <tr>
+                                                    <th scope="col"
+                                                        class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        Artisan
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        Destination
+                                                    </th>
+                                                    <th scope="col"
+                                                        class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                        Date de soumission
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="bg-white">
+                                                @forelse ($latestNotAcceptedDeliveries as $delivery)
+                                                    <tr>
+                                                        <td
+                                                            class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+                                                            Commande id <span
+                                                                class="font-semibold">{{ $delivery->order->artisan->getFullName() }}
+                                                            </span>
+                                                        </td>
+                                                        <td
+                                                            class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+                                                            {{ $delivery->order->adresse - $delivery->order->wilaya - $delivery->order->commune }}
+                                                        </td>
+                                                        <td
+                                                            class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                                            {{ $delivery->created_at->format('d/m/Y') }}
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="3"
+                                                            class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
+                                                            Aucune livraison disponible.
+                                                        </td>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,6 +141,16 @@
                     </div>
                 </div>
             </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Évoluitions des livraisons par mois</h3>
+                @if ($countmonth == 0)
+                    <p class="text-sm text-gray-600">Pas de données disponibles.</p>
+                @else
+                    <div class="h-[350px]">
+                        <canvas id="deliveriesByMonthChart"></canvas>
+                    </div>
+                @endif
+            </div>
             <h1 class="font-bold text-lg text-gray-700 py-4">Livraisons terminées</h1>
             <div class="bg-white shadow-md rounded-md">
                 <div class="flex flex-col">
@@ -105,6 +171,10 @@
                                             <th scope="col"
                                                 class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Date de livraison
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Action
                                             </th>
                                         </tr>
                                     </thead>
@@ -138,12 +208,23 @@
                                                         </div>
                                                     </div>
                                                 </td>
-
-
                                                 <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
                                                     {{ $delivery->updated_at->format('d/m/Y') }}
                                                 </td>
-
+                                                <td
+                                                    class="flex items-center justify-center gap-3 px-5 py-5 birder-b border-gray-200 mt-1.5 bg-white text-sm">
+                                                    <a href="{{ route('deliveryMan.deliveries.showDelivery', ['delivery' => $delivery]) }}"
+                                                        class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                            viewBox="0 0 24 24" stroke-width="1.5"
+                                                            stroke="currentColor" class="w-6 h-6">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        </svg>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -183,40 +264,39 @@
             }
         });
 
-        var deliveriesByMonthChart = new Chart(document.getElementById('deliveriesByMonthChart'), {
+        var deliveriesByMonth = new Chart(document.getElementById('deliveriesByMonthChart'), {
             type: 'line',
             data: {
-                labels: @json($months),
+                labels: @json(array_keys($deliveriesPerMonth)),
                 datasets: [{
                     label: 'Livraisons par mois',
-                    data: @json($chartData),
-                    backgroundColor: ['#60a5fa'],
-                    borderColor: ['#3b82f6'],
-                    borderWidth: 2,
-                    pointRadius: 5,
-                    pointBackgroundColor: '#60a5fa',
-                    pointBorderColor: '#fff',
-                    pointHoverRadius: 8,
+                    data: @json(array_values($deliveriesPerMonth)),
+                    backgroundColor: ['#3b82f6', '#8B8B8D']
                 }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                legend: {
+                    display: false,
+                },
                 scales: {
                     x: {
                         type: 'category',
-                        labels: @json($months),
-                    },
-                    y: {
-                        beginAtZero: true,
+                        position: 'bottom',
                         title: {
                             display: true,
-                            text: 'Nombre de livraisons',
+                            text: 'Mois'
                         },
                     },
-                },
-                legend: {
-                    display: false,
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Nombre de livraisons'
+                        },
+                        stepSize: 1,
+                        maxTicksLimit: 10,
+                    },
                 },
             }
         });
