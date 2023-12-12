@@ -6,6 +6,7 @@ use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Models\Delivery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Milon\Barcode\DNS1D;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DeliveryManController extends Controller
@@ -250,5 +251,11 @@ class DeliveryManController extends Controller
 
         Alert::success("Succès", "Livraison accepté !");
         return redirect()->route("deliveryMan.index");
+    }
+
+    public function generateTicket(Delivery $delivery)
+    {
+        $pdf = \PDF::loadView("deliveryMan.ticket", ["delivery" => $delivery]);
+        return $pdf->stream("ticket.pdf");
     }
 }

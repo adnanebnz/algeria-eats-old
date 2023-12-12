@@ -129,4 +129,5 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 -   Send the artisan an email when a deliveryman accepts his comissions
 -   ~~Send an email to the consumer after purchase and another one to the artisan~~ problem : we are doing it in a loop means if a user has 2 products from 2 artisans he will get 2 mails
 -   APPEND LINKS TO PROFILES IN DASHBOARDS (ADD THEM WHERE THERE IS IMAGES)
--   FIX DELIVERYMAN CHART
+-   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
+-   GENERATE QR OR BARCODE FOR TICKETS

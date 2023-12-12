@@ -18,10 +18,18 @@
                             <div class="flex flex-col justify-start items-start flex-shrink-0">
                                 <div
                                     class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                                    <img src="{{ $delivery->order->artisan->image ? (str_starts_with($delivery->order->artisan->image, 'http') ? $delivery->order->artisan->image : asset('storage/' . $delivery->order->artisan->image)) : asset('assets/user.png') }}"
-                                        class="h-10 w-10 object-cover rounded-full border" />
-                                    <p class="text-base font-semibold leading-4 text-left text-gray-800">
-                                        {{ $delivery->order->artisan->getFullName() }}</p>
+                                    <a href="{{ route('profile', ['user' => $delivery->order->artisan]) }}"
+                                        class="flex items-center hover:underline">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img class="w-full h-full rounded-full border"
+                                                src="{{ $delivery->order->artisan->image ? (str_starts_with($delivery->order->artisan->image, 'http') ? $delivery->order->artisan->image : asset('storage/' . $delivery->order->artisan->image)) : asset('assets/user.png') }}" />
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-gray-900 font-semibold whitespace-no-wrap">
+                                                {{ $delivery->order->artisan->getFullName() }}
+                                            </p>
+                                        </div>
+                                    </a>
                                 </div>
 
                                 <div
@@ -77,10 +85,18 @@
                             <div class="flex flex-col justify-start items-start flex-shrink-0">
                                 <div
                                     class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
-                                    <img src="{{ $delivery->order->buyer->image ? (str_starts_with($delivery->order->buyer->image, 'http') ? $delivery->order->buyer->image : asset('storage/' . $delivery->order->buyer->image)) : asset('assets/user.png') }}"
-                                        class="h-10 w-10 object-cover rounded-full border" />
-                                    <p class="text-base font-semibold leading-4 text-left text-gray-800">
-                                        {{ $delivery->order->buyer->getFullName() }}</p>
+                                    <a href="{{ route('profile', ['user' => $delivery->order->buyer]) }}"
+                                        class="flex items-center hover:underline">
+                                        <div class="flex-shrink-0 w-10 h-10">
+                                            <img class="w-full h-full rounded-full border"
+                                                src="{{ $delivery->order->buyer->image ? (str_starts_with($delivery->order->buyer->image, 'http') ? $delivery->order->buyer->image : asset('storage/' . $delivery->order->buyer->image)) : asset('assets/user.png') }}" />
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-gray-900 font-semibold whitespace-no-wrap">
+                                                {{ $delivery->order->buyer->getFullName() }}
+                                            </p>
+                                        </div>
+                                    </a>
                                 </div>
 
                                 <div
@@ -110,8 +126,8 @@
                                 </div>
                                 <div
                                     class="flex justify-center text-gray-800 md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
-                                    <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                         class="text-gray-600">
                                         <path stroke-linecap="round" stroke-linejoin="round"
                                             d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
