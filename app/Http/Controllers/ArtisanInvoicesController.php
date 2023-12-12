@@ -48,7 +48,6 @@ class ArtisanInvoicesController extends Controller
             ->currencySymbol("DA")
             ->currencyCode("DZD")
             ->currencyFormat("{VALUE} {SYMBOL}")
-            ->logo(public_path("assets\LOGO.png"))
             ->filename(
                 "invoice_" . $order->id . "_" . $order->buyer->getFullName()
             )

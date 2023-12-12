@@ -289,7 +289,8 @@ class ArtisanController extends Controller
     public function updateOrder(Order $order, Request $request)
     {
         $data = $request->validate([
-            "status" => "required|in:pending,processing,cancelled,completed",
+            "status" =>
+                "required|in:not_started,processing,cancelled,completed",
         ]);
         $order->update([
             "status" => $data["status"],

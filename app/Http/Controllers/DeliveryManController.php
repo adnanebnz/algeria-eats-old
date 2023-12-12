@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
+use App\Jobs\AcceptedDeliveryJob;
 use App\Models\Delivery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -243,7 +244,7 @@ class DeliveryManController extends Controller
 
     public function accept(Delivery $delivery)
     {
-        // Route model binding is used to get the delivery object
+        AcceptedDeliveryJob::dispatch($delivery);
         $delivery->update([
             "status" => "delivering",
             "deliveryMan_id" => auth()->user()->id,

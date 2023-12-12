@@ -1,6 +1,67 @@
 <x-user-view>
     <main>
         <div class="pt-6 px-4">
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div class="mb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Dernières opérations</h3>
+                        <span class="text-base font-normal text-gray-500">Ceci est une liste des dernières
+                            opérations</span>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <a href="{{ route('user.orders') }}"
+                            class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">Voir tout</a>
+                    </div>
+                </div>
+                <div class="flex flex-col mt-8">
+                    <div class="overflow-x-auto rounded-lg">
+                        <div class="align-middle inline-block min-w-full">
+                            <div class="shadow overflow-hidden sm:rounded-lg">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Opération
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Date
+                                            </th>
+                                            <th scope="col"
+                                                class="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                Prix Total
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        @forelse ($latestOrders as $order)
+                                            <tr>
+                                                <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
+                                                    Commande id <span class="font-semibold">#{{ $order->id }}
+                                                    </span>
+                                                </td>
+                                                <td class="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
+                                                    {{ $order->created_at->format('d/m/Y') }}
+                                                </td>
+                                                <td class="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
+                                                    {{ $order->getTotalPrice() }} DA
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="3"
+                                                    class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
+                                                    Aucune commande n'a été passée
+                                                </td>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="my-4 ">
                 <h1 class="font-bold text-lg text-gray-700 py-4">Aperçu des statistiques</h1>
                 <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

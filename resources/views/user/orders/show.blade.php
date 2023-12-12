@@ -159,7 +159,7 @@
                                     En attente
                                 </span>
                             @endif
-                            @if ($order->status == 'pending')
+                            @if ($order->status == 'processing')
                                 <span
                                     class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                     En cours
@@ -183,8 +183,7 @@
                     @if ($delivery)
                         <div class="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6">
                             <h3 class="text-xl font-semibold leading-5 text-gray-800">Status de la Livraison</h3>
-                            <div class="flex flex-row gap-3 items-center">
-                                <p class="text-base font-semibold leading-4 text-gray-800">Status:</p>
+                            <div class="flex flex-col gap-3">
                                 @if ($order->status == 'completed' && $delivery === null)
                                     <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
                                             class="mt-2 px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">En
@@ -199,7 +198,7 @@
                                             class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-green-100 text-green-800">Affecté</span>
                                     </p>
                                     @if ($delivery)
-                                        <a href="{{ route('artisan.deliveries.show', $delivery) }}"
+                                        <a href="{{ route('user.delivery.show', $delivery) }}"
                                             class="text-center hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">Voir
                                             les details</a>
                                     @endif
@@ -210,7 +209,7 @@
                         </div>
                     @endif
                 </div>
-                @if ($order->status !== 'cancelled' && $order->status !== 'completed' && $order->status !== 'pending')
+                @if ($order->status !== 'cancelled' && $order->status !== 'completed' && $order->status !== 'processing')
                     <div class="flex flex-col mx-auto px-4 py-6 md:p-6 xl:p-8 w-1/2 bg-gray-50 space-y-6">
                         <h1 class="text-lg font-semibold text-gray-700">Annuler la commande</h1>
                         <p class="text-base leading-4 text-gray-600">Vous pouvez annuler votre commande

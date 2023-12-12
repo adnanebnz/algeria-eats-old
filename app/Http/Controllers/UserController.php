@@ -21,6 +21,10 @@ class UserController extends Controller
             ->count();
 
         $orders = Order::where("buyer_id", auth()->user()->id);
+        $latestOrders = $orders
+            ->orderBy("created_at", "desc")
+            ->take(5)
+            ->get();
         $totalSpent = 0;
         foreach ($orders as $order) {
             $totalSpent += $order->total;
@@ -30,6 +34,7 @@ class UserController extends Controller
             "totalOrders" => $orders->count(),
             "totalSpent" => $totalSpent,
             "totalPendingOrders" => $totalPendingOrders,
+            "latestOrders" => $latestOrders,
         ]);
     }
 
@@ -101,5 +106,12 @@ class UserController extends Controller
         $order->status = "cancelled";
         $order->save();
         return redirect()->back();
+    }
+
+    public function showDelivery(Delivery $delivery)
+    {
+        return view("user.deliveries.show", [
+            "delivery" => $delivery,
+        ]);
     }
 }

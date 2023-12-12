@@ -29,6 +29,5 @@ class PurchaseJob implements ShouldQueue
     {
         $order = $this->order;
         Mail::to($order->artisan->email)->send(new ArtisanPurchaseMail($order));
-        Mail::to($order->buyer->email)->send(new UserPurchaseMail($order));
     }
 }

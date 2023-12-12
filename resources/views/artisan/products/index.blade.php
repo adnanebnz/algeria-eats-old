@@ -105,8 +105,13 @@
 
                                         <td
                                             class="flex items-center justify-center gap-3 px-5 py-5 mt-2 border-b border-gray-200 bg-white text-sm">
-                                            <a href="{{ route('artisan.products.show', ['product' => $product]) }}"
+                                            <a data-tooltip-target="tooltip-see"
+                                                href="{{ route('artisan.products.show', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                <div id="tooltip-see" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Voir le produit
+                                                </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6">
@@ -117,8 +122,13 @@
                                                 </svg>
 
                                             </a>
-                                            <a href="{{ route('artisan.products.edit', ['product' => $product]) }}"
+                                            <a data-tooltip-target="tooltip-edit"
+                                                href="{{ route('artisan.products.edit', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                <div id="tooltip-edit" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Modifier le produit
+                                                </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6">
@@ -132,17 +142,22 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <!-- Modal toggle -->
-                                                <button type="button"
+                                                <button data-tooltip-target="tooltip-delete" type="button"
                                                     class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                     @click="showModal = true">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">
+
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0">
                                                         </path>
                                                     </svg>
                                                 </button>
+                                                <div id="tooltip-delete" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Supprimer le produit
+                                                </div>
                                                 <div x-show="showModal" x-cloak
                                                     class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
                                                     <!-- Black background overlay -->
@@ -203,8 +218,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5"
-                                            class="px-5 py-5 bg-white text-sm text-center">
+                                        <td colspan="5" class="px-5 py-5 bg-white text-sm text-center">
                                             Aucun Produit trouvée
                                         </td>
                                     </tr>

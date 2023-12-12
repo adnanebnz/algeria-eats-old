@@ -26,19 +26,4 @@ class UserReview extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function scopePending($query)
-    {
-        return $query->where("status", "pending");
-    }
-
-    public function scopeAccepted($query)
-    {
-        return $query->where("status", "accepted");
-    }
-
-    public function scopeByUser($query, $user)
-    {
-        return $query->where("user_id", $user->id);
-    }
 }

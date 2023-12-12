@@ -141,7 +141,7 @@
                                                 <form method="POST"
                                                     action="{{ route('delivery.accept', ['delivery' => $delivery]) }}">
                                                     @csrf
-                                                    <button type="submit"
+                                                    <button data-tooltip-target="tooltip-accept" type="submit"
                                                         class="border border-solid border-gray-400  p-1 rounded-md hover:bg-green-500 hover:text-white hover:border-transparent">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -150,10 +150,19 @@
                                                                 d="M4.5 12.75l6 6 9-13.5" />
                                                         </svg>
                                                     </button>
+                                                    <div id="tooltip-accept" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Accepter la livraison
+                                                    </div>
                                                 </form>
                                             @else
-                                                <a href="{{ route('deliveryMan.deliveries.showDelivery', ['delivery' => $delivery]) }}"
+                                                <a data-tooltip-target="tooltip-see"
+                                                    href="{{ route('deliveryMan.deliveries.showDelivery', ['delivery' => $delivery]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                    <div id="tooltip-see" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Voir la livraison
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">

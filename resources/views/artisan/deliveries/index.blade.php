@@ -110,8 +110,13 @@
                                         </td>
                                         <td
                                             class="flex items-center justify-center gap-3 px-5 py-5 birder-b border-gray-200 mt-1.5 bg-white text-sm">
-                                            <a href="{{ route('artisan.deliveries.show', $delivery) }}"
+                                            <a data-tooltip-target="tooltip-see"
+                                                href="{{ route('artisan.deliveries.show', $delivery) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                <div id="tooltip-see" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    Voir la livraison
+                                                </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6">
