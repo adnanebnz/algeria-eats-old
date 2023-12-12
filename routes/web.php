@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PasswordResetService;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 
 /*-----------PAGES AND INDEX SECTION-----------*/
@@ -115,3 +116,15 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout.in
 Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
 Route::post('/checkout/cancel', [OrderController::class, 'cancel'])->name('checkout.cancel');
 // CHECKOUT SECTION END
+
+/*USER DASHBOARD*/
+Route::get('user/dashboard', [UserController::class, 'index'])->name("user");
+
+//ORDERS SECTION
+Route::get('user/dashboard/orders', [UserController::class, 'orderindex'])->name("user.orders");
+Route::get('user/dashboard/orders/{order}', [UserController::class, 'showOrder'])->name("user.orders.show");
+Route::put('user/dashboard/orders/{order}', [UserController::class, ''])->name("user.orders.update");
+Route::delete('user/dashboard/orders/{order}', [UserController::class, ''])->name("user.orders.destroy");
+//ORDERS SECTION END
+
+/*USER END*/
