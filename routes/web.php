@@ -80,6 +80,11 @@ Route::get("user/dashobard/orders/{order}", [
     UserController::class,
     "showOrder",
 ])->name("user.orders.show");
+
+Route::post("user/dashobard/orders/{order}/invoice", [
+    UserController::class,
+    "generateInvoice",
+])->name("user.orders.generateInvoice");
 /*-----------USER DASHBOARD END-----------*/
 
 /*-----------ARTISAN DASHBOARD-----------*/

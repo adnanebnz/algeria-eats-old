@@ -8,7 +8,7 @@
                         <form action="{{ route('user.orders') }}" method="GET">
                             <div class="relative">
                                 <select name="date"
-                                    class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                                    class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                                     <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouvelles Commandes</option>
                                     <option value="ancien" @selected(request()->query('date') == 'ancien')>Anciennes Commandes</option>
                                 </select>
@@ -50,7 +50,7 @@
                                 <tr>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                                        Client
+                                        Artisan
                                     </th>
                                     <th
                                         class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
@@ -81,11 +81,11 @@
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
                                                     <img class="w-full h-full rounded-full border"
-                                                        src="{{ $order->buyer->image ? (str_starts_with($order->buyer->image, 'http') ? $order->buyer->image : asset('storage/' . $order->buyer->image)) : asset('assets/user.png') }}" />
+                                                        src="{{ $order->artisan->image ? (str_starts_with($order->artisan->image, 'http') ? $order->artisan->image : asset('storage/' . $order->artisan->image)) : asset('assets/user.png') }}" />
                                                 </div>
                                                 <div class="ml-3">
                                                     <p class="text-gray-900 whitespace-no-wrap">
-                                                        {{ $order->buyer->getFullName() }}
+                                                        {{ $order->artisan->getFullName() }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                             {{ $order->created_at->format('d/m/Y') }}
                                         </td>
                                         <td class="px-5 py-5 border-gray-200 bg-white text-sm">
-                                            @if ($order->status == 'pending')
+                                            @if ($order->status == 'not_started')
                                                 <span
                                                     class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                     En attente
@@ -148,7 +148,8 @@
                                                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                                 </svg>
                                             </a>
-                                            <form action="{{ route('artisan.orders.invoice', ['order' => $order]) }}"
+                                            <form
+                                                action="{{ route('user.orders.generateInvoice', ['order' => $order]) }}"
                                                 method="POST" target="_blank">
                                                 @csrf
                                                 <button type="submit"
@@ -163,7 +164,7 @@ hover:border-transparent">
                                                     </svg>
                                                 </button>
                                             </form>
-                                            <form method="POST"
+                                            {{-- <form method="POST"
                                                 action="{{ route('artisan.orders.destroy', ['order' => $order]) }}"
                                                 x-data="{ showModal: false }">
                                                 @csrf
@@ -235,7 +236,7 @@ hover:border-transparent">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @empty
