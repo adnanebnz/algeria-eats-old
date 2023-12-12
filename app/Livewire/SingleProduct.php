@@ -16,7 +16,6 @@ class SingleProduct extends Component
     public $feedbackMessage;
     public $feedbackMessageType;
 
-
     public function mount(Product $product)
     {
         $this->product = $product;
@@ -28,12 +27,10 @@ class SingleProduct extends Component
         $this->quantity = max(1, intval($value));
     }
 
-
     public function incrementQuantity()
     {
         $this->quantity++;
     }
-
 
     public function decrementQuantity()
     {
@@ -45,41 +42,44 @@ class SingleProduct extends Component
     public function addToCart()
     {
         if (Auth::check()) {
-            if (Cart::where('product_id', $this->product->id)->where('user_id', auth()->user()->id)->exists()) {
-                $this->feedbackMessage = 'Produit déja dans le panier';
-                $this->feedbackMessageType = 'error';
+            if (
+                Cart::where("product_id", $this->product->id)
+                    ->where("user_id", auth()->user()->id)
+                    ->exists()
+            ) {
+                $this->feedbackMessage = "Produit déja dans le panier";
+                $this->feedbackMessageType = "error";
                 $product = $this->product;
-                Alert::error('Erreur', 'Produit déja dans le panier');
-                return redirect()->route('product.show', $product);
+                Alert::error("Erreur", "Produit déja dans le panier");
+                return redirect()->route("product.show", $product);
             } else {
                 Cart::create([
-                    'product_id' => $this->product->id,
-                    'user_id' => auth()->user()->id,
-                    'quantity' => $this->quantity,
+                    "product_id" => $this->product->id,
+                    "user_id" => auth()->user()->id,
+                    "quantity" => $this->quantity,
                 ]);
-                $this->dispatch('cartAddedUpdated');
+                $this->dispatch("cartAddedUpdated");
                 $this->quantity = 1;
-                $this->feedbackMessage = 'Produit ajouté au panier';
-                $this->feedbackMessageType = 'success';
+                $this->feedbackMessage = "Produit ajouté au panier";
+                $this->feedbackMessageType = "success";
                 $product = $this->product;
-                Alert::success('Success', 'Produit ajouté au panier');
-                return redirect()->route('product.show', $product);
+                Alert::success("Success", "Produit ajouté au panier");
+                return redirect()->route("product.show", $product);
             }
         } else {
-            return redirect()->route('login');
+            return redirect()->route("login");
         }
     }
 
-    #[On('closeFeedbackMessage')]
-
+    #[On("closeFeedbackMessage")]
     public function closeFeedbackMessage()
     {
-        $this->feedbackMessage = '';
-        $this->feedbackMessageType = '';
+        $this->feedbackMessage = "";
+        $this->feedbackMessageType = "";
     }
 
     public function render()
     {
-        return view('livewire.single-product');
+        return view("livewire.single-product");
     }
 }

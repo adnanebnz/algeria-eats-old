@@ -19,13 +19,13 @@ class Select extends Component
         public string $label,
         public Collection $list,
         public ?string $id = null,
-        public string $optionsValues = 'id',
-        public string $optionsTexts = 'name',
-        public string $optionsSubTexts = '',
-        public string $placeholder = 'Choisir une option',
+        public string $optionsValues = "id",
+        public string $optionsTexts = "name",
+        public string $optionsSubTexts = "",
+        public string $placeholder = "Choisir une option",
         public mixed $value = null,
         public bool $multiple = false,
-        public string $help = '',
+        public string $help = ""
     ) {
         $this->id ??= $this->name;
         $this->handleValue();
@@ -45,6 +45,6 @@ class Select extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.select');
+        return view("components.select");
     }
 }

@@ -24,7 +24,7 @@
                                 <div
                                     class="flex justify-center w-full md:justify-start items-center space-x-4 py-8 border-b border-gray-200">
                                     <img src="{{ $delivery->deliveryMan->user->image ? (str_starts_with($delivery->deliveryMan->user->image, 'http') ? $delivery->deliveryMan->user->image : asset('storage/' . $delivery->deliveryMan->user->image)) : asset('assets/user.png') }}"
-                                        class="h-10 w-10 rounded-full border" />
+                                        class="h-10 w-10 object-cover rounded-full border" />
                                     <p class="text-base font-semibold leading-4 text-left text-gray-800">
                                         {{ $delivery->deliveryMan->user->getFullName() }}</p>
                                 </div>
@@ -106,7 +106,20 @@
                             </span>
                         @endif
                     </div>
+                    {{-- ANNULER LA LIVRAISON --}}
+                    @if ($delivery->status !== 'delivered')
+                        <form action="{{ route('artisan.deliveries.unaffect', ['delivery' => $delivery]) }}"
+                            class="flex items-center justify-center" method="POST">
+                            @csrf
+                            <button type="submit"
+                                class="
+                            inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                Annuler la livraison
+                            </button>
+                        </form>
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>

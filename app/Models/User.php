@@ -20,14 +20,14 @@ class User extends Authenticatable implements CanResetPasswordContract
      * @var array<int, string>
      */
     protected $fillable = [
-        'nom',
-        'prenom',
-        'adresse',
-        'wilaya',
-        'num_telephone',
-        'email',
-        'image',
-        'password',
+        "nom",
+        "prenom",
+        "adresse",
+        "wilaya",
+        "num_telephone",
+        "email",
+        "image",
+        "password",
     ];
 
     /**
@@ -35,20 +35,17 @@ class User extends Authenticatable implements CanResetPasswordContract
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    protected $hidden = ["password", "remember_token"];
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = "id";
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        "email_verified_at" => "datetime",
+        "password" => "hashed",
     ];
 
     public function consumer()
@@ -81,11 +78,6 @@ class User extends Authenticatable implements CanResetPasswordContract
         return $this->hasOne(Cart::class);
     }
 
-    public function wishlists()
-    {
-        return $this->hasMany(Wishlist::class);
-    }
-
     public function reviews()
     {
         return $this->hasMany(Review::class);
@@ -93,7 +85,7 @@ class User extends Authenticatable implements CanResetPasswordContract
 
     public function getFullName(): string
     {
-        return $this->nom . ' ' . $this->prenom;
+        return $this->nom . " " . $this->prenom;
     }
 
     public function isArtisan(): bool

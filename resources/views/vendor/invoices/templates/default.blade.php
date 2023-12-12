@@ -363,10 +363,6 @@
                 {{ __('invoices::invoice.notes') }}: {!! $invoice->notes !!}
             </p>
         @endif
-
-        <p>
-            {{ __('invoices::invoice.amount_in_words') }}: {{ $invoice->getTotalAmountInWords() }}
-        </p>
         <p>
             {{ __('invoices::invoice.pay_until') }}: {{ $invoice->getPayUntilDate() }}
         </p>

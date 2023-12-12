@@ -1,14 +1,14 @@
 <form wire:submit.prevent="submit" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="flex flex-col gap-8">
-        <div class="flex flex-row gap-8">
-            <div class="w-1/2 flex flex-col gap-4">
+        <div class="flex md:flex-row flex-col md:gap-8 gap-2">
+            <div class="md:w-1/2 w-full flex flex-col gap-4">
                 <x-input name="nom" label="Nom" type="text" />
                 <x-input name="prenom" label="Prénom" type="text" />
                 <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
                 <x-input name="adresse" label="Adresse" type="text" />
             </div>
-            <div class="w-1/2 flex flex-col gap-4">
+            <div class="md:w-1/2 w-full flex flex-col gap-4">
                 <x-select name="wilaya" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
                     :optionsTexts="'wilaya_name_ascii'" />
                 <x-input name="email" label="Email" type="email" />
@@ -122,16 +122,22 @@
             <button type="submit" wire:loading.attr="disabled" wire:loading.class="cursor-not-allowed bg-blue-400"
                 class="flex justify-center w-full rounded-md bg-blue-500 py-2.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Créer
                 votre compte</button>
-            <div wire:loading
-                class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-black/95 p-6 rounded-md flex items-center justify-center text-center">
-                <svg class="animate-spin h-16 w-16 text-center text-white" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                        stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 6.627 5.373 12 12 12v-4a8.011 8.011 0 01-5.657-2.343z">
-                    </path>
-                </svg>
+            <div wire:loading class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
+                <!-- Black background overlay -->
+                <div class="absolute inset-0 bg-black opacity-40"></div>
+                <!-- Container -->
+                <div class="fixed inset-0 flex items-center justify-center">
+                    <div class="relative p-8">
+                        <svg class="animate-spin h-16 w-16 text-center text-white" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 6.627 5.373 12 12 12v-4a8.011 8.011 0 01-5.657-2.343z">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

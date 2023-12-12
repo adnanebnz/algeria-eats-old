@@ -24,40 +24,40 @@ class ConsumerForm extends Component
     public $password_confirmation;
 
     protected $rules = [
-        'nom' => 'required|string',
-        'prenom' => 'required|string',
-        'num_telephone' => 'required|string|unique:users',
-        'adresse' => 'required|string',
-        'wilaya' => 'required|string',
-        'email' => 'required|email|unique:users',
-        'image' => 'nullable|image|max:4096',
-        'password' => 'required|min:3|confirmed',
-        'password_confirmation' => 'required|same:password',
+        "nom" => "required|string",
+        "prenom" => "required|string",
+        "num_telephone" => "required|string|unique:users",
+        "adresse" => "required|string",
+        "wilaya" => "required|string",
+        "email" => "required|email|unique:users",
+        "image" => "nullable|image|max:4096",
+        "password" => "required|min:3|confirmed",
+        "password_confirmation" => "required|same:password",
     ];
 
     public function submit()
     {
         $validatedData = $this->validate();
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData["password"] = bcrypt($validatedData["password"]);
 
         return DB::transaction(function () use ($validatedData) {
             $user = User::create($validatedData);
 
             if ($this->image) {
-                $imagePath = $this->image->store('profile_images', 'public');
-                $user->update(['image' => $imagePath]);
+                $imagePath = $this->image->store("profile_images", "public");
+                $user->update(["image" => $imagePath]);
             }
 
             $user->consumer()->create([]);
             auth()->login($user);
-            Alert::success('Succès', 'Votre compte a été créé avec succès');
-            return redirect()->to('/');
+            Alert::success("Succès", "Votre compte a été créé avec succès");
+            return redirect()->to("/");
         });
     }
 
     public function render()
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
-        return view('livewire.consumer-form', compact('wilayas'));
+        return view("livewire.consumer-form", compact("wilayas"));
     }
 }

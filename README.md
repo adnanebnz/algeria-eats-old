@@ -115,16 +115,19 @@ git commit -m "Description des modifications"
 -   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [x] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
 -   after validating and delivering the product display form with stars to review the delivery man
--   [ ] BUILD OTHER PAGES (A propos de nous, terms et conditions, confidentionalité)
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"
 
 ## TODO
 
-1 - write more unit tests
-
-2 - add google analytics
-
-3 - fix the mess in statuses esspecialy for orders and livraisons also change pending to not_started when we create a delivery submission and fix UI FIX IT FOR ORDERS WHEN THERE IS ALOT CENTER THE ACTION TD w zid unaffect delivery images cant be uploaded from register of artisan and deliveryman
-
-4 - Fix dashboards
+-   Fix dashboards(add tooltips, styling,charts)
+-   Build User Dashboard
+-   Build the last pages (A propos de nous, terms et conditions, confidentionalité)
+-   ajouter un recu de livraison pour le livreur using barry pdf and think about how to make a price for the livraison
+-   think of a way to use the GenerateInvoiceAndSendEmail job
+-   display all products of artisan in his profile page
+-   Send the artisan an email when a deliveryman accepts his comissions
+-   ~~Send an email to the consumer after purchase and another one to the artisan~~ problem : we are doing it in a loop means if a user has 2 products from 2 artisans he will get 2 mails
+-   APPEND LINKS TO PROFILES IN DASHBOARDS (ADD THEM WHERE THERE IS IMAGES)
+-   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
+-   GENERATE QR OR BARCODE FOR TICKETS

@@ -5,51 +5,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Facture de votre commande</title>
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 font-sans">
-    <div class="mx-auto max-w-2xl bg-white p-8 shadow-md">
-        <h1 class="mb-4 text-2xl font-bold">Facture de votre commande</h1>
+<body style="background-color: #f0f4f8; font-family: sans-serif;">
+    <div
+        style="margin: 0 auto; max-width: 32rem; background-color: #fff; padding: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h1 style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">Facture de votre commande</h1>
 
-        <p class="mb-6">Bonjour {{ $order->buyer->getFullName() }},</p>
+        <p style="margin-bottom: 1.5rem;">Bonjour {{ $order->buyer->getFullName() }},</p>
 
-        <p class="mb-6">Nous vous remercions pour votre commande. Voici les détails de votre facture :</p>
+        <p style="margin-bottom: 1.5rem;">Nous vous remercions pour votre commande. Voici les détails de votre facture :
+        </p>
 
-        {{-- Display invoice details --}}
-        <table class="mb-6 w-full table-auto">
-            <thead class="border border-solid border-black dark:border-white">
+        <table style="margin-bottom: 1.5rem; width: 100%; border-collapse: collapse;">
+            <thead style="border: 1px solid #000;">
                 <tr>
-                    <th class="border border-solid border-black px-4 py-2 dark:border-white">Produit</th>
-                    <th class="border border-solid border-black px-4 py-2 dark:border-white">Quantité</th>
-                    <th class="border border-solid border-black px-4 py-2 dark:border-white">Prix unitaire</th>
-                    <th class="border border-solid border-black px-4 py-2 dark:border-white">Total</th>
+                    <th style="border: 1px solid #000; padding: 0.5rem;">Produit</th>
+                    <th style="border: 1px solid #000; padding: 0.5rem;">Quantité</th>
+                    <th style="border: 1px solid #000; padding: 0.5rem;">Prix unitaire</th>
+                    <th style="border: 1px solid #000; padding: 0.5rem;">Total</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($invoice->items->all() as $item)
                     <tr>
-                        <td class="border border-solid border-black px-4 py-2 dark:border-white">{{ $item->title }}
-                        </td>
-                        <td class="border border-solid border-black px-4 py-2 dark:border-white">{{ $item->quantity }}
-                        </td>
-                        <td class="border border-solid border-black px-4 py-2 dark:border-white">
-                            {{ $item->price_per_unit }}</td>
-                        <td class="border border-solid border-black px-4 py-2 dark:border-white">
-                            {{ $item->sub_total_price }}</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->title }}</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->quantity }}</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->price_per_unit }} DA</td>
+                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->sub_total_price }} DA</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
-        <p class="mb-4 text-lg font-bold">Montant total: {{ $invoice->total_amount }}</p>
+        <p style="margin-bottom: 1rem; font-size: 1.125rem; font-sweight: bold;">Montant total:
+            {{ $invoice->total_amount }} DA</p>
 
-        <p class="mb-6">Vous pouvez régler cette facture dans les 7 jours suivant la date d'émission.</p>
+        <p style="margin-bottom: 1.5rem;">Vous pouvez régler cette facture dans les 7 jours suivant la date d'émission.
+        </p>
 
-        <p class="mb-6">Merci encore pour votre achat.</p>
+        <p style="margin-bottom: 1.5rem;">Merci encore pour votre achat.</p>
 
         <p>Cordialement,</p>
-        <p>{{ $order->artisan->getFullName() }}</p>
+        <p>Algeria Eats</p>
     </div>
 </body>
 

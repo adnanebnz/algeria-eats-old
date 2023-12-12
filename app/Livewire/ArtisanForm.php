@@ -28,58 +28,58 @@ class ArtisanForm extends Component
     public $heure_fermeture;
 
     protected $rules = [
-        'nom' => 'required|string',
-        'prenom' => 'required|string',
-        'num_telephone' => 'required|string|unique:users',
-        'adresse' => 'required|string',
-        'wilaya' => 'required|string',
-        'desc_entreprise' => 'required|string',
-        'heure_ouverture' => 'required|string',
-        'heure_fermeture' => 'required|string',
-        'type_service' => 'required|in:sucree,salee,sucree_salee',
-        'email' => 'required|email|unique:users',
-        'image' => 'nullable|image|max:4096',
-        'password' => 'required|min:3|confirmed',
-        'password_confirmation' => 'required|same:password',
+        "nom" => "required|string",
+        "prenom" => "required|string",
+        "num_telephone" => "required|string|unique:users",
+        "adresse" => "required|string",
+        "wilaya" => "required|string",
+        "desc_entreprise" => "required|string",
+        "heure_ouverture" => "required|string",
+        "heure_fermeture" => "required|string",
+        "type_service" => "required|in:sucree,salee,sucree_salee",
+        "email" => "required|email|unique:users",
+        "image" => "nullable|image|max:4096",
+        "password" => "required|min:3|confirmed",
+        "password_confirmation" => "required|same:password",
     ];
     public function submit()
     {
         $validatedData = $this->validate();
-        $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData["password"] = bcrypt($validatedData["password"]);
 
         return DB::transaction(function () use ($validatedData) {
             $user = User::create([
-                'nom' => $validatedData['nom'],
-                'prenom' => $validatedData['prenom'],
-                'num_telephone' => $validatedData['num_telephone'],
-                'adresse' => $validatedData['adresse'],
-                'wilaya' => $validatedData['wilaya'],
-                'email' => $validatedData['email'],
-                'image' => $validatedData['image'],
-                'password' => $validatedData['password'],
+                "nom" => $validatedData["nom"],
+                "prenom" => $validatedData["prenom"],
+                "num_telephone" => $validatedData["num_telephone"],
+                "adresse" => $validatedData["adresse"],
+                "wilaya" => $validatedData["wilaya"],
+                "email" => $validatedData["email"],
+                "image" => $validatedData["image"],
+                "password" => $validatedData["password"],
             ]);
 
             if ($this->image) {
-                $imagePath = $this->image->store('profile_images', 'public');
-                $user->update(['image' => $imagePath]);
+                $imagePath = $this->image->store("profile_images", "public");
+                $user->update(["image" => $imagePath]);
             }
 
             $user->artisan()->create([
-                'type_service' => $validatedData['type_service'],
-                'desc_entreprise' => $validatedData['desc_entreprise'],
-                'heure_ouverture' => $validatedData['heure_ouverture'],
-                'heure_fermeture' => $validatedData['heure_fermeture'],
+                "type_service" => $validatedData["type_service"],
+                "desc_entreprise" => $validatedData["desc_entreprise"],
+                "heure_ouverture" => $validatedData["heure_ouverture"],
+                "heure_fermeture" => $validatedData["heure_fermeture"],
             ]);
 
             auth()->login($user);
-            Alert::success('Succès', 'Votre compte a été créé avec succès');
-            return redirect()->to('/');
+            Alert::success("Succès", "Votre compte a été créé avec succès");
+            return redirect()->to("/");
         });
     }
 
     public function render()
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
-        return view('livewire.artisan-form', compact('wilayas'));
+        return view("livewire.artisan-form", compact("wilayas"));
     }
 }

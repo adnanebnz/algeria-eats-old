@@ -1,6 +1,6 @@
     <x-default-layout title='Profile'>
         <div class="w-full flex flex-col gap-8 justify-center items-center md:pb-16 pb-4">
-            <div class="bg-gray-100/40 md:w-3/4 w-full p-4 mx-auto my-auto rounded-lg shadow-lg">
+            <div class="bg-gray-100/40 md:w-3/4 w-full md:p-4 p-0 mx-auto my-auto rounded-lg shadow-lg">
                 <img class="rounded-full w-40 h-40 mx-auto my-4 object-cover border border-solid border-gray-300"
                     src="{{ $user->image ? (str_starts_with($user->image, 'http') ? $user->image : asset('storage/' . $user->image)) : asset('assets/user.png') }}" />
 
@@ -64,8 +64,15 @@
                                     <h1 class="font-medium text-lg my-2">Type
                                         Service
                                     </h1>
-                                    <span
-                                        class="bg-gray-100/25 rounded-full px-2 py-1">{{ ($user->artisan->type_service === 'sucree' ? 'Sucré' : $user->artisan->type_service === 'salee') ? 'Salé' : 'Sucré et Salé' }}</span>
+                                    <span class="bg-gray-100/25 rounded-full px-2 py-1">
+                                        @if ($user->artisan->type_service === 'sucree')
+                                            Sucrée
+                                        @elseif($user->artisan->type_service === 'salee')
+                                            Salée
+                                        @else
+                                            Sucrée et Salée
+                                        @endif
+                                    </span>
                                 </div>
 
                             </div>
@@ -98,11 +105,11 @@
                                 <x-input name="heure_ouverture" label="Heure d'ouverture" type="time"
                                     :value="auth()->user()->artisan?->heure_ouverture" />
                             @endif
-                            {{-- TODO ADD DELETE ACCOUNT BUTTON --}}
                         </div>
                         <div class="md:w-1/2 flex flex-col gap-4">
                             <x-input name="prenom" label="Prénom" type="text" :value="auth()->user()->prenom" />
-                            <x-input name="wilaya" label="Wilaya" type="text" :value="auth()->user()->wilaya" />
+                            <x-select name="wilaya" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'"
+                                :optionsSubTexts="'wilaya_code'" :optionsTexts="'wilaya_name_ascii'" :value="$user->wilaya" />
 
                             <x-input name="num_telephone" label="Numéro de teléphone" type="text"
                                 :value="auth()->user()->num_telephone" />
@@ -148,14 +155,14 @@
                                     <select
                                         class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
                                         name="type_service">
-                                        <option value="sucree" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree') selected @endif>
-                                            Sucré
+                                        <option value="sucree" @selected($user->artisan->type_service === 'sucree')>
+                                            Sucrée
                                         </option>
-                                        <option value="salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'salee') selected @endif>
-                                            Salé
+                                        <option value="salee" @selected($user->artisan->type_service === 'salee')>
+                                            Salée
                                         </option>
-                                        <option value="sucree_salee" @if (old('type_service', auth()->user()->artisan->type_service) == 'sucree_salee') selected @endif>
-                                            Sucré et Salé
+                                        <option value="sucree_salee" @selected($user->artisan->type_service === 'sucree_salee')>
+                                            Sucrée et Salée
                                         </option>
                                     </select>
                                 </div>
@@ -226,12 +233,74 @@
                         class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-8 text-white">MODIFIER
                         VOS INFORMATIONS</button>
                 </form>
+                <form method="POST" action="{{ route('profile.destroy', ['user' => $user]) }}"
+                    class="flex justify-end" x-data="{ showModal: false }">
+                    @csrf
+                    @method('DELETE')
+                    <!-- Modal toggle -->
+                    <button type="button" class="text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md"
+                        @click="showModal = true">
+                        Supprimer votre compte
+                    </button>
+                    <div x-show="showModal" x-cloak
+                        class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
+                        <!-- Black background overlay -->
+                        <div class="absolute inset-0 bg-black opacity-50">
+                        </div>
+                        <!-- Modal container -->
+                        <div x-show="showModal" x-cloak x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform translate-y-4"
+                            x-transition:enter-end="opacity-100 transform translate-y-0"
+                            class="relative p-8 bg-white mx-auto max-w-lg">
+                            <!-- Modal content -->
+                            <div @click.away="showModal = false">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between">
+                                    <div></div>
+                                    <button type="button" @click="showModal = false"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="space-y-4">
+                                    <svg class="mx-auto mb-4 text-gray-400 w-14 h-14" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <p class="text-base leading-relaxed text-gray-700">
+                                        Vous voulez vraiment supprimer votre compte ?
+                                    </p>
+                                </div>
+                                <!-- Modal footer -->
+                                <div class="flex items-center justify-center mt-6">
+                                    <button type="submit"
+                                        class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                        @click="showModal = false">Confirmer</button>
+                                    <button type="button"
+                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                                        @click="showModal = false">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         @endif
-        @if (auth()->user() && auth()->user()->id !== $user->id)
-            <livewire:user-review-form :user='$user' />
-        @endif
-        <livewire:user-review-component :user='$user' />
+        <div class="md:w-3/4 mx-auto w-full">
+            @if (auth()->user() && auth()->user()->id !== $user->id && ($user->isArtisan() || $user->isDeliveryMan()))
+                <livewire:user-review-form :user='$user' />
+            @endif
+            <livewire:user-review-component :user='$user' />
+        </div>
 
         </div>
     </x-default-layout>

@@ -8,9 +8,9 @@
         <div class="max-w-6xl px-4 mx-auto">
             <div class="flex flex-wrap mb-24 -mx-4">
                 <div class="w-full px-4 mb-8 md:w-1/2 md:mb-0">
-                    <div class="sticky top-0 overflow-hidden ">
+                    <div class="sticky top-0 overflow-hidden">
                         <div class="relative mb-6 lg:mb-10 lg:h-96">
-                            <button class="absolute left-0 transform lg:ml-2 top-1/2 translate-1/2"
+                            <button class="absolute hidden md:block left-0 transform lg:ml-2 top-1/2 translate-1/2"
                                 x-on:click="currentImageIndex = (currentImageIndex - 1 + {{ count($product->images) }}) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-left"
@@ -26,7 +26,7 @@
                                     src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
                                     alt="">
                             @endforeach
-                            <button class="absolute right-0 transform lg:mr-2 top-1/2 translate-1/2"
+                            <button class="absolute right-0 hidden md:block transform lg:mr-2 top-1/2 translate-1/2"
                                 x-on:click="currentImageIndex = (currentImageIndex + 1) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor"
@@ -38,7 +38,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="flex-wrap hidden -mx-2 md:flex">
+                        <div class="-mx-2 flex">
                             @foreach ($product->images as $key => $image)
                                 <div class="w-1/3 p-2 sm:w-1/5">
                                     <button class="block border border-gray-200 hover:border-blue-400"
@@ -108,7 +108,7 @@
                                                             Catégorie
                                                         </p>
                                                         <h2 class="text-base font-semibold text-gray-700">
-                                                            {{ $product->category === 'sucree' ? 'Sucré' : 'Salé' }}
+                                                            {{ $product->category === 'sucree' ? 'Sucrée' : 'Salée' }}
                                                         </h2>
                                                     </div>
                                                 </div>
