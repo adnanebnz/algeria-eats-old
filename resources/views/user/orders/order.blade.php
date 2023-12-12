@@ -1,4 +1,4 @@
-<x-dashboard-layout :isUser=true>
+<x-user-view>
     <div class="bg-white mt-8 md:px-5 rounded-md w-full">
         <section class="antialiased font-sans">
             <div class="py-8">
@@ -256,4 +256,4 @@ hover:border-transparent">
             </div>
         </section>
     </div>
-</x-dashboard-layout>
+</x-user-view>

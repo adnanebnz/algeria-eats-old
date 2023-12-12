@@ -76,7 +76,8 @@
         <button @click="open = !open"
             class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
             <span>{{ auth()->user()->prenom }}</span>
-        
+            {{-- <img class="rounded-full w-8 h-8 object-cover border border-solid border-gray-300"
+                                src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" /> --}}
             <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
                 class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
                 <path fill-rule="evenodd"
@@ -141,37 +142,39 @@
                                 <p class="text-sm">Voir et gerer vos données</p>
                             </div>
                         </a> @endif
-                        @if (auth()->user()->consumer)
-                        <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('user.dashobard') }}">
-                            <div class="bg-blue-500 text-white rounded-lg p-3">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
-                                    <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="font-semibold">Tableau de bord</p>
-                                <p class="text-sm">Voir et gerer vos données</p>
-                            </div>
-                        </a> @endif
-                    <a class="flex
+                        {{-- LES ACHATS --}}
+                        <a class="flex
         row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
-        focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-        href="{{ route('profile', ['user' => auth()->user()]) }}">
+        focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('user.dashobard', auth()->user()) }}">
     <div class="bg-blue-500 text-white rounded-lg p-3">
-        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
-            <path
-                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-            </path>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
         </svg>
     </div>
     <div class="ml-3">
-        <p class="font-semibold">Profile</p>
-        <p class="text-sm">Voir et modifier votre profile</p>
+        <p class="font-semibold">Voir les Achats</p>
+        <p class="text-sm">Voir vos achats</p>
     </div>
+    </a>
+    {{-- FIN --}}
+    <a class="flex
+        row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
+        focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+        href="{{ route('profile', ['user' => auth()->user()]) }}">
+        <div class="bg-blue-500 text-white rounded-lg p-3">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
+                <path
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                </path>
+            </svg>
+        </div>
+        <div class="ml-3">
+            <p class="font-semibold">Profile</p>
+            <p class="text-sm">Voir et modifier votre profile</p>
+        </div>
     </a>
     <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
         href="{{ route('logout') }}">

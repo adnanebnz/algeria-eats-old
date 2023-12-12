@@ -14,51 +14,24 @@ class UserController extends Controller
 
     public function index()
     {
-        $orders = Order::where("buyer_id", auth()->user()->id)
+        $totalPendingOrders = Order::where("buyer_id", auth()->user()->id)
             ->orWhere("status", "!=", "completed")
-            ->take(5);
-        $totalOrders_encoure = $orders->count();
+            ->count();
 
-        $orders_fin = Order::where("buyer_id", auth()->user()->id);
-        $totalOrders = $orders_fin->count();
-
+        $orders = Order::where("buyer_id", auth()->user()->id);
         $totalSpent = 0;
-        foreach ($orders_fin->get() as $orders_fin) {
-            $totalSpent += $orders_fin->getTotalPrice();
+        foreach ($orders as $order) {
+            $totalSpent += $order->total;
         }
-
-        $orders_m = Order::where("buyer_id", auth()->user()->id);
-
-        foreach ($orders_m->get() as $orders_m) {
-            $months = $orders_m->created_at->format("d/m/Y");
-
-            $totalSpent += $orders_m->getTotalPrice();
-        }
-        $months = [
-            "Janvier",
-            "Février",
-            "Mars",
-            "Avril",
-            "Mai",
-            "Juin",
-            "Juillet",
-            "Aout",
-            "Septembre",
-            "Octobre",
-            "Novembre",
-            "Décembre",
-        ];
-
         return view("user.dashboard", [
             "orders" => $orders,
-            "totalOrders" => $totalOrders,
+            "totalOrders" => $orders->count(),
             "totalSpent" => $totalSpent,
-            "totalOrders_encoure" => $totalOrders_encoure,
-            "months" => $months,
+            "totalPendingOrders" => $totalPendingOrders,
         ]);
     }
 
-    public function orderindex(Request $request)
+    public function ordersIndex(Request $request)
     {
         $query = Order::select(
             "id",
@@ -100,14 +73,14 @@ class UserController extends Controller
         }
 
         $orders = $query->paginate(10);
-        return view("user.orders_status.order", [
+        return view("user.orders.order", [
             "orders" => $orders,
         ]);
     }
 
     public function showOrder(Order $order)
     {
-        return view("user.orders_status.show", [
+        return view("user.orders.show", [
             "order" => $order,
         ]);
     }

@@ -1,4 +1,4 @@
-<x-dashboard-layout :isUser=true>
+<x-user-view>
     <div class="md:pb-12 pb-4 mt-5">
         <div class="flex justify-start item-start space-y-2 flex-col">
             <h1 class="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9 text-gray-800">Commande
@@ -213,4 +213,4 @@
             </div>
         </div>
     </div>
-</x-dashboard-layout>
+</x-user-view>
