@@ -76,8 +76,7 @@
         <button @click="open = !open"
             class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
             <span>{{ auth()->user()->prenom }}</span>
-            {{-- <img class="rounded-full w-8 h-8 object-cover border border-solid border-gray-300"
-                                src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" /> --}}
+        
             <svg fill="currentColor" viewBox="0 0 20 20" :class="{ 'rotate-180': open, 'rotate-0': !open }"
                 class="inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1">
                 <path fill-rule="evenodd"
@@ -144,7 +143,7 @@
                         </a> @endif
                         @if (auth()->user()->consumer)
                         <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                            href="{{ route('user', ['user' => auth()->user()]) }}">
+                            href="{{ route('user.dashobard') }}">
                             <div class="bg-blue-500 text-white rounded-lg p-3">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
