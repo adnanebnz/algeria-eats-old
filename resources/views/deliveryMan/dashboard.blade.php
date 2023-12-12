@@ -228,7 +228,7 @@
                                             </tr>
                                         @empty
                                             <tr>
-                                                <td colspan="3"
+                                                <td colspan="4"
                                                     class="p-4 text-center whitespace-nowrap text-sm font-normal text-gray-600">
                                                     Aucune livraison effectuée.
                                                 </td>
