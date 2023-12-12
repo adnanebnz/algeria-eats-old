@@ -229,6 +229,11 @@ Route::post("deliveryMan/{delivery}/accept", [
     "accept",
 ])->name("delivery.accept");
 
+Route::post("deliveryMan/{delivery}/generate-ticket", [
+    DeliveryManController::class,
+    "generateTicket",
+])->name("delivery.generateTicket");
+
 Route::put("deliveryMan/{delivery}/update", [
     DeliveryManController::class,
     "updateDelivery",

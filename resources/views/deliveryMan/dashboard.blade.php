@@ -6,7 +6,7 @@
                     <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                         <h3 class="text-xl font-bold text-gray-800 mb-4">Status des livraisons</h3>
                         @if ($countday == 0 && $uncompleted == 0)
-                            <p class="text-sm text-gray-600">Aucune livraison accepté.</p>
+                            <p class="text-base font-normal text-gray-600">Aucune livraison accepté.</p>
                         @else
                             <div>
                                 <canvas id="deliveriestoday" height="400"></canvas>
