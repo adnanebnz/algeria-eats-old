@@ -45,6 +45,10 @@ Route::delete("profile/{user}", [ProfileController::class, "destroy"])->name(
     "profile.destroy"
 );
 
+Route::get("user/dashobard", [UserController::class, "index"])->name(
+    "user.dashobard"
+);
+
 // FORGOT PASSWORD
 Route::get("/forgot-password", [PasswordResetService::class, "index"])->name(
     "password.request"
