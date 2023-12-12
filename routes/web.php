@@ -45,10 +45,6 @@ Route::delete("profile/{user}", [ProfileController::class, "destroy"])->name(
     "profile.destroy"
 );
 
-Route::get("user/dashobard", [UserController::class, "index"])->name(
-    "user.dashobard"
-);
-
 // FORGOT PASSWORD
 Route::get("/forgot-password", [PasswordResetService::class, "index"])->name(
     "password.request"
@@ -68,8 +64,23 @@ Route::post("/reset-password", [
     "resetPassword",
 ])->name("password.update");
 // FORGOT PASSWORD END
-
 /*-----------AUTH AND PROFILE SECTION END-----------*/
+
+/*-----------USER DASHBOARD-----------*/
+Route::get("user/dashobard", [UserController::class, "index"])->name(
+    "user.dashobard"
+);
+
+Route::get("user/dashobard/orders", [
+    UserController::class,
+    "ordersIndex",
+])->name("user.orders");
+
+Route::get("user/dashobard/orders/{order}", [
+    UserController::class,
+    "showOrder",
+])->name("user.orders.show");
+/*-----------USER DASHBOARD END-----------*/
 
 /*-----------ARTISAN DASHBOARD-----------*/
 Route::get("artisan/dashboard", [ArtisanController::class, "index"])->name(

@@ -1,11 +1,9 @@
-<x-dashboard-layout :isUser=true>
+<x-user-view>
     <main>
         <div class="pt-6 px-4">
-
             <div class="my-4 ">
                 <h1 class="font-bold text-lg text-gray-700 py-4">Aperçu des statistiques</h1>
                 <div id="stats" class="grid gird-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {{-- TODO TOTAL PRODUCTS --}}
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <div class="flex flex-row space-x-4 items-center">
                             <div id="stats-1">
@@ -14,18 +12,15 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                                 </svg>
-
                             </div>
                             <div>
-                                <p class="text-indigo-500 text-sm font-medium uppercase leading-4">Total Commandes</p>
+                                <p class="text-indigo-500 text-sm font-medium uppercase leading-4">Commandes Totals</p>
                                 <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
                                     <span>{{ $totalOrders }}</span>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    {{-- TODO TOTAL PRODUCTS END --}}
-                    {{-- TODO TOTAL ORDERS --}}
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <div class="flex flex-row space-x-4 items-center">
                             <div id="stats-1">
@@ -36,16 +31,14 @@
                                 </svg>
                             </div>
                             <div>
-                                <p class="text-indigo-500 text-sm font-medium uppercase leading-4">En Coure Commandes
+                                <p class="text-indigo-500 text-sm font-medium uppercase leading-4">Commandes en cours
                                 </p>
                                 <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
-                                    <span>{{ $totalOrders_encoure }}</span>
+                                    <span>{{ $totalPendingOrders }}</span>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    {{-- TODO TOTAL ORDERS END --}}
-                    {{-- TODO TOTAL INCOMES --}}
                     <div class="bg-white p-6 rounded-lg shadow-md">
                         <div class="flex flex-row space-x-4 items-center">
                             <div id="stats-1">
@@ -57,7 +50,7 @@
 
                             </div>
                             <div>
-                                <p class="text-teal-500 text-sm font-medium uppercase leading-4">Dépense</p>
+                                <p class="text-teal-500 text-sm font-medium uppercase leading-4">Dépenses</p>
                                 <p class="text-gray-800 font-bold text-2xl inline-flex items-center space-x-2">
                                     <span>{{ $totalSpent }} DA</span>
                                 </p>
@@ -67,14 +60,6 @@
                 </div>
 
             </div>
-
-            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 mb-4">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des dépense par mois</h3>
-                <div>
-                    <canvas id="revenueBreakdownChart"></canvas>
-                </div>
-            </div>
-
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xl font-bold leading-none text-gray-900">Order Status</h3>
@@ -180,37 +165,4 @@
 
         </div>
     </main>
-    {{-- <script>
-        var revenueBreakdownChart = new Chart(document.getElementById('revenueBreakdownChart'), {
-            type: 'bar',
-            data: {
-                labels: @json($months),
-                datasets: [{
-                    label: 'Déponse total par mois',
-                    data: @json($totalRevenueByMonth),
-                    backgroundColor: '#60a5fa',
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    x: {
-                        type: 'category',
-                        labels: @json($months),
-                    },
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Déponse total (DA)',
-                        },
-                    },
-                },
-                legend: {
-                    display: false,
-                },
-            }
-        });
-    </script> --}}
-</x-dashboard-layout>
+</x-user-view>
