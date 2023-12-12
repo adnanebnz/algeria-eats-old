@@ -9,8 +9,9 @@
                             <div class="relative">
                                 <select name="date"
                                     class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-                                    <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouvelles Commandes</option>
-                                    <option value="ancien" @selected(request()->query('date') == 'ancien')>Anciennes Commandes</option>
+                                    <option value="">Toutes les Livraisons</option>
+                                    <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouvelles Livraisons</option>
+                                    <option value="ancien" @selected(request()->query('date') == 'ancien')>Anciennes Livraisons</option>
                                 </select>
                                 <div
                                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -21,7 +22,25 @@
                                     </svg>
                                 </div>
                             </div>
+
                     </div>
+                    <div class="relative">
+                        <select name="status"
+                            class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                            <option value="">Tous les Status</option>
+                            <option value="not_started" @selected(request()->query('status') == 'not_started')>En Attente</option>
+                            <option value="processing" @selected(request()->query('status') == 'processing')>En cours</option>
+                            <option value="completed" @selected(request()->query('status') == 'completed')>Terminé</option>
+                            <option value="cancelled" @selected(request()->query('status') == 'cancelled')>Annulé</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+
                     <div class="block relative">
                         <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
                             <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
