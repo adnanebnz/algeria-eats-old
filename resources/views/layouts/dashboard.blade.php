@@ -158,9 +158,9 @@
                             <div class="flex flex-col justify-between gap-72">
                                 <ul class="space-y-2 pt-5">
                                     <li>
-                                        <a href="{{ route('artisan.index') }}" @class([
+                                        <a href="{{ route('user') }}" @class([
                                             'text-base font-normal rounded-lg flex items-center p-2 group',
-                                            request()->routeIs('artisan.index')
+                                            request()->routeIs('user')
                                                 ? 'bg-blue-500 text-white'
                                                 : 'text-gray-900 hover:bg-gray-100',
                                         ])>
@@ -168,7 +168,7 @@
                                                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                                 @class([
                                                     'w-6 h-6 text-gray-500 transition duration-75',
-                                                    request()->routeIs('artisan.index')
+                                                    request()->routeIs('user')
                                                         ? 'bg-blue-500 text-white'
                                                         : 'text-gray-500 group-hover:text-gray-900',
                                                 ])>
@@ -178,10 +178,30 @@
                                             <span class="ml-3">Tableau de bord</span>
                                         </a>
                                     </li>
-
+                                    @if ($isUser)
+                                    <li>
+                                        <a href="{{ route('user.orders') }}"@class([
+                                            'text-base font-normal rounded-lg flex items-center p-2 group',
+                                            request()->routeIs('user.orders')
+                                                ? 'bg-blue-500 text-white'
+                                                : 'text-gray-900 hover:bg-gray-100',
+                                        ])>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  @class([
+                                                'w-6 h-6 text-gray-500 transition duration-75',
+                                                request()->routeIs('user.orders')
+                                                    ? 'bg-blue-500 text-white'
+                                                    : 'text-gray-500 group-hover:text-gray-900',
+                                            ])>
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                                              </svg>
+                                              
+                                            <span class="ml-3">Commandes</span>
+                                        </a>
+                                    </li>
+                                    @endif
                                     @if ($isAdmin)
                                         <li>
-                                            <a href="{{ route('admin.users') }}" @class([
+                                            <a href="{{ route('user.orders') }}" @class([
                                                 'text-base font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group',
                                                 true ? 'bg-blue-500 text-white' : 'text-gray-900',
                                             ])>
