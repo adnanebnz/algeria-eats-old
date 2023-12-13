@@ -7,7 +7,6 @@ use App\Jobs\AcceptedDeliveryJob;
 use App\Models\Delivery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Milon\Barcode\DNS1D;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DeliveryManController extends Controller

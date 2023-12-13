@@ -7,6 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Builder;
 
+/**
+ * App\Models\Product
+ *
+ * @property int $id
+ * @property int $artisan_id
+ * @property string $nom
+ * @property string $description
+ * @property string $categorie
+ * @property string $sous_categorie
+ * @property int $prix
+ * @property array $images
+ * @property int|null $rating
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Artisan $artisan
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
+ * @property-read int|null $orders_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Review> $reviews
+ * @property-read int|null $reviews_count
+ * @method static \Database\Factories\ProductFactory factory($count = null, $state = [])
+ * @method static Builder|Product filters(array $filters)
+ * @method static Builder|Product newModelQuery()
+ * @method static Builder|Product newQuery()
+ * @method static Builder|Product query()
+ * @method static Builder|Product whereArtisanId($value)
+ * @method static Builder|Product whereCategorie($value)
+ * @method static Builder|Product whereCreatedAt($value)
+ * @method static Builder|Product whereDescription($value)
+ * @method static Builder|Product whereId($value)
+ * @method static Builder|Product whereImages($value)
+ * @method static Builder|Product whereNom($value)
+ * @method static Builder|Product wherePrix($value)
+ * @method static Builder|Product whereRating($value)
+ * @method static Builder|Product whereSousCategorie($value)
+ * @method static Builder|Product whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Product extends Model
 {
     use HasFactory;
