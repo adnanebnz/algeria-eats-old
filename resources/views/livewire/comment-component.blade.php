@@ -11,8 +11,8 @@
                             <div class="mt-6 flex justify-start items-center flex-row space-x-2.5">
                                 <div>
                                     <img class="h-10 w-10 object-cover rounded-full border"
-                                        src="{{ $comment->user->image ? (str_starts_with($comment->user->image, 'http') ? $comment->user->image : asset('storage/' . $comment->user->image)) : asset('assets/user.png') }}"
-                                        alt="avatar" />
+                                         src="{{ $comment->user->image ? (str_starts_with($comment->user->image, 'http') ? $comment->user->image : asset('storage/' . $comment->user->image)) : asset('assets/user.png') }}"
+                                         alt="avatar"/>
                                 </div>
                                 <div class="flex flex-col justify-start items-start space-y-2">
                                     <p class="text-base font-medium leading-none text-gray-800">
@@ -30,7 +30,7 @@
                                         {{ $comment->title }}</p>
                                 </div>
                                 <div class="cursor-pointer mt-2 md:mt-0 text-lg">
-                                    <x-star-rating :rating="$comment->rating" />
+                                    <x-star-rating :rating="$comment->rating"/>
                                 </div>
                             </div>
                             <div id="menu2" class="hidden md:block">

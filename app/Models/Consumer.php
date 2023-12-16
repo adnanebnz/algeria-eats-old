@@ -23,6 +23,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\User $user
+ *
  * @method static \Database\Factories\ConsumerFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Consumer newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Consumer newQuery()
@@ -30,15 +31,16 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|Consumer whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consumer whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Consumer whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class Consumer extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $fillable = ["user_id"];
+    protected $fillable = ['user_id'];
 
-    protected $primaryKey = "user_id";
+    protected $primaryKey = 'user_id';
 
     public function user()
     {

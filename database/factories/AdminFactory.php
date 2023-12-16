@@ -29,6 +29,7 @@ class AdminFactory extends Factory
             'password' => bcrypt('adnane2002'),
             'remember_token' => Str::random(10),
         ]);
+
         return [
             'user_id' => $user->id,
         ];

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * App\Models\DeliveryMan
@@ -24,6 +24,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\User $user
+ *
  * @method static \Database\Factories\DeliveryManFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMan newQuery()
@@ -33,15 +34,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMan whereRating($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMan whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DeliveryMan whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class DeliveryMan extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasApiTokens, HasFactory, Notifiable;
 
-    protected $primaryKey = "user_id";
+    protected $primaryKey = 'user_id';
 
-    protected $fillable = ["est_disponible", "rating"];
+    protected $fillable = ['est_disponible', 'rating'];
 
     public function user()
     {
@@ -55,6 +57,6 @@ class DeliveryMan extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany(UserReview::class, "user_id");
+        return $this->hasMany(UserReview::class, 'user_id');
     }
 }

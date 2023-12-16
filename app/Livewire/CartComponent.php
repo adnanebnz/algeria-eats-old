@@ -15,49 +15,51 @@ class CartComponent extends Component
     public function remove($id)
     {
         if (Auth::check()) {
-            if (Product::where("id", $id)->exists()) {
-                Cart::where("product_id", $id)
-                    ->where("user_id", auth()->user()->id)
+            if (Product::where('id', $id)->exists()) {
+                Cart::where('product_id', $id)
+                    ->where('user_id', auth()->user()->id)
                     ->delete();
-                $this->dispatch("cartAddedUpdated");
+                $this->dispatch('cartAddedUpdated');
             } else {
-                return redirect()->route("login");
+                return redirect()->route('login');
             }
         } else {
-            return redirect()->route("login");
-        }
-    }
-    #[On("cartAdded")]
-    public function addToCart($id)
-    {
-        if (auth()->user()) {
-            if (Product::where("id", $id)->exists()) {
-                if (
-                    Cart::where("product_id", $id)
-                        ->where("user_id", auth()->user()->id)
-                        ->exists()
-                ) {
-                    $this->dispatch("cartAddedUpdated");
-                } else {
-                    Cart::create([
-                        "product_id" => $id,
-                        "user_id" => auth()->user()->id,
-                        "quantity" => 1,
-                    ]);
-                    $this->dispatch("cartAddedUpdated");
-                }
-            } else {
-                return redirect()->route("login");
-            }
-        } else {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
     }
 
-    #[On("cartAddedUpdated")]
+    #[On('cartAdded')]
+    public function addToCart($id)
+    {
+        if (auth()->user()) {
+            if (Product::where('id', $id)->exists()) {
+                if (
+                    Cart::where('product_id', $id)
+                        ->where('user_id', auth()->user()->id)
+                        ->exists()
+                ) {
+                    $this->dispatch('cartAddedUpdated');
+                } else {
+                    Cart::create([
+                        'product_id' => $id,
+                        'user_id' => auth()->user()->id,
+                        'quantity' => 1,
+                    ]);
+                    $this->dispatch('cartAddedUpdated');
+                }
+            } else {
+                return redirect()->route('login');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+    }
+
+    #[On('cartAddedUpdated')]
     public function updateCart()
     {
-        $this->cartCount = Cart::where("user_id", auth()->user()->id)->count();
+        $this->cartCount = Cart::where('user_id', auth()->user()->id)->count();
+
         return $this->render();
     }
 
@@ -65,14 +67,15 @@ class CartComponent extends Component
     {
         if (Auth::check()) {
             $this->cartCount = Cart::where(
-                "user_id",
+                'user_id',
                 auth()->user()->id
             )->count();
         } else {
             $this->cartCount = 0;
         }
-        return view("livewire.cart-component", [
-            "cartCount" => $this->cartCount,
+
+        return view('livewire.cart-component', [
+            'cartCount' => $this->cartCount,
         ]);
     }
 }

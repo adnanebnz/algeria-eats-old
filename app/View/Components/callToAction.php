@@ -21,6 +21,6 @@ class callToAction extends Component
      */
     public function render(): View|Closure|string
     {
-        return view("components.call-to-action");
+        return view('components.call-to-action');
     }
 }

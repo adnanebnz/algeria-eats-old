@@ -9,17 +9,19 @@ use Livewire\Component;
 class UserReviewComponent extends Component
 {
     public $user;
+
     public $comments;
 
     public function render()
     {
-        $this->comments = UserReview::where("user_id", $this->user->id)
+        $this->comments = UserReview::where('user_id', $this->user->id)
             ->latest()
             ->get();
-        return view("livewire.user-review-component");
+
+        return view('livewire.user-review-component');
     }
 
-    #[On("userReviewAdded")]
+    #[On('userReviewAdded')]
     public function userReviewAdded()
     {
         $this->comments = $this->product

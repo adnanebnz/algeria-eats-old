@@ -12,7 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProfileController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
         $this->middleware('auth')->except(['index']);
         $this->middleware('checkProfileOwnership')->only(['update', 'destroy']);
@@ -21,6 +21,7 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
+
         return view('auth.profile', ['user' => $user, 'wilayas' => $wilayas]);
     }
 
@@ -29,7 +30,7 @@ class ProfileController extends Controller
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:users,email,'.$user->id,
             'num_telephone' => 'required|string',
             'adresse' => 'required|string|max:255',
             'wilaya' => 'required|string|max:255',
@@ -66,11 +67,9 @@ class ProfileController extends Controller
             $user->deliveryMan->update($speceficData);
         }
 
-
         if ($request->filled('password')) {
             $user->update(['password' => Hash::make($request->input('password'))]);
         }
-
 
         if ($request->hasFile('image')) {
             if ($user->image) {
@@ -91,6 +90,7 @@ class ProfileController extends Controller
     {
         $user->delete();
         Alert::success('Compte supprimé !', 'Votre compte a été supprimé avec succès !');
+
         return redirect()->route('index');
     }
 }

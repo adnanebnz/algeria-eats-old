@@ -15,14 +15,15 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        $data =  $request->validate([
+        $data = $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email',
-            'message' => 'required'
+            'message' => 'required',
         ]);
         Contact::create($data);
         Alert::success('Succès', 'Votre message a bien été envoyé');
+
         return redirect()->route('index');
     }
 }

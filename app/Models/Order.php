@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Models\Delivery|null $delivery
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\OrderItem> $orderItems
  * @property-read int|null $order_items_count
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
@@ -36,6 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereWilaya($value)
+ *
  * @mixin \Eloquent
  */
 class Order extends Model
@@ -43,23 +45,23 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        "buyer_id",
-        "artisan_id",
-        "status",
-        "adresse",
-        "wilaya",
-        "daira",
-        "commune",
+        'buyer_id',
+        'artisan_id',
+        'status',
+        'adresse',
+        'wilaya',
+        'daira',
+        'commune',
     ];
 
     public function buyer()
     {
-        return $this->belongsTo(User::class, "buyer_id");
+        return $this->belongsTo(User::class, 'buyer_id');
     }
 
     public function artisan()
     {
-        return $this->belongsTo(User::class, "artisan_id");
+        return $this->belongsTo(User::class, 'artisan_id');
     }
 
     public function delivery()
@@ -78,6 +80,7 @@ class Order extends Model
         foreach ($this->orderItems as $orderItem) {
             $total += $orderItem->product->prix * $orderItem->quantity;
         }
+
         return $total;
     }
 }

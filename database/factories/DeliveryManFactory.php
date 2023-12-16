@@ -20,9 +20,9 @@ class DeliveryManFactory extends Factory
         $user = User::factory()->create();
 
         return [
-            'user_id' =>  $user->id,
+            'user_id' => $user->id,
             'est_disponible' => 1,
-            'rating' => 0
+            'rating' => 0,
         ];
     }
 }

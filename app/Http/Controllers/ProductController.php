@@ -9,13 +9,13 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view("products.index");
+        return view('products.index');
     }
 
     public function show(Product $product): View
     {
-        return view("products.show", [
-            "product" => $product,
+        return view('products.show', [
+            'product' => $product,
         ]);
     }
 }

@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\DeliveryMan|null $deliveryMan
  * @property-read \App\Models\Order $order
+ *
  * @method static \Database\Factories\DeliveryFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Delivery newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Delivery newQuery()
@@ -26,21 +27,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Delivery whereOrderId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Delivery whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Delivery whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Delivery extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["deliveryMan_id", "order_id", "status"];
+    protected $fillable = ['deliveryMan_id', 'order_id', 'status'];
 
     public function deliveryMan()
     {
-        return $this->belongsTo(DeliveryMan::class, "deliveryMan_id");
+        return $this->belongsTo(DeliveryMan::class, 'deliveryMan_id');
     }
 
     public function order()
     {
-        return $this->belongsTo(Order::class, "order_id");
+        return $this->belongsTo(Order::class, 'order_id');
     }
 }

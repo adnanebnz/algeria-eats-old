@@ -22,10 +22,10 @@ class UserReviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id" => "required|exists:users,id",
-            "reviewer_id" => "required|exists:users,id",
-            "review" => "required|string",
-            "rating" => "required|integer|between:1,5",
+            'user_id' => 'required|exists:users,id',
+            'reviewer_id' => 'required|exists:users,id',
+            'review' => 'required|string',
+            'rating' => 'required|integer|between:1,5',
         ];
     }
 }

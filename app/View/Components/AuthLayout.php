@@ -11,10 +11,10 @@ class AuthLayout extends AbstractLayout
      * Create a new component instance.
      */
     public function __construct(
-        public string $title = "",
-        public string $action = "",
-        public string $submitMessage = "Soumettre",
-        public string $page = "login"
+        public string $title = '',
+        public string $action = '',
+        public string $submitMessage = 'Soumettre',
+        public string $page = 'login'
     ) {
         parent::__construct($title);
     }
@@ -24,6 +24,6 @@ class AuthLayout extends AbstractLayout
      */
     public function render(): View|Closure|string
     {
-        return view("layouts.auth");
+        return view('layouts.auth');
     }
 }

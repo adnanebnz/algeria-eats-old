@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use App\Mail\ArtisanPurchaseMail;
-use App\Mail\UserPurchaseMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
