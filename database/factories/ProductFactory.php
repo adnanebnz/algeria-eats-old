@@ -17,20 +17,20 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            "artisan_id" => rand(1, 10),
-            "nom" => $this->faker->name(),
-            "description" => $this->faker->text(),
-            "categorie" => "sucree",
-            "sous_categorie" => "gateau",
-            "prix" => $this->faker->numberBetween(50, 500),
-            "images" => [
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300",
-                "https://picsum.photos/200/300",
+            'artisan_id' => rand(1, 10),
+            'nom' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            'categorie' => 'sucree',
+            'sous_categorie' => 'gateau',
+            'prix' => $this->faker->numberBetween(50, 500),
+            'images' => [
+                'https://picsum.photos/200/300',
+                'https://picsum.photos/200/300',
+                'https://picsum.photos/200/300',
+                'https://picsum.photos/200/300',
+                'https://picsum.photos/200/300',
             ],
-            "rating" => $this->faker->numberBetween(0, 5),
+            'rating' => $this->faker->numberBetween(0, 5),
 
         ];
     }

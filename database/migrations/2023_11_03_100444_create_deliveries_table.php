@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('deliveries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("deliveryMan_id")->nullable();
+            $table->unsignedBigInteger('deliveryMan_id')->nullable();
             $table->foreign('deliveryMan_id')->references('user_id')->on('delivery_men')->cascadeOnDelete();
-            $table->unsignedBigInteger("order_id");
+            $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->cascadeOnDelete();
             $table->string('status')->default('not_started');
             $table->timestamps();

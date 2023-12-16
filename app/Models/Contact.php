@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $message
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contact newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Contact query()
@@ -25,10 +26,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Contact whereNom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contact wherePrenom($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Contact whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Contact extends Model
 {
     use HasFactory;
-    protected $fillable = ["nom", "prenom", "email", "message"];
+
+    protected $fillable = ['nom', 'prenom', 'email', 'message'];
 }

@@ -12,6 +12,6 @@ class DefaultLayout extends AbstractLayout
      */
     public function render(): View|Closure|string
     {
-        return view("layouts.default");
+        return view('layouts.default');
     }
 }

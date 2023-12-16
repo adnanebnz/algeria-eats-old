@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcf5bdb7b7b0ed70cce2556e366aa03c",
+    "content-hash": "f962c8a8ef63776125b3353433decdb0",
     "packages": [
         {
             "name": "anouar-touati/algerian-cities-laravel",

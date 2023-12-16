@@ -13,11 +13,15 @@ class PurchaseMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $invoice, $order;
+    public $invoice;
+
+    public $order;
+
     /**
      * Create a new message instance.
-     * @param \LaravelDaily\Invoices\Invoice $invoice
-     * @param \App\Models\Order $order
+     *
+     * @param  \LaravelDaily\Invoices\Invoice  $invoice
+     * @param  \App\Models\Order  $order
      */
     public function __construct($invoice, $order)
     {
@@ -30,7 +34,7 @@ class PurchaseMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(subject: "Facture de votre commande");
+        return new Envelope(subject: 'Facture de votre commande');
     }
 
     /**
@@ -38,7 +42,7 @@ class PurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(view: "emails.purchase-mail");
+        return new Content(view: 'emails.purchase-mail');
     }
 
     /**
@@ -50,9 +54,9 @@ class PurchaseMail extends Mailable
     {
         return [
             Attachment::fromStorageDisk(
-                "public",
+                'public',
                 $this->invoice->filename,
-                $this->invoice->filename . ".pdf"
+                $this->invoice->filename.'.pdf'
             ),
         ];
     }

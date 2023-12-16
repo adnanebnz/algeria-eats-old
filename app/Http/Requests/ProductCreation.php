@@ -22,14 +22,14 @@ class ProductCreation extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id" => ["required", "numeric"],
-            "nom" => ["required", "string", "max:255"],
-            "prix" => ["required", "numeric"],
-            "description" => ["required", "string"],
-            "categorie" => ["required", "string"],
-            "sous_categorie" => ["required", "string"],
-            "images" => "required|array|size:5",
-            "images.*" => "required|image|mimes:jpeg,png,jpg,webp|max:4096",
+            'user_id' => ['required', 'numeric'],
+            'nom' => ['required', 'string', 'max:255'],
+            'prix' => ['required', 'numeric'],
+            'description' => ['required', 'string'],
+            'categorie' => ['required', 'string'],
+            'sous_categorie' => ['required', 'string'],
+            'images' => 'required|array|size:5',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:4096',
         ];
     }
 }

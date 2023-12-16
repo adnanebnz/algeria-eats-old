@@ -16,13 +16,13 @@ class CheckUserProfileOwnership
      */
     public function handle(Request $request, Closure $next)
     {
-        $requestedUserId = $request->route("user")->id;
+        $requestedUserId = $request->route('user')->id;
 
         if (Auth::id() != $requestedUserId) {
             return redirect()
-                ->route("index")
-                ->with("error", "Unauthorized access");
-            Alert::error("Erreur", "Vous n'avez pas accès à cette page");
+                ->route('index')
+                ->with('error', 'Unauthorized access');
+            Alert::error('Erreur', "Vous n'avez pas accès à cette page");
         }
 
         return $next($request);

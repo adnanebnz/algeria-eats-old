@@ -21,6 +21,6 @@ class feature extends Component
      */
     public function render(): View|Closure|string
     {
-        return view("components.feature");
+        return view('components.feature');
     }
 }

@@ -4,34 +4,36 @@ namespace App\Livewire;
 
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Component;
 
 class CartPage extends Component
 {
     public $cartItems;
+
     public $totalPrice;
+
     public $quantity = 1;
 
     public function increaseQuantity($productId)
     {
         if (Auth::check()) {
             if (
-                Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->exists()
             ) {
-                $cart = Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                $cart = Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->first();
                 $cart->quantity += 1;
                 $cart->save();
-                $this->dispatch("cartAddedUpdated");
+                $this->dispatch('cartAddedUpdated');
             } else {
-                return redirect()->route("login");
+                return redirect()->route('login');
             }
         } else {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
     }
 
@@ -39,49 +41,51 @@ class CartPage extends Component
     {
         if (Auth::check()) {
             if (
-                Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->exists()
             ) {
-                $cart = Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                $cart = Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->first();
                 if ($cart->quantity > 1) {
                     $cart->quantity -= 1;
                 }
                 $cart->save();
-                $this->dispatch("cartAddedUpdated");
+                $this->dispatch('cartAddedUpdated');
             } else {
-                return redirect()->route("login");
+                return redirect()->route('login');
             }
         } else {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
     }
+
     public function remove($productId)
     {
         if (Auth::check()) {
             if (
-                Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->exists()
             ) {
-                Cart::where("product_id", $productId)
-                    ->where("user_id", auth()->user()->id)
+                Cart::where('product_id', $productId)
+                    ->where('user_id', auth()->user()->id)
                     ->delete();
-                $this->dispatch("cartAddedUpdated");
+                $this->dispatch('cartAddedUpdated');
             } else {
-                return redirect()->route("login");
+                return redirect()->route('login');
             }
         } else {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
     }
 
-    #[On("cartAddedUpdated")]
+    #[On('cartAddedUpdated')]
     public function updateCart()
     {
-        $this->cartItems = Cart::where("user_id", auth()->user()->id)->get();
+        $this->cartItems = Cart::where('user_id', auth()->user()->id)->get();
+
         return $this->render();
     }
 
@@ -89,7 +93,7 @@ class CartPage extends Component
     {
         if (Auth::check()) {
             $this->cartItems = Cart::where(
-                "user_id",
+                'user_id',
                 auth()->user()->id
             )->get();
 
@@ -98,9 +102,10 @@ class CartPage extends Component
                 $this->totalPrice += $item->product->prix * $item->quantity;
             }
         }
-        return view("livewire.cart-page", [
-            "cartItems" => $this->cartItems,
-            "totalPrice" => $this->totalPrice,
+
+        return view('livewire.cart-page', [
+            'cartItems' => $this->cartItems,
+            'totalPrice' => $this->totalPrice,
         ]);
     }
 }

@@ -29,6 +29,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
  * @property-read \App\Models\User $user
+ *
  * @method static \Database\Factories\ArtisanFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Artisan newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Artisan newQuery()
@@ -41,6 +42,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereTypeService($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class Artisan extends Authenticatable
@@ -48,33 +50,33 @@ class Artisan extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        "user_id",
-        "desc_entreprise",
-        "heure_ouverture",
-        "heure_fermeture",
-        "rating",
-        "type_service",
+        'user_id',
+        'desc_entreprise',
+        'heure_ouverture',
+        'heure_fermeture',
+        'rating',
+        'type_service',
     ];
 
-    protected $primaryKey = "user_id";
+    protected $primaryKey = 'user_id';
 
     public function user()
     {
-        return $this->belongsTo(User::class, "user_id");
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function products()
     {
-        return $this->hasMany(Product::class, "user_id");
+        return $this->hasMany(Product::class, 'user_id');
     }
 
     public function orders()
     {
-        return $this->hasMany(Order::class, "artisan_id");
+        return $this->hasMany(Order::class, 'artisan_id');
     }
 
     public function reviews()
     {
-        return $this->hasMany(UserReview::class, "user_id");
+        return $this->hasMany(UserReview::class, 'user_id');
     }
 }

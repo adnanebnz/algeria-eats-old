@@ -15,7 +15,7 @@ class Textarea extends Component
         public string $name,
         public string $label,
         public ?string $id = null,
-        public string $help = ""
+        public string $help = ''
     ) {
         $this->id ??= $this->name;
     }
@@ -25,6 +25,6 @@ class Textarea extends Component
      */
     public function render(): View|Closure|string
     {
-        return view("components.textarea");
+        return view('components.textarea');
     }
 }

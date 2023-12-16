@@ -11,36 +11,42 @@ class ProductsPage extends Component
     use WithPagination;
 
     public $search;
+
     public $artisan;
+
     public $artisanRating;
+
     public $productType;
+
     public $productRating;
+
     public $filters;
-    public $orderDirection = "desc";
+
+    public $orderDirection = 'desc';
 
     public function mount()
     {
         $this->filters = [
-            "search" => $this->search,
-            "artisan" => $this->artisan,
-            "artisanRating" => $this->artisanRating,
-            "productRating" => $this->productRating,
-            "productType" => $this->productType,
+            'search' => $this->search,
+            'artisan' => $this->artisan,
+            'artisanRating' => $this->artisanRating,
+            'productRating' => $this->productRating,
+            'productType' => $this->productType,
         ];
     }
 
     public function render()
     {
-        return view("livewire.products-page", [
-            "products" => Product::select(
-                "id",
-                "nom",
-                "prix",
-                "categorie",
-                "images"
+        return view('livewire.products-page', [
+            'products' => Product::select(
+                'id',
+                'nom',
+                'prix',
+                'categorie',
+                'images'
             )
                 ->filters($this->filters)
-                ->orderBy("prix", $this->orderDirection)
+                ->orderBy('prix', $this->orderDirection)
                 ->paginate(10),
         ]);
     }
@@ -48,11 +54,11 @@ class ProductsPage extends Component
     public function applyFilters()
     {
         $this->filters = [
-            "search" => $this->search,
-            "artisan" => $this->artisan,
-            "artisanRating" => $this->artisanRating,
-            "productRating" => $this->productRating,
-            "productType" => $this->productType,
+            'search' => $this->search,
+            'artisan' => $this->artisan,
+            'artisanRating' => $this->artisanRating,
+            'productRating' => $this->productRating,
+            'productType' => $this->productType,
         ];
         $this->resetPage();
     }
@@ -60,11 +66,11 @@ class ProductsPage extends Component
     public function resetFilters()
     {
         $this->reset([
-            "search",
-            "artisan",
-            "artisanRating",
-            "productRating",
-            "productType",
+            'search',
+            'artisan',
+            'artisanRating',
+            'productRating',
+            'productType',
         ]);
         $this->applyFilters();
         $this->resetPage();
@@ -72,6 +78,6 @@ class ProductsPage extends Component
 
     public function store($id)
     {
-        $this->dispatch("cartAdded", $id);
+        $this->dispatch('cartAdded', $id);
     }
 }

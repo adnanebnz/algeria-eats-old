@@ -8,6 +8,7 @@ use Livewire\Component;
 class CommentComponent extends Component
 {
     public $product;
+
     public $comments;
 
     public function render()
@@ -16,12 +17,13 @@ class CommentComponent extends Component
             ->reviews()
             ->latest()
             ->get();
-        return view("livewire.comment-component", [
-            "comments" => $this->comments,
+
+        return view('livewire.comment-component', [
+            'comments' => $this->comments,
         ]);
     }
 
-    #[On("reviewAdded")]
+    #[On('reviewAdded')]
     public function reviewAdded()
     {
         $this->comments = $this->product

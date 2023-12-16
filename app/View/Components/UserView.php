@@ -14,6 +14,6 @@ class UserView extends Component
 
     public function render(): View|Closure|string
     {
-        return view("layouts.user-view");
+        return view('layouts.user-view');
     }
 }

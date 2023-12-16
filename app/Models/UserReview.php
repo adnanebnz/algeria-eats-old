@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $reviewer
  * @property-read \App\Models\User $user
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview query()
@@ -29,6 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserReview whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class UserReview extends Model
@@ -36,11 +38,11 @@ class UserReview extends Model
     use HasFactory;
 
     protected $fillable = [
-        "user_id",
-        "reviewer_id",
-        "review",
-        "rating",
-        "status",
+        'user_id',
+        'reviewer_id',
+        'review',
+        'rating',
+        'status',
     ];
 
     public function user()

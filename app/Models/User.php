@@ -3,11 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-use Illuminate\Auth\Passwords\CanResetPassword;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
@@ -39,6 +39,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property-read int|null $reviews_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -56,11 +57,12 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereWilaya($value)
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements CanResetPasswordContract
 {
-    use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
+    use CanResetPassword, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -68,14 +70,14 @@ class User extends Authenticatable implements CanResetPasswordContract
      * @var array<int, string>
      */
     protected $fillable = [
-        "nom",
-        "prenom",
-        "adresse",
-        "wilaya",
-        "num_telephone",
-        "email",
-        "image",
-        "password",
+        'nom',
+        'prenom',
+        'adresse',
+        'wilaya',
+        'num_telephone',
+        'email',
+        'image',
+        'password',
     ];
 
     /**
@@ -83,17 +85,18 @@ class User extends Authenticatable implements CanResetPasswordContract
      *
      * @var array<int, string>
      */
-    protected $hidden = ["password", "remember_token"];
+    protected $hidden = ['password', 'remember_token'];
 
-    protected $primaryKey = "id";
+    protected $primaryKey = 'id';
+
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
     protected $casts = [
-        "email_verified_at" => "datetime",
-        "password" => "hashed",
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 
     public function consumer()
@@ -133,21 +136,24 @@ class User extends Authenticatable implements CanResetPasswordContract
 
     public function getFullName(): string
     {
-        return $this->nom . " " . $this->prenom;
+        return $this->nom.' '.$this->prenom;
     }
 
     public function isArtisan(): bool
     {
         return $this->artisan !== null;
     }
+
     public function isDeliveryMan(): bool
     {
         return $this->deliveryMan !== null;
     }
+
     public function isAdmin(): bool
     {
         return $this->admin !== null;
     }
+
     public function isConsumer(): bool
     {
         return $this->consumer !== null;

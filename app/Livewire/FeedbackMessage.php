@@ -6,10 +6,11 @@ use Livewire\Component;
 
 class FeedbackMessage extends Component
 {
-    public $message = "";
-    public $type = "";
+    public $message = '';
 
-    public function mount($message, $type = "success")
+    public $type = '';
+
+    public function mount($message, $type = 'success')
     {
         $this->message = $message;
         $this->type = $type;
@@ -17,13 +18,13 @@ class FeedbackMessage extends Component
 
     public function closeFeedbackMessage()
     {
-        $this->message = "";
-        $this->type = "";
-        $this->dispatch("closeFeedbackMessage");
+        $this->message = '';
+        $this->type = '';
+        $this->dispatch('closeFeedbackMessage');
     }
 
     public function render()
     {
-        return view("livewire.feedback-message");
+        return view('livewire.feedback-message');
     }
 }

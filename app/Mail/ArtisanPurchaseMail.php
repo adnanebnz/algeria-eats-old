@@ -27,7 +27,7 @@ class ArtisanPurchaseMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        return new Envelope(subject: "Nouvelle commande");
+        return new Envelope(subject: 'Nouvelle commande');
     }
 
     /**
@@ -35,7 +35,7 @@ class ArtisanPurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(view: "emails.artisan-purchase-mail");
+        return new Content(view: 'emails.artisan-purchase-mail');
     }
 
     /**
