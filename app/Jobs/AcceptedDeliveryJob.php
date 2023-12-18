@@ -14,7 +14,7 @@ class AcceptedDeliveryJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $delivery;
+    protected $delivery;
 
     /**
      * Create a new job instance.

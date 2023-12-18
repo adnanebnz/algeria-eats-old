@@ -39,11 +39,10 @@ class ArtisanController extends Controller
                     file_get_contents($image->getRealPath())
                 );
                 $uploadedFilesUrl[] = Storage::disk('public')->url($filename);
-                // IGNORE THIS ERROR ITS STILL WORKING THO
             }
             $data['images'] = $uploadedFilesUrl;
         }
-        $product = Product::updateOrCreate(['id' => $product?->id], $data);
+        Product::updateOrCreate(['id' => $product?->id], $data);
         Alert::success('Succès', 'Produit publié !');
 
         return redirect()->route('artisan.index');
@@ -397,22 +396,13 @@ class ArtisanController extends Controller
 
     public function unaffectDelivery(Delivery $delivery)
     {
-        if ($delivery) {
-            $delivery->update([
-                'deliveryMan_id' => null,
-                'status' => 'not_started',
-            ]);
-            Alert::success('Succès', 'Livraison désaffectée !');
+        $delivery->update([
+            'deliveryMan_id' => null,
+            'status' => 'not_started',
+        ]);
+        Alert::success('Succès', 'Livraison désaffectée !');
 
-            return redirect()->route('artisan.index');
-        } else {
-            Alert::error(
-                'Erreur',
-                'Cette commande n\'a pas de livraison affectée !'
-            );
-
-            return redirect()->route('artisan.index');
-        }
+        return redirect()->route('artisan.index');
     }
     // DELIVERIES SECTION END
 }

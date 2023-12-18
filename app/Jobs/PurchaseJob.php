@@ -14,7 +14,7 @@ class PurchaseJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $order;
+    protected $order;
 
     public function __construct($order)
     {
