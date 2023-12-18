@@ -23,7 +23,6 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @param  Order  $order
      * @return void
      */
     public function __construct($order)
@@ -33,10 +32,8 @@ class GenerateInvoiceAndSendMail implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         // Generate customer and artisan details
         $customer = new Buyer([

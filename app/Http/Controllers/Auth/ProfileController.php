@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -20,9 +22,28 @@ class ProfileController extends Controller
 
     public function index(User $user)
     {
-        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        // lets use cache to store the user profile page for 10 minutes
+        $cachedUser = Cache::remember('user-profile-'.$user->id, 60 * 10, function () use ($user) {
 
-        return view('auth.profile', ['user' => $user, 'wilayas' => $wilayas]);
+            return $user;
+        });
+
+        $cachedWilayas = Cache::remember('wilayas', 60 * 10, function () {
+            return AlgerianCitiesFacade::getAllWilayas();
+        });
+
+        if ($user->isArtisan()) {
+            $artisanProducts = Cache::remember('artisan-products-'.$user->id, 60 * 10, function () use ($user) {
+                return Product::where('artisan_id', $user->id)->get();
+            });
+        }
+
+        return view(
+            'auth.profile',
+            [
+                'user' => $cachedUser, 'wilayas' => $cachedWilayas, 'artisanProducts' => $artisanProducts,
+            ]
+        );
     }
 
     public function update(User $user, Request $request)
