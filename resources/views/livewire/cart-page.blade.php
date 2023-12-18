@@ -22,7 +22,7 @@
                                         <button wire:click='decreaseQuantity({{ $cartItem->product->id }})'
                                             class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
                                             - </button>
-                                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none"
+                                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" disabled
                                             type="number" value="{{ $cartItem->quantity }}" min="1" />
                                         <button wire:click='increaseQuantity({{ $cartItem->product->id }})'
                                             class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
