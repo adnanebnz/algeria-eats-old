@@ -43,7 +43,8 @@ class ArtisanController extends Controller
             $data['images'] = $uploadedFilesUrl;
         }
 
-        $product = Product::updateOrCreate(['id' => $product?->id], $data);
+        Product::updateOrCreate(['id' => $product?->id], $data);
+
         Alert::success('Succès', 'Produit publié !');
 
         return redirect()->route('artisan.index');
