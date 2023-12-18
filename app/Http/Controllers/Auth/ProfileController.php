@@ -22,6 +22,7 @@ class ProfileController extends Controller
 
     public function index(User $user)
     {
+<<<<<<< HEAD
         // lets use cache to store the user profile page for 10 minutes
         $cachedUser = Cache::remember('user-profile-'.$user->id, 60 * 10, function () use ($user) {
 
@@ -44,6 +45,17 @@ class ProfileController extends Controller
                 'user' => $cachedUser, 'wilayas' => $cachedWilayas, 'artisanProducts' => $artisanProducts,
             ]
         );
+=======
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        if ($user->isArtisan()) {
+            $artisanProducts = Product::where('artisan_id', $user->id)->get();
+        }
+
+        return view('auth.profile', [
+            'user' => $user, 'wilayas' => $wilayas,
+            'artisanProducts' => $artisanProducts ?? null,
+        ]);
+>>>>>>> d620921060b82fb43faac10b0280ba09a4f1a58f
     }
 
     public function update(User $user, Request $request)
