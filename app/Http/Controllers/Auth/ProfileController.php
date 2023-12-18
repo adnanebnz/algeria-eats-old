@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,8 +22,14 @@ class ProfileController extends Controller
     public function index(User $user)
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        if ($user->isArtisan()) {
+            $artisanProducts = Product::where('artisan_id', $user->id)->get();
+        }
 
-        return view('auth.profile', ['user' => $user, 'wilayas' => $wilayas]);
+        return view('auth.profile', [
+            'user' => $user, 'wilayas' => $wilayas,
+            'artisanProducts' => $artisanProducts ?? null,
+        ]);
     }
 
     public function update(User $user, Request $request)
