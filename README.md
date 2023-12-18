@@ -122,21 +122,18 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 -   ~~display all products of artisan in his profile~~
 -   ADMIN DASHBOARD
+-   ADD BUTTONS RETOUR A L'ACCEUIL IN DASHBOARDS and a button to go to the other dashboard
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   STYLE PROFILE PAGE
 -   STYLE EMAILS
 -   Build the last pages (A propos de nous, terms et conditions, confidentionalité)
 -   think about how to make a price for the livraison
 -   NOTIFY USER when the traetement of his order is done and for delivery too
--   ADD NOTIF SYSTEM (BELL)
 
-    ORDER STATUSES:
-    not_started
-
+ORDER STATUSES:
+not_started
 processing
-
 cancelled
-
 completed
 
 Delivery STATUSES:
