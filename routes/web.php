@@ -14,10 +14,13 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*-----------PAGES AND INDEX SECTION-----------*/
+
 Route::view('/', 'index')->name('index');
+
 /*-----------PAGES AND INDEX SECTION END-----------*/
 
 /*-----------AUTH AND PROFILE SECTION-----------*/
+
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name(
     'login'
 );
@@ -62,9 +65,11 @@ Route::post('/reset-password', [
     'resetPassword',
 ])->name('password.update');
 // FORGOT PASSWORD END
+
 /*-----------AUTH AND PROFILE SECTION END-----------*/
 
 /*-----------USER DASHBOARD-----------*/
+
 Route::get('user/dashobard', [UserController::class, 'index'])->name(
     'user.dashobard'
 );
@@ -78,6 +83,7 @@ Route::get('user/dashobard/orders/{order}', [
     UserController::class,
     'showOrder',
 ])->name('user.orders.show');
+
 Route::post('user/dashobard/orders/{order}/cancel', [
     UserController::class,
     'cancelOrder',
@@ -87,9 +93,11 @@ Route::get('user/dashboard/delivery/{delivery}', [
     UserController::class,
     'showDelivery',
 ])->name('user.delivery.show');
+
 /*-----------USER DASHBOARD END-----------*/
 
 /*-----------ARTISAN DASHBOARD-----------*/
+
 Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name(
     'artisan.index'
 );
@@ -185,6 +193,7 @@ Route::post('artisan/dashboard/orders/{order}/invoice', [
 /*-----------ARTISAN DASHBOARD END-----------*/
 
 /*-----------ADMIN DASHBOARD-----------*/
+
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name(
     'admin.index'
 );
@@ -226,6 +235,7 @@ Route::get('admin/dashboard/products', [
 /*-----------ADMIN END-----------*/
 
 /*-----------DELIVERY MAN-----------*/
+
 Route::get('deliveryMan/dashboard', [
     DeliveryManController::class,
     'index',
@@ -261,11 +271,12 @@ Route::put('deliveryMan/{delivery}/update', [
     DeliveryManController::class,
     'updateDelivery',
 ])->name('delivery.updateDelivery');
-
 //ORDERS SECTION END
+
 /*-----------DELIVERY MAN END-----------*/
 
 /*-----------PRODUCTS-----------*/
+
 Route::match(['get', 'post'], '/products', [
     ProductController::class,
     'index',
@@ -274,9 +285,11 @@ Route::match(['get', 'post'], '/products', [
 Route::get('/products/{product}', [ProductController::class, 'show'])->name(
     'product.show'
 );
+
 /*-----------PRODUCTS END-----------*/
 
 /*-----------CONTACT-----------*/
+
 Route::get('/contact', [ContactController::class, 'index'])->name(
     'contact.index'
 );
@@ -284,6 +297,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name(
 Route::post('/contact', [ContactController::class, 'store'])->name(
     'contact.store'
 );
+
 /*-----------CONTACT END-----------*/
 
 // CART SECTION

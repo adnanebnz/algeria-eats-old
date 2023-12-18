@@ -39,10 +39,10 @@ class ArtisanController extends Controller
                     file_get_contents($image->getRealPath())
                 );
                 $uploadedFilesUrl[] = Storage::disk('public')->url($filename);
-                // IGNORE THIS ERROR ITS STILL WORKING THO
             }
             $data['images'] = $uploadedFilesUrl;
         }
+
         $product = Product::updateOrCreate(['id' => $product?->id], $data);
         Alert::success('Succès', 'Produit publié !');
 

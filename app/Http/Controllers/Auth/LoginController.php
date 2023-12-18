@@ -31,7 +31,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, (bool) $request->remember)) {
             $request->session()->regenerate();
 
-            toast('Vous êtes connecté à votre compte', 'success');
+            toast('Vous êtes connecté à votre compte', 'success')->autoClose(3000)->timerProgressBar()->animation('tada faster', 'fadeInUp faster');
 
             return redirect()->intended(RouteServiceProvider::HOME);
         }

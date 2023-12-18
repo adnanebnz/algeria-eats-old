@@ -120,7 +120,8 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES : php artisan db:seed --class="A
 
 ## TODO
 
--   display all products of artisan in his profile page
+-   ~~display all products of artisan in his profile~~
+-   ADMIN DASHBOARD
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   STYLE PROFILE PAGE
 -   STYLE EMAILS
