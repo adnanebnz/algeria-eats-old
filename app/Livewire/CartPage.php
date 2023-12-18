@@ -17,68 +17,32 @@ class CartPage extends Component
 
     public function increaseQuantity($productId)
     {
-        if (Auth::check()) {
-            if (
-                Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->exists()
-            ) {
-                $cart = Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->first();
-                $cart->quantity += 1;
-                $cart->save();
-                $this->dispatch('cartAddedUpdated');
-            } else {
-                return redirect()->route('login');
-            }
-        } else {
-            return redirect()->route('login');
-        }
+        $cart = Cart::where('product_id', $productId)
+            ->where('user_id', auth()->user()->id)
+            ->first();
+        $cart->quantity += 1;
+        $cart->save();
     }
 
     public function decreaseQuantity($productId)
     {
-        if (Auth::check()) {
-            if (
-                Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->exists()
-            ) {
-                $cart = Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->first();
-                if ($cart->quantity > 1) {
-                    $cart->quantity -= 1;
-                }
-                $cart->save();
-                $this->dispatch('cartAddedUpdated');
-            } else {
-                return redirect()->route('login');
-            }
-        } else {
-            return redirect()->route('login');
+
+        $cart = Cart::where('product_id', $productId)
+            ->where('user_id', auth()->user()->id)
+            ->first();
+        if ($cart->quantity > 1) {
+            $cart->quantity -= 1;
         }
+        $cart->save();
+        $this->dispatch('cartAddedUpdated');
     }
 
     public function remove($productId)
     {
-        if (Auth::check()) {
-            if (
-                Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->exists()
-            ) {
-                Cart::where('product_id', $productId)
-                    ->where('user_id', auth()->user()->id)
-                    ->delete();
-                $this->dispatch('cartAddedUpdated');
-            } else {
-                return redirect()->route('login');
-            }
-        } else {
-            return redirect()->route('login');
-        }
+
+        Cart::where('product_id', $productId)
+            ->where('user_id', auth()->user()->id)
+            ->delete();
     }
 
     #[On('cartAddedUpdated')]
