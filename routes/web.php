@@ -288,6 +288,10 @@ Route::get('/products/{product}', [ProductController::class, 'show'])->name(
 
 /*-----------PRODUCTS END-----------*/
 
+/*ARTISANS PAGE */
+Route::view('artisans', 'artisan.page')->name('artisan.page');
+/*ARTISANS PAGE END*/
+
 /*-----------CONTACT-----------*/
 
 Route::get('/contact', [ContactController::class, 'index'])->name(

@@ -2,49 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-/**
- * App\Models\Artisan
- *
- * @property int $user_id
- * @property string $desc_entreprise
- * @property string $heure_ouverture
- * @property string $heure_fermeture
- * @property int $rating
- * @property string $type_service
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
- * @property-read int|null $notifications_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Order> $orders
- * @property-read int|null $orders_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Product> $products
- * @property-read int|null $products_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\UserReview> $reviews
- * @property-read int|null $reviews_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
- * @property-read int|null $tokens_count
- * @property-read \App\Models\User $user
- *
- * @method static \Database\Factories\ArtisanFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan query()
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereDescEntreprise($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereHeureFermeture($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereHeureOuverture($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereRating($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereTypeService($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Artisan whereUserId($value)
- *
- * @mixin \Eloquent
- */
 class Artisan extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -78,5 +41,58 @@ class Artisan extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(UserReview::class, 'user_id');
+    }
+
+    public function scopeFilters(Builder $query, array $filters): void
+    {
+        $query->when($filters['artisanRating'] ?? null, function (
+            Builder $query,
+            $artisanRating
+        ) {
+            $query->where('rating', '>=', $artisanRating);
+        });
+
+        $query->when($filters['artisanWilaya'] ?? null, function (
+            Builder $query,
+            $artisanWilaya
+        ) {
+            $query->whereHas('user', function (Builder $query) use (
+                $artisanWilaya
+            ) {
+                $query->where('wilaya', $artisanWilaya);
+            });
+        });
+
+        $query->when($filters['search'] ?? null, function (
+            Builder $query,
+            $search
+        ) {
+            $query->where(function (Builder $query) use ($search) {
+                $query->whereHas('user', function (Builder $query) use (
+                    $search
+                ) {
+                    $query->where(function (Builder $query) use ($search) {
+                        $query
+                            ->where('nom', 'LIKE', '%'.$search.'%')
+                            ->orWhere('prenom', 'LIKE', '%'.$search.'%')
+                            ->orWhereRaw(
+                                "CONCAT(nom, ' ', prenom) LIKE ?",
+                                '%'.$search.'%'
+                            )
+                            ->orWhere('email', 'LIKE', '%'.$search.'%');
+                    });
+                })
+                    ->orWhere('desc_entreprise', 'LIKE', '%'.$search.'%')
+                    ->orWhere('type_service', 'LIKE', '%'.$search.'%');
+            });
+        });
+
+        $query->when($filters['typeService'] ?? null, function (
+            Builder $query,
+            $type_service
+        ) {
+            $query->where('type_service', $type_service);
+        });
+        //TODO ADD IN LIVEWIRE AND UI
     }
 }

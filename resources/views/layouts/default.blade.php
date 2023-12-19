@@ -61,6 +61,8 @@
             <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900 focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
                href="#">À propos de nous</a>
             <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900  focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
+               href="{{ route('artisan.page') }}">Artisans</a>
+            <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900  focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
                href="{{ route('product.index') }}">Produits</a>
             <div class="p-4 mt-2 md:p-0 text-sm font-semibold bg-transparent md:mt-0 md:ml-4 text-gray-900">
                 <livewire:cart-component/>
@@ -238,7 +240,10 @@
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                    href="#">À propos de nous</a>
                             </li>
-
+                            <li>
+                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
+                                   href="{{ route('artisan.page') }}">Artisans</a>
+                            </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
                                    href="{{ route('product.index') }}">Produits</a>
