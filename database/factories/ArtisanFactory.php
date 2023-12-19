@@ -25,7 +25,7 @@ class ArtisanFactory extends Factory
             'heure_ouverture' => '08:00:00',
             'heure_fermeture' => '18:00:00',
             'rating' => 0,
-            'type_service' => 'Sucreé',
+            'type_service' => 'sucree',
         ];
     }
 }
