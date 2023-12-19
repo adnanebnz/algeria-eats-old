@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('rating');
             $table
                 ->enum('status', ['pending', 'accepted'])
-                ->default('not_started');
+                ->default('pending');
             $table->timestamps();
         });
     }
