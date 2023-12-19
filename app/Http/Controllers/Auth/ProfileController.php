@@ -29,7 +29,7 @@ class ProfileController extends Controller
         return view(
             'auth.profile',
             [
-                'user' => $user, 'wilayas' => $wilayas, 'artisanProducts' => $artisanProducts,
+                'user' => $user, 'wilayas' => $wilayas, 'artisanProducts' => $artisanProducts ?? null,
             ]
         );
     }

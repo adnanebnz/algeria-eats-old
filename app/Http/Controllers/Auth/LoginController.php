@@ -45,7 +45,6 @@ class LoginController extends Controller
 
     public function logout(Request $request): RedirectResponse
     {
-        toast('Vous êtes déconnecté de votre compte', 'success');
         Auth::logout();
 
         $request->session()->invalidate();
