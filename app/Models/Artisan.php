@@ -93,6 +93,5 @@ class Artisan extends Authenticatable
         ) {
             $query->where('type_service', $type_service);
         });
-        //TODO ADD IN LIVEWIRE AND UI
     }
 }
