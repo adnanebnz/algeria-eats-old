@@ -6,7 +6,7 @@ use App\Models\Delivery;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ConsumerController extends Controller
 {
     public function __construct()
     {

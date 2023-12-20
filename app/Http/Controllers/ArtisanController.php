@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductCreation;
+use App\Http\Requests\ProductCreate;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Delivery;
 use App\Models\Order;
@@ -200,7 +200,7 @@ class ArtisanController extends Controller
         return view('artisan.products.createForm');
     }
 
-    public function storeProduct(ProductCreation $request)
+    public function storeProduct(ProductCreate $request)
     {
         Alert::success('Succès', 'Produit publié !');
 

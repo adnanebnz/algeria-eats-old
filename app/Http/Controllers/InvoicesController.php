@@ -8,7 +8,7 @@ use LaravelDaily\Invoices\Classes\InvoiceItem;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Invoice;
 
-class ArtisanInvoicesController extends Controller
+class InvoicesController extends Controller
 {
     public function create(Order $order)
     {
