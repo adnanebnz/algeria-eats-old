@@ -33,7 +33,7 @@
                                 x-on:click="currentImageIndex = (currentImageIndex - 1 + {{ count($product->images) }}) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor"
-                                    class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-left"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-left"
                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
@@ -50,7 +50,7 @@
                                 x-on:click="currentImageIndex = (currentImageIndex + 1) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor"
-                                    class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-right"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-right"
                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
@@ -61,7 +61,7 @@
                         <div class="grid grid-cols-5 -mx-2">
                             @foreach ($product->images as $key => $image)
                                 <div>
-                                    <button class="block border border-gray-200 hover:border-blue-400"
+                                    <button class="block border border-gray-200 hover:border-orange-400"
                                         x-on:click="currentImageIndex = {{ $key }}">
                                         <img class="object-contain w-full lg:h-60" src="{{ $image }}"
                                             alt="">

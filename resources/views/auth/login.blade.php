@@ -1,4 +1,4 @@
-<x-auth-layout title="Se Connecter" :action="route('login')" submitMessage="Se Connecter" page="login">
+<x-auth-layout title="Se Connecter" :action="route('login')" submitMessage="Connexion" page="login">
     <x-input name="email" label="Email" type="email" />
     <div x-data="{ showPassword: false }" class="relative mt-1">
         <label for="password" class="block text-sm font-medium text-gray-700 select-none">
@@ -7,10 +7,10 @@
 
         <div class="flex items-center mt-2">
             <input :type="showPassword ? 'text' : 'password'" wire:model="password" name="password"
-                class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600"
+                class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-orange-600"
                 type="password">
             <button type="button"
-                class="absolute right-2 bg-transparent flex items-center justify-center hover:text-blue-600"
+                class="absolute right-2 bg-transparent flex items-center justify-center hover:text-orange-600"
                 @click="showPassword = !showPassword">
                 <svg x-show="!showPassword" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
@@ -37,12 +37,12 @@
     <div class="flex items-center justify-between">
         <div class="flex items-center">
             <input id="remember" name="remember" type="checkbox"
-                class="form-checkbox h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
+                class="form-checkbox h-4 w-4 rounded border-gray-300 text-orange-600 focus:ring-orange-600">
             <label for="remember" class="ml-3 block text-sm leading-6 text-gray-900">Rester Connecter</label>
         </div>
         <div class="text-sm">
             <a href="{{ route('password.request') }}"
-                class="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150">
+                class="font-medium text-orange-600 hover:text-orange-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                 Mot de passe oublié ?
             </a>
         </div>

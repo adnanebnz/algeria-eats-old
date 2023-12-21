@@ -110,9 +110,9 @@
                                                     </span>
                                                 @elseif ($user->isArtisan())
                                                     <span
-                                                        class="relative inline-block px-3 py-1 font-semibold text-blue-900 leading-tight">
+                                                        class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                                         <span aria-hidden
-                                                            class="absolute inset-0 bg-blue-200 opacity-50 rounded-full"></span>
+                                                            class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
                                                         <span class="relative">Artisan</span>
                                                     </span>
                                                 @elseif ($user->isDeliveryMan())
@@ -135,7 +135,7 @@
                                             <td
                                                 class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
                                                 <a href="{{ route('admin.edit', ['user' => $user->id]) }}"
-                                                    class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                    class="border border-solid border-gray-400  p-1 rounded-md hover:bg-orange-500 hover:text-white hover:border-transparent">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">
@@ -211,7 +211,7 @@
                                                                         class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                                                         @click="showModal = false">Confirmer</button>
                                                                     <button type="button"
-                                                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                                                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
                                                                         @click="showModal = false">Annuler</button>
                                                                 </div>
                                                             </div>

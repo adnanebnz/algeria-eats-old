@@ -20,12 +20,12 @@
                                 <div class="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                                     <div class="flex items-center border-gray-100">
                                         <button wire:click='decreaseQuantity({{ $cartItem->product->id }})'
-                                            class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                                            class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-orange-500 hover:text-orange-50">
                                             - </button>
                                         <input class="h-8 w-8 border bg-white text-center text-xs outline-none" disabled
                                             type="number" value="{{ $cartItem->quantity }}" min="1" />
                                         <button wire:click='increaseQuantity({{ $cartItem->product->id }})'
-                                            class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
+                                            class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-orange-500 hover:text-orange-50">
                                             + </button>
                                     </div>
                                     <div class="flex items-center space-x-4">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="flex justify-center">
                                 <a href="{{ route('product.index') }}"
-                                    class="mt-6 text-center w-56 rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Poursuivre
+                                    class="mt-6 text-center w-56 rounded-md bg-orange-500 py-1.5 font-medium text-orange-50 hover:bg-orange-600">Poursuivre
                                     vos achats</a>
                             </div>
                         </div>
@@ -85,8 +85,8 @@
                             </div>
                         </div>
                         <div class="flex items-center justif-center w-full">
-                            <a class="text-center w-full rounded-md bg-blue-500 py-1.5 px-4 font-medium text-blue-50
-                            hover:bg-blue-600"
+                            <a class="text-center w-full rounded-md bg-orange-500 py-1.5 px-4 font-medium text-orange-50
+                            hover:bg-orange-600"
                                 href="{{ route('checkout.index') }}">Confirmer</a>
                         </div>
 

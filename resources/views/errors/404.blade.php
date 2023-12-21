@@ -16,7 +16,7 @@
 <body>
     <main class="grid h-screen place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8">
         <div class="text-center">
-            <p class="font-semibold text-blue-500 text-5xl">404</p>
+            <p class="font-semibold text-orange-500 text-5xl">404</p>
             <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Page introuvable
             </h1>
@@ -25,7 +25,7 @@
             </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
                 <a href="{{ route('index') }}"
-                    class="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                    class="rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
                     Retour à l'accueil
                 </a>
                 <a href="{{ route('contact.index') }}" class="text-sm font-semibold text-gray-900">

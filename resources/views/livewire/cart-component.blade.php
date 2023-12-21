@@ -7,7 +7,7 @@
                         <div class="flex flex-row-reverse ml-2 w-full">
                             <a href="{{ route('cart.index') }}" slot="icon" class="relative">
                                 <div
-                                    class="absolute text-xs rounded-full -mt-0.5 -mr-2.5 px-1 text-center font-bold top-0 right-0 bg-blue-500 text-white">
+                                    class="absolute text-xs rounded-full -mt-0.5 -mr-2.5 px-1 text-center font-bold top-0 right-0 bg-orange-500 text-white">
                                     {{ $cartCount }}</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="currentColor" class="w-6 h-6 mt-2">

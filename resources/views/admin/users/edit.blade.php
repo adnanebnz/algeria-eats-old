@@ -38,10 +38,10 @@
                                 <div class="flex items-center mt-2">
                                     <input :type="showPassword ? 'text' : 'password'" wire:model="password"
                                         name="password"
-                                        class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600"
+                                        class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-orange-600"
                                         type="password">
                                     <button type="button"
-                                        class="absolute right-2 bg-transparent flex items-center justify-center hover:text-blue-600"
+                                        class="absolute right-2 bg-transparent flex items-center justify-center hover:text-orange-600"
                                         @click="showPassword = !showPassword">
                                         <svg x-show="!showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -129,9 +129,9 @@
                                     </template>
                                     <div class="flex text-sm text-gray-800 my-2">
                                         <label for="file-upload"
-                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                            class="relative cursor-pointer rounded-md font-medium text-orange-600 hover:text-orange-500">
                                             <span
-                                                class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                                class="border p-2 border-orange-500 bg-transparent hover:bg-orange-500 hover:text-white hover:rounded-md">Télécharger
                                                 une photo</span>
                                             <input id="file-upload" name="image" type="file" class="sr-only"
                                                 accept="image/*"
@@ -147,7 +147,7 @@
                     </div>
 
                     <button type="submit"
-                        class="bg-blue-700 hover:bg-blue-800 px-6 py-2 rounded-md mt-8 text-white">MODIFIER
+                        class="bg-orange-700 hover:bg-orange-800 px-6 py-2 rounded-md mt-8 text-white">MODIFIER
                         LES INFORMATIONS</button>
                 </form>
                 <form method="POST" action="{{ route('profile.destroy', ['user' => $user]) }}"
@@ -203,7 +203,7 @@
                                         class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                         @click="showModal = false">Confirmer</button>
                                     <button type="button"
-                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
                                         @click="showModal = false">Annuler</button>
                                 </div>
                             </div>

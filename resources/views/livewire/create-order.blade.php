@@ -7,7 +7,7 @@
                 <div class="relative flex flex-col gap-1.5 w-full">
                     <div class="relative flex items-center w-full">
                         <input type="text" id="billing-address" name="adresse" wire:model='adresse' required
-                            class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:border-blue-500 focus:ring-blue-500"
+                            class="w-full rounded-md border border-gray-200 px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:border-orange-500 focus:ring-orange-500"
                             placeholder="Adresse" />
                         <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                             <img class="h-4 w-6 border" src="{{ asset('assets/algeria.png') }}" />
@@ -69,7 +69,7 @@
             </div>
         </div>
         <button type="submit"
-            class="mt-4 mb-3 w-full rounded-md bg-blue-500 hover:bg-blue-600 px-6 py-3 font-medium text-white">
+            class="mt-4 mb-3 w-full rounded-md bg-orange-500 hover:bg-orange-600 px-6 py-3 font-medium text-white">
             <span>Confirmer la commande</span>
         </button>
 

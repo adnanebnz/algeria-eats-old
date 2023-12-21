@@ -103,7 +103,7 @@
                                             @endif
                                             @if ($delivery->status == 'delivered')
                                                 <span
-                                                    class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                                     Livrée
                                                 </span>
                                             @endif
@@ -114,7 +114,7 @@
                                                 href="{{ route('artisan.deliveries.show', $delivery) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-see" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Voir la livraison
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"

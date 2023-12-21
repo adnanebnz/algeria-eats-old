@@ -101,7 +101,7 @@
                         @endif
                         @if ($delivery->status == 'delivered')
                             <span
-                                class="p-2 inline-flex leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                class="p-2 inline-flex leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                 Livrée
                             </span>
                         @endif

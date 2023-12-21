@@ -55,7 +55,7 @@
                     </div>
 
                     <a href="{{ route('product.index') }}"
-                        class="inline-block rounded-md border border-transparent bg-blue-600 px-8 py-3 text-center font-medium text-white hover:bg-blue-700">Voir
+                        class="inline-block rounded-md border border-transparent bg-orange-600 px-8 py-3 text-center font-medium text-white hover:bg-orange-700">Voir
                         les produits</a>
                 </div>
             </div>

@@ -97,7 +97,7 @@
 
                             <div @click.away="open = false" class="relative" x-data="{ open: false }" x-cloak>
                                 <button @click="open = !open"
-                                    class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
+                                    class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-orange-100 focus:bg-orange-100 focus:outline-none focus:shadow-outline">
                                     <span>{{ auth()->user()->prenom }}</span>
                                     <svg fill="currentColor" viewBox="0 0 20 20"
                                         :class="{ 'rotate-180': open, 'rotate-0': !open }"
@@ -118,7 +118,7 @@
                                         <div class="grid grid-cols-1 gap-4">
                                             <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                 href="{{ route('profile', ['user' => auth()->user()]) }}">
-                                                <div class="bg-blue-500 text-white rounded-lg p-3">
+                                                <div class="bg-orange-500 text-white rounded-lg p-3">
                                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                                         class="md:h-6 md:w-6 h-4 w-4">
@@ -134,7 +134,7 @@
                                             </a>
                                             <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                 href="{{ route('logout') }}">
-                                                <div class="bg-blue-500 text-white rounded-lg p-3">
+                                                <div class="bg-orange-500 text-white rounded-lg p-3">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -174,7 +174,7 @@
                                         <a href="{{ route('user.dashobard') }}" @class([
                                             'text-base font-normal rounded-lg flex items-center p-2 group',
                                             request()->routeIs('user.dashobard')
-                                                ? 'bg-blue-500 text-white'
+                                                ? 'bg-orange-500 text-white'
                                                 : 'text-gray-900 hover:bg-gray-100',
                                         ])>
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
@@ -182,7 +182,7 @@
                                                 @class([
                                                     'w-6 h-6 text-gray-500 transition duration-75',
                                                     request()->routeIs('user.dashobard')
-                                                        ? 'bg-blue-500 text-white'
+                                                        ? 'bg-orange-500 text-white'
                                                         : 'text-gray-500 group-hover:text-gray-900',
                                                 ])>
                                                 <path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
@@ -196,7 +196,7 @@
                                         <a href="{{ route('user.orders') }}" @class([
                                             'text-base font-normal rounded-lg flex items-center p-2 group',
                                             request()->routeIs('user.orders')
-                                                ? 'bg-blue-500 text-white'
+                                                ? 'bg-orange-500 text-white'
                                                 : 'text-gray-900 hover:bg-gray-100',
                                         ])>
 
@@ -205,7 +205,7 @@
                                                 @class([
                                                     'w-6 h-6 text-gray-500 transition duration-75',
                                                     request()->routeIs('user.orders')
-                                                        ? 'bg-blue-500 text-white'
+                                                        ? 'bg-orange-500 text-white'
                                                         : 'text-gray-500 group-hover:text-gray-900',
                                                 ])>
                                                 <path stroke-linecap="round" stroke-linejoin="round"

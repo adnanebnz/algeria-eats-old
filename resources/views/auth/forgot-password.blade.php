@@ -16,7 +16,7 @@
 
                         </label>
                         <input id="email" type="email"
-                            class="w-full p-2 border border-gray-300 rounded @error('email') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:transition-all"
+                            class="w-full p-2 border border-gray-300 rounded @error('email') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent focus:transition-all"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                         @error('email')

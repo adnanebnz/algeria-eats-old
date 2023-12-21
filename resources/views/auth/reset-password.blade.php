@@ -18,7 +18,7 @@
                             Email
                         </label>
                         <input id="email" type="email"
-                            class="w-full p-2 border border-gray-300 rounded @error('email') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:transition-all"
+                            class="w-full p-2 border border-gray-300 rounded @error('email') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent focus:transition-all"
                             name="email" value="{{ $email }}" required autocomplete="email" autofocus>
 
                         @error('email')
@@ -31,7 +31,7 @@
                             Mot de passe
                         </label>
                         <input id="password" type="password"
-                            class="w-full p-2 border border-gray-300 rounded @error('password') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:transition-all"
+                            class="w-full p-2 border border-gray-300 rounded @error('password') border-red-500 @enderror focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent focus:transition-all"
                             name="password" required autocomplete="new-password">
 
                         @error('password')
@@ -44,7 +44,7 @@
                             Confirmer le mot de passe
                         </label>
                         <input id="password_confirmation" type="password"
-                            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent focus:transition-all"
+                            class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:border-transparent focus:transition-all"
                             name="password_confirmation" required autocomplete="new-password">
                         @error('password_confirmation')
                             <p class="text-red-500 text-sm mt-2">{{ $message }}</p>

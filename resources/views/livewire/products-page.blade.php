@@ -16,7 +16,7 @@
                                 <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
                             </svg>
                             <input type="name" name="search" value="{{ request()->search }}" wire:model="search"
-                                class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 md:pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 md:pr-40 pl-12 shadow-sm outline-none focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50"
                                 placeholder="Nom du produit" />
                         </div>
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -25,7 +25,7 @@
                                     l'artisan</label>
                                 <input type="text" id="name" placeholder="Nom ou prénom" name="artisan"
                                     wire:model="artisan" value="{{ request()->artisan }}"
-                                    class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50" />
                             </div>
                             <div class="flex flex-col">
                                 <label for="status" class="text-sm font-medium text-stone-600">Note
@@ -53,7 +53,7 @@
                                     produit</label>
 
                                 <select id="manufacturer" name="productType" wire:model="productType"
-                                    class="mt-2 block md:w-4/5 w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                    class="mt-2 block md:w-4/5 w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
                                     <option value="">Choisir</option>
                                     <option value="sucree" @if (request()->productType == 'sucree') selected @endif>Sucrée
                                     </option>
@@ -88,7 +88,7 @@
                             <a wire:click.prevent="resetFilters"
                                 class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 text-center outline-none hover:opacity-80 focus:ring cursor-pointer">Réinitialiser</a>
                             <button
-                                class="rounded-lg bg-blue-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Rechercher</button>
+                                class="rounded-lg bg-orange-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">Rechercher</button>
                         </div>
                     </form>
                 </div>
@@ -116,7 +116,7 @@
 
                                 <div class="relative bg-white p-4">
                                     <span
-                                        class="whitespace-nowrap bg-blue-500 text-white px-2 py-1.5 text-xs font-medium">
+                                        class="whitespace-nowrap bg-orange-500 text-white px-2 py-1.5 text-xs font-medium">
                                         {{ $product->categorie === 'sucree' ? 'Sucrée' : 'Salée' }}
                                     </span>
 
@@ -126,7 +126,7 @@
 
                                     <form class="mt-4">
                                         <button wire:click.prevent="store({{ $product->id }})"
-                                            class="block w-full rounded bg-blue-500 p-4 text-sm font-medium text-white transition hover:scale-105">
+                                            class="block w-full rounded bg-orange-500 p-4 text-sm font-medium text-white transition hover:scale-105">
                                             Ajouter au panier
                                         </button>
                                     </form>
