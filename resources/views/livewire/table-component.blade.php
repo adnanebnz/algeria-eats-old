@@ -49,7 +49,7 @@
                     </td>
                     <td class="px-5 py-5 bg-white text-sm flex items-center justify-center gap-3 mt-1">
                         <a href="{{ route('artisan.orders.show', ['order' => $order]) }}"
-                            class="bg-blue-700 text-white px-4 py-2 rounded-md hover:bg-blue-500">Voir</a>
+                            class="bg-orange-700 text-white px-4 py-2 rounded-md hover:bg-orange-500">Voir</a>
                     </td>
                 </tr>
             @empty

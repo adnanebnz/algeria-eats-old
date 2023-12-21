@@ -8,7 +8,7 @@
     <title>{{ $title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
-          href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
@@ -37,7 +37,7 @@
 <div>
     {{-- Header --}}
     <div x-data="{ open: false }" x-cloak
-         class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
+         class="relative fixed flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
         <div class="flex flex-row items-center justify-between px-4 py-3">
             <a href="{{ route('index') }}"
                class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
@@ -69,18 +69,18 @@
             </div>
             @guest
                 <a class="p-4 mt-2 text-sm font-semibold bg-transparent rounded-lg
-                    border solid border-blue-500
-                    transition-all md:mt-0 md:ml-4 text-gray-900 hover:bg-blue-500 hover:text-white focus:outline-none focus:shadow-outline"
+                    border solid border-orange-500
+                    transition-all md:mt-0 md:ml-4 text-gray-900 hover:bg-orange-500 hover:text-white focus:outline-none focus:shadow-outline"
                    href="{{ route('login') }}">Connexion</a>
                 <a class="p-4 mt-2 text-sm font-semibold rounded-lg md:mt-0 md:ml-4
-                    bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:shadow-outline
+                    bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:shadow-outline
                     "
                    href="{{ route('register') }}">Créer un compte</a>
             @endguest
             @auth
                 <div @click.away="open = false" class="relative z-20" x-data="{ open: false }" x-cloak>
                     <button @click="open = !open"
-                            class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:shadow-outline">
+                            class="flex flex-row text-gray-900 bg-gray-200 items-center w-full p-4 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:focus:bg-gray-600 dark-mode:hover:bg-gray-600 md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-orange-100 focus:bg-orange-100 focus:outline-none focus:shadow-outline">
                         <span>{{ auth()->user()->prenom }}</span>
                         {{-- <img class="rounded-full w-8 h-8 object-cover border border-solid border-gray-300"
                                             src="{{ auth()->user()->image ? (str_starts_with(auth()->user()->image, 'http') ? auth()->user()->image : asset('storage/' . auth()->user()->image)) : asset('assets/user.png') }}" /> --}}
@@ -104,7 +104,7 @@
                                 @if (auth()->user()->artisan)
                                     <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                        href="{{ route('artisan.index', ['user' => auth()->user()]) }}">
-                                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                                        <div class="bg-orange-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                  stroke-linejoin="round"
                                                  stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4"
@@ -123,7 +123,7 @@
                                     <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                        href="{{ route('admin.index', ['user' => auth()->user()]) }}">
 
-                                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                                        <div class="bg-orange-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                  stroke-linejoin="round"
                                                  stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4"
@@ -141,7 +141,7 @@
                                 @if (auth()->user()->deliveryMan)
                                     <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                        href="{{ route('deliveryMan.index', ['user' => auth()->user()]) }}">
-                                        <div class="bg-blue-500 text-white rounded-lg p-3">
+                                        <div class="bg-orange-500 text-white rounded-lg p-3">
                                             <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                  stroke-linejoin="round"
                                                  stroke-width="2" viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
@@ -153,79 +153,76 @@
                                             <p class="font-semibold">Tableau de bord</p>
                                             <p class="text-sm">Voir et gerer vos données</p>
                                         </div>
-                                    </a>
-                                @endif
+                                    </a> @endif
                                 {{-- LES ACHATS --}}
                                 <a class="flex
         row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
-        focus:bg-gray-200 focus:outline-none focus:shadow-outline" href="{{ route('user.dashobard', auth()->user()) }}">
-                                    <div class="bg-blue-500 text-white rounded-lg p-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5"
-                                             stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"/>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="font-semibold">Voir les Achats</p>
-                                        <p class="text-sm">Voir vos achats</p>
-                                    </div>
-                                </a>
-                                {{-- FIN --}}
-                                <a class="flex
+        focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+        href="{{ route('user.dashobard', auth()->user()) }}">
+    <div class="bg-orange-500 text-white rounded-lg p-3">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+        </svg>
+    </div>
+    <div class="ml-3">
+        <p class="font-semibold">Voir les Achats</p>
+        <p class="text-sm">Voir vos achats</p>
+    </div>
+    </a>
+    {{-- FIN --}}
+    <a class="flex
         row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
         focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                   href="{{ route('profile', ['user' => auth()->user()]) }}">
-                                    <div class="bg-blue-500 text-white rounded-lg p-3">
-                                        <svg fill="none" stroke="currentColor" stroke-linecap="round"
-                                             stroke-linejoin="round" stroke-width="2"
-                                             viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
-                                            <path
-                                                d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="font-semibold">Profile</p>
-                                        <p class="text-sm">Voir et modifier votre profile</p>
-                                    </div>
-                                </a>
-                                <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                                   href="{{ route('logout') }}">
-                                    <div class="bg-blue-500 text-white rounded-lg p-3">
+        href="{{ route('profile', ['user' => auth()->user()]) }}">
+        <div class="bg-orange-500 text-white rounded-lg p-3">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                viewBox="0 0 24 24" class="md:h-6 md:w-6 h-4 w-4">
+                <path
+                    d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                </path>
+            </svg>
+        </div>
+        <div class="ml-3">
+            <p class="font-semibold">Profile</p>
+            <p class="text-sm">Voir et modifier votre profile</p>
+        </div>
+    </a>
+    <a class="flex row items-start rounded-lg bg-transparent p-2  hover:text-black focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+        href="{{ route('logout') }}">
+        <div class="bg-orange-500 text-white rounded-lg p-3">
 
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                             stroke-width="1.5"
-                                             stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="md:h-6 md:w-6 h-4 w-4">
 
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                  d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"/>
-                                        </svg>
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+            </svg>
 
-                                    </div>
-                                    <div class="ml-3">
-                                        <p class="font-semibold">Déconnexion</p>
-                                        <p class="text-sm">Déconnecter vous de votre compte</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endauth
-        </nav>
+        </div>
+        <div class="ml-3">
+            <p class="font-semibold">Déconnexion</p>
+            <p class="text-sm">Déconnecter vous de votre compte</p>
+        </div>
+    </a>
     </div>
-    <main class="mt-10
+    </div>
+    </div>
+    </div>
+@endauth
+</nav>
+</div>
+<main class="mt-10
         md:mt-12 lg:mt-16 border-b p-4 rounded-md">
-        {{ $slot }}
-    </main>
+    {{ $slot }}
+</main>
 </div>
 <footer class="pt-8 pb-6">
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap text-left lg:text-left">
             <div class="w-full lg:w-6/12 px-4">
-                <img src="{{ asset('assets/LOGO.png') }}" class="h-16" alt="logo"/>
+                <img src="{{ asset('assets/LOGO.png') }}" class="h-16" alt="logo" />
                 <div class="mt-6 lg:mb-0 mb-6">
                     {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
                 </div>
@@ -238,19 +235,19 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                   href="#">À propos de nous</a>
+                                    href="#">À propos de nous</a>
                             </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                   href="{{ route('artisan.page') }}">Artisans</a>
+                                    href="{{ route('artisan.page') }}">Artisans</a>
                             </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                   href="{{ route('product.index') }}">Produits</a>
+                                    href="{{ route('product.index') }}">Produits</a>
                             </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                   href="{{ route('contact.index') }}">Contactez nous</a>
+                                    href="{{ route('contact.index') }}">Contactez nous</a>
                             </li>
                         </ul>
                     </div>
@@ -261,12 +258,12 @@
 
                             <li>
                                 <a class="text-gray-800  hover:text-gray-800 font-semibold block pb-2 text-sm"
-                                   href="#">Terms &amp;
+                                    href="#">Terms &amp;
                                     Conditions</a>
                             </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                   href="#">Confidentialité</a>
+                                    href="#">Confidentialité</a>
                             </li>
                         </ul>
                     </div>

@@ -13,7 +13,7 @@
                             <button class="absolute hidden md:block left-0 transform lg:ml-2 top-1/2 translate-1/2"
                                 x-on:click="currentImageIndex = (currentImageIndex - 1 + {{ count($product->images) }}) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-left"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-left"
                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
@@ -30,7 +30,7 @@
                                 x-on:click="currentImageIndex = (currentImageIndex + 1) % {{ count($product->images) }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                     fill="currentColor"
-                                    class="w-5 h-5 text-blue-500 hover:text-blue-200 bi bi-chevron-right"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-right"
                                     viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
@@ -41,7 +41,7 @@
                         <div class="-mx-2 flex">
                             @foreach ($product->images as $key => $image)
                                 <div class="w-1/3 p-2 sm:w-1/5">
-                                    <button class="block border border-gray-200 hover:border-blue-400"
+                                    <button class="block border border-gray-200 hover:border-orange-400"
                                         x-on:click="currentImageIndex = {{ $key }}">
                                         <img class="object-contain w-full lg:h-28" src="{{ $image }}"
                                             alt="">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="flex flex-col mb-6">
                                 <p class="text-sm text-gray-600">De: <a
-                                        class="font-medium text-gray-900 hover:text-blue-500 hover:underline underline-offset-2"
+                                        class="font-medium text-gray-900 hover:text-orange-500 hover:underline underline-offset-2"
                                         href="{{ route('profile', $product->artisan->user) }}">{{ $product->artisan->user->getFullName() }}</a>
                                 </p>
                                 <x-star-rating :rating="$product->artisan->rating" />
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                             <button wire:click="addToCart()"
-                                class="w-full px-4 py-3 text-center text-blue-600 bg-blue-100 border border-blue-600 hover:bg-blue-600 hover:text-gray-100 lg:w-1/2 rounded-xl">
+                                class="w-full px-4 py-3 text-center text-orange-600 bg-orange-100 border border-orange-600 hover:bg-orange-600 hover:text-gray-100 lg:w-1/2 rounded-xl">
                                 Ajouter au panier
                             </button>
                         </div>

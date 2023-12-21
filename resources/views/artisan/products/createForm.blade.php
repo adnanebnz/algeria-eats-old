@@ -57,9 +57,9 @@
                                     </template>
                                     <div class="flex text-sm text-gray-800 my-2">
                                         <label for="file-upload"
-                                            class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                            class="relative cursor-pointer rounded-md font-medium text-orange-600 hover:text-orange-500">
                                             <span
-                                                class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                                class="border p-2 border-orange-500 bg-transparent hover:bg-orange-500 hover:text-white hover:rounded-md">Télécharger
                                                 les photos</span>
                                             <input id="file-upload" name="images[]" type="file" class="sr-only"
                                                 accept="image/*" multiple @change="images = $event.target.files">
@@ -81,7 +81,7 @@
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <button type="submit"
-                class="rounded-md bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
+                class="rounded-md bg-orange-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
                 Créer le produit
             </button>
         </div>

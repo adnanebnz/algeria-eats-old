@@ -5,7 +5,7 @@
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl font-semibold leading-tight">Produits</h2>
                     <a href="{{ route('artisan.products.new') }}"
-                        class="bg-blue-600 md:px-4 px-2.5 md:py-2 py-1.5 text-md rounded-md text-white font-semibold tracking-wide hover:bg-blue-700">Ajouter
+                        class="bg-orange-600 md:px-4 px-2.5 md:py-2 py-1.5 text-md rounded-md text-white font-semibold tracking-wide hover:bg-orange-700">Ajouter
                         un Produit</a>
                 </div>
                 <div class="my-2 flex sm:flex-row flex-col">
@@ -109,7 +109,7 @@
                                                 href="{{ route('artisan.products.show', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-see" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Voir le produit
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -124,9 +124,9 @@
                                             </a>
                                             <a data-tooltip-target="tooltip-edit"
                                                 href="{{ route('artisan.products.edit', ['product' => $product]) }}"
-                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-orange-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-edit" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Modifier le produit
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -155,7 +155,7 @@
                                                     </svg>
                                                 </button>
                                                 <div id="tooltip-delete" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Supprimer le produit
                                                 </div>
                                                 <div x-show="showModal" x-cloak
@@ -207,7 +207,7 @@
                                                                     class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                                                     @click="showModal = false">Confirmer</button>
                                                                 <button type="button"
-                                                                    class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                                                                    class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
                                                                     @click="showModal = false">Annuler</button>
                                                             </div>
                                                         </div>

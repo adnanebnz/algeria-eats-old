@@ -161,7 +161,7 @@
                             @endif
                             @if ($order->status == 'processing')
                                 <span
-                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                     En cours
                                 </span>
                             @endif
@@ -191,7 +191,7 @@
                                 @endif
                                 @if ($delivery && $delivery?->status == 'not_started')
                                     <p class="text-base font-semibold leading-4 text-gray-800">Status : <span
-                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">En
+                                            class="px-2 py-1.5 inline-flex text-md leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">En
                                             attente d'un livreur</span></p>
                                 @elseif ($delivery?->deliveryMan_id !== null)
                                     <p class="text-base font-semibold leading-4 text-gray-800">Status : <span

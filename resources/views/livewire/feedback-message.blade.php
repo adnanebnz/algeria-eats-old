@@ -2,7 +2,7 @@
     @if ($message)
         @if ($type === 'info')
             <div
-                class="font-regular relative mb-4 block w-full rounded-lg bg-blue-500 p-4 text-base leading-5 text-white opacity-100 flex justify-between items-center">
+                class="font-regular relative mb-4 block w-full rounded-lg bg-orange-500 p-4 text-base leading-5 text-white opacity-100 flex justify-between items-center">
                 <div>{{ $message }}</div>
                 <button wire:click="closeFeedbackMessage" class="p-1 text-white hover:text-gray-100 focus:outline-none">
                     <svg xmlns="http://w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"

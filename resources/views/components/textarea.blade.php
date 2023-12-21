@@ -6,7 +6,7 @@
                 'form-textarea block w-full shadow-sm rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6',
                 'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' => $errors->has(
                     $name),
-                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600' => !$errors->has(
+                'text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-orange-600' => !$errors->has(
                     $name),
             ])>{{ old($name) ?? $slot }}</textarea>
     </div>

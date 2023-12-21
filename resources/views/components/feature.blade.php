@@ -1,7 +1,7 @@
 <div class="bg-white pt-24 pb-10 mt-10">
     <div class="mx-auto px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:text-center">
-            <h2 class="text-base font-semibold leading-7 text-blue-600">Découvrez des délices sucrés et salés</h2>
+            <h2 class="text-base font-semibold leading-7 text-orange-600">Découvrez des délices sucrés et salés</h2>
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Tout ce dont vous avez besoin
                 pour commander votre produit!</p>
             <p class="mt-6 text-lg leading-8 text-gray-600">Régalez-vous avec notre sélection variée de produits sucrés
@@ -13,7 +13,7 @@
                 <div class="relative pl-16">
                     <dt class="text-base font-semibold leading-7 text-gray-900">
                         <div
-                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -31,7 +31,7 @@
                 <div class="relative pl-16">
                     <dt class="text-base font-semibold leading-7 text-gray-900">
                         <div
-                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600">
                             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -47,7 +47,7 @@
                 <div class="relative pl-16">
                     <dt class="text-base font-semibold leading-7 text-gray-900">
                         <div
-                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -64,7 +64,7 @@
                 <div class="relative pl-16">
                     <dt class="text-base font-semibold leading-7 text-gray-900">
                         <div
-                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
+                            class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-orange-600">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
                                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">

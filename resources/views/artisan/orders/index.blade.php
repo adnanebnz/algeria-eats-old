@@ -117,7 +117,7 @@
                                             @endif
                                             @if ($order->status == 'processing')
                                                 <span
-                                                    class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                                    class="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
                                                     En cours
                                                 </span>
                                             @endif
@@ -141,7 +141,7 @@
                                                     href="{{ route('artisan.orders.show', ['order' => $order]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                     <div id="tooltip-see" role="tooltip"
-                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                         Voir la commande
                                                     </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -158,9 +158,9 @@
                                                     method="POST" target="_blank">
                                                     @csrf
                                                     <button data-tooltip-target="tooltip-generate" type="submit"
-                                                        class="border border-solid border-gray-400 p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                        class="border border-solid border-gray-400 p-1 rounded-md hover:bg-orange-500 hover:text-white hover:border-transparent">
                                                         <div id="tooltip-generate" role="tooltip"
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                             Générer la facture
                                                         </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -182,7 +182,7 @@
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                         @click="showModal = true">
                                                         <div id="tooltip-delete" role="tooltip"
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-blue-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
                                                             Supprimer la commande
                                                         </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -244,7 +244,7 @@
                                                                         class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                                                         @click="showModal = false">Confirmer</button>
                                                                     <button type="button"
-                                                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
+                                                                        class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
                                                                         @click="showModal = false">Annuler</button>
                                                                 </div>
                                                             </div>

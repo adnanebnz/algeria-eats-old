@@ -32,10 +32,10 @@
 
                     <div class="flex items-center mt-2">
                         <input :type="showPassword ? 'text' : 'password'" wire:model="password" name="password"
-                            class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600"
+                            class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-orange-600"
                             type="password">
                         <button type="button"
-                            class="absolute right-2 bg-transparent flex items-center justify-center hover:text-blue-600"
+                            class="absolute right-2 bg-transparent flex items-center justify-center hover:text-orange-600"
                             @click="showPassword = !showPassword">
                             <svg x-show="!showPassword" class="w-5 h-5" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -65,10 +65,10 @@
                     <div class="flex items-center mt-2">
                         <input :type="showPasswordConfirmation ? 'text' : 'password'" wire:model="password_confirmation"
                             name="password_confirmation"
-                            class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600"
+                            class="form-input flex-1  w-full rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 shadow-sm ring-gray-300 placeholder:text-gray-400 focus:ring-orange-600"
                             type="password">
                         <button type="button"
-                            class="absolute right-2 bg-transparent flex items-center justify-center hover:text-blue-600"
+                            class="absolute right-2 bg-transparent flex items-center justify-center hover:text-orange-600"
                             @click="showPasswordConfirmation = !showPasswordConfirmation">
                             <svg x-show="!showPasswordConfirmation" class="w-5 h-5" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -114,9 +114,9 @@
                         </template>
                         <div class="flex text-sm text-gray-800 my-2">
                             <label for="file-upload"
-                                class="relative cursor-pointer rounded-md font-medium text-blue-600 hover:text-blue-500">
+                                class="relative cursor-pointer rounded-md font-medium text-orange-600 hover:text-orange-500">
                                 <span
-                                    class="border p-2 border-blue-500 bg-transparent hover:bg-blue-500 hover:text-white hover:rounded-md">Télécharger
+                                    class="border p-2 border-orange-500 bg-transparent hover:bg-orange-500 hover:text-white hover:rounded-md">Télécharger
                                     une photo</span>
                                 <input id="file-upload" name="image" wire:model='image' type="file"
                                     class="sr-only" accept="image/*"
@@ -132,7 +132,7 @@
         </div>
         <div>
             <button type="submit"
-                class="flex w-full justify-center rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500">Créer
+                class="flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500">Créer
                 votre compte</button>
             <div wire:loading class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
                 <!-- Black background overlay -->

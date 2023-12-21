@@ -21,7 +21,7 @@
                     solution innovante. Gérez votre business et découvrez comment optimiser votre activité.</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                     <a href="{{ route('login') }}"
-                        class="rounded-md bg-blue-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Commencer</a>
+                        class="rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Commencer</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-800">Plus de détails <span
                             aria-hidden="true">→</span></a>
                     {{-- TODO CREATE FAQ PAGE --}}

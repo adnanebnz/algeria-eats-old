@@ -16,7 +16,7 @@
 <body>
     <main class="grid h-screen place-items-center bg-white py-24 px-6 sm:py-32 lg:px-8">
         <div class="text-center">
-            <p class="font-semibold text-blue-500 text-5xl">500</p>
+            <p class="font-semibold text-orange-500 text-5xl">500</p>
             <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Service en maintenance
             </h1>

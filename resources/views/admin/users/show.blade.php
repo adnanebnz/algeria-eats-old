@@ -79,12 +79,12 @@
             @if ($user->isDeliveryMan())
                 <h1 class="font-medium text-lg mb-4">Disponible? :
                     <span
-                        class="rounded-full bg-blue-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
+                        class="rounded-full bg-orange-500 text-white px-2 py-1">{{ $user->deliveryMan->est_disponible === 'true' ? 'Oui' : 'Non' }}</span>
                 </h1>
             @endif
             <div class="flex items-center justify-end mt-6">
 
-                <button class="md:w-36 px-6 md:px-0 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-md"><a
+                <button class="md:w-36 px-6 md:px-0 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-md"><a
                         href="{{ route('admin.edit', ['user' => $user->id]) }}">Modifier</a></button>
             </div>
         </div>
