@@ -130,6 +130,7 @@ SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES :
 ## TODO
 
 -   ADMIN DASHBOARD
+-   STYLE USER PROFILE
 -   ADD BUTTONS RETOUR A L'ACCEUIL IN DASHBOARDS and a button to go to the other dashboard
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   NOTIFY USER when the traetement of his order is done and for delivery too

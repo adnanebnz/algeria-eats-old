@@ -8,7 +8,7 @@
                     </div>
                     <div class="my-2 flex sm:flex-row flex-col">
                         <div class="flex flex-row mb-1 sm:mb-0">
-                            <form action="{{ route('admin.users') }}" method="GET">
+                            <form action="{{ route('admin.users.index') }}" method="GET">
                                 <div class="relative">
                                     <select name="role"
                                         class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
@@ -134,7 +134,7 @@
 
                                             <td
                                                 class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
-                                                <a href="{{ route('admin.edit', ['user' => $user->id]) }}"
+                                                <a href="{{ route('admin.users.show', ['user' => $user->id]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -144,7 +144,7 @@
                                                     </svg>
                                                 </a>
                                                 <form method="POST"
-                                                    action="{{ route('admin.destroy', ['user' => $user]) }}"
+                                                    action="{{ route('admin.users.destroy', ['user' => $user]) }}"
                                                     x-data="{ showModal: false }">
                                                     @csrf
                                                     @method('DELETE')
