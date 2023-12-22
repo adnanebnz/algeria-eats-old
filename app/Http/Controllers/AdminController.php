@@ -171,7 +171,9 @@ class AdminController extends Controller
 
     public function messagesIndex()
     {
-        return view('admin.contacts.index');
+        $messages = Contact::paginate(10);
+
+        return view('admin.contacts.index', ['messages' => $messages]);
     }
 
     public function messagesShow(Contact $message)
@@ -184,12 +186,14 @@ class AdminController extends Controller
         $message->delete();
         Alert::success('succes', 'Message supprimé !');
 
-        return redirect()->route('admin.messages');
+        return redirect()->route('admin.contacts.index');
     }
 
     public function productsIndex()
     {
-        return view('admin.products.index');
+        $products = Product::paginate(10);
+
+        return view('admin.products.index', ['products' => $products]);
     }
 
     public function productsShow(Product $product)
@@ -202,28 +206,35 @@ class AdminController extends Controller
         $product->delete();
         Alert::success('succes', 'Produit supprimé !');
 
-        return redirect()->route('admin.products');
+        return redirect()->route('admin.products.index');
     }
 
     public function productUpdate(ProductUpdate $request, Product $product)
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            if ($product->image) {
-                // THE IMAGE IS IN public disk in profile_images folder
-                Storage::disk('public')->delete($product->image);
+        if (isset($data['images'])) {
+            $uploadedFilesUrl = [];
+
+            foreach ($data['images'] as $image) {
+                $filename =
+                    'image_'.
+                    uniqid().
+                    '.'.
+                    $image->getClientOriginalExtension();
+                Storage::disk('public')->put(
+                    $filename,
+                    file_get_contents($image->getRealPath())
+                );
+                $uploadedFilesUrl[] = Storage::disk('public')->url($filename);
             }
-            $image = $request->file('image');
-            $imagePath = $image->store('product_images', 'public');
-            // TODO CHECK WITH THIS
-            $data['image'] = $imagePath;
+            $data['images'] = $uploadedFilesUrl;
         }
 
         $product->update($data);
 
         Alert::success('succes', 'Produit modifié !');
 
-        return redirect()->route('admin.products');
+        return redirect()->route('admin.products.index');
     }
 }
