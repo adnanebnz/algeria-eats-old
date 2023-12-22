@@ -212,7 +212,7 @@
                                                     {{ $delivery->updated_at->format('d/m/Y') }}
                                                 </td>
                                                 <td
-                                                    class="flex items-center justify-center gap-3 px-5 py-5 birder-b border-gray-200 mt-1.5 bg-white text-sm">
+                                                    class="flex items-center justify-center gap-3 px-5 py-5 border-b border-gray-200 mt-1.5 bg-white text-sm">
                                                     <a href="{{ route('deliveryMan.deliveries.showDelivery', ['delivery' => $delivery]) }}"
                                                         class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -252,7 +252,7 @@
                 labels: ['Complété', 'Non complété'],
                 datasets: [{
                     data: [{{ $countday }}, {{ $uncompleted }}],
-                    backgroundColor: ['#f97316', '#8B8B8D'],
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
                 }]
             },
             options: {
@@ -271,7 +271,7 @@
                 datasets: [{
                     label: 'Livraisons par mois',
                     data: @json(array_values($deliveriesPerMonth)),
-                    backgroundColor: ['#f97316', '#8B8B8D']
+                    backgroundColor: ['#e5e5e5', '#8B8B8D']
                 }]
             },
             options: {

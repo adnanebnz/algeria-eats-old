@@ -5,7 +5,7 @@
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl font-semibold leading-tight">Produits</h2>
                     <a href="{{ route('artisan.products.new') }}"
-                        class="bg-orange-600 md:px-4 px-2.5 md:py-2 py-1.5 text-md rounded-md text-white font-semibold tracking-wide hover:bg-orange-700">Ajouter
+                        class="bg-orange-500 md:px-4 px-2.5 md:py-2 py-1.5 text-md rounded-md text-white font-semibold tracking-wide hover:bg-orange-700">Ajouter
                         un Produit</a>
                 </div>
                 <div class="my-2 flex sm:flex-row flex-col">
@@ -13,7 +13,7 @@
                         <form action="{{ route('artisan.products') }}" method="GET">
                             <div class="relative">
                                 <select name="date"
-                                    class="appearance-none h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                                    class="h-full rounded-r border-t sm:rounded-r-none sm:border-r-0 border-r border-l border-b block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
                                     <option value="nouveau" @selected(request()->query('date') == 'nouveau')>Nouveau Produits</option>
                                     <option value="ancien" @selected(request()->query('date') == 'ancien')>Ancien Produits</option>
                                 </select>
@@ -37,11 +37,11 @@
                         </span>
                         <div class="flex flex-row items-center gap-3">
                             <input placeholder="Rechercher"
-                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"
+                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-500 focus:text-gray-700 focus:outline-none"
                                 name="search" value="{{ request()->query('search') }}" />
                             <button type="submit"
                                 class="
-                                    rounded-sm border border-gray-400 px-4 py-2 w-full bg-white hover:bg-gray-300 text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none">
+                                    rounded-sm border border-gray-400 px-4 py-2 w-full bg-white hover:bg-gray-300 text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-500 focus:text-gray-700 focus:outline-none">
                                 Rechercher
                             </button>
                         </div>
@@ -54,23 +54,23 @@
                             <thead>
                                 <tr>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Produit
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Prix
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Catégorie
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                                         Date de création
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-600 uppercase tracking-wider text-center">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">
                                         Actions
                                     </th>
                                 </tr>
@@ -107,9 +107,9 @@
                                             class="flex items-center justify-center gap-3 px-5 py-5 mt-2 border-b border-gray-200 bg-white text-sm">
                                             <a data-tooltip-target="tooltip-see"
                                                 href="{{ route('artisan.products.show', ['product' => $product]) }}"
-                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-see" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Voir le produit
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -124,9 +124,9 @@
                                             </a>
                                             <a data-tooltip-target="tooltip-edit"
                                                 href="{{ route('artisan.products.edit', ['product' => $product]) }}"
-                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-orange-500 hover:text-white hover:border-transparent">
+                                                class="border border-solid border-gray-400  p-1 rounded-md hover:bg-indigo-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-edit" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Modifier le produit
                                                 </div>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -155,7 +155,7 @@
                                                     </svg>
                                                 </button>
                                                 <div id="tooltip-delete" role="tooltip"
-                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                     Supprimer le produit
                                                 </div>
                                                 <div x-show="showModal" x-cloak
@@ -204,7 +204,7 @@
                                                             <!-- Modal footer -->
                                                             <div class="flex items-center justify-center mt-6">
                                                                 <button type="submit"
-                                                                    class="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                                                    class="text-white bg-red-500 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                                                     @click="showModal = false">Confirmer</button>
                                                                 <button type="button"
                                                                     class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"

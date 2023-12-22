@@ -13,14 +13,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-/*---PAGES AND INDEX SECTION---*/
-
-Route::view('/', 'index')->name('index');
-
-/*---PAGES AND INDEX SECTION END---*/
-
 /*---AUTH AND PROFILE SECTION---*/
 
+// AUTH
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name(
     'login'
 );
@@ -33,18 +28,6 @@ Route::match(['get', 'post'], '/auth/logout', [
     LoginController::class,
     'logout',
 ])->name('logout');
-
-Route::get('profile/{user}', [ProfileController::class, 'index'])->name(
-    'profile'
-);
-
-Route::put('profile/{user}', [ProfileController::class, 'update'])->name(
-    'profile.update'
-);
-
-Route::delete('profile/{user}', [ProfileController::class, 'destroy'])->name(
-    'profile.destroy'
-);
 
 // FORGOT PASSWORD
 Route::get('/forgot-password', [PasswordResetService::class, 'index'])->name(
@@ -64,12 +47,55 @@ Route::post('/reset-password', [
     PasswordResetService::class,
     'resetPassword',
 ])->name('password.update');
-// FORGOT PASSWORD END
+
+// PROFILE
+Route::get('profile/{user}', [ProfileController::class, 'index'])->name(
+    'profile'
+);
+
+Route::put('profile/{user}', [ProfileController::class, 'update'])->name(
+    'profile.update'
+);
+
+Route::delete('profile/{user}', [ProfileController::class, 'destroy'])->name(
+    'profile.destroy'
+);
 
 /*---AUTH AND PROFILE SECTION END---*/
 
-/*---USER DASHBOARD---*/
+// INDEX
+Route::view('/', 'index')->name('index');
+// FAQ
+Route::view('/faq', 'faq.index')->name('faq');
+// ARTISANS PAGE (where we show and search for artisans)
+Route::view('artisans', 'artisan.page')->name('artisan.page');
 
+/*---CINTACT---*/
+Route::prefix('contact')->name('contact.')->group(function () {
+    Route::get('/', [ContactController::class, 'index'])->name('index');
+    Route::post('/', [ContactController::class, 'store'])->name('store');
+});
+/*---CINTACT END---*/
+
+/*---PRODUCTS---*/
+Route::prefix('products')->name('product.')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('index');
+    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
+});
+/*---PRODUCTS END---*/
+
+// CART
+Route::view('/cart', 'cart.cart')->name('cart.index')->middleware('auth');
+
+/*---CHECKOUT---*/
+Route::prefix('checkout')->name('checkout.')->group(function () {
+    Route::get('/', [OrderController::class, 'checkout'])->name('index');
+    Route::post('/', [OrderController::class, 'store'])->name('store');
+    Route::post('/cancel', [OrderController::class, 'cancel'])->name('cancel');
+});
+/*---CHECKOUT END---*/
+
+/*---USER DASHBOARD---*/
 Route::get('user/dashobard', [ConsumerController::class, 'index'])->name(
     'user.dashobard'
 );
@@ -93,11 +119,9 @@ Route::get('user/dashboard/delivery/{delivery}', [
     ConsumerController::class,
     'showDelivery',
 ])->name('user.delivery.show');
-
 /*---USER DASHBOARD END---*/
 
 /*---ARTISAN DASHBOARD---*/
-
 Route::get('artisan/dashboard', [ArtisanController::class, 'index'])->name(
     'artisan.index'
 );
@@ -137,7 +161,6 @@ Route::delete('artisan/dashboard/products/{product}', [
     ArtisanController::class,
     'destroyProduct',
 ])->name('artisan.products.destroy');
-// PRODUCTS SECTION END
 
 //ORDERS SECTION
 Route::get('artisan/dashboard/orders', [
@@ -159,7 +182,6 @@ Route::delete('artisan/dashboard/orders/{order}', [
     ArtisanController::class,
     'destroyOrder',
 ])->name('artisan.orders.destroy');
-//ORDERS SECTION END
 
 //DELIVERIES SECTION
 Route::get('artisan/dashboard/deliveries', [
@@ -181,19 +203,15 @@ Route::post('artisan/dashboard/deliveries/{delivery}/unaffect', [
     ArtisanController::class,
     'unaffectDelivery',
 ])->name('artisan.deliveries.unaffect');
-//DELIVERIES SECTION END
 
 // PDF INVOICES
 Route::post('artisan/dashboard/orders/{order}/invoice', [
     InvoicesController::class,
     'create',
 ])->name('artisan.orders.invoice');
-// PDF INVOICES END
-
 /*---ARTISAN DASHBOARD END---*/
 
 /*---ADMIN DASHBOARD---*/
-
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name(
     'admin.index'
 );
@@ -231,11 +249,9 @@ Route::get('admin/dashboard/products', [
     AdminController::class,
     'products',
 ])->name('admin.products');
-
 /*---ADMIN END---*/
 
 /*---DELIVERY MAN---*/
-
 Route::get('deliveryMan/dashboard', [
     DeliveryManController::class,
     'index',
@@ -271,35 +287,4 @@ Route::put('deliveryMan/{delivery}/update', [
     DeliveryManController::class,
     'updateDelivery',
 ])->name('delivery.updateDelivery');
-//ORDERS SECTION END
 /*---DELIVERY MAN END---*/
-
-/*---PRODUCTS---*/
-Route::prefix('products')->name('product.')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('index');
-    Route::get('/{product}', [ProductController::class, 'show'])->name('show');
-});
-/*---PRODUCTS END---*/
-
-/*ARTISANS PAGE */
-Route::view('artisans', 'artisan.page')->name('artisan.page');
-/*ARTISANS PAGE END*/
-
-/*---CONTACT---*/
-Route::prefix('contact')->name('contact.')->group(function () {
-    Route::get('/', [ContactController::class, 'index'])->name('index');
-    Route::post('/', [ContactController::class, 'store'])->name('store');
-});
-/*---CONTACT END---*/
-
-/*---CART---*/
-Route::view('/cart', 'cart.cart')->name('cart.index')->middleware('auth');
-/*---CART END---*/
-
-/*---CHECKOUT---*/
-Route::prefix('checkout')->name('checkout.')->group(function () {
-    Route::get('/', [OrderController::class, 'checkout'])->name('index');
-    Route::post('/', [OrderController::class, 'store'])->name('store');
-    Route::post('/cancel', [OrderController::class, 'cancel'])->name('cancel');
-});
-/*---CHECKOUT END---*/
