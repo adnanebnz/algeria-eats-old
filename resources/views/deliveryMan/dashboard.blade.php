@@ -252,7 +252,7 @@
                 labels: ['Complété', 'Non complété'],
                 datasets: [{
                     data: [{{ $countday }}, {{ $uncompleted }}],
-                    backgroundColor: ['#3b82f6', '#8B8B8D'],
+                    backgroundColor: ['#f97316', '#8B8B8D'],
                 }]
             },
             options: {
@@ -271,7 +271,7 @@
                 datasets: [{
                     label: 'Livraisons par mois',
                     data: @json(array_values($deliveriesPerMonth)),
-                    backgroundColor: ['#3b82f6', '#8B8B8D']
+                    backgroundColor: ['#f97316', '#8B8B8D']
                 }]
             },
             options: {

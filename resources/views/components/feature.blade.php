@@ -1,4 +1,4 @@
-<div class="bg-white pt-24 pb-10 mt-10">
+<div class="bg-white md:pt-24 pt-10 pb-10 mt-10">
     <div class="mx-auto px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:text-center">
             <h2 class="text-base font-semibold leading-7 text-orange-600">Découvrez des délices sucrés et salés</h2>
