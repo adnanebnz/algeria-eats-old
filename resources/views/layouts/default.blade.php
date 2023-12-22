@@ -251,22 +251,6 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="w-full lg:w-4/12 px-4">
-                        <span class="block uppercase text-gray-800 text-sm font-semibold mb-2">Autre
-                            liens</span>
-                        <ul class="list-unstyled">
-
-                            <li>
-                                <a class="text-gray-800  hover:text-gray-800 font-semibold block pb-2 text-sm"
-                                    href="#">Terms &amp;
-                                    Conditions</a>
-                            </li>
-                            <li>
-                                <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">Confidentialité</a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
