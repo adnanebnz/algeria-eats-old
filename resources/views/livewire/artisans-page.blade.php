@@ -76,7 +76,6 @@
             {{-- END SEARCH FILTER --}}
             <div class="mt-6 md:mt-0 md:px-2">
                 <div id="artisans-section">
-                    <h1 class="font-bold md:text-2xl text-lg text-gray-800">Résultat:</h1>
                     <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-3 lg:grid-cols-3">
                         @forelse ($artisans as $artisan)
                             <a href="{{ route('profile', $artisan->user->id) }}"
@@ -125,7 +124,10 @@
                                 </div>
                             </a>
                         @empty
-                            <p class="text-center text-gray-700">Aucun artisan</p>
+                            <div class="flex flex-col items-center justify-center w-full col-span-3">
+                                <img src="{{ asset('assets/not-found.svg') }}" alt="empty" class="h-48" />
+                                <p class="text-gray-700 text-xl font-bold mt-3">Aucun résultat trouvé</p>
+                            </div>
                         @endforelse
                     </div>
 

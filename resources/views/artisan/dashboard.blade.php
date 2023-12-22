@@ -201,7 +201,7 @@
                 labels: productsByCategoryLabels,
                 datasets: [{
                     data: productsCountByCategory,
-                    backgroundColor: ['#60a5fa', '#8B8B8D'],
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
                 }]
             },
             options: {
@@ -220,7 +220,7 @@
                 datasets: [{
                     label: 'Total des ventes par mois',
                     data: @json($orderCounts),
-                    backgroundColor: ['#60a5fa', '#8B8B8D'],
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
                 }]
             },
             options: {
@@ -239,7 +239,7 @@
                 datasets: [{
                     label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
-                    backgroundColor: ['#60a5fa', '#8B8B8D'],
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
                 }]
             },
             options: {

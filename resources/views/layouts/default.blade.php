@@ -59,7 +59,7 @@
             <a class="p-4 mt-2 text-sm font-semibold md:mt-0 md:ml-0 text-gray-900 focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
                href="{{ route('contact.index') }}">Contact</a>
             <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900 focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
-               href="#">À propos de nous</a>
+               href="{{ route('faq') }}">FAQ</a>
             <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900  focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
                href="{{ route('artisan.page') }}">Artisans</a>
             <a class="p-4 mt-2 text-sm font-semibold bg-transparent md:mt-0 md:ml-0 text-gray-900  focus:text-gray-900 hover:text-gray-500 focus:outline-none focus:shadow-outline"
@@ -235,7 +235,7 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"
-                                    href="#">À propos de nous</a>
+                                    href="{{ route('faq') }}">FAQ</a>
                             </li>
                             <li>
                                 <a class="text-gray-800  hover:text-gray-900 font-semibold block pb-2 text-sm"

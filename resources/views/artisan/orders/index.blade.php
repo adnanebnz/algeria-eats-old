@@ -135,13 +135,13 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="px-5 py-5 birder-b border-gray-200 bg-white text-sm">
+                                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                             <div class="flex items-center justify-center gap-3">
                                                 <a data-tooltip-target="tooltip-see"
                                                     href="{{ route('artisan.orders.show', ['order' => $order]) }}"
-                                                    class="border border-solid border-gray-400  p-1 rounded-md hover:bg-amber-500 hover:text-white hover:border-transparent">
+                                                    class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
                                                     <div id="tooltip-see" role="tooltip"
-                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                         Voir la commande
                                                     </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -158,9 +158,9 @@
                                                     method="POST" target="_blank">
                                                     @csrf
                                                     <button data-tooltip-target="tooltip-generate" type="submit"
-                                                        class="border border-solid border-gray-400 p-1 rounded-md hover:bg-orange-500 hover:text-white hover:border-transparent">
+                                                        class="border border-solid border-gray-400 p-1 rounded-md hover:bg-indigo-500 hover:text-white hover:border-transparent">
                                                         <div id="tooltip-generate" role="tooltip"
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                             Générer la facture
                                                         </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -182,7 +182,7 @@
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                         @click="showModal = true">
                                                         <div id="tooltip-delete" role="tooltip"
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-orange-600/75 rounded-lg shadow-sm opacity-0 tooltip">
+                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
                                                             Supprimer la commande
                                                         </div>
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"

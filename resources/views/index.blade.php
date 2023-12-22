@@ -4,5 +4,4 @@
     <x-feature />
     <x-content-section />
     <x-call-to-action />
-    <x-promo-section />
 </x-default-layout>

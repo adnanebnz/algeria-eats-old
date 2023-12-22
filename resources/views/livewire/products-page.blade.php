@@ -133,10 +133,12 @@
                                 </div>
                             </a>
                         @empty
-                            <p class="text-center text-gray-700">Aucun produit</p>
+                            <div class="flex flex-col items-center justify-center w-full col-span-5">
+                                <img src="{{ asset('assets/not-found.svg') }}" alt="empty" class="h-48" />
+                                <p class="text-gray-700 text-xl font-bold mt-3">Aucun résultat trouvé</p>
+                            </div>
                         @endforelse
                     </div>
-
                 </div>
             </div>
         </div>
