@@ -11,21 +11,21 @@
 
 1 - Ouvrir 2 terminals 1 pour npm et l'autre pour php artisan et composer
 
-- Installer les depandances npm: `npm install`
-- Installer les depandances composer : `composer install`
-- lancer les migrations de la BDD : `php artisan migrate`
-- Lancer le projet dans les 2 terminals : `npm run dev` et `php artisan serve`
-- Vous pouvez faire un seed aprés la migration pour remplire la BDD avec des données random en executant la
-  commande: `php artisan db:seed --class="NomDeClasse"`
-  <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder
-  ProductSeeder.**
+-   Installer les depandances npm: `npm install`
+-   Installer les depandances composer : `composer install`
+-   lancer les migrations de la BDD : `php artisan migrate`
+-   Lancer le projet dans les 2 terminals : `npm run dev` et `php artisan serve`
+-   Vous pouvez faire un seed aprés la migration pour remplire la BDD avec des données random en executant la
+    commande: `php artisan db:seed --class="NomDeClasse"`
+    <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder
+    ProductSeeder.**
 
 ## Méthode de travail :
 
 1. **Cloner le projet** :
 
-   Chaque membre de l'équipe doit cloner le projet sur sa machine locale. Cela donne à chacun une copie du projet sur
-   laquelle travailler.
+    Chaque membre de l'équipe doit cloner le projet sur sa machine locale. Cela donne à chacun une copie du projet sur
+    laquelle travailler.
 
     ```bash
     git clone https://github.com/adnanebnz/projet-web
@@ -52,8 +52,8 @@ git commit -m "Description des modifications"
 
 4. **Récupération des modifications** :
 
-   Avant de commencer à travailler chaque jour ou lorsque vous êtes prêt à pousser des modifications, vous devez
-   récupérer les dernières modifications du projet sur vos branche locale.
+    Avant de commencer à travailler chaque jour ou lorsque vous êtes prêt à pousser des modifications, vous devez
+    récupérer les dernières modifications du projet sur vos branche locale.
 
     ```bash
     git pull origin main
@@ -61,13 +61,13 @@ git commit -m "Description des modifications"
 
 5. **Résolution des conflits** :
 
-   Si plusieurs membres de l'équipe apportent des modifications à la même partie du code, des conflits peuvent survenir
-   lors de la récupération. Les conflits doivent être résolus en modifiant manuellement les fichiers en conflit, puis en
-   validant les fichiers résolus.
+    Si plusieurs membres de l'équipe apportent des modifications à la même partie du code, des conflits peuvent survenir
+    lors de la récupération. Les conflits doivent être résolus en modifiant manuellement les fichiers en conflit, puis en
+    validant les fichiers résolus.
 
 6. **Pousser les modifications** :
 
-   Une fois le code prêt et les modifications validées, poussez les changements vers le référentiel central.
+    Une fois le code prêt et les modifications validées, poussez les changements vers le référentiel central.
 
     ```bash
     git push origin branche-de-fonctionnalité
@@ -75,11 +75,11 @@ git commit -m "Description des modifications"
 
 7. **Revues de code** :
 
-   On va effectuer des revues de code pour garantir la qualité et la cohérence du code.
+    On va effectuer des revues de code pour garantir la qualité et la cohérence du code.
 
 8. **Fusion dans la branche principale** :
 
-   Lorsqu'une fonctionnalité ou une tâche est terminée et a été revue, fusionnez-la dans la branche principale.
+    Lorsqu'une fonctionnalité ou une tâche est terminée et a été revue, fusionnez-la dans la branche principale.
 
     ```bash
     git checkout main
@@ -89,7 +89,7 @@ git commit -m "Description des modifications"
 
 9. **Nettoyage des branches** :
 
-   Lorsqu'une branche de fonctionnalités n'est plus nécessaire, elle peut être supprimée localement et à distance.
+    Lorsqu'une branche de fonctionnalités n'est plus nécessaire, elle peut être supprimée localement et à distance.
 
     ```bash
     git branch -d branche-de-fonctionnalité  # localement
@@ -122,22 +122,22 @@ git commit -m "Description des modifications"
 -   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
 -   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
 -   [x] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
-- after validating and delivering the product display form with stars to review the delivery man
+-   after validating and delivering the product display form with stars to review the delivery man
 
 SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES :
-```php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"```
+`php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"`
 
 ## TODO
 
-- ~~display all products of artisan in his profile~~
-- ADMIN DASHBOARD
-- ADD BUTTONS RETOUR A L'ACCEUIL IN DASHBOARDS and a button to go to the other dashboard
-- ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
-- STYLE PROFILE PAGE
-- STYLE EMAILS
-- Build the last pages (A propos de nous, terms et conditions, confidentionalité)
-- think about how to make a price for the livraison
-- NOTIFY USER when the traetement of his order is done and for delivery too
+-   add discounts
+-   ADMIN DASHBOARD
+-   ADD BUTTONS RETOUR A L'ACCEUIL IN DASHBOARDS and a button to go to the other dashboard
+-   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
+-   STYLE PROFILE PAGE
+-   STYLE EMAILS
+-   Build the last pages (A propos de nous, terms et conditions, confidentionalité)
+-   think about how to make a price for the livraison
+-   NOTIFY USER when the traetement of his order is done and for delivery too
 
 ORDER STATUSES:
 not_started
