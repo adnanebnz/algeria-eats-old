@@ -73,7 +73,6 @@
                             </div>
                             <p class="inline-block text-2xl font-semibold text-gray-700">
                                 <span>{{ $product->prix }} DA</span>
-                                <span class="ml-3 text-base font-normal text-gray-500 line-through">10 DA</span>
                             </p>
 
                         </div>
