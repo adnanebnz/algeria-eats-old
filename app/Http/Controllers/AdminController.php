@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
+use App\Http\Requests\ProductUpdate;
+use App\Models\Contact;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -98,7 +101,9 @@ class AdminController extends Controller
         $data = $request->validate([
             'nom' => 'required|string|max:255',
             'prenom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,'.$user->id,
+            'email' => 'required|email|unique:users,email,'.
+                $user->id.
+                '|max:255',
             'num_telephone' => 'required|string',
             'adresse' => 'required|string|max:255',
             'wilaya' => 'required|string|max:255',
@@ -162,5 +167,63 @@ class AdminController extends Controller
         Alert::success('succes', 'Utilisateur supprimé !');
 
         return redirect()->route('admin.users');
+    }
+
+    public function messagesIndex()
+    {
+        return view('admin.contacts.index');
+    }
+
+    public function messagesShow(Contact $message)
+    {
+        return view('admin.contacts.show', ['message' => $message]);
+    }
+
+    public function messagesDestroy(Contact $message)
+    {
+        $message->delete();
+        Alert::success('succes', 'Message supprimé !');
+
+        return redirect()->route('admin.messages');
+    }
+
+    public function productsIndex()
+    {
+        return view('admin.products.index');
+    }
+
+    public function productsShow(Product $product)
+    {
+        return view('admin.products.show', ['product' => $product]);
+    }
+
+    public function productsDestroy(Product $product)
+    {
+        $product->delete();
+        Alert::success('succes', 'Produit supprimé !');
+
+        return redirect()->route('admin.products');
+    }
+
+    public function productUpdate(ProductUpdate $request, Product $product)
+    {
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                // THE IMAGE IS IN public disk in profile_images folder
+                Storage::disk('public')->delete($product->image);
+            }
+            $image = $request->file('image');
+            $imagePath = $image->store('product_images', 'public');
+            // TODO CHECK WITH THIS
+            $data['image'] = $imagePath;
+        }
+
+        $product->update($data);
+
+        Alert::success('succes', 'Produit modifié !');
+
+        return redirect()->route('admin.products');
     }
 }

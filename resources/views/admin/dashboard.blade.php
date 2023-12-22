@@ -4,7 +4,6 @@
             <livewire:product-statistic />
             <livewire:user-statistic />
         </div>
-        <livewire:contact-table />
         <div class="grid gap-6 my-8 md:grid-cols-2 xl:grid-cols-4">
             <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
                 <div class="p-4 flex items-center">

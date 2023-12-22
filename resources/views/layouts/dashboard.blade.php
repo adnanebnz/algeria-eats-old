@@ -218,16 +218,16 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ route('admin.users') }}" @class([
+                                            <a href="{{ route('admin.users.index') }}" @class([
                                                 'text-base font-normal rounded-lg flex items-center p-2 group',
-                                                request()->routeIs('admin.users')
+                                                request()->routeIs('admin.users.index')
                                                     ? 'bg-orange-500 text-white'
                                                     : 'text-gray-900 hover:bg-gray-100',
                                             ])>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     @class([
                                                         'w-6 h-6 text-gray-500 transition duration-75',
-                                                        request()->routeIs('admin.users')
+                                                        request()->routeIs('admin.users.index')
                                                             ? 'bg-orange-500 text-white'
                                                             : 'text-gray-500 group-hover:text-gray-900',
                                                     ]) viewBox="0 0 24 24"

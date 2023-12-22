@@ -215,40 +215,42 @@ Route::post('artisan/dashboard/orders/{order}/invoice', [
 Route::get('admin/dashboard', [AdminController::class, 'index'])->name(
     'admin.index'
 );
-
+// USERS
 Route::get('admin/dashboard/users', [AdminController::class, 'users'])->name(
-    'admin.users'
+    'admin.users.index'
 );
 
 Route::get('admin/dashboard/users/{user}', [
     AdminController::class,
     'showUser',
-])->name('admin.indexOne');
+])->name('admin.users.show');
 
 Route::get('admin/dashboard/users/{user}/edit', [
     AdminController::class,
     'edit',
-])->name('admin.edit');
+])->name('admin.users.edit');
 
 Route::put('admin/dashboard/users/{user}', [
     AdminController::class,
     'update',
-])->name('admin.update');
+])->name('admin.users.update');
 
 Route::delete('admin/dashboard/users/{user}', [
     AdminController::class,
     'destroy',
-])->name('admin.destroy');
+])->name('admin.users.destroy');
+// PRODUCTS
 
-Route::get('admin/dashboard/users/{user}/products', [
+Route::get('admin/dashboard/products', ['AdminController::class', 'productsIndex'])->name('admin.products.index');
+Route::get('admin/dashboard/products/{product}', ['AdminController::class', 'productsShow'])->name('admin.products.show');
+Route::put('admin/dashboard/products/{product}', [
     AdminController::class,
-    'user_products',
-])->name('admin.user_products');
-
-Route::get('admin/dashboard/products', [
+    'productUpdate',
+])->name('admin.products.update');
+Route::delete('admin/dashboard/products/{product}', [
     AdminController::class,
-    'products',
-])->name('admin.products');
+    'productsDestroy',
+])->name('admin.products.destroy');
 /*---ADMIN END---*/
 
 /*---DELIVERY MAN---*/
