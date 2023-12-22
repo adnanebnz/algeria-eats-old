@@ -241,8 +241,8 @@ Route::delete('admin/dashboard/users/{user}', [
 ])->name('admin.users.destroy');
 // PRODUCTS
 
-Route::get('admin/dashboard/products', ['AdminController::class', 'productsIndex'])->name('admin.products.index');
-Route::get('admin/dashboard/products/{product}', ['AdminController::class', 'productsShow'])->name('admin.products.show');
+Route::get('admin/dashboard/products', [AdminController::class, 'productsIndex'])->name('admin.products.index');
+Route::get('admin/dashboard/products/{product}', [AdminController::class, 'productsShow'])->name('admin.products.show');
 Route::put('admin/dashboard/products/{product}', [
     AdminController::class,
     'productUpdate',
@@ -251,6 +251,22 @@ Route::delete('admin/dashboard/products/{product}', [
     AdminController::class,
     'productsDestroy',
 ])->name('admin.products.destroy');
+
+// CONTACT
+Route::get('admin/dashboard/messages', [
+    AdminController::class,
+    'messagesIndex',
+])->name('admin.messages.index');
+
+Route::get('admin/dashboard/messages/{message}', [
+    AdminController::class,
+    'messagesShow',
+])->name('admin.messages.show');
+
+Route::delete('admin/dashboard/messages/{message}', [
+    AdminController::class,
+    'messagesDestroy',
+])->name('admin.messages.destroy');
 /*---ADMIN END---*/
 
 /*---DELIVERY MAN---*/
