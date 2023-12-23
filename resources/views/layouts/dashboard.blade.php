@@ -117,9 +117,26 @@
                                     class="absolute right-0 w-full md:max-w-[280px] md:w-screen mt-2 origin-top-right">
                                     <div class="px-2 pt-2 pb-4 bg-gray-50 rounded-md shadow-xl">
                                         <div class="grid grid-cols-1 gap-4">
-                                            <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                            <a class="flex
+                                            row items-start rounded-lg bg-transparent p-2 hover:text-black focus:text-gray-900 hover:bg-gray-200
+                                            focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                                href="{{ route('user.dashobard', auth()->user()) }}">
+                                                <div class="bg-orange-400 text-white rounded-lg p-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="md:h-6 md:w-6 h-4 w-4">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="ml-3">
+                                                    <p class="font-semibold">Voir les Achats</p>
+                                                    <p class="text-sm">Voir vos achats</p>
+                                                </div>
+                                            </a>
+                                            <a class="flex row items-start rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                 href="{{ route('profile', ['user' => auth()->user()]) }}">
-                                                <div class="bg-orange-500 text-white rounded-lg p-3">
+                                                <div class="bg-orange-400 text-white rounded-lg p-3">
                                                     <svg fill="none" stroke="currentColor" stroke-linecap="round"
                                                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
                                                         class="md:h-6 md:w-6 h-4 w-4">
@@ -133,9 +150,9 @@
                                                     <p class="text-sm">Voir et modifier votre profile</p>
                                                 </div>
                                             </a>
-                                            <a class="flex row items-start rounded-lg bg-transparent p-2 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                                            <a class="flex row items-start rounded-lg bg-transparent p-2 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                                                 href="{{ route('logout') }}">
-                                                <div class="bg-orange-500 text-white rounded-lg p-3">
+                                                <div class="bg-orange-400 text-white rounded-lg p-3">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
