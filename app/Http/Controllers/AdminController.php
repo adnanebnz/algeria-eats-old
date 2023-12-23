@@ -26,7 +26,7 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function users(Request $request)
+    public function usersIndex(Request $request)
     {
         $query = User::select(
             'id',
@@ -86,7 +86,7 @@ class AdminController extends Controller
         return view('admin.users.show', ['user' => $user]);
     }
 
-    public function edit(User $user)
+    public function userEdit(User $user)
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
 
@@ -96,7 +96,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user)
+    public function userUpdate(Request $request, User $user)
     {
         $data = $request->validate([
             'nom' => 'required|string|max:255',
@@ -161,7 +161,7 @@ class AdminController extends Controller
         return redirect()->route('admin.users');
     }
 
-    public function destroy(User $user)
+    public function userDestroy(User $user)
     {
         $user->delete();
         Alert::success('succes', 'Utilisateur supprimé !');
