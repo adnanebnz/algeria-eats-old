@@ -135,7 +135,12 @@
                                             <td
                                                 class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
                                                 <a href="{{ route('admin.users.show', ['user' => $user->id]) }}"
+                                                    data-tooltip-target="tooltip-edit"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                    <div id="tooltip-edit" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Modifier cet utilisateur
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">
@@ -149,7 +154,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <!-- Modal toggle -->
-                                                    <button type="button"
+                                                    <button type="button" data-tooltip-target="tooltip-delete"
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                         @click="showModal = true">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -160,6 +165,10 @@
                                                             </path>
                                                         </svg>
                                                     </button>
+                                                    <div id="tooltip-delete" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Supprimer cet utilisateur
+                                                    </div>
                                                     <div x-show="showModal" x-cloak
                                                         class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
                                                         <!-- Black background overlay -->

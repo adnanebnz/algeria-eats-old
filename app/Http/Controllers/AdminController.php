@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Analytics;
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Contact;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Analytics\Period;
 
 class AdminController extends Controller
 {
@@ -21,9 +23,21 @@ class AdminController extends Controller
         $this->middleware('admin');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.dashboard');
+        $period = $request->input('period', 7);
+
+        $mostVisitorsAndPageViews = Analytics::fetchVisitorsAndPageViewsByDate(Period::days($period));
+        $userTypes = Analytics::fetchUserTypes(Period::days($period));
+        $topBrowsers = Analytics::fetchTopBrowsers(Period::days($period));
+        $topOperatingSystems = Analytics::fetchTopOperatingSystems(Period::days($period));
+
+        return view('admin.dashboard', [
+            'mostVisitorsAndPageViews' => $mostVisitorsAndPageViews,
+            'userTypes' => $userTypes,
+            'topBrowsers' => $topBrowsers,
+            'topOperatingSystems' => $topOperatingSystems,
+        ]);
     }
 
     public function usersIndex(Request $request)
@@ -173,12 +187,12 @@ class AdminController extends Controller
     {
         $messages = Contact::paginate(10);
 
-        return view('admin.contacts.index', ['messages' => $messages]);
+        return view('admin.messages.index', ['messages' => $messages]);
     }
 
     public function messagesShow(Contact $message)
     {
-        return view('admin.contacts.show', ['message' => $message]);
+        return view('admin.messages.show', ['message' => $message]);
     }
 
     public function messagesDestroy(Contact $message)
@@ -186,7 +200,7 @@ class AdminController extends Controller
         $message->delete();
         Alert::success('succes', 'Message supprimé !');
 
-        return redirect()->route('admin.contacts.index');
+        return redirect()->route('admin.messages.index');
     }
 
     public function productsIndex()

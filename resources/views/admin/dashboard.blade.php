@@ -1,87 +1,208 @@
 <x-dashboard-layout :isAdmin=true>
-    <div class=" mt-5 gap-y">
-        <div class="flex gap-2">
-            <livewire:product-statistic />
-            <livewire:user-statistic />
+    <div class="mt-5">
+        <div class="md:mb-7 mb-3 flex justify-end">
+            <form action="{{ route('admin.index') }}" method="GET">
+                <label for="period" class="text-sm text-gray-800">Sélectionnez la période :</label>
+                <select id="period" name="period"
+                    class="form-select rounded-md py-1 text-sm text-gray-800 focus:ring-orange-500 focus:border-orange-500">
+                    <option value="7" @selected(request()->query('period') == '7')>Les 7 derniers jours</option>
+                    <option value="30" @selected(request()->query('period') == '30')>Les 30 derniers jours</option>
+                    <option value="90" @selected(request()->query('period') == '90')>90 derniers jours</option>
+                    <option value="365" @selected(request()->query('period') == '365')>365 derniers jours</option>
+                </select>
+                <button type="submit"
+                    class="bg-orange-500 hover:bg-orange-600 transition-all text-white font-medium text-sm py-1 px-4 rounded ml-3">Soumettre</button>
+            </form>
         </div>
-        <div class="grid gap-6 my-8 md:grid-cols-2 xl:grid-cols-4">
-            <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
-                <div class="p-4 flex items-center">
-                    <div class="p-3 rounded-full text-orange-500 bg-orange-100 mr-4">
-                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
-                            <path
-                                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600">
-                            Total clients
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700">
-                            6389
-                        </p>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:mb-10 mb-5">
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+                <h3 class="font-bold text-gray-800 mb-4">Nombre de visiteurs et de pages vues</h3>
+                <div>
+                    <canvas id="visitorsPageViewsChart" class="h-60"></canvas>
                 </div>
             </div>
-            <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
-                <div class="p-4 flex items-center">
-                    <div class="p-3 rounded-full text-green-500 bg-green-100 mr-4">
-                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
-                            <path fill-rule="evenodd"
-                                d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600">
-                            Account balance
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700">
-                            $ 46,760.89
-                        </p>
-                    </div>
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+                <h3 class="font-bold text-gray-800 mb-4">Type d'utilisateurs</h3>
+                <div>
+                    <canvas id="userTypesChart" class="h-60"></canvas>
                 </div>
             </div>
-            <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
-                <div class="p-4 flex items-center">
-                    <div class="p-3 rounded-full text-orange-500 bg-orange-100 mr-4">
-                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
-                            <path
-                                d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z">
-                            </path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600">
-                            New sales
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700">
-                            376
-                        </p>
-                    </div>
+
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
+                <h3 class="font-bold text-gray-800 mb-4">Top Navigateurs</h3>
+                <div>
+                    <canvas id="browserChart" class="h-60"></canvas>
                 </div>
             </div>
-            <div class="min-w-0 rounded-lg shadow-xs overflow-hidden bg-white">
-                <div class="p-4 flex items-center">
-                    <div class="p-3 rounded-full text-teal-500 bg-teal-100 mr-4">
-                        <svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5">
-                            <path fill-rule="evenodd"
-                                d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="mb-2 text-sm font-medium text-gray-600">
-                            Pending contacts
-                        </p>
-                        <p class="text-lg font-semibold text-gray-700">35</p>
-                    </div>
+
+
+            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <h3 class="font-bold text-gray-800 mb-4">Meilleurs systèmes d'exploitation</h3>
+                <div>
+                    <canvas id="operatingSystemChart" class="h-60"></canvas>
                 </div>
             </div>
         </div>
+
+
+        <h1 class="font-bold text-lg text-gray-700 mb-2">Aperçu des statistiques</h1>
+        <livewire:user-statistic />
+        <livewire:product-statistic />
     </div>
 
+    <script>
+        var operatingSystems = @json($topOperatingSystems->pluck('operatingSystem'));
+        var screenPageViews = @json($topOperatingSystems->pluck('screenPageViews'));
 
+        var operatingSystemChart = new Chart(document.getElementById('operatingSystemChart'), {
+            type: 'bar',
+            data: {
+                labels: operatingSystems,
+                datasets: [{
+                    label: "Vues des pages d'écran par système d'exploitation",
+                    data: screenPageViews,
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: operatingSystems,
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: "Vues des pages d'écran",
+                        },
+                    },
+                },
+                legend: {
+                    display: false,
+                },
+            }
+        });
 
+        var browsers = @json($topBrowsers->pluck('browser'));
+        var screenPageViewsBrowsers = @json($topBrowsers->pluck('screenPageViews'));
+
+        var browserChart = new Chart(document.getElementById('browserChart'), {
+            type: 'bar',
+            data: {
+                labels: browsers,
+                datasets: [{
+                    label: "Vues des pages d'écran par navigateur",
+                    data: screenPageViewsBrowsers,
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'category',
+                        labels: browsers,
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Screen Page Views',
+                        },
+                    },
+                },
+                legend: {
+                    display: false,
+                },
+            }
+        });
+
+        var userTypesData = @json($userTypes);
+
+        var userTypesTranslations = {
+            'new': 'nouveau',
+            'returning': 'retournant',
+            // Add more translations as needed
+        };
+
+        var userTypes = userTypesData.map(function(item) {
+            return userTypesTranslations[item.newVsReturning] || item.newVsReturning;
+        });
+
+        var users = userTypesData.map(function(item) {
+            return item.activeUsers;
+        });
+
+        var userTypesChart = new Chart(document.getElementById('userTypesChart'), {
+            type: 'pie',
+            data: {
+                labels: userTypes,
+                datasets: [{
+                    data: users,
+                    backgroundColor: ['#e5e5e5', '#8B8B8D'], // Add more colors as needed
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        });
+
+        var visitorsPageViewsData = @json($mostVisitorsAndPageViews);
+
+        var dates = @json(
+            $mostVisitorsAndPageViews->pluck('date')->map(function ($date) {
+                return $date->toDateString();
+            }));
+
+        var activeUsers = visitorsPageViewsData.map(function(item) {
+            return item.activeUsers;
+        });
+
+        var screenPageViews = visitorsPageViewsData.map(function(item) {
+            return item.screenPageViews;
+        });
+
+        var visitorsPageViewsChart = new Chart(document.getElementById('visitorsPageViewsChart'), {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Utilisateurs actifs',
+                    data: activeUsers,
+                    borderColor: '#e5e5e5',
+                    fill: false,
+                }, {
+                    label: "Vues des pages d'écran",
+                    data: screenPageViews,
+                    borderColor: '#8B8B8D',
+                    fill: false,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Comte',
+                        },
+                    },
+                },
+                legend: {
+                    position: 'bottom',
+                },
+            },
+        });
+    </script>
 </x-dashboard-layout>

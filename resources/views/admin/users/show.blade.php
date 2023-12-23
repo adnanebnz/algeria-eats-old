@@ -85,7 +85,7 @@
             <div class="flex items-center justify-end mt-6">
 
                 <button class="md:w-36 px-6 md:px-0 py-2 bg-orange-600 hover:bg-orange-500 text-white rounded-md"><a
-                        href="{{ route('admin.edit', ['user' => $user->id]) }}">Modifier</a></button>
+                        href="{{ route('admin.users.edit', ['user' => $user->id]) }}">Modifier</a></button>
             </div>
         </div>
 
