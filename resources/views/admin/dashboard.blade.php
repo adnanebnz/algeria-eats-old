@@ -16,13 +16,13 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:mb-10 mb-5">
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
-                <h3 class="font-bold text-gray-800 mb-4">Nombre de visiteurs et de pages vues</h3>
+                <h3 class="font-bold text-lg text-gray-800 mb-4">Nombre de visiteurs et de pages vues</h3>
                 <div>
                     <canvas id="visitorsPageViewsChart" class="h-60"></canvas>
                 </div>
             </div>
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 2xl:col-span-2">
-                <h3 class="font-bold text-gray-800 mb-4">Type d'utilisateurs</h3>
+                <h3 class="font-bold text-lg text-gray-800 mb-4">Type d'utilisateurs</h3>
                 <div>
                     <canvas id="userTypesChart" class="h-60"></canvas>
                 </div>
@@ -37,13 +37,12 @@
 
 
             <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                <h3 class="font-bold text-gray-800 mb-4">Meilleurs systèmes d'exploitation</h3>
+                <h3 class="font-bold text-lg text-gray-800 mb-4">Meilleurs systèmes d'exploitation</h3>
                 <div>
                     <canvas id="operatingSystemChart" class="h-60"></canvas>
                 </div>
             </div>
         </div>
-
 
         <h1 class="font-bold text-lg text-gray-700 mb-2">Aperçu des statistiques</h1>
         <livewire:user-statistic />
@@ -61,7 +60,7 @@
                 datasets: [{
                     label: "Vues des pages d'écran par système d'exploitation",
                     data: screenPageViews,
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                    backgroundColor: ['#3b82f6', '#60a5fa'],
                 }]
             },
             options: {
@@ -96,7 +95,7 @@
                 datasets: [{
                     label: "Vues des pages d'écran par navigateur",
                     data: screenPageViewsBrowsers,
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                    backgroundColor: ['#3b82f6', '#60a5fa'],
                 }]
             },
             options: {
@@ -143,7 +142,7 @@
                 labels: userTypes,
                 datasets: [{
                     data: users,
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'], // Add more colors as needed
+                    backgroundColor: ['#3b82f6', '#60a5fa'], // Add more colors as needed
                 }]
             },
             options: {
@@ -177,12 +176,12 @@
                 datasets: [{
                     label: 'Utilisateurs actifs',
                     data: activeUsers,
-                    borderColor: '#e5e5e5',
+                    borderColor: '#3b82f6',
                     fill: false,
                 }, {
                     label: "Vues des pages d'écran",
                     data: screenPageViews,
-                    borderColor: '#8B8B8D',
+                    borderColor: '#60a5fa',
                     fill: false,
                 }]
             },

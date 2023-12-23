@@ -34,12 +34,13 @@ class ArtisansPage extends Component
     public function render()
     {
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
+        $artisans = Artisan::select('user_id', 'rating', 'type_service')
+            ->filters($this->filters)
+            ->orderBy('rating', 'desc')
+            ->paginate(10);
 
         return view('livewire.artisans-page', [
-            'artisans' => Artisan::select('user_id', 'rating', 'type_service')
-                ->filters($this->filters)
-                ->orderBy('rating', 'desc')
-                ->paginate(10),
+            'artisans' => $artisans,
             'wilayas' => $wilayas,
         ]);
     }

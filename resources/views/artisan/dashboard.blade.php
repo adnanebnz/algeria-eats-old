@@ -133,16 +133,18 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 mt-4">
-                <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des revenus par catégorie</h3>
-                <div>
-                    <canvas id="revenueBreakdownChart" height="400"></canvas>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:mt-10 mt-5">
+                <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 xl:p-8 ">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Répartition des revenus par catégorie</h3>
+                    <div>
+                        <canvas id="revenueBreakdownChart" height="400"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">Total des ventes par mois</h3>
-                <div>
-                    <canvas id="artisansChart" height="300"></canvas>
+                <div class="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Total des ventes par mois</h3>
+                    <div>
+                        <canvas id="artisansChart" height="300"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,7 +203,7 @@
                 labels: productsByCategoryLabels,
                 datasets: [{
                     data: productsCountByCategory,
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                    backgroundColor: ['#3b82f6', '#60a5fa'],
                 }]
             },
             options: {
@@ -220,7 +222,7 @@
                 datasets: [{
                     label: 'Total des ventes par mois',
                     data: @json($orderCounts),
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                    backgroundColor: ['#3b82f6', '#60a5fa'],
                 }]
             },
             options: {
@@ -239,7 +241,7 @@
                 datasets: [{
                     label: 'Revenu total par catégorie et par prix d\'une piéce',
                     data: @json($totalRevenueByCategory),
-                    backgroundColor: ['#e5e5e5', '#8B8B8D'],
+                    backgroundColor: ['#3b82f6', '#60a5fa'],
                 }]
             },
             options: {

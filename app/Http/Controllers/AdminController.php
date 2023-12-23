@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Analytics;
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Http\Requests\ProductUpdate;
 use App\Models\Contact;
@@ -12,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
+use Spatie\Analytics\Facades\Analytics;
 use Spatie\Analytics\Period;
 
 class AdminController extends Controller
@@ -25,18 +25,24 @@ class AdminController extends Controller
 
     public function index(Request $request)
     {
+
         $period = $request->input('period', 7);
 
-        $mostVisitorsAndPageViews = Analytics::fetchVisitorsAndPageViewsByDate(Period::days($period));
+        $mostVisitorsAndPageViews = Analytics::fetchVisitorsAndPageViewsByDate(
+            Period::days($period)
+        );
         $userTypes = Analytics::fetchUserTypes(Period::days($period));
         $topBrowsers = Analytics::fetchTopBrowsers(Period::days($period));
-        $topOperatingSystems = Analytics::fetchTopOperatingSystems(Period::days($period));
+        $topOperatingSystems = Analytics::fetchTopOperatingSystems(
+            Period::days($period)
+        );
 
         return view('admin.dashboard', [
             'mostVisitorsAndPageViews' => $mostVisitorsAndPageViews,
             'userTypes' => $userTypes,
             'topBrowsers' => $topBrowsers,
             'topOperatingSystems' => $topOperatingSystems,
+            'period' => $period,
         ]);
     }
 

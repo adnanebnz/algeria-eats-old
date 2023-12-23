@@ -271,7 +271,7 @@
                 datasets: [{
                     label: 'Livraisons par mois',
                     data: @json(array_values($deliveriesPerMonth)),
-                    backgroundColor: ['#e5e5e5', '#8B8B8D']
+                    backgroundColor: ['#3b82f6', '#60a5fa']
                 }]
             },
             options: {
