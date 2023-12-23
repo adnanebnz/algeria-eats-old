@@ -1,5 +1,5 @@
 <div>
-    <section class="bg-white" x-data="{ artisanRating: @entangle('artisanRating'), productRating: @entangle('productRating') }">
+    <section class="bg-white" x-data="{ artisanRating: @entangle('artisanRating') }">
         <div class="container px-4 pb-5 md:pb-7 mx-auto mt-5">
             {{-- START SEARCH FILTER --}}
             <div class="md:px-44">

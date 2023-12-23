@@ -19,8 +19,8 @@
     commande: `php artisan db:seed --class="NomDeClasse"`
     <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder
     ProductSeeder.**
-- injecter les villes et communes algériennes dans la base de données :
-`php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"`
+-   injecter les villes et communes algériennes dans la base de données :
+    `php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"`
 
 ## TODO
 
@@ -29,7 +29,6 @@
 -   STYLE USER PROFILE
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   NOTIFY USER when the traetement of his order is done and for delivery too
--   ADD MAPS FOR DELIVERES AND CACHING SYSTEM
 
 ORDER STATUSES:
 not_started

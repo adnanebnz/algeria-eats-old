@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js'></script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -37,7 +39,7 @@
 <div>
     {{-- Header --}}
     <div x-data="{ open: false }" x-cloak
-         class="relative fixed flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
+         class="relative flex flex-col px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 ">
         <div class="flex flex-row items-center justify-between px-4 py-3">
             <a href="{{ route('index') }}"
                class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
