@@ -19,122 +19,17 @@
     commande: `php artisan db:seed --class="NomDeClasse"`
     <u>Les Noms de Classes pour le seed</u> : **ArtisanSeeder, AdminSeeder, DeliveryManSeeder, ConsumerSeeder
     ProductSeeder.**
-
-## Méthode de travail :
-
-1. **Cloner le projet** :
-
-    Chaque membre de l'équipe doit cloner le projet sur sa machine locale. Cela donne à chacun une copie du projet sur
-    laquelle travailler.
-
-    ```bash
-    git clone https://github.com/adnanebnz/projet-web
-    ```
-
-2. **Gestion des branches** :
-
-Chacun doit travailler sur des branches de fonctionnalités. Cela permet de maintenir la branche principal ( `main`)
-propre et stable.
-
-```bash
-git checkout -b votre-branche
-```
-
-3. **Codage et validation** :
-
-Vous devez travailler sur vos tâches assignées de manière indépendante. et valider leurs modifications sur leurs
-branches locales à l'aide de `git commit`.
-
-```bash
-git add .
-git commit -m "Description des modifications"
-```
-
-4. **Récupération des modifications** :
-
-    Avant de commencer à travailler chaque jour ou lorsque vous êtes prêt à pousser des modifications, vous devez
-    récupérer les dernières modifications du projet sur vos branche locale.
-
-    ```bash
-    git pull origin main
-    ```
-
-5. **Résolution des conflits** :
-
-    Si plusieurs membres de l'équipe apportent des modifications à la même partie du code, des conflits peuvent survenir
-    lors de la récupération. Les conflits doivent être résolus en modifiant manuellement les fichiers en conflit, puis en
-    validant les fichiers résolus.
-
-6. **Pousser les modifications** :
-
-    Une fois le code prêt et les modifications validées, poussez les changements vers le référentiel central.
-
-    ```bash
-    git push origin branche-de-fonctionnalité
-    ```
-
-7. **Revues de code** :
-
-    On va effectuer des revues de code pour garantir la qualité et la cohérence du code.
-
-8. **Fusion dans la branche principale** :
-
-    Lorsqu'une fonctionnalité ou une tâche est terminée et a été revue, fusionnez-la dans la branche principale.
-
-    ```bash
-    git checkout main
-    git merge branche-de-fonctionnalité
-    git push origin main
-    ```
-
-9. **Nettoyage des branches** :
-
-    Lorsqu'une branche de fonctionnalités n'est plus nécessaire, elle peut être supprimée localement et à distance.
-
-    ```bash
-    git branch -d branche-de-fonctionnalité  # localement
-    git push origin --delete branche-de-fonctionnalité  # à distance
-    ```
-
-### TODO
-
--   [x] Create Middlewares for admin organizer consumer and deliveryman
--   [x] CHANGE THE NAVBAR ELEMENTS
--   [x] WORK ON PRODUCTS LOGIC AND VIEWS
--   [x] ARTISANS CAN SEE EVERY ORDERS OF EVERY ARTISAN FIX THIS
--   [x] ADD PROFILE PIC TO USERS
--   [x] FIX PROFILE RESPONSIVENESS
--   [x] ADD MIDDLEWARE TO PREVENT USERS TO MODIFY OTHER USERS PROFILE
--   [x] EDIT ARTISAN DASHBOARD INDEX PAGE TO DISPLAY REAL DATA AND STATISTICS AND IMPROVE UI
--   [x] Navigation mobile pour dashboards pour les liens Profile et Logout POUR MOBILE
--   [x] Add Sweet alerts
--   [x] CRAETE ERROR PAGES 500,404,401,403
--   [x] CRAETE CART AND DISPLAY IT ON THE LAYOUT
--   [x] MAKE THE CART COUNTER WORK
--   [x] CREATE CART PAGE
--   [x] ADD INCREASE PRODUCT QUANTITY AND DECREASE AND POSSIBILITY TO TYPE THE QUANTITY
--   [x] CREATE SHOW PAGE FOR SINGLE PRODUCT
--   [x] WORK ON THE LOGIC OF ORDERS FOR CONSUMERS
--   [x] FIX MOBILE NAVIGATION NAVBAR FOR CART
--   [x] FINISH WITH THE INDEX PAGE
--   [x] BUILD THE SEARCH ENGINE
--   [x] FILTER BY PRICE IN PRODUCTS
--   [x] SHOW REVIEWS IN PRODUCTS PAGE AND CREATE FORM FOR THEM
--   [x] CREATE PDF INVOICES AND THE ABILITY TO CREATE THEM AND DOWNLOAD THEM FROM DASHBOARDS
--   [x] SHOW REVIEWS IN PROFILE PAGES AND CREATE FORM FOR THEM
--   after validating and delivering the product display form with stars to review the delivery man
-
-SEED DATABASE WITLH ALGERIA CITIES AND COMMUNES :
+- injecter les villes et communes algériennes dans la base de données :
 `php artisan db:seed --class="AnouarTouati\AlgerianCitiesLaravel\Database\Seeders\AlgerianCitiesSeeder"`
 
 ## TODO
 
--   ADD BACK ARROW IN DASHOBARDS
--   ADD SHOW PRODUCT PAGE
+-   ADD BACK ARROW NAVIGATION IN DASHOBARDS
+-   ADD SHOW PRODUCT PAGE IN ADMIN DASHBOARD
 -   STYLE USER PROFILE
--   ADD BUTTONS RETOUR A L'ACCEUIL IN DASHBOARDS
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   NOTIFY USER when the traetement of his order is done and for delivery too
+-   ADD MAPS FOR DELIVERES AND CACHING SYSTEM
 
 ORDER STATUSES:
 not_started
