@@ -7,7 +7,7 @@
                         <h2 class="text-2xl font-semibold leading-tight">Modifier l'utilisateur</h2>
                     </div>
                 </div>
-                <form action="{{ route('admin.update', ['user' => $user]) }}" method="POST" class="mb-2"
+                <form action="{{ route('admin.users.update', ['user' => $user]) }}" method="POST" class="mb-2"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

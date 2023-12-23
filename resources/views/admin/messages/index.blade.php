@@ -56,7 +56,7 @@
                                             </td>
                                             <td
                                                 class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
-                                                <a data-tooltip="tooltip-see"
+                                                <a data-tooltip-target="tooltip-see"
                                                     href="{{ route('admin.messages.show', ['message' => $message]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
                                                     <div id="tooltip-see" role="tooltip"
@@ -78,7 +78,7 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <!-- Modal toggle -->
-                                                    <button type="button"
+                                                    <button type="button" data-tooltip-target="tooltip-delete"
                                                         class="border border-solid border-gray-400 p-1 rounded-md hover:bg-red-500 hover:text-white hover:border-transparent"
                                                         @click="showModal = true">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -89,6 +89,10 @@
                                                             </path>
                                                         </svg>
                                                     </button>
+                                                    <div id="tooltip-delete" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Supprimer ce message
+                                                    </div>
                                                     <div x-show="showModal" x-cloak
                                                         class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
                                                         <!-- Black background overlay -->
@@ -105,8 +109,7 @@
                                                                 <!-- Modal header -->
                                                                 <div class="flex items-center justify-between">
                                                                     <div></div>
-                                                                    <button type="button" data-tooltip="tooltip-delete"
-                                                                        @click="showModal = false"
+                                                                    <button type="button" @click="showModal = false"
                                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm">
                                                                         <svg class="w-3 h-3" aria-hidden="true"
                                                                             xmlns="http://www.w3.org/2000/svg"
@@ -155,8 +158,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="5"
-                                                class="px-5 py-5 border-b border-gray-200 bg-white text-sm text-center">
+                                            <td colspan="5" class="px-5 py-5 bg-white text-sm text-center">
                                                 Aucun message trouvé.
                                             </td>
                                         </tr>
