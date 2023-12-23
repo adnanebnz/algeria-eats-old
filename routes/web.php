@@ -216,7 +216,7 @@ Route::get('admin/dashboard', [AdminController::class, 'index'])->name(
     'admin.index'
 );
 // USERS
-Route::get('admin/dashboard/users', [AdminController::class, 'users'])->name(
+Route::get('admin/dashboard/users', [AdminController::class, 'usersIndex'])->name(
     'admin.users.index'
 );
 
@@ -227,17 +227,17 @@ Route::get('admin/dashboard/users/{user}', [
 
 Route::get('admin/dashboard/users/{user}/edit', [
     AdminController::class,
-    'edit',
+    'userEdit',
 ])->name('admin.users.edit');
 
 Route::put('admin/dashboard/users/{user}', [
     AdminController::class,
-    'update',
+    'userUpdate',
 ])->name('admin.users.update');
 
 Route::delete('admin/dashboard/users/{user}', [
     AdminController::class,
-    'destroy',
+    'userDestroy',
 ])->name('admin.users.destroy');
 // PRODUCTS
 

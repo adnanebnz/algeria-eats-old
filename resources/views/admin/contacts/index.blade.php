@@ -56,8 +56,13 @@
                                             </td>
                                             <td
                                                 class="flex items-center justify-center gap-3 px-5 py-5 bg-white text-sm">
-                                                <a href="{{ route('admin.messages.show', ['message' => $message]) }}"
+                                                <a data-tooltip="tooltip-see"
+                                                    href="{{ route('admin.messages.show', ['message' => $message]) }}"
                                                     class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
+                                                    <div id="tooltip-see" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
+                                                        Voir ce message
+                                                    </div>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                         class="w-6 h-6">
@@ -100,7 +105,8 @@
                                                                 <!-- Modal header -->
                                                                 <div class="flex items-center justify-between">
                                                                     <div></div>
-                                                                    <button type="button" @click="showModal = false"
+                                                                    <button type="button" data-tooltip="tooltip-delete"
+                                                                        @click="showModal = false"
                                                                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm">
                                                                         <svg class="w-3 h-3" aria-hidden="true"
                                                                             xmlns="http://www.w3.org/2000/svg"
@@ -136,6 +142,10 @@
                                                                     <button type="button"
                                                                         class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-orange-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10"
                                                                         @click="showModal = false">Annuler</button>
+                                                                </div>
+                                                                <div id="tooltip-delete" role="tooltip"
+                                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
+                                                                    Supprimer ce message
                                                                 </div>
                                                             </div>
                                                         </div>
