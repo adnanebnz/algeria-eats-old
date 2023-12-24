@@ -13,12 +13,10 @@
         "laravel/tinker": "^2.8",
         "laraveldaily/laravel-invoices": "^3.0",
         "livewire/livewire": "^3.0",
-        "predis/predis": "^2.2",
         "realrashid/sweet-alert": "^7.1",
         "spatie/laravel-analytics": "^5.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/common": "^5.3",
         "laravel/pint": "^1.13",

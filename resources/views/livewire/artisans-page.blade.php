@@ -64,9 +64,9 @@
 
                         <div class="mt-6 grid w-full grid-cols-2 justify-end space-x-4 md:flex">
                             <a wire:click.prevent="resetFilters"
-                                class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 text-center outline-none hover:opacity-80 focus:ring cursor-pointer">Réinitialiser</a>
+                                class="rounded-lg bg-gray-200 md:px-8 px-2 py-2 font-medium text-gray-700 text-center outline-none hover:opacity-80 cursor-pointer">Réinitialiser</a>
                             <button
-                                class="rounded-lg bg-orange-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80 focus:ring">
+                                class="rounded-lg bg-orange-600 md:px-8 px-2 py-2 font-medium text-white outline-none hover:opacity-80">
                                 Rechercher
                             </button>
                         </div>
