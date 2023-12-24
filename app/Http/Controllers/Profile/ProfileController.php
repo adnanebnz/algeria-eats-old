@@ -24,12 +24,29 @@ class ProfileController extends Controller
         $wilayas = AlgerianCitiesFacade::getAllWilayas();
         if ($user->isArtisan()) {
             $artisanProducts = Product::where('artisan_id', $user->id)->get();
+            $similarArtisans = User::where('id', '!=', $user->id)
+                ->where('wilaya', $user->wilaya)
+                ->whereHas('artisan', function ($query) use ($user) {
+                    $query->where('type_service', $user->artisan->type_service);
+                })
+                ->take(6)->get();
+        }
+
+        if ($user->isDeliveryMan()) {
+            $similarDeliveryMen = User::where('id', '!=', $user->id)
+                ->where('wilaya', $user->wilaya)
+                ->whereHas('deliveryMan', function ($query) use ($user) {
+                    $query->where('est_disponible', $user->deliveryMan->est_disponible);
+                })
+                ->take(6)->get();
         }
 
         return view(
             'auth.profile',
             [
                 'user' => $user, 'wilayas' => $wilayas, 'artisanProducts' => $artisanProducts ?? null,
+                'similarArtisans' => $similarArtisans ?? null,
+                'similarDeliveryMen' => $similarDeliveryMen ?? null,
             ]
         );
     }

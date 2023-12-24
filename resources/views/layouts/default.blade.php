@@ -221,7 +221,7 @@
 </div>
 <footer class="pt-8 pb-6">
     <div class="container mx-auto px-4">
-        <div class="flex flex-wrap text-left lg:text-left">
+        <div class="flex text-left lg:text-left">
             <div class="w-full lg:w-6/12 px-4">
                 <img src="{{ asset('assets/LOGO.png') }}" class="md:h-14 h-10" alt="logo" />
                 <div class="mt-6 lg:mb-0 mb-6">
