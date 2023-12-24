@@ -26,7 +26,6 @@
 
 -   MODIFY FAQ PAGE
 -   ADD SHOW PRODUCT PAGE IN ADMIN DASHBOARD
--   STYLE USER PROFILE
 -   ADD AFFECTED LIVRAISONS PAGE FOR DELIVERYMAN
 -   NOTIFY USER when the traetement of his order is done and for delivery too
 
