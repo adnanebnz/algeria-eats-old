@@ -370,6 +370,28 @@
                                             </a>
                                         </li>
                                         <li>
+                                            <a href="{{ route('deliveryMan.deliveries.showPendingDeliveries') }}"
+                                                @class([
+                                                    'text-base font-normal rounded-lg flex items-center p-2 group',
+                                                    request()->routeIs('deliveryMan.deliveries.showPendingDeliveries')
+                                                        ? 'bg-orange-500 text-white'
+                                                        : 'text-gray-900 hover:bg-gray-100',
+                                                ])>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    @class([
+                                                        'w-6 h-6 text-gray-500  transition duration-75',
+                                                        request()->routeIs('deliveryMan.deliveries.showPendingDeliveries')
+                                                            ? 'bg-orange-500 text-white'
+                                                            : 'text-gray-500 group-hover:text-gray-900',
+                                                    ])>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                                </svg>
+                                                <span class="ml-3">Livraisons en cours</span>
+                                            </a>
+                                        </li>
+                                        <li>
                                             <a href="{{ route('deliveryMan.deliveries.showFinishedDeliveries') }}"
                                                 @class([
                                                     'text-base font-normal rounded-lg flex items-center p-2 group',

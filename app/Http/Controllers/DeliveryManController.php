@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use AnouarTouati\AlgerianCitiesLaravel\Facades\AlgerianCitiesFacade;
 use App\Jobs\AcceptedDeliveryJob;
+use App\Mail\DeliveredPackage;
 use App\Models\Delivery;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DeliveryManController extends Controller
@@ -157,6 +159,67 @@ class DeliveryManController extends Controller
         ]);
     }
 
+    public function pendingDeliveries(Request $request)
+    {
+        $query = Delivery::select(
+            'id',
+            'status',
+            'created_at',
+            'updated_at',
+            'order_id',
+            'deliveryMan_id'
+        )
+            ->where('status', 'delivering')
+            ->where('deliveryMan_id', auth()->user()->id);
+
+        // FILTERING BY ARTISAN NAME
+
+        if ($request->has('search')) {
+            $query->whereHas('order.artisan', function ($query) {
+                $query
+                    ->where('nom', 'like', '%'.request('search').'%')
+                    ->orWhere('prenom', 'like', '%'.request('search').'%')
+                    ->orWhere(
+                        'num_telephone',
+                        'like',
+                        '%'.request('search').'%'
+                    )
+                    ->orWhere('email', 'like', '%'.request('search').'%')
+                    ->orWhereRaw(
+                        "CONCAT(nom, ' ', prenom) LIKE ?",
+                        '%'.request('search').'%'
+                    );
+            });
+        }
+
+        // FILTER BY WILAYA
+
+        if ($request->filled('wilaya')) {
+            $query->whereHas('order', function ($query) {
+                $query->where('wilaya', request('wilaya'));
+            });
+        }
+
+        // FILTERING BY DATE
+
+        if ($request->has('date')) {
+            $date = $request->input('date');
+            if ($date == 'desc') {
+                $query->orderBy('created_at', 'desc');
+            } elseif ($date == 'asc') {
+                $query->orderBy('created_at', 'asc');
+            }
+        }
+
+        $deliveries = $query->paginate(10);
+        $wilayas = AlgerianCitiesFacade::getAllWilayas();
+
+        return view('deliveryMan.pending-deliveries', [
+            'deliveries' => $deliveries,
+            'wilayas' => $wilayas,
+        ]);
+    }
+
     public function finishedDeliveries(Request $request)
     {
         $query = Delivery::select(
@@ -229,6 +292,10 @@ class DeliveryManController extends Controller
             'status' => 'required|in:delivering,delivered',
         ]);
 
+        if ($data['status'] == 'delivered') {
+            Mail::to($delivery->order->artisan->email)->send(new DeliveredPackage($delivery));
+        }
+
         $delivery->update([
             'status' => $data['status'],
         ]);
@@ -239,7 +306,6 @@ class DeliveryManController extends Controller
             'deliveryMan.deliveries.showFinishedDeliveries'
         );
     }
-    // TODO MAYBE ADD DELETE DELIVERY
 
     public function accept(Delivery $delivery)
     {
@@ -252,12 +318,5 @@ class DeliveryManController extends Controller
         Alert::success('Succès', 'Livraison accepté !');
 
         return redirect()->route('deliveryMan.index');
-    }
-
-    public function generateTicket(Delivery $delivery)
-    {
-        $pdf = \PDF::loadView('deliveryMan.ticket', ['delivery' => $delivery]);
-
-        return $pdf->stream('ticket.pdf');
     }
 }

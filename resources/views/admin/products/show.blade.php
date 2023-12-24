@@ -1,99 +1,82 @@
 <x-dashboard-layout :isAdmin=true>
-    <form action="{{ route('admin.products.update', ['product' => $product]) }}" method="POST"
-        enctype="multipart/form-data" class="bg-white px-4 py-4 shadow-md p-1 pb-4 md:pb-10 mt-5">
-        @csrf
-        @method('PUT')
-        <div>
-            <div class="border-gray-900/10 pb-2">
-                <h1 class="text-xl font-bold leading-7 text-gray-700">
-                    Modifier un Produit
-                </h1>
-
-                <div class="mt-10 flex flex-col items-center justify-center gap-14">
-                    <div class="flex flex-col gap-5 w-full">
-                        <input type="hidden" value="{{ auth()->user()->id }}" name="user_id" />
-                        <x-input name="nom" label="Nom" :value="$product->nom" />
-                        <x-textarea name="description" label="Description">{{ $product->description }}</x-textarea>
-                    </div>
-                    <div class="flex flex-col gap-5 w-full">
-                        <div>
-                            <label class="block text-sm font-medium leading-6 text-gray-900">
-                                Catégorie
-                            </label>
-                            <select name="categorie"
-                                class="form-select block w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 mt-2">
-                                <option>Choisir une catégorie</option>
-                                <option value="sucree" @if ($product->categorie === 'sucree') selected @endif>Sucrée</option>
-                                <option value="salee" @if ($product->categorie === 'salee') selected @endif>Salée</option>
-                            </select>
-                        </div>
-                        <x-input name="sous_categorie" label="Sous Categorie" :value="$product->sous_categorie" />
-                        <x-input name="prix" label="Prix" :value="$product->prix" />
-                    </div>
-                    <div class="px-6 md:px-0">
-                        <p class="text-gray-900 text-sm">Images actuelles</p>
-                        <div class="grid grid-cols-5 gap-3 my-3">
-                            @foreach ($product->images as $image)
-                                <img src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
-                                    alt="" class="w-40 object-cover rounded-sm">
-                            @endforeach
-                        </div>
-                        <div x-data="{ images: [] }">
-                            <label class="block text-sm font-medium text-white">
-                                Images
-                            </label>
-                            <div
-                                class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                <div class="space-y-4 text-center">
-                                    <template x-if="images.length > 0">
-                                        <!-- Use x-for to loop through images -->
-                                        <div
-                                            class="grid grid-cols-5 gap-4 items-center justify-center place-content-center">
-                                            <template x-for="image in images" :key="image.name">
-                                                <img x-bind:src="URL.createObjectURL(image)" alt="Uploaded Image"
-                                                    class="h-32 mx-auto mb-4 border">
-                                            </template>
-                                        </div>
-                                    </template>
-                                    <div class="flex flex-col gap-1 items-center justify-center">
-                                        <template x-if="images.length === 0">
-                                            <svg class="h-14 w-14 text-gray-600" stroke="currentColor" fill="none"
-                                                viewBox="0 0 48 48" aria-hidden="true">
-                                                <path
-                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                        </template>
-                                        <div class="flex text-sm text-gray-800 my-2">
-                                            <label for="file-upload"
-                                                class="relative cursor-pointer rounded-md font-medium text-orange-600 hover:text-orange-500">
-                                                <span
-                                                    class="border p-2 border-orange-500 bg-transparent hover:bg-orange-500 hover:text-white hover:rounded-md">Télécharger
-                                                    les photos</span>
-                                                <input id="file-upload" name="images[]" type="file" class="sr-only"
-                                                    accept="image/*" multiple @change="images = $event.target.files">
-                                            </label>
-                                        </div>
-                                        <p class="text-xs">
-                                            PNG, JPEG, JPG, WEBP Maximum 5 photos de 4 méga.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @error('images')
-                            <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+    <section class="mt-10 bg-white rounded-md py-4 px-4 shadow-md" x-data="{ currentImageIndex: 0 }">
+        <div class="w-full px-4">
+            <div>
+                <p class="inline-block text-sm text-gray-700">
+                    Nom du produit :
+                    <span class="font-semibold text-lg">{{ $product->nom }}</span>
+                </p>
+                <div class="flex flex-wrap gap-2 items-center">
+                    <p class="text-sm text-gray-600">Note du produit:</p>
+                    <x-star-rating :rating="$product->rating" />
+                </div>
+                <div>
+                    <p class="inline-block text-sm text-gray-700">
+                        Prix :
+                        <span class="font-semibold text-lg">{{ $product->prix }} DA</span>
+                    </p>
+                </div>
+                <div class="mb-10 mt-4">
+                    <h2 class="mb-2 text-lg font-bold text-gray-700">Description : </h2>
+                    <span class="text-gray-600">
+                        {{ $product->description }}
+                    </span>
                 </div>
             </div>
         </div>
-
-        <div class="mt-6 flex items-center justify-end gap-x-6">
-            <button type="submit"
-                class="rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-600">
-                {{ $product->exists() ? 'Mettre à jour' : 'Créer' }}
-            </button>
-        </div>
-    </form>
+        <div class="px-4 mx-auto">
+            <div class="-mx-4">
+                <div class="w-full px-4 mb-8 md:mb-0">
+                    <div class="sticky top-0 overflow-hidden ">
+                        <div class="relative mb-6 lg:mb-10 lg:h-96">
+                            <button class="absolute left-0 transform lg:ml-2 top-1/2 translate-1/2"
+                                x-on:click="currentImageIndex = (currentImageIndex - 1 + {{ count($product->images) }}) % {{ count($product->images) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-left"
+                                    viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z">
+                                    </path>
+                                </svg>
+                            </button>
+                            @foreach ($product->images as $key => $image)
+                                <img class="object-contain w-full lg:h-full"
+                                    x-bind:class="{ 'hidden': currentImageIndex !== {{ $key }} }"
+                                    src="{{ str_starts_with($image, 'http') ? $image : asset('storage/' . $image) }}"
+                                    alt="">
+                            @endforeach
+                            <button class="absolute right-0 transform lg:mr-2 top-1/2 translate-1/2"
+                                x-on:click="currentImageIndex = (currentImageIndex + 1) % {{ count($product->images) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor"
+                                    class="w-5 h-5 text-orange-500 hover:text-orange-200 bi bi-chevron-right"
+                                    viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+                                    </path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-5 -mx-2">
+                            @foreach ($product->images as $key => $image)
+                                <div>
+                                    <button class="block border border-gray-200 hover:border-orange-400"
+                                        x-on:click="currentImageIndex = {{ $key }}">
+                                        <img class="object-contain w-full lg:h-60" src="{{ $image }}"
+                                            alt="">
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="md:mt-16 mt-5">
+                    <h1 class="text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl">Commandes de
+                        ce produit :
+                    </h1>
+                    <livewire:table-component :product="$product" />
+                </div>
+            </div>
+    </section>
 </x-dashboard-layout>

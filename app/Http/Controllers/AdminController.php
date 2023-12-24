@@ -221,6 +221,11 @@ class AdminController extends Controller
         return view('admin.products.show', ['product' => $product]);
     }
 
+    public function productsEdit(Product $product)
+    {
+        return view('admin.products.edit', ['product' => $product]);
+    }
+
     public function productsDestroy(Product $product)
     {
         $product->delete();
