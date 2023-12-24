@@ -43,7 +43,7 @@
         <div class="flex flex-row items-center justify-between px-4 py-3">
             <a href="{{ route('index') }}"
                class="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
-                <img src="{{ asset('assets/LOGO.png') }}" class="h-16" alt="logo"/>
+                <img src="{{ asset('assets/LOGO.png') }}" class="md:h-14 h-10" alt="logo"/>
             </a>
             <button class="rounded-lg md:hidden focus:outline-none focus:shadow-outline" @click="open = !open">
                 <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -223,7 +223,7 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-wrap text-left lg:text-left">
             <div class="w-full lg:w-6/12 px-4">
-                <img src="{{ asset('assets/LOGO.png') }}" class="h-16" alt="logo" />
+                <img src="{{ asset('assets/LOGO.png') }}" class="md:h-14 h-10" alt="logo" />
                 <div class="mt-6 lg:mb-0 mb-6">
                     {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
                 </div>
