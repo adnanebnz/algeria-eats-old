@@ -52,7 +52,7 @@
                         </svg>
                     </button>
                     <a href="{{ route('index') }}" class="lg:ml-2.5">
-                        <img src="{{ asset('assets/LOGO.png') }}" class="h-14" alt="Logo">
+                        <img src="{{ asset('assets/LOGO.png') }}" class="h-10" alt="Logo">
                     </a>
                 </div>
 
@@ -81,7 +81,7 @@
                             </svg>
                         </button>
                         <a href="{{ route('index') }}" class="lg:ml-2.5">
-                            <img src="{{ asset('assets/LOGO.png') }}" class="h-14" alt="Logo">
+                            <img src="{{ asset('assets/LOGO.png') }}" class="h-10" alt="Logo">
                         </a>
                     </div>
                     <div class="flex items-center">
