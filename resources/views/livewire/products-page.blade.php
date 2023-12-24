@@ -31,7 +31,7 @@
                                 <label for="status" class="text-sm font-medium text-stone-600">Note
                                     d'artisan</label>
 
-                                <div class="artisan-rating-stars mt-3"
+                                <div class="w-fit h-fit inline-block mt-3"
                                     x-on:click="artisanRating = $event.target.dataset.rating">
                                     @for ($i = 1; $i <= 5; $i++)
                                         <i data-rating="{{ $i }}"
@@ -65,7 +65,7 @@
                                 <label for="status" class="text-sm font-medium text-stone-600">Note du
                                     produit</label>
 
-                                <div class="product-rating-stars mt-3"
+                                <div class="w-fit h-fit inline-block mt-3"
                                     x-on:click="productRating = $event.target.dataset.rating">
                                     @for ($i = 1; $i <= 5; $i++)
                                         <i data-rating="{{ $i }}"

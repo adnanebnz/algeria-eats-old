@@ -11,7 +11,7 @@
                         class="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
                         name="body" placeholder='Votre évaluation' required></textarea>
                     <div>
-                        <div class="product-rating-stars" x-on:click="rating = $event.target.dataset.rating">
+                        <div class="w-auto h-auto inline-block mt-3" x-on:click="rating = $event.target.dataset.rating">
                             @for ($i = 1; $i <= 5; $i++)
                                 <i data-rating="{{ $i }}"
                                     x-bind:class="{
