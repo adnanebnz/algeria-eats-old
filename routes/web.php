@@ -243,6 +243,7 @@ Route::delete('admin/dashboard/users/{user}', [
 
 Route::get('admin/dashboard/products', [AdminController::class, 'productsIndex'])->name('admin.products.index');
 Route::get('admin/dashboard/products/{product}', [AdminController::class, 'productsShow'])->name('admin.products.show');
+Route::get('admin/dashboard/products/{product}/edit', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
 Route::put('admin/dashboard/products/{product}', [
     AdminController::class,
     'productUpdate',
@@ -286,6 +287,11 @@ Route::get('deliveryMan/dashboard/deliveries/{delivery}', [
     'showDelivery',
 ])->name('deliveryMan.deliveries.showDelivery');
 
+Route::get('deliveryMan/dashboard/pending-deliveries', [
+    DeliveryManController::class,
+    'pendingDeliveries',
+])->name('deliveryMan.deliveries.showPendingDeliveries');
+
 Route::get('deliveryMan/dashboard/finished-deliveries', [
     DeliveryManController::class,
     'finishedDeliveries',
@@ -295,11 +301,6 @@ Route::post('deliveryMan/{delivery}/accept', [
     DeliveryManController::class,
     'accept',
 ])->name('delivery.accept');
-
-Route::post('deliveryMan/{delivery}/generate-ticket', [
-    DeliveryManController::class,
-    'generateTicket',
-])->name('delivery.generateTicket');
 
 Route::put('deliveryMan/{delivery}/update', [
     DeliveryManController::class,

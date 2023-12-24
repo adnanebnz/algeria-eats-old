@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCreate;
 use App\Http\Requests\ProductUpdate;
+use App\Mail\FinishedOrder;
 use App\Models\Delivery;
 use App\Models\Order;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -297,6 +299,9 @@ class ArtisanController extends Controller
         $data = $request->validate([
             'status' => 'required|in:not_started,processing,cancelled,completed',
         ]);
+        if ($data['status'] == 'completed') {
+            Mail::to($order->buyer->email)->send(new FinishedOrder($order));
+        }
         $order->update([
             'status' => $data['status'],
         ]);

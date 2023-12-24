@@ -100,7 +100,7 @@
                                         <td
                                             class="flex items-center justify-center gap-3 px-5 py-5 mt-2 border-b border-gray-200 bg-white text-sm">
                                             <a data-tooltip-target="tooltip-see"
-                                                href="{{ route('product.show', ['product' => $product]) }}"
+                                                href="{{ route('admin.products.show', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-blue-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-see" role="tooltip"
                                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
@@ -117,7 +117,7 @@
 
                                             </a>
                                             <a data-tooltip-target="tooltip-edit"
-                                                href="{{ route('admin.products.show', ['product' => $product]) }}"
+                                                href="{{ route('admin.products.edit', ['product' => $product]) }}"
                                                 class="border border-solid border-gray-400  p-1 rounded-md hover:bg-indigo-500 hover:text-white hover:border-transparent">
                                                 <div id="tooltip-edit" role="tooltip"
                                                     class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-500 rounded-lg shadow-sm opacity-0 tooltip">
