@@ -23,7 +23,7 @@ class AdminFactory extends Factory
             'prenom' => 'Adnane',
             'adresse' => 'Ain dheb makhokh mansourah',
             'wilaya' => 'Oran',
-            'num_telephone' => '0560690167',
+            'num_telephone' => '0512345678',
             'email' => 'skillzdev@hotmail.com',
             'email_verified_at' => now(),
             'password' => bcrypt('adnane2002'),
