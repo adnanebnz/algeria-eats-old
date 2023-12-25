@@ -12,7 +12,7 @@
                         <div class="relative flex items-center w-full">
                             <input type="number" name="num_telephone" wire:model='num_telephone' required
                                 class="w-full border border-gray-200 rounded-md px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:border-orange-500 focus:ring-orange-500"
-                                placeholder="0560690167" />
+                                placeholder="0512345678" />
                             <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                                 <img class="h-4 w-6 border" src="{{ asset('assets/algeria.png') }}" />
                             </div>
