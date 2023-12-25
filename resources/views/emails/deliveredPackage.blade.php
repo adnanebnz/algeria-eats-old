@@ -1,12 +1,14 @@
-<x-mail::message>
+@component('mail::message')
     # Commande livée avec succès!
 
     Votre commande a été livrée avec succès.
 
-    <x-mail::button :url="$url">
-        Voir la commande
-    </x-mail::button>
+@component('mail::button', ['url' => $url])
+    Voir la commande
+@endcomponent
 
-    Merci,<br>
+    Merci,
+
     {{ config('app.name') }}
-</x-mail::message>
+
+@endcomponent

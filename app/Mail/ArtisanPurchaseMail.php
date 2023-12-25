@@ -35,7 +35,14 @@ class ArtisanPurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(view: 'emails.artisan-purchase-mail');
+        return new Content(
+            markdown: 'emails.artisan-purchase-mail',
+            //TODO TO MODIFy
+            with: [
+                'order' => $this->order,
+                'url' => route('artisan.orders.show', $this->order),
+            ],
+        );
     }
 
     /**

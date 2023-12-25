@@ -14,7 +14,6 @@ use App\Http\Controllers\Profile\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*---AUTH AND PROFILE SECTION---*/
-
 // AUTH
 Route::get('/auth/login', [LoginController::class, 'showLoginForm'])->name(
     'login'

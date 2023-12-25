@@ -1,54 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+@component('mail::message')
+     # Votre facture
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Facture de votre commande</title>
-</head>
+     Bonjour {{ $order->buyer->getFullName() }},
 
-<body style="background-color: #f0f4f8; font-family: sans-serif;">
-    <div
-        style="margin: 0 auto; max-width: 32rem; background-color: #fff; padding: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h1 style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">Facture de votre commande</h1>
+     Nous vous remercions pour votre commande. Voici les détails de votre facture :
 
-        <p style="margin-bottom: 1.5rem;">Bonjour {{ $order->buyer->getFullName() }},</p>
+@component('mail::table')
+     | Produit         | Quantité       | Prix unitaire   | Prix Total      |
+     |:---------------:|:--------------:|:---------------:|:---------------:|
+     @foreach ($invoice->items->all() as $item)
+     | {{ $item->title }} | {{ $item->quantity }} | {{ $item->price_per_unit }} DA | {{ $item->sub_total_price }} DA |
+     @endforeach
+@endcomponent
 
-        <p style="margin-bottom: 1.5rem;">Nous vous remercions pour votre commande. Voici les détails de votre facture :
-        </p>
+     Montant total: {{ $invoice->total_amount }} DA
 
-        <table style="margin-bottom: 1.5rem; width: 100%; border-collapse: collapse;">
-            <thead style="border: 1px solid #000;">
-                <tr>
-                    <th style="border: 1px solid #000; padding: 0.5rem;">Produit</th>
-                    <th style="border: 1px solid #000; padding: 0.5rem;">Quantité</th>
-                    <th style="border: 1px solid #000; padding: 0.5rem;">Prix unitaire</th>
-                    <th style="border: 1px solid #000; padding: 0.5rem;">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($invoice->items->all() as $item)
-                    <tr>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->title }}</td>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->quantity }}</td>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->price_per_unit }} DA</td>
-                        <td style="border: 1px solid #000; padding: 0.5rem;">{{ $item->sub_total_price }} DA</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+     Vous pouvez régler cette facture dans les 7 jours suivant la date d'émission.
 
-        <p style="margin-bottom: 1rem; font-size: 1.125rem; font-sweight: bold;">Montant total:
-            {{ $invoice->total_amount }} DA</p>
+     Merci encore pour votre achat.
 
-        <p style="margin-bottom: 1.5rem;">Vous pouvez régler cette facture dans les 7 jours suivant la date d'émission.
-        </p>
+     Cordialement,
+     Algeria Eats
 
-        <p style="margin-bottom: 1.5rem;">Merci encore pour votre achat.</p>
-
-        <p>Cordialement,</p>
-        <p>Algeria Eats</p>
-    </div>
-</body>
-
-</html>
+@endcomponent
