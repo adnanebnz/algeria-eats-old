@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+@component('mail::message')
+    # Acceptation de la livraison
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
+    Bonjour {{ $delivery->order->artisan->getFullName() }},
 
-<body style="background-color: #f0f4f8; font-family: sans-serif;">
-    <div
-        style="margin: 0 auto; max-width: 32rem; background-color: #fff; padding: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <h1 style="margin-bottom: 1rem; font-size: 1.5rem; font-weight: bold;">Acceptation de la livraison
-        </h1>
+    Votre livraison a été acceptée.
 
-        <p style="margin-bottom: 1.5rem;">Bonjour {{ $delivery->order->artisan->getFullName() }},</p>
+@component('mail::button', ['url' => route('artisan.deliveries.show', $delivery)])
+    Voir la commande
+@endcomponent
 
-        <p style="margin-bottom: 1.5rem;">Votre livraison a était accepté</p>
-        <a href="{{ route('artisan.deliveries.show', $delivery) }}"
-            style="display: inline-block; background-color: #1a202c; color: #fff; padding: 0.5rem 1rem; text-decoration: none; border-radius: 0.25rem;">Voir
-            la livraison</a>
-    </div>
-</body>
+    Merci
+    {{ config('app.name') }}
 
-</html>
+@endcomponent

@@ -32,7 +32,13 @@ class AcceptedDeliverymail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(view: 'emails.accepted-delivery-mail');
+        return new Content(
+            markdown: 'emails.accepted-delivery-mail',
+            with: [
+                'delivery' => $this->delivery,
+                'url' => route('artisan.deliveries.show', $this->delivery),
+            ],
+        );
     }
 
     /**

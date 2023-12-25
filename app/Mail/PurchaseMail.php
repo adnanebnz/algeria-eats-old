@@ -42,7 +42,13 @@ class PurchaseMail extends Mailable
      */
     public function content(): Content
     {
-        return new Content(view: 'emails.purchase-mail');
+        return new Content(
+            markdown: 'emails.purchase-mail',
+            with: [
+                'invoice' => $this->invoice,
+                'order' => $this->order,
+            ],
+        );
     }
 
     /**
