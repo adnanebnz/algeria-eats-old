@@ -225,7 +225,6 @@
             <div class="w-full lg:w-6/12 px-4">
                 <img src="{{ asset('assets/LOGO.png') }}" class="md:h-14 h-10" alt="logo" />
                 <div class="mt-6 lg:mb-0 mb-6">
-                    {{-- TODO ADD SOCIAL MEDIA LINKS HERE --}}
                 </div>
             </div>
             <div class="w-full lg:w-6/12 px-4">

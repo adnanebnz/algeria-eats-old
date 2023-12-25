@@ -41,7 +41,6 @@ class ProductsTest extends TestCase
             'artisan_id' => $user->id,
             'nom' => 'Produit 1',
             'categorie' => 'sucree',
-            'sous_categorie' => 'Sous categorie',
             'description' => 'Description',
             'prix' => 100,
             'description' => 'Description',

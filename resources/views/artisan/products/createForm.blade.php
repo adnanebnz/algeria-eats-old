@@ -26,7 +26,6 @@
                                 <option value="salee">Salée</option>
                             </select>
                         </div>
-                        <x-input name="sous_categorie" label="Sous Categorie" />
                         <x-input name="prix" label="Prix" />
                     </div>
                     <div x-data="{ images: [] }" class="w-full">

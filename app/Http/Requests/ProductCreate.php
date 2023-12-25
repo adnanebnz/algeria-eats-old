@@ -27,7 +27,6 @@ class ProductCreate extends FormRequest
             'prix' => ['required', 'numeric'],
             'description' => ['required', 'string'],
             'categorie' => ['required', 'string'],
-            'sous_categorie' => ['required', 'string'],
             'images' => 'required|array|size:5',
             'images.*' => 'required|image|mimes:jpeg,png,jpg,webp|max:4096',
         ];

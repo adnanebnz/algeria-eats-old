@@ -27,7 +27,6 @@ class ProductUpdate extends FormRequest
             'prix' => ['required', 'numeric'],
             'description' => ['required', 'string'],
             'categorie' => ['required', 'string'],
-            'sous_categorie' => ['required', 'string'],
             'images' => 'sometimes|array|size:5',
             'images.*' => 'image|mimes:jpeg,png,jpg,webp|max:4096',
         ];

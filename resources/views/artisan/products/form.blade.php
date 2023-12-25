@@ -27,7 +27,6 @@
                                 <option value="salee" @if ($product->categorie === 'salee') selected @endif>Salée</option>
                             </select>
                         </div>
-                        <x-input name="sous_categorie" label="Sous Categorie" :value="$product->sous_categorie" />
                         <x-input name="prix" label="Prix" :value="$product->prix" />
                     </div>
                     <div class="px-6 md:px-0">

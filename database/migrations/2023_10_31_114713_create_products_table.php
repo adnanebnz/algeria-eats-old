@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('nom');
             $table->text('description');
             $table->string('categorie');
-            $table->string('sous_categorie');
-            // TODO CREATE INTERMEDIATE FILE FOR THIS CONTAINING ALL SUB CATEGORIES
             $table->integer('prix');
             $table->json('images');
             $table->integer('rating')->nullable();

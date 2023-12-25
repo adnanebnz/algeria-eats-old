@@ -16,7 +16,6 @@ class Product extends Model
         'artisan_id',
         'description',
         'categorie',
-        'sous_categorie',
         'prix',
         'rating',
         'images',

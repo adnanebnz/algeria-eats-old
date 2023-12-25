@@ -52,7 +52,6 @@ class ConsumerController extends Controller
             'daira',
             'commune'
         )->where('buyer_id', auth()->user()->id);
-        // todo add filter chercher by status
         // Filtering by search term of artisan name
         if ($request->has('search')) {
             $query->whereHas('artisan', function ($query) {
