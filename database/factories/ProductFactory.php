@@ -21,7 +21,6 @@ class ProductFactory extends Factory
             'nom' => $this->faker->name(),
             'description' => $this->faker->text(),
             'categorie' => 'sucree',
-            'sous_categorie' => 'gateau',
             'prix' => $this->faker->numberBetween(50, 500),
             'images' => [
                 'https://picsum.photos/200/300',
