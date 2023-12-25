@@ -22,7 +22,7 @@
                         Wilaya
                     </label>
                     <select wire:model.live='selectedWilaya' id="selectedWilaya" name="selectedWilaya"
-                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 ring-gray-300 focus:ring-orange-600">
                         <option value="">Choisir une wilaya</option>
                         @foreach ($wilayas as $wilaya)
                             <option value="{{ $wilaya->wilaya_name_ascii }}">{{ $wilaya->wilaya_code }} -
@@ -36,7 +36,7 @@
                         Daira
                     </label>
                     <select wire:model.live='selectedDaira' id="selectedDaira" name="selectedDaira"
-                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 ring-gray-300 focus:ring-orange-600">
                         <option value="">Choisir une Daira</option>
                         @if ($selectedWilaya)
                             @foreach ($dairas as $daira)
@@ -52,7 +52,7 @@
                         Commune
                     </label>
                     <select wire:model='selectedCommune' id="selectedCommune" name="selectedCommune"
-                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 ring-gray-300 focus:ring-orange-600">
                         <option value="">Choisir une Commune</option>
                         @if ($selectedDaira)
                             @foreach ($communes as $commune)
@@ -69,7 +69,7 @@
             </div>
         </div>
         <button type="submit"
-            class="mt-4 mb-3 w-full rounded-md bg-orange-500 hover:bg-orange-600 px-6 py-3 font-medium text-white">
+            class="mt-4 mb-3 w-full rounded-md bg-green-500 hover:bg-green-600 px-6 py-3 font-medium text-white">
             <span>Confirmer la commande</span>
         </button>
 

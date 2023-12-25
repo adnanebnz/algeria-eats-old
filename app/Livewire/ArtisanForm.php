@@ -42,7 +42,7 @@ class ArtisanForm extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'num_telephone' => 'required|string|unique:users',
+        'num_telephone' => 'required|string|unique:users|regex:/^0[567]\d{8}$/',
         'adresse' => 'required|string',
         'wilaya' => 'required|string',
         'desc_entreprise' => 'required|string',
@@ -53,6 +53,10 @@ class ArtisanForm extends Component
         'image' => 'nullable|image|max:4096',
         'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'required|same:password',
+    ];
+
+    protected $messages = [
+        'num_telephone.regex' => 'Le numéro de téléphone doit être un numéro de téléphone mobile algérien valide',
     ];
 
     public function submit()
