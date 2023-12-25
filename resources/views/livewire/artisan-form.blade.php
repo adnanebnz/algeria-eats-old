@@ -5,7 +5,23 @@
             <div class="md:w-1/2 w-full flex flex-col gap-4">
                 <x-input name="nom" label="Nom" type="text" />
                 <x-input name="prenom" label="Prénom" type="text" />
-                <x-input name="num_telephone" label="Numéro de teléphone" type="text" />
+                <div>
+                    <label for="billing-address" class="mb-2 block text-sm text-gray-700 font-medium">Numéro de
+                        télephone</label>
+                    <div class="relative flex flex-col gap-1.5 w-full">
+                        <div class="relative flex items-center w-full">
+                            <input type="number" name="num_telephone" wire:model='num_telephone' required
+                                class="w-full border border-gray-200 rounded-md px-4 py-3 pl-11 text-sm shadow-sm outline-none focus:border-orange-500 focus:ring-orange-500"
+                                placeholder="0560690167" />
+                            <div class="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
+                                <img class="h-4 w-6 border" src="{{ asset('assets/algeria.png') }}" />
+                            </div>
+                        </div>
+                        @error('num_telephone')
+                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
                 <x-input name="adresse" label="Adresse" type="text" />
                 <x-select name="wilaya" label="Wilaya" :list="$wilayas" :optionsValues="'wilaya_name_ascii'" :optionsSubTexts="'wilaya_code'"
                     :optionsTexts="'wilaya_name_ascii'" />
@@ -18,7 +34,7 @@
                 <div>
                     <label class="block text-sm font-medium leading-6 text-gray-900 mb-2">Type Service</label>
                     <select name="type_service" wire:model='type_service'
-                        class="form-select w-full rounded-md border-0 py-1.5 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6">
+                        class="form-select block w-full shadow-sm rounded-md border-0 py-2 ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 text-gray-900 ring-gray-300 focus:ring-orange-600">
                         <option value="sucree">Sucrée</option>
                         <option value="salee">Salée</option>
                         <option value="sucree_salee">Sucrée et Salée</option>
@@ -77,8 +93,9 @@
                                 </path>
                             </svg>
 
-                            <svg x-show="showPasswordConfirmation" class="w-5 h-5" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <svg x-show="showPasswordConfirmation" class="w-5 h-5" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                style="display: none;">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -132,8 +149,10 @@
         </div>
         <div>
             <button type="submit"
-                class="flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500">Créer
-                votre compte</button>
+                class="flex w-full justify-center rounded-md bg-orange-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-orange-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-500">
+                Créer
+                votre compte
+            </button>
             <div wire:loading class="fixed inset-0 z-50 overflow-hidden flex items-center justify-center">
                 <!-- Black background overlay -->
                 <div class="absolute inset-0 bg-black opacity-40"></div>

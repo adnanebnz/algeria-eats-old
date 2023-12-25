@@ -36,7 +36,7 @@ class DeliveryManForm extends Component
     protected $rules = [
         'nom' => 'required|string',
         'prenom' => 'required|string',
-        'num_telephone' => 'required|string|unique:users',
+        'num_telephone' => 'required|string|unique:users|regex:/^0[567]\d{8}$/',
         'adresse' => 'required|string',
         'wilaya' => 'required|string',
         'email' => 'required|email|unique:users',
@@ -44,6 +44,10 @@ class DeliveryManForm extends Component
         'password' => 'required|min:3|confirmed',
         'password_confirmation' => 'required|same:password',
         'est_disponible' => 'required|integer|in:1,0',
+    ];
+
+    protected $messages = [
+        'num_telephone.regex' => 'Le numéro de téléphone doit être un numéro de téléphone mobile algérien valide',
     ];
 
     public function submit()
