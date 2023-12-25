@@ -47,7 +47,7 @@ class Product extends Model
             $search
         ) {
             $query->where(function (Builder $query) use ($search) {
-                $query->where('nom', 'LIKE', '%'.$search.'%');
+                $query->where('nom', 'LIKE', '%' . $search . '%');
             });
         });
 
@@ -63,11 +63,11 @@ class Product extends Model
                 ) {
                     $query->where(function (Builder $query) use ($artisan) {
                         $query
-                            ->where('nom', 'LIKE', '%'.$artisan.'%')
-                            ->orWhere('prenom', 'LIKE', '%'.$artisan.'%')
+                            ->where('nom', 'LIKE', '%' . $artisan . '%')
+                            ->orWhere('prenom', 'LIKE', '%' . $artisan . '%')
                             ->orWhereRaw(
                                 "CONCAT(nom, ' ', prenom) LIKE ?",
-                                '%'.$artisan.'%'
+                                '%' . $artisan . '%'
                             );
                     });
                 });
@@ -81,7 +81,7 @@ class Product extends Model
             $query->whereHas('artisan', function (Builder $query) use (
                 $artisanRating
             ) {
-                $query->where('rating', 'LIKE', '%'.$artisanRating.'%');
+                $query->where('rating', 'LIKE', '%' . $artisanRating . '%');
             });
         });
 
@@ -89,14 +89,14 @@ class Product extends Model
             Builder $query,
             $productRating
         ) {
-            $query->where('rating', 'LIKE', '%'.$productRating.'%');
+            $query->where('rating', 'LIKE', '%' . $productRating . '%');
         });
 
         $query->when($filters['productType'] ?? null, function (
             Builder $query,
             $productType
         ) {
-            $query->where('categorie', 'LIKE', '%'.$productType.'%');
+            $query->where('categorie', 'LIKE', '%' . $productType . '%');
         });
     }
 }

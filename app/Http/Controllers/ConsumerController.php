@@ -56,8 +56,8 @@ class ConsumerController extends Controller
         if ($request->has('search')) {
             $query->whereHas('artisan', function ($query) {
                 $query
-                    ->where('nom', 'like', '%'.request('search').'%')
-                    ->orWhere('prenom', 'like', '%'.request('search').'%');
+                    ->where('nom', 'like', '%' . request('search') . '%')
+                    ->orWhere('prenom', 'like', '%' . request('search') . '%');
             });
         }
 
